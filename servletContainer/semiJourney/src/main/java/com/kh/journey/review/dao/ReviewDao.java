@@ -32,6 +32,42 @@ public class ReviewDao {
 		return result;
 	}
 
-	
+	public List<ReviewVo> selectReviewList(Connection conn, int roomNo) throws Exception {
+		// SQL
+		String sql = "SELECT M.PROFILE , M.NAME , R.CONTENT , R.ACCURACY , R.CLEAN , R.CHECKIN , R.LOCATION , R.COMMUNICATION , R.ENROLL_DATE FROM REVIEW R JOIN RESERVATION RV ON R.RESERVE_NO = RV.NO JOIN MEMBER M ON RV.RESERVATOR_NO=M.NO JOIN ROOM RM ON RM.NO = RV.ROOM_NO WHERE RV.ROOM_NO = ? AND M.DEL_YN = 'N'";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, roomNo);
+		ResultSet rs = pstmt.executeQuery();
 
+		List<ReviewVo> voList = new ArrayList<ReviewVo>();
+		ReviewVo vo = null;
+		while (rs.next()) {
+			String profile = rs.getString("PROFILE");
+			String writerName = rs.getString("NAME");
+			String content = rs.getString("CONTENT");
+			String enrollDate = rs.getString("ENROLL_DATE");
+			int accuracy = rs.getInt("ACCURACY");
+			int clean = rs.getInt("CLEAN");
+			int checkin = rs.getInt("CHECKIN");
+			int loation = rs.getInt("LOCATION");
+			int communication = rs.getInt("COMMUNICATION");
+
+			String starAvg = Integer.toString((accuracy + clean + checkin + loation + communication) / 5);
+			System.out.println(starAvg);
+
+			vo = new ReviewVo();
+			vo.setProfile(profile);
+			vo.setWriterName(writerName);
+			vo.setContent(content);
+			vo.setEnrollDate(enrollDate);
+			vo.setStarAvg(starAvg);
+
+			voList.add(vo);
+		}
+
+		System.out.println("D" + voList);
+		close(pstmt);
+		close(rs);
+		return voList;
+	}// method
 }
