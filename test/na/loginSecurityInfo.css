@@ -1,9 +1,11 @@
-body{
+/* header */
+* {
   margin: 0;
+  padding: 0;
 }
 
-hr{
-  border: 0.5px solid rgb(221, 221, 221);
+body {
+  line-height: 1.6;
 }
 
 header{
@@ -15,6 +17,13 @@ header{
   display: flex;
   justify-content: space-between;
   padding: 30px 70px;
+
+  /* 추가한 부분 */
+  position: fixed; 
+  top: 0; 
+  width: 95%;
+  background-color: white; 
+  z-index: 4; 
 }
 
 #img-logo{
@@ -28,6 +37,7 @@ header{
 
 #introduce{
   padding: 20px 30px;
+  font-weight:bolder;
 }
 
 #profile-icon{
@@ -35,18 +45,22 @@ header{
   border-radius: 40px;
   display: flex;
   align-items: center;
-  padding: 0 18px 0 18px;
+  /* 테두리 안 */
+  padding: 0 15px 0 15px;
+  /* 테두리 밖 */
+  margin-right: 70px;
 }
 
 #menu-icon{
-  padding: 0 10px;
+  padding: 0 8px;
 }
 
 #user-icon{
-  padding: 0 0 0 10px;
+  padding: 0 0 0 8px;
 }
+/* --------------------------- */
 
-/*개인정보*/
+/*로그인 및 보안*/
 
 #navText{
   padding-left: 130px;
@@ -82,9 +96,10 @@ header{
 main{
   display: grid;
   grid-template-columns: 1fr 0.8fr;
+  padding-bottom: 5%;
 }
 
-/*정보수정*/
+/*비밀번호 수정*/
 section{
   padding-left: 30%;
   padding-top: 5%;
@@ -151,7 +166,7 @@ aside{
 
 .asideBox{
   width: 55%;
-  height: 70%;
+  height: 35%;
   border: 2px solid rgb(221, 221, 221);
   padding: 30px;
 
@@ -171,52 +186,105 @@ aside{
   word-break: keep-all;
 }
 
-footer{
-  color: black;
-  background-color: #DDDDDD;
+.securityLevelUp{
+
+  width: 200px;
+  height: 50px;
+  background-color: rgb(0, 104, 136);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+
+}
+
+/* ---------footer--------- */
+.footer {
+  background-color: #f7f7f7;
+  padding: 20px;
+  border-top: 1px solid #e9e7e7;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.footer-column {
+  margin: 20px;
+}
+
+.footer-column h4 {
+  font-weight: bold;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.footer-column ul li {
+  margin-bottom: 10px;
+}
+
+.footer-column ul li a{
+  text-decoration: none; 
+  color: inherit; 
+}
+
+.footer-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-top: 1px solid #e7e7e7;
+  padding-top: 10px;
+}
+
+.footer-bottom span {
+  margin-bottom: 10px;
+}
+
+.footer-link{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer-bottom a {
+  margin: 10px;
+  color: #555;
+  text-decoration: none;
+}
+
+.footer-language {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 300px;
+  padding-bottom: 30px;
 }
 
-/*popup*/
-.popup_layer {position:fixed;top:0;left:0;z-index: 10000; width: 100%;
- height: 100%; background-color: rgba(0, 0, 0, 0.4); }
-/*팝업 박스*/
-.popup_box{position: relative;top:50%;left:50%; overflow: auto; 
-  height: 450px; width:550px;transform:translate(-50%, -50%);
-  z-index:1002;box-sizing:border-box;background:#fff;
-  box-shadow: 2px 5px 10px 0px rgba(0,0,0,0.35);
-  -webkit-box-shadow: 2px 5px 10px 0px rgba(0,0,0,0.35);
-  -moz-box-shadow: 2px 5px 10px 0px rgba(0,0,0,0.35);
-  border-radius: 10px;}
-/*컨텐츠 영역*/
-.popup_box .popup_cont {padding:20px;line-height:1.4rem;font-size:14px; }
-.popup_box .popup_cont h2 {padding:15px 0;color:#333;margin:0;}
-.popup_box .popup_cont p{border-top: 1px solid #666;padding-top: 30px;}
-/*오버레이 뒷배경*/
-.popup_overlay{position:fixed;top:0px;right:0;left:0;bottom:0;z-index:1001;;background:rgba(0,0,0,0.5);}
-/*popup*/
-
-/*환불 팝업창*/
-
-#closeImg{
-  width: 50px;
-  &:hover{
-    background-color: rgb(221, 221, 221);
-    border-radius: 50px;
-  }
-}
-.returnPopup{
-  border-bottom: 1px solid rgb(221, 221, 221);
-  padding: 10px ;
-  padding-top: 0px;
+.footer-language span {
+  margin-left: 15px;
+  color: #555;
 }
 
-.refundInformation{
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  font-size: 16px;
-  border-bottom: 1px solid rgb(221, 221, 221);
+.footer-sns {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 30px;
+  cursor: pointer;
 }
+
+.footer-sns img {
+  width: 24px;
+  height: 24px;
+  margin: 0 10px;
+}
+/* ---------------------- */
+

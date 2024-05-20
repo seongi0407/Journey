@@ -46,7 +46,7 @@ header{
   padding: 0 0 0 10px;
 }
 
-/*개인정보*/
+/*로그인 및 보안*/
 
 #navText{
   padding-left: 130px;
@@ -82,9 +82,10 @@ header{
 main{
   display: grid;
   grid-template-columns: 1fr 0.8fr;
+  padding-bottom: 5%;
 }
 
-/*정보수정*/
+/*비밀번호 수정*/
 section{
   padding-left: 30%;
   padding-top: 5%;
@@ -98,11 +99,24 @@ section{
   width: 90%;
 }
 
-.updateMemberPersonal{
+.updateMemberPwd, .snsConnection, .acountQuit{
   display:grid;
   grid-template-columns: 8fr 1fr;
   justify-content: space-between;
 
+}
+
+.deviceConnection{
+  display:grid;
+  grid-template-columns: 0.5fr 2fr 3fr;
+  justify-content: space-between;
+
+  & img{
+    width: 45px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-right: 20px;
+  }
 }
 
 .rsvInnerBox{
@@ -117,24 +131,30 @@ section{
 .update>span{
   cursor: pointer;
   font-weight: bold;
-  text-decoration-line: underline;
-  text-decoration-style: solid;
+  color: rgb(0, 104, 136);
 }
+
+.acountQuitBtn{
+  align-content: center;
+  text-align: end;
+  cursor: pointer;
+  color: rgb(255, 0, 0);
+}
+
 
 /*aside*/
 
 aside{  
-  height: 90%;
+  height: 100%;
   padding-left: 80px;
   padding-right: 10%;
 }
 
 .asideBox{
   width: 55%;
-  height: 100%;
+  height: 35%;
   border: 2px solid rgb(221, 221, 221);
   padding: 30px;
-  border-radius: 20px;
 
   display: grid;
 
@@ -150,6 +170,21 @@ aside{
 
 .asideText{
   word-break: keep-all;
+}
+
+.securityLevelUp{
+
+  width: 200px;
+  height: 50px;
+  background-color: rgb(0, 104, 136);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+
 }
 
 /* ---------footer--------- */
@@ -239,43 +274,3 @@ aside{
 }
 /* ---------------------- */
 
-/*popup*/
-.popup_layer {position:fixed;top:0;left:0;z-index: 10000; width: 100%;
- height: 100%; background-color: rgba(0, 0, 0, 0.4); }
-/*팝업 박스*/
-.popup_box{position: relative;top:50%;left:50%; overflow: auto; 
-  height: 450px; width:550px;transform:translate(-50%, -50%);
-  z-index:1002;box-sizing:border-box;background:#fff;
-  box-shadow: 2px 5px 10px 0px rgba(0,0,0,0.35);
-  -webkit-box-shadow: 2px 5px 10px 0px rgba(0,0,0,0.35);
-  -moz-box-shadow: 2px 5px 10px 0px rgba(0,0,0,0.35);
-  border-radius: 10px;}
-/*컨텐츠 영역*/
-.popup_box .popup_cont {padding:20px;line-height:1.4rem;font-size:14px; }
-.popup_box .popup_cont h2 {padding:15px 0;color:#333;margin:0;}
-.popup_box .popup_cont p{border-top: 1px solid #666;padding-top: 30px;}
-/*오버레이 뒷배경*/
-.popup_overlay{position:fixed;top:0px;right:0;left:0;bottom:0;z-index:1001;;background:rgba(0,0,0,0.5);}
-/*popup*/
-
-/*환불 팝업창*/
-
-#closeImg{
-  width: 50px;
-  &:hover{
-    background-color: rgb(221, 221, 221);
-    border-radius: 50px;
-  }
-}
-.returnPopup{
-  border-bottom: 1px solid rgb(221, 221, 221);
-  padding: 10px ;
-  padding-top: 0px;
-}
-
-.refundInformation{
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  font-size: 16px;
-  border-bottom: 1px solid rgb(221, 221, 221);
-}

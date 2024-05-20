@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>예약 및 결제</title>
-  <link rel="stylesheet" href="./memberPersonalInfo.css">
-  <script defer src="./memberPersonalInfo.js"></script>
+  <title>로그인 및 보안</title>
+  <link rel="stylesheet" href="./loginSecurityInfo.css">
+  <script defer src="./m.js"></script>
 </head>
 
 <body>
@@ -25,9 +25,9 @@
 
   <nav id="navText">
     <div class="backImgBox"><img src="../resources/img/뒤로가기.png"></div>
-    <span>계정 > 개인정보</span>
+    <span>계정 > 로그인 및 보안</span>
     <div>
-      <h1>개인정보</h1>
+      <h1>로그인 및 보안</h1>
     </div>
   </nav>
 
@@ -35,97 +35,118 @@
     <form action="">
       <section class="rsv_inner">
         <div class="updateMember">
+          <div>
+            <h3>로그인</h3>
+          </div>
+          <div class="updateMemberPwd">
 
-          <div class="updateMemberPersonal">
             <div class="updateInner">
-              <div id="name">
-                <h3>실명</h3>
+              <div id="pwd">
+                <h4>비밀번호</h4>
               </div>
-              <div name="name"><span>나지원</span></div>
+              <div name="pwd"><span>최종 수정일 : </span></div>
             </div>
-            <div class="update"><span class="updateName" role="button">수정</span></div>
+            <div class="update"><span class="updatePwd" role="button">수정</span></div>
           </div>
           <div><br>
             <hr />
           </div>
 
-          <div class="updateMemberPersonal">
-            <div class="updateInner">
-              <div id="phone">
-                <h3>전화번호</h3>
-              </div>
-              <div name="phone"><span>010-0000-0000</span></div>
-            </div>
-            <div class="update"><span class="updatePhoneNumber" role="button">수정</span></div>
+          <div>
+            <h3>SNS 계정</h3>
           </div>
+          <div class="snsConnection">
+            <div class="updateInner">
+              <div id="pwd">
+                <h4>페이스북</h4>
+              </div>
+              <div name="pwd"><span>연결되지 않음</span></div>
+            </div>
+            <div class="update"><span class="updatePwd" role="button">연결</span></div>
+          </div>
+
+          <div class="snsConnection">
+            <div class="updateInner">
+              <div id="pwd">
+                <h4>인스타그램</h4>
+              </div>
+              <div name="pwd"><span>연결되지 않음</span></div>
+            </div>
+            <div class="update"><span class="updatePwd" role="button">연결</span></div>
+          </div>
+
           <div><br>
             <hr />
           </div>
 
-          <div class="updateMemberPersonal">
-            <div class="updateInner">
-              <div id="e-mail">
-                <h3>이메일 주소</h3>
-              </div>
-              <div name="e-mail"><span>kh@gamil.com</span></div>
-            </div>
-            <div class="update"><span class="updateEmail" role="button">수정</span></div>
+          <div>
+            <h3>기기 접속 기록</h3>
           </div>
+          <div class="deviceConnection">
+            <img src="../resources/img/monitor.png">
+            <div class="updateInner">
+              <div id="pwd">
+                <h4>세션</h4>
+              </div>
+              <div name="pwd"><span>2024년 10월 1일 01:30</span></div>
+            </div>
+            <div class="update"><span class="updatePwd" role="button">기기에서 로그아웃하기</span></div>
+          </div>
+
           <div><br>
             <hr />
           </div>
 
-          <div class="updateMemberPersonal">
+          <div class="deviceConnection">
+            <img src="../resources/img/monitor.png">
             <div class="updateInner">
-              <div id="address">
-                <h3>주소</h3>
+              <div id="pwd">
+                <h4>Android</h4>
               </div>
-              <div name="address"><span>서울시 어쩌고구 저쩌고로 500길, 6층</span></div>
+              <div name="pwd"><span>Paris, Île-de-France · 2023년 5월 16일 02:51</span></div>
             </div>
-            <div class="update"><span class="updateAddress" role="button">수정</span></div>
+            <div class="update"><span class="updatePwd" role="button">기기에서 로그아웃하기</span></div>
           </div>
+
           <div><br>
             <hr />
           </div>
 
-          <div class="updateMemberPersonal">
+          <div>
+            <h3>계정</h3>
+          </div>
+          <div class="acountQuit">
             <div class="updateInner">
-              <div id="birthday">
-                <h3>생년월일</h3>
-              </div>
-              <div name="birthday"><span>날짜</span></div>
+              <div name="pwd"><span>계정 비활성화</span></div>
             </div>
-            <div class="update"><span class="updateBirthday" role="button">수정</span></div>
+            <div class="acountQuitBtn"><span class="acountQuitBtn" role="button">비활성화</span></div>
           </div>
           <div><br>
             <hr />
           </div>
-
-        </div>
       </section>
     </form>
 
-    <aside>
-      <div class="asideBox">
-        <div class="asideText">
-          <img src="../resources/img/보안1.png">
-          <h3>여기에 내 개인정보가 표시되지 않는 이유가 무엇인가요?</h3>
-          <span>신분이 노출되지 않도록 일부 계정 정보가 숨김 처리되었습니다.</span>
-          <br><br>
-          <hr>
+    <aside class="asideBox">
+      <div class="asideText">
+        <img src="../resources/img/결제수단.png">
+        <h3>에어비앤비를 통해서만 결제하세요.</h3>
+        <div class="rsvInnerBox" id="rsvBtnText">
+          아래 버튼을 선택하면
+          <span class="accommPolicy" role="button">호스트가 설정한 숙소 이용규칙</span>
+          ,
+          <span class="accommPolicy" role="button">게스트에게 적용되는 기본 규칙</span>
+          ,
+          <span class="accommPolicy" role="button">에어비앤비 재예약 및 환불 정책</span>
+          에 동의하며, 피해에 대한 책임이 본인에게 있을 경우 에어비앤비가
+          <span class="accommPolicy" role="button">결제 수단으로 청구</span>
+          의 조치를 취할 수 있다는 사실에 동의하는 것입니다. 호스트가 예약 요청을 수락하면 표시된 총액이 결제되는 데 동의합니다.
+          <button class="securityLevelUp">보안 등급 개선하기</button>
         </div>
-        <div class="asideText">
-          <img src="../resources/img/보안2.png">
-          <h3>수정할 수 있는 세부 정보는 무엇인가요?</h3>
-          <span>연락처 정보와 개인정보를 수정하실 수 있습니다. 본인 인증 시 이 정보를 사용했다면 호스팅을 계속하기 위해 또는 다음번 예약 진행 시 다시 인증을 받으셔야 합니다.</span>
-          <br><br>
-          <hr>
-        </div>
-        <div class="asideText">
-          <img src="../resources/img/보안3.png">
-          <h3>다른 사람에게 어떤 정보가 공개되나요?</h3>
-          <span>에어비앤비는 예약이 확정된 후에만 호스트 및 게스트의 연락처 정보를 공개합니다.</span>
-        </div>
+        <span id="refundPolicy" role="button"><a href="javascript:openPop()"> 자세히 알아보기</a></span>
+        <br><br>
+        <hr>
+
       </div>
     </aside>
   </main>
