@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./style.css">
+  <script defer src="/airbnb/airbnb.js"></script>
+</head>
+
+<body>
+  <head>
+    <div class="rsv_inner" id="head">
+    <img id="airbnbImg" src="./resources/airbnbImg.svg">  
+    </div>
+  </head>
+
+  <nav class="rsv_inner" id="navText">
+    <div id="backImgBox"><img src="./resources/뒤로가기.png"></div>
+    <div><h1>확인 및 결제</h1></div>
+  </nav>
+
+<main class="main">  
+  <section class="rsv_inner" id="section">
+    <div id="sectionLeft">
+      <div class="rsvInnerBox" id="reservationInformation">
+        <div id="reservationInformationOutter">
+          <h2>예약 정보</h2>
+        </div>
+        <div class="reservationInformationInner">
+          <div>
+            <div><h3>날짜</h3></div>
+            <div>5월20일~30일</div>
+          </div>
+          <div id="modifyDate"><span id="modifyDateText" role="button">수정</span></div>
+        </div>
+        <div class="reservationInformationInner" >
+          <div>
+            <div><h3>인원</h3></div>
+            <div>4명</div>
+          </div>
+          <div id="modifyCntPeople"><span id="modifyCntPeopleText" role="button">수정</span></div>
+        </div>
+      </div>
+
+      <div class="rsvInnerBox" id="billingInformation">
+        <div class="billingInformation" id="billingInformationTitle">
+          <h2>결제수단</h2> 
+          <div class="billingInformation" id="payimgoutter">
+            <div class="payimg"><img src="./resources/visa.svg"></div>
+            <div class="payimg"><img src="./resources/master.svg"></div>
+            <div class="payimg"><img src="./resources/amaxs.svg"></div>
+            <div class="payimg"><img src="./resources/npay.svg"></div>
+        </div></div>
+        <div class="billingInformation">
+          <select id="cardSelect">
+            <option value='visa' data-image="./resources/visa.svg">***1554</option>
+            <option>***0235</option>
+            <option>무통장입금</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="rsvInnerBox" id="sendMessageToHost">
+        <div class="sendMessageToHost"><h2>호스트에게 메시지 보내기</h2></div>
+        <div class="sendMessageToHost">여행 목적, 동반 일행, 이 숙소를 선택한 이유 등을 알려주세요.</div>
+        <div class="sendMessageToHost">
+
+          <div class="hostInformation">
+            <div id="hostImgBox">
+              <img id="hostImg" src="./resources/대표img.webp">
+            </div>
+            <div id="hostText">
+              <div id="hostName">심원용</div>
+              <div>에어비앤비 가입 : 2020년</div>
+            </div>
+          </div>
+        </div>
+        <div class="sendMessageToHost">
+          <textarea placeholder="안녕하세요. 숙소 도착 예정 시간은..."></textarea>
+        </div>
+      </div>
+      <div class="rsvInnerBox" id="refundInformation">
+        <div class="refundInformation"><h2>환불정책안내</h2></div>
+        <div class="refundInformation">
+          <span id= "refundText" >5월 16일 오후 12:00 전에 취소하면 부분 환불을 받으실 수 있습니다.</span> 
+          그 이후에는 취소 시점에 따라 환불액이 결정됩니다. 
+          <span id= "refundPolicy" role="button">자세히 알아보기</span>
+        </div>
+      </div>
+
+
+          <div class="rsvInnerBox" id="rsvBtnText">
+            아래 버튼을 선택하면 
+            <span class= "accommPolicy" role="button">호스트가 설정한 숙소 이용규칙</span>
+            , 
+            <span class= "accommPolicy" role="button">게스트에게 적용되는 기본 규칙</span>
+            , 
+            <span class= "accommPolicy" role="button">에어비앤비 재예약 및 환불 정책</span>
+            에 동의하며, 피해에 대한 책임이 본인에게 있을 경우 에어비앤비가 
+            <span class= "accommPolicy" role="button">결제 수단으로 청구</span>
+            의 조치를 취할 수 있다는 사실에 동의하는 것입니다. 호스트가 예약 요청을 수락하면 표시된 총액이 결제되는 데 동의합니다.
+          </div>
+          <div class="rsvInnerBox" id="rsvBtnBox">
+            <button id="rsvBtn" type="submit">확인 및 결제</button>
+          </div>
+    </div>
+  </section>
+    <aside id="aside">   
+      <div id="accommodationFeeDetails">
+        <div id="paymentMethod">
+          <div class="paymentMethod" id="roomInfo">
+          <div id="roomImgBox">
+            <img id="roomImg" src="./resources/대표img.webp">
+          </div>
+          <div id="roomText">
+            <div id="roomName">건강한 삶을 경험하는 나무 아래 집</div>
+            <div>
+              <span>⭐4.92(146)</span>
+              <span>🏅슈퍼호스트</span>
+            </div>
+          </div>
+          </div>
+          <div class="paymentMethod">
+            <h3>요금세부정보</h3>
+            <div class="payInformation">
+              <div>₩73,834 x 5박</div>
+              <div class="payInformationRight"><span>₩369,170</span></div>
+              </div>
+            <div class="payInformation">
+              <div>에어비앤비 서비스 수수료</div>
+              <div class="payInformationRight"><span>₩53,160</span></div>
+            </div>
+            <div class="payInformation">              
+              <div>세금</div>
+              <div class="payInformationRight"><span>₩59,990</span></div>
+            </div>
+          </div>
+          <div id="totalPayInfo">
+            <div><h3>총합계</h3></div>
+            <div id="totalPayInfoRight">
+              <span>₩489,703</span></div>
+          </div>
+        </div> 
+      </div>
+    </aside>
+</main>
+
+  <footer id="footer">푸터</footer>
+
+
+</body>
+</html>
