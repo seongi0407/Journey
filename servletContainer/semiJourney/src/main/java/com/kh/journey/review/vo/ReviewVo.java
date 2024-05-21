@@ -2,19 +2,14 @@ package com.kh.journey.review.vo;
 
 public class ReviewVo {
 	
+
+	private String no;
 	public ReviewVo() {
 		super();
 	}
-	@Override
-	public String toString() {
-		return "ReviewVo [no=" + no + ", reserveNo=" + reserveNo + ", content=" + content + ", accuracy=" + accuracy
-				+ ", clean=" + clean + ", checkin=" + checkin + ", location=" + location + ", communication="
-				+ communication + ", delYn=" + delYn + ", enrollDate=" + enrollDate + ", modifyDate=" + modifyDate
-				+ ", writerName=" + writerName + ", profile=" + profile + ", starAvg=" + starAvg + "]";
-	}
 	public ReviewVo(String no, String reserveNo, String content, String accuracy, String clean, String checkin,
 			String location, String communication, String delYn, String enrollDate, String modifyDate,
-			String writerName, String profile, String starAvg) {
+			String writerName, String writerNo, String profile, String starAvg) {
 		super();
 		this.no = no;
 		this.reserveNo = reserveNo;
@@ -28,8 +23,17 @@ public class ReviewVo {
 		this.enrollDate = enrollDate;
 		this.modifyDate = modifyDate;
 		this.writerName = writerName;
+		this.writerNo = writerNo;
 		this.profile = profile;
 		this.starAvg = starAvg;
+	}
+	@Override
+	public String toString() {
+		return "ReviewVo [no=" + no + ", reserveNo=" + reserveNo + ", content=" + content + ", accuracy=" + accuracy
+				+ ", clean=" + clean + ", checkin=" + checkin + ", location=" + location + ", communication="
+				+ communication + ", delYn=" + delYn + ", enrollDate=" + enrollDate + ", modifyDate=" + modifyDate
+				+ ", writerName=" + writerName + ", writerNo=" + writerNo + ", profile=" + profile + ", starAvg="
+				+ starAvg + "]";
 	}
 	public String getNo() {
 		return no;
@@ -103,6 +107,12 @@ public class ReviewVo {
 	public void setWriterName(String writerName) {
 		this.writerName = writerName;
 	}
+	public String getWriterNo() {
+		return writerNo;
+	}
+	public void setWriterNo(String writerNo) {
+		this.writerNo = writerNo;
+	}
 	public String getProfile() {
 		return profile;
 	}
@@ -115,7 +125,6 @@ public class ReviewVo {
 	public void setStarAvg(String starAvg) {
 		this.starAvg = starAvg;
 	}
-	private String no;
 	private String reserveNo;
 	private String content;
 	private String accuracy;
@@ -127,6 +136,7 @@ public class ReviewVo {
 	private String enrollDate;
 	private String modifyDate;
 	private String writerName;
+	private String writerNo;
 	private String profile;
 	private String starAvg;
 	
