@@ -16,7 +16,7 @@ public class ReviewService {
 		dao = new ReviewDao();
 	}
 
-	// 게시글 등록
+	// 리뷰 등록
 	public int insert(ReviewVo vo) throws Exception {
 
 		Connection conn = getConnection();
@@ -34,16 +34,37 @@ public class ReviewService {
 		return result;
 	}
 
-	public List<ReviewVo> selectReviewList(int roomNo) throws Exception {
+	public List<ReviewVo> getReviewsByPage(int roomNo) throws Exception {
+		ReviewDao dao = new ReviewDao();
+		Connection conn = getConnection();
+		List<ReviewVo> voList = dao.getReviewsByPage(conn, roomNo);
+		close(conn);
+		return voList;
+	}
 
-		// DAO 호출
+	// 리뷰 조회(목록/상세)
+	public List<ReviewVo> selectReviewList(int roomNo) throws Exception {
 		Connection conn = getConnection();
 		List<ReviewVo> voList = dao.selectReviewList(conn, roomNo);
 
 		close(conn);
-		System.out.println("S"+voList);
 
 		return voList;
+	}
+
+	// 리뷰 삭제
+	public int deleteReview(String reviewNo) throws Exception {
+		Connection conn = getConnection();
+		int result = dao.deleteReview(conn, reviewNo);
+
+		if (result == 1) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+
+		return result;
 	}
 
 }

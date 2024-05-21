@@ -14,14 +14,14 @@ import com.kh.journey.review.vo.ReviewVo;
 
 //게시글 등록
 @WebServlet("/review/insert")
-public class ReviewInsertController extends HttpServlet{
-	
+public class ReviewInsertController extends HttpServlet {
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		//서비스 호출
-		ReviewService bc =new ReviewService();
-		//결과출력
+
+		// 서비스 호출
+		ReviewService bc = new ReviewService();
+		// 결과출력
 		req.getRequestDispatcher("/WEB-INF/views/review/insert.jsp").forward(req, resp);
 
 	}
@@ -29,9 +29,8 @@ public class ReviewInsertController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		
 		try {
-			//데이터 꺼내기
+			// 데이터 꺼내기
 			String reserveNo = req.getParameter("reserveNo");
 			String content = req.getParameter("content");
 			String accuracy = req.getParameter("accuracy");
@@ -40,9 +39,9 @@ public class ReviewInsertController extends HttpServlet{
 			String location = req.getParameter("location");
 			String communication = req.getParameter("communication");
 
-			//MemberVo loginMemberVo = (MemberVo) session.getAttribute("loginMemberVo");
-			//String writerNo = loginMemberVo.getNo();
-			
+			// MemberVo loginMemberVo = (MemberVo) session.getAttribute("loginMemberVo");
+			// String writerNo = loginMemberVo.getNo();
+
 			ReviewVo vo = new ReviewVo();
 			vo.getReserveNo();
 			vo.setContent(content);
@@ -51,18 +50,18 @@ public class ReviewInsertController extends HttpServlet{
 			vo.setCheckin(checkin);
 			vo.setLocation(location);
 			vo.setCommunication(communication);
-			//vo.setWriterNo(writerNo);
-		
+			// vo.setWriterNo(writerNo);
+
 			// 서비스 호출
 			ReviewService bs = new ReviewService();
 			int result = bs.insert(vo);
-			
-			if(result != 1) {
+
+			if (result != 1) {
 				throw new Exception("리뷰 작성 실패");
 			}
-			
+
 			resp.sendRedirect("/app/review/list");
-			
+
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
@@ -72,7 +71,5 @@ public class ReviewInsertController extends HttpServlet{
 
 		// 결과 출력
 
-		
-		
 	}
 }

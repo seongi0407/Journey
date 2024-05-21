@@ -21,11 +21,9 @@ public class ReviewDtailController extends HttpServlet {
 			String roomNoStr = req.getParameter("roomNo");
 			int roomNo = Integer.parseInt(roomNoStr); // 정수로 변환
 
-			// 비지니스 코드
 			ReviewService rs = new ReviewService();
 			List<ReviewVo> voList = rs.selectReviewList(roomNo);
 
-			System.out.println("c" + voList);
 			// 결과
 			req.setAttribute("voList", voList);
 			req.getRequestDispatcher("/WEB-INF/views/review/detail.jsp").forward(req, resp);
