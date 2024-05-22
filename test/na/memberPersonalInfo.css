@@ -1,0 +1,281 @@
+body{
+  margin: 0;
+}
+
+hr{
+  border: 0.5px solid rgb(221, 221, 221);
+}
+
+header{
+  border-bottom: 1px solid rgb(221, 221, 221);
+  height: 50px;
+  padding-left: 25px;
+  padding-top: 25px;
+
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 70px;
+}
+
+#img-logo{
+  width: 110px;
+  height: 60px;
+}
+
+.header-right{
+  display: flex;
+}
+
+#introduce{
+  padding: 20px 30px;
+}
+
+#profile-icon{
+  border: 1px solid #DDDDDD;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  padding: 0 18px 0 18px;
+}
+
+#menu-icon{
+  padding: 0 10px;
+}
+
+#user-icon{
+  padding: 0 0 0 10px;
+}
+
+/*개인정보*/
+
+#navText{
+  padding-left: 130px;
+  padding-right: 130px;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  font-size: 20px;
+
+  display: grid;
+  grid-template-columns: 0.1fr 2fr;
+  color: #353434;
+ 
+  & div > h1{
+    margin: 5px;
+  }
+}
+
+.backImgBox{
+  grid-row: span 2;
+
+  & img{
+    place-items: center;
+    width: 50px;
+    cursor: pointer;
+    &:hover{
+      background-color: #f4f4f4;
+      border-radius: 50px;
+    }
+  }
+}
+
+
+main{
+  display: grid;
+  grid-template-columns: 1fr 0.8fr;
+}
+
+/*정보수정*/
+section{
+  padding-left: 30%;
+  padding-top: 5%;
+}
+
+.updateMember{
+  display: grid;
+}
+
+.updateMember>div{
+  width: 90%;
+}
+
+.updateMemberPersonal{
+  display:grid;
+  grid-template-columns: 8fr 1fr;
+  justify-content: space-between;
+
+}
+
+.rsvInnerBox{
+  padding: 10px;
+}
+
+.update{
+  align-content: center;
+  text-align: end;
+}
+
+.update>span{
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+}
+
+/*aside*/
+
+aside{  
+  height: 90%;
+  padding-left: 80px;
+  padding-right: 10%;
+}
+
+.asideBox{
+  width: 55%;
+  height: 100%;
+  border: 2px solid rgb(221, 221, 221);
+  padding: 30px;
+  border-radius: 20px;
+
+  display: grid;
+
+  & img{
+    width: 45px;
+  }
+
+  & div{
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.asideText{
+  word-break: keep-all;
+}
+
+/* ---------footer--------- */
+.footer {
+  background-color: #f7f7f7;
+  padding: 20px;
+  border-top: 1px solid #e9e7e7;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.footer-column {
+  margin: 20px;
+}
+
+.footer-column h4 {
+  font-weight: bold;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.footer-column ul li {
+  margin-bottom: 10px;
+}
+
+.footer-column ul li a{
+  text-decoration: none; 
+  color: inherit; 
+}
+
+.footer-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-top: 1px solid #e7e7e7;
+  padding-top: 10px;
+}
+
+.footer-bottom span {
+  margin-bottom: 10px;
+}
+
+.footer-link{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer-bottom a {
+  margin: 10px;
+  color: #555;
+  text-decoration: none;
+}
+
+.footer-language {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 30px;
+}
+
+.footer-language span {
+  margin-left: 15px;
+  color: #555;
+}
+
+.footer-sns {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 30px;
+  cursor: pointer;
+}
+
+.footer-sns img {
+  width: 24px;
+  height: 24px;
+  margin: 0 10px;
+}
+/* ---------------------- */
+
+/*popup*/
+.popup_layer {position:fixed;top:0;left:0;z-index: 10000; width: 100%;
+ height: 100%; background-color: rgba(0, 0, 0, 0.4); }
+/*팝업 박스*/
+.popup_box{position: relative;top:50%;left:50%; overflow: auto; 
+  height: 450px; width:550px;transform:translate(-50%, -50%);
+  z-index:1002;box-sizing:border-box;background:#fff;
+  box-shadow: 2px 5px 10px 0px rgba(0,0,0,0.35);
+  -webkit-box-shadow: 2px 5px 10px 0px rgba(0,0,0,0.35);
+  -moz-box-shadow: 2px 5px 10px 0px rgba(0,0,0,0.35);
+  border-radius: 10px;}
+/*컨텐츠 영역*/
+.popup_box .popup_cont {padding:20px;line-height:1.4rem;font-size:14px; }
+.popup_box .popup_cont h2 {padding:15px 0;color:#333;margin:0;}
+.popup_box .popup_cont p{border-top: 1px solid #666;padding-top: 30px;}
+/*오버레이 뒷배경*/
+.popup_overlay{position:fixed;top:0px;right:0;left:0;bottom:0;z-index:1001;;background:rgba(0,0,0,0.5);}
+/*popup*/
+
+/*환불 팝업창*/
+
+#closeImg{
+  width: 50px;
+  &:hover{
+    background-color: rgb(221, 221, 221);
+    border-radius: 50px;
+  }
+}
+.returnPopup{
+  border-bottom: 1px solid rgb(221, 221, 221);
+  padding: 10px ;
+  padding-top: 0px;
+}
+
+.refundInformation{
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  font-size: 16px;
+  border-bottom: 1px solid rgb(221, 221, 221);
+}
