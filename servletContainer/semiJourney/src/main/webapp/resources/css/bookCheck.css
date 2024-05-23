@@ -1,0 +1,110 @@
+body {
+    margin: 0;
+    height: 80vh;
+    width: 100vw;
+    background-color: rgb(244, 242, 237);
+}
+
+#head {
+    height: 50px;
+    padding-left: 25px;
+    padding-top: 25px;
+}
+
+#airbnbImg {
+    width: 100px;
+    cursor: pointer;
+}
+
+.main {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+}
+
+/* 숙소정보 */
+#section {
+    width: 300px;
+    height: 500px;
+    perspective: 1100px;
+    position: relative;
+    padding-left: 10%;
+}
+
+#sectionInnerFront, #sectionInnerBack {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px rgb(153, 147, 147);
+    transition: transform 0.8s;
+}
+
+#sectionInnerFront {
+    background-color: white;
+    display: grid;
+    grid-template-rows: 9fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+#sectionInnerBack {
+    background-color: rgb(217, 255, 247);
+    transform: rotateY(180deg);
+}
+
+#sectionInnerFront div {
+    padding: 8px;
+}
+
+#roomImg {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+#backImg {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+#section:hover {
+    cursor: pointer;
+}
+
+#section.flipped #sectionInnerFront {
+    transform: rotateY(180deg);
+}
+
+#section.flipped #sectionInnerBack {
+    transform: rotateY(360deg);
+}
+
+#aside {
+    padding-left: 5%;
+    padding-right: 50%;
+}
+
+.rsvCompleteText {
+    margin: 0;
+}
+
+#rsvCompleteText > h1 {
+    margin: 0 !important;
+}
+
+#aside button {
+    width: 120px;
+    height: 50px;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 30px;
+}
