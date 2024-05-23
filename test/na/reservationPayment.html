@@ -9,7 +9,7 @@
   <script defer src="./reservationPayment.js"></script>
 </head>
 
-<body>
+<>
 
   <header>
     <img id="img-logo" src="../resources/img/airbnb.png" alt="">
@@ -45,17 +45,19 @@
                 <div>
                   <h3>날짜</h3>
                 </div>
-                <div>5월20일~30일</div>
+                <div id="days" class="days"> </div>
               </div>
-              <div id="modifyDate"><span id="modifyDateText" role="button">수정</span></div>
+              <div id="modifyDate"><span id="modifyDateText" role="button" onclick="editDate()">수정</span></div>
             </div>
+
+            <br>
 
             <div class="reservationInformationInner">
               <div>
                 <div>
                   <h3>인원</h3>
                 </div>
-                <div>4명</div>
+                <div id="peopleCount"></div>
               </div>
               <div id="modifyCntPeople"><span id="modifyCntPeopleText" role="button">수정</span></div>
             </div>
@@ -235,7 +237,31 @@
   </footer>
 
   <!-- 팝업창 -->
+  <!-- 날짜수정 -->
+  <div id="editDate_popup" class="modal">
+    <div class="editDate_popup modal-content">
+      <span class="close-button" onclick="close_editDate()">&times;</span>
+      <h2>날짜 수정</h2>
+      <label for="checkInDate">체크인 날짜:</label>
+      <input type="date" id="checkInDate"><br>
+      <label for="checkOutDate">체크아웃 날짜:</label>
+      <input type="date" id="checkOutDate"><br>
+      <button id="saveButton" onclick="saveDates()">저장</button>
+    </div>
+  </div>
 
+  <!-- 인원수정 -->
+  <div id="editPeople_popup" class="popup">
+    <div class="popup-content">
+      <span class="close-button">&times;</span>
+      <h2>인원 수정</h2>
+      <label for="peopleCountInput">인원:</label>
+      <input type="number" id="peopleCountInput" min="1" max="10"><br>
+      <button id="savePeopleButton">저장</button>
+    </div>
+  </div>
+
+  <!-- 환불정책 -->
   <section>
     <div class="popup_layer" id="popup_layer" style="display: none;">
       <div class="popup_box">
@@ -281,7 +307,7 @@
     </div>
   </section>
 
-</body>
+  </body>
 
 
 </html>
