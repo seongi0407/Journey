@@ -36,13 +36,13 @@
 
 	<main class="main">
 		<form action="/app/book/new" method="post">
-		
-		<input type="hidden" name="roomNo" value="${vo.roomNo}">
-        <input type="hidden" name="inDate" value="${vo.inDate}">
-        <input type="hidden" name="outDate" value="${vo.outDate}">
-        <input type="hidden" name="peopleCnt" value="${vo.peopleCnt}">
-        <input type="hidden" name="sum" value="${vo.sum}">
-        
+
+			<input type="hidden" name="roomNo" value="${vo.roomNo}"> <input
+				type="hidden" name="inDate" value="${vo.inDate}"> <input
+				type="hidden" name="outDate" value="${vo.outDate}"> <input
+				type="hidden" name="guestCount" value="${vo.guestCount}"> <input
+				type="hidden" name="sum" value="${vo.sum}">
+
 			<section class="rsv_inner" id="section">
 				<div id="sectionLeft">
 
@@ -57,10 +57,14 @@
 								<div>
 									<h3>날짜</h3>
 								</div>
-								<div>${vo.inDate}~ ${vo.outDate}</div>
+								<div id="days" class="days" id="checkInDate">
+									<p>${vo.inDate}</p>
+									~
+									<p>${vo.outDate}</p>
+								</div>
 							</div>
 							<div id="modifyDate">
-								<span id="modifyDateText" role="button">수정</span>
+								<span id="modifyDateText" role="button" onclick="editDate()">수정</span>
 							</div>
 						</div>
 
@@ -69,7 +73,7 @@
 								<div>
 									<h3>인원</h3>
 								</div>
-								<div>${vo.peopleCnt}명</div>
+								<div id="peopleCount">${vo.guestCount}명</div>
 							</div>
 							<div id="modifyCntPeople">
 								<span id="modifyCntPeopleText" role="button">수정</span>
@@ -96,7 +100,7 @@
 							</div>
 						</div>
 						<section id="theme">
-							<div class="select">
+							<div class="select" onclick="onClickSelect(event)">
 								<div class="text">선택</div>
 								<ul class="option-list">
 									<c:forEach var="card" items="${cardVoList}">
@@ -110,6 +114,7 @@
 								</ul>
 							</div>
 						</section>
+
 					</div>
 
 					<div class="rsvInnerBox" id="sendMessageToHost">
@@ -122,11 +127,11 @@
 
 							<div class="hostInformation">
 								<div id="hostImgBox">
-									<img id="hostImg" src="../resources/img/대표img.webp">
+									<img id="hostImg" src="${roomDetail.profile}">
 								</div>
 								<div id="hostText">
-									<div id="hostName">${host.name}</div>
-									<div>에어비앤비 가입 : ${host.joinDate}</div>
+									<div id="hostName">${roomDetail.hostName}</div>
+									<div>에어비앤비 가입 : ${roomDetail.hostEnrollDate}</div>
 								</div>
 							</div>
 						</div>
@@ -170,17 +175,18 @@
 							<img id="roomImg" src="../resources/img/대표img.webp">
 						</div>
 						<div id="roomText">
-							<div id="roomName">${room.name}</div>
+							<div id="roomName">${roomDetail.roomName}</div>
 							<div>
-								<span>${room.rating}</span> <span>슈퍼호스트</span>
+								<span>${roomDetail.rating}</span>
 							</div>
 						</div>
 					</div>
 					<div class="paymentMethod">
 						<h3>요금세부정보</h3>
 						<div class="payInformation">
-							<div>₩${room.price} x ${stayDuration}박</div>
+							<div>₩${roomDetail.weekdayPrice} x ${stayDay}박</div>
 						</div>
+						<hr>
 						<div id="totalPayInfo">
 							<div>
 								<h3>총합계</h3>
@@ -264,52 +270,74 @@
 	</footer>
 
 	<!-- 팝업창 -->
+	<!-- 날짜수정 -->
+	<div id="editDate_popup" class="modal">
+		<div class="editDate_popup modal-content">
+			<span class="close-button" onclick="close_editDate()">&times;</span>
+			<h2>날짜 수정</h2>
+			<label for="checkInDate">체크인 날짜:</label> <input type="date"
+				id="checkInDate"><br> <label for="checkOutDate">체크아웃
+				날짜:</label> <input type="date" id="checkOutDate"><br>
+			<button id="saveButton" onclick="saveDates()">저장</button>
+		</div>
+	</div>
 
-	<section>
-		<div class="popup_layer" id="popup_layer" style="display: none;">
-			<div class="popup_box">
-				<div>
-					<a href="javascript:closePop();"><img id="closeImg"
-						src="../resources/img/close.png"></a>
+	<!-- 인원수정 -->
+	<div id="editPeople_popup" class="popup">
+		<div class="popup-content">
+			<span class="close-button">&times;</span>
+			<h2>인원 수정</h2>
+			<label for="peopleCountInput">인원:</label> <input type="number"
+				id="peopleCountInput" min="1" max="10"><br>
+			<button id="savePeopleButton">저장</button>
+		</div>
+	</div>
+
+	<!-- 환불정책 -->
+	<div class="popup_layer" id="popup_layer" style="display: none;">
+		<div class="popup_box">
+			<div>
+				<a href="javascript:closePop();"><img id="closeImg"
+					src="../resources/img/close.png"></a>
+			</div>
+			<!--팝업 컨텐츠 영역-->
+			<div class="popup_cont">
+				<div class="returnPopup">
+					<h2>환불정책</h2>
+					<div class="refundInformation">
+						<div>
+							<div>전</div>
+							<div>5월15일</div>
+							<div>오후3:00</div>
+						</div>
+						<div>
+							<div>부분환불</div>
+							<div>전체 숙박 요금 중 50%를 환불받으실 수 있습니다.</div>
+							<div>서비스 수수료는 전액 환불됩니다.</div>
+						</div>
+					</div>
+					<div class="refundInformation">
+						<div>
+							<div>전</div>
+							<div>5월15일</div>
+							<div>오후3:00</div>
+						</div>
+						<div>
+							<div>부분환불</div>
+							<div>전체 숙박 요금 중 50%를 환불받으실 수 있습니다.</div>
+							<div>서비스 수수료는 전액 환불됩니다.</div>
+						</div>
+					</div>
 				</div>
-				<!--팝업 컨텐츠 영역-->
-				<div class="popup_cont">
-					<div class="returnPopup">
-						<h2>환불정책</h2>
-						<div class="refundInformation">
-							<div>
-								<div>전</div>
-								<div>5월15일</div>
-								<div>오후3:00</div>
-							</div>
-							<div>
-								<div>부분환불</div>
-								<div>전체 숙박 요금 중 50%를 환불받으실 수 있습니다.</div>
-								<div>서비스 수수료는 전액 환불됩니다.</div>
-							</div>
-						</div>
-						<div class="refundInformation">
-							<div>
-								<div>전</div>
-								<div>5월15일</div>
-								<div>오후3:00</div>
-							</div>
-							<div>
-								<div>부분환불</div>
-								<div>전체 숙박 요금 중 50%를 환불받으실 수 있습니다.</div>
-								<div>서비스 수수료는 전액 환불됩니다.</div>
-							</div>
-						</div>
-					</div>
-					<!--팝업 버튼 영역-->
-					<div class="returnDetailBtn">
-						<div>체크인 전에 예약을 취소하면 청소비는 언제나 환불됩니다.</div>
-						<a href="">환불 정책 자세히 알아보기</a>
-					</div>
+				<!--팝업 버튼 영역-->
+				<div class="returnDetailBtn">
+					<div>체크인 전에 예약을 취소하면 청소비는 언제나 환불됩니다.</div>
+					<a href="">환불 정책 자세히 알아보기</a>
 				</div>
 			</div>
 		</div>
-	</section>
+	</div>
+
 
 </body>
 

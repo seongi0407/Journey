@@ -1,35 +1,16 @@
-/* 전체 */
+
+/* -------메인-------- */
 body {
 	margin: 0;
+	margin-top: 93px;
 	font-family: Arial, sans-serif;
-}
-
-header {
-	background-color: #fff;
-	border-bottom: 1px solid #ddd;
-	padding: 20px 25px;
-	display: flex;
-	align-items: center;
-}
-
-.header-inner {
-	display: flex;
-	align-items: center;
-	width: 100%;
-	justify-content: space-between;
-}
-
-#airbnbImg {
-	width: 100px;
-	cursor: pointer;
 }
 
 h1 {
 	font-size: 24px;
 	margin: 0;
 }
-/* ----------------- */
-/* -------메인-------- */
+
 main {
 	padding: 40px 25px;
 	background-color: #f7f7f7;
@@ -52,23 +33,21 @@ main {
 label {
 	display: block;
 	font-weight: bold;
-	margin-bottom: 5px;
-}
+	margin-bottom: 5pxrgb(255, 255, 255)}
 
-/* ----------------- */
-/* -------평점-------- */
-/* 별 크기 */
+/* -------별점-------- */
+
 .star-rating {
 	display: flex;
 	flex-direction: row-reverse;
 	font-size: 1.3em;
 	position: relative;
 }
-/* 라디오 버튼 */
+
 .star-rating input {
 	display: none;
 }
-/* 별 크기 */
+
 .star-rating label {
 	color: #ddd;
 	cursor: pointer;
@@ -84,7 +63,6 @@ label {
 	left: 0;
 }
 
-/* 별 색깔 */
 .star-rating input:checked ~ label::before, .star-rating label:hover ~
 	label::before {
 	color: #ffc107;
@@ -95,7 +73,7 @@ label {
 	margin-top: 10px;
 }
 
-/*내용*/
+/* -------content 작성칸-------- */
 textarea {
 	width: 95%;
 	resize: none;
@@ -105,8 +83,8 @@ textarea {
 	font-family: inherit;
 	font-size: 14px;
 }
-/*제출버튼*/
-button {
+
+#submitReviewBtn {
 	display: inline-block;
 	padding: 10px 20px;
 	background-color: #ff5a5f;
@@ -116,19 +94,4 @@ button {
 	cursor: pointer;
 	font-size: 16px;
 	transition: background-color 0.3s;
-}
-
-/* ----------------- */
-/* Footer */
-footer {
-	text-align: center;
-	padding: 20px;
-	background-color: #fff;
-	border-top: 1px solid #ddd;
-}
-
-footer p {
-	margin: 0;
-	font-size: 14px;
-	color: #777;
 }

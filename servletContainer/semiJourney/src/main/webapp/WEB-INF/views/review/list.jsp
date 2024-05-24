@@ -1,25 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!-- JSTL core 라이브러리 선언 -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>리뷰 리스트</title>
+<title>리뷰 상세</title>
 <link rel="stylesheet" href="../resources/css/reviewList.css">
+<link rel="stylesheet" href="../resources/css/layout.css">
+<script defer src="../resources/js/layout.js"></script>
+<script defer src="../resources/js/reviewDetail.js"></script>
+
+<%@ include file="/WEB-INF/views/layout/util.jsp"%>
+
 </head>
 <body>
-<header>
-    <div class="header-inner">
-        <img id="airbnbImg" src="/webapp/resources/img/airbnbImg.svg" alt="Airbnb Logo">
-        <h1>최신 리뷰</h1>
-    </div>
-</header>
-<main>
+
+	<%@ include file="/WEB-INF/views/layout/header.jsp"%>
+	
+	<main>
 		<section class="review-section">
 			<div class="review-container">
-				<h2>최신 리뷰</h2>
+				<h2>최신리뷰 6개</h2>
 				<hr>
 				<table class="review-table">
 					<thead>
@@ -41,26 +44,13 @@
 								<td>${vo.enrollDate}</td>
 								<td>${vo.content}</td>
 							</tr>
-							<%--<c:if test="${vo.writerId == sessionScope.userId}"> --%>
-								<tr>
-									<td colspan="5">
-										<form
-											action="${pageContext.request.contextPath}/review/delete"
-											method="post">
-											<input type="hidden" name="reviewId"/>
-											<button type="submit">삭제</button>
-										</form>
-									</td>
-								</tr>
-							<%--</c:if> --%>
 						</c:forEach>
 					</tbody>
 				</table>
 			</div>
 		</section>
 	</main>
-<footer>
-    <p>&copy; 2024 Airbnb</p>
-</footer>
+	<%@ include file="/WEB-INF/views/layout/footer.jsp"%>
+
 </body>
 </html>
