@@ -27,6 +27,14 @@ public class ReservationService {
 		return cardVoList;
 	}
 
+	// 예약시 룸 정보 가져오기
+	public List<ReservationVo> getRoomDetail(String roomNo) throws Exception {
+
+		Connection conn = getConnection();
+		List<ReservationVo> roomDetail = dao.getRoomDetail(conn, roomNo);
+		return roomDetail;
+	}
+
 	// 예약 정보 등록
 	public int ReservationInsert(ReservationVo vo) throws Exception {
 

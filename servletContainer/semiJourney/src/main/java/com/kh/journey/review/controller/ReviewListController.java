@@ -18,6 +18,7 @@ public class ReviewListController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
+			//해당 room 리뷰리스트보기
 			String roomNoStr = req.getParameter("roomNo");
 			int roomNo = Integer.parseInt(roomNoStr); // 정수로 변환 
 

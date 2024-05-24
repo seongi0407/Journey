@@ -5,7 +5,6 @@ import static com.kh.journey.db.JDBCTemplate.close;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,6 +47,38 @@ public class ReservationDao {
 		return cardVoList;
 	}
 
+	//예약시 룸 정보 가져오기
+	public List<ReservationVo> getRoomDetail(Connection conn, String roomNo) throws Exception {
+		String sql = "SELECT R.IMG_01, H.NAME AS HOST_NAME, H.PROFILE, H.ENROLL_DATE, R.NAME AS ROOM_NAME, R.WEEKDAY_PRICE, R.WEEKEND_PRICE FROM ROOM R JOIN ACCOMMODATION A ON R.ACCOM_NO = A.NO JOIN HOST H ON H.NO = A.HOST_NO WHERE R.NO = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, roomNo);
+		ResultSet rs = pstmt.executeQuery();
+
+		List<ReservationVo> roomDetail = new ArrayList<ReservationVo>();
+		while (rs.next()) {
+
+			String roomImg = rs.getString("IMG_01");
+			String hostName = rs.getString("HOST_NAME");
+			String profile = rs.getString("PROFILE");
+			String hostEnrollDate = rs.getString("ENROLL_DATE");
+			String roomName = rs.getString("ROOM_NAME");
+			String weekdayPrice = rs.getString("WEEKDAY_PRICE");
+			String weekendPrice = rs.getString("WEEKEND_PRICE");
+
+			ReservationVo vo = new ReservationVo();
+			vo.setRoomImg(roomImg);
+			vo.setHostName(hostName);
+			vo.setHostProfile(profile);
+			vo.setHostEnrollDate(hostEnrollDate);
+			vo.setRoomName(roomName);
+			vo.setWeekdayPrice(weekdayPrice);
+			vo.setWeekendPrice(weekendPrice);
+			roomDetail.add(vo);
+		}
+		return roomDetail;
+
+	}
+
 	// 예약 내역 등록하기
 	public int ReservationInsert(Connection conn, ReservationVo vo) throws Exception {
 
@@ -63,6 +94,43 @@ public class ReservationDao {
 		int result = pstmt.executeUpdate();
 
 		return result;
+	}
+
+	// 예약확인
+	public List<ReservationVo> getMostRecentReservation(Connection conn, String loginMemNo) throws Exception {
+		String sql = "SELECT * FROM ( SELECT RV.IN_DATE, RV.OUT_DATE, R.IMG_01, H.NAME AS HOST_NAME, RV.SUM, R.NAME AS ROOM_NAME, RV.GUEST_COUNT FROM RESERVATION RV JOIN ROOM R ON RV.ROOM_NO = R.NO JOIN ACCOMMODATION A ON R.ACCOM_NO = A.NO JOIN HOST H ON H.NO = A.HOST_NO WHERE RV.RESERVATOR_NO = ? AND RV.DEL_YN = 'N' AND RV.REFUND_YN = 'N' AND RV.IN_DATE > SYSDATE ORDER BY RV.RESERVE_DATE DESC ) WHERE ROWNUM = 1";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, loginMemNo);
+		ResultSet rs = pstmt.executeQuery();
+
+		List<ReservationVo> reservationList = new ArrayList<ReservationVo>();
+		while (rs.next()) {
+
+			String roomImg = rs.getString("IMG_01");
+			String inDate = rs.getString("IN_DATE");
+			String outDate = rs.getString("OUT_DATE");
+			String roomName = rs.getString("ROOM_NAME");
+			String hostName = rs.getString("HOST_NAME");
+			String weekdayPrice = rs.getString("WEEKDAY_PRICE");
+			String weekendPrice = rs.getString("WEEKEND_PRICE");
+			String sum = rs.getString("SUM");
+			String guestCount = rs.getString("GUEST_COUNT");
+
+			ReservationVo vo = new ReservationVo();
+			vo.setRoomImg(roomImg);
+			vo.setInDate(inDate);
+			vo.setOutDate(outDate);
+			vo.setRoomName(roomName);
+			vo.setHostName(hostName);
+			vo.setWeekdayPrice(weekdayPrice);
+			vo.setWeekendPrice(weekendPrice);
+			vo.setSum(sum);
+			vo.setGuestCount(guestCount);
+
+			reservationList.add(vo);
+		}
+
+		return reservationList;
 	}
 
 	// 예약내역조회 - 예정된 예약
@@ -150,7 +218,7 @@ public class ReservationDao {
 		pstmt.setString(1, loginMemNo);
 		ResultSet rs = pstmt.executeQuery();
 
-		List<ReservationVo> ReservationList = new ArrayList<ReservationVo>();
+		List<ReservationVo> reservationList = new ArrayList<ReservationVo>();
 		while (rs.next()) {
 
 			String roomNo = rs.getString("NO");
@@ -162,7 +230,7 @@ public class ReservationDao {
 			String payMethodName = rs.getString("PAY_METHOD_CODE");
 			String sum = rs.getString("SUM");
 			String roomName = rs.getString("ROOM_NO");
-//				String peopleCnt = rs.getString("CVC_NUM");
+			String guestCount = rs.getString("CVC_NUM");
 
 			ReservationVo vo = new ReservationVo();
 			vo.setRoomNo(roomNo);
@@ -173,9 +241,9 @@ public class ReservationDao {
 			vo.setPayMethodName(payMethodName);
 			vo.setSum(sum);
 			vo.setRoomName(roomName);
-//			vo.setPeopleCnt(peopleCnt);
-			ReservationList.add(vo);
+			vo.setGuestCount(guestCount);
+			reservationList.add(vo);
 		}
-		return ReservationList;
+		return reservationList;
 	}
 }

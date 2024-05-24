@@ -1,6 +1,7 @@
 package com.kh.journey.reservation.controller;
 
 import java.io.IOException;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -25,26 +26,27 @@ public class ReservationInsertController extends HttpServlet {
 //			MemberVo loginMemberVo = (MemberVo) session.getAttribute("loginMemberVo");
 			String loginMemNo = "1";
 			// loginMemberVo.getNo();
-
-			ReservationService rs = new ReservationService();
-			List<CardVo> cardVoList = rs.getCardList(loginMemNo);
-
-			// 숙소 상세에서 예약정보 넘어오면 함께 넘겨야함.
 			String roomNo = req.getParameter("roomNo");
 			String inDate = req.getParameter("inDate");
 			String outDate = req.getParameter("outDate");
-			String peopleCnt = req.getParameter("peopleCnt");
+			String guestCount = req.getParameter("guestCount");
 			String sum = req.getParameter("sum");
+
+			ReservationService rs = new ReservationService();
+			List<CardVo> cardVoList = rs.getCardList(loginMemNo);
+			List<ReservationVo> roomDetail = rs.getRoomDetail(roomNo);
+			// 숙소 상세에서 예약정보 넘어오면 함께 넘겨야함.
 
 			ReservationVo vo = new ReservationVo();
 			vo.setRoomNo(roomNo);
 			vo.setInDate(inDate);
 			vo.setOutDate(outDate);
-			vo.setPeopleCnt(peopleCnt);
+			vo.setGuestCount(guestCount);
 			vo.setSum(sum);
 
 			req.setAttribute("vo", vo);
 			req.setAttribute("cardVoList", cardVoList);
+			req.setAttribute("roomDetail", roomDetail);
 			req.getRequestDispatcher("/WEB-INF/views/book/new.jsp").forward(req, resp);
 
 		} catch (
@@ -71,7 +73,7 @@ public class ReservationInsertController extends HttpServlet {
 			String roomNo = req.getParameter("roomNo");
 			String inDate = req.getParameter("inDate");
 			String outDate = req.getParameter("outDate");
-			String peopleCnt = req.getParameter("peopleCnt");
+			String guestCount = req.getParameter("guestCount");
 			String sum = req.getParameter("sum");
 			String payMethodCode = req.getParameter("payMethodCode");
 
@@ -81,7 +83,7 @@ public class ReservationInsertController extends HttpServlet {
 			vo.setRoomNo(roomNo);
 			vo.setInDate(inDate);
 			vo.setOutDate(outDate);
-			vo.setPeopleCnt(peopleCnt);
+			vo.setGuestCount(guestCount);
 			vo.setSum(sum);
 			vo.setPayMethodCode(payMethodCode);
 
@@ -92,8 +94,8 @@ public class ReservationInsertController extends HttpServlet {
 			if (result != 1) {
 				throw new Exception("예약 실패");
 			}
-			resp.sendRedirect("/app/book/list");
-			
+			resp.sendRedirect("/app/bookCheck");
+
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
