@@ -14,7 +14,7 @@
 	</head>
 	<body>
 	    <header>
-	        <img id="img-logo" src="./resources/image/test.png" alt="">
+	        <img id="img-logo" src="./resources/image/airbnb.png" alt="">
 	        <div class="header-right">
 	            <div id="introduce">당신의 공간을 여정하세요</div>
 	            <div id="profile-icon" onclick="showAccountContent()">
