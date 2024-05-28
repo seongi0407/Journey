@@ -21,12 +21,12 @@ public class ReservationCancelController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-			String no = req.getParameter("no");
+			String reserveNo = req.getParameter("reserveNo");
 
-			System.out.println("예약 번호: " + no);
+			System.out.println("예약 번호: " + reserveNo);
 
 			ReservationService rs = new ReservationService();
-			int result = rs.cancelBook(no);
+			int result = rs.cancelReservation(reserveNo);
 			if (result != 1) {
 				throw new Exception("예약 취소 실패");
 			}
