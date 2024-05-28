@@ -5,15 +5,10 @@ body {
     background-color: rgb(244, 242, 237);
 }
 
-#head {
-    height: 50px;
-    padding-left: 25px;
-    padding-top: 25px;
-}
-
-#airbnbImg {
-    width: 100px;
+.rogoImg{
+    width: 110px;
     cursor: pointer;
+    padding: 30px 70px;
 }
 
 .main {

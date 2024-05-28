@@ -24,7 +24,7 @@ public class ReservationDao {
 		while (rs.next()) {
 			String no = rs.getString("NO");
 			String memNo = rs.getString("MEM_NO");
-			String cardNick = rs.getString("NO");
+			String cardNick = rs.getString("CARD_NICK");
 			String cardNum = rs.getString("CARD_NUM");
 			String cvcNum = rs.getString("CVC_NUM");
 			String expireDate = rs.getString("EXPIRE_DATE");
@@ -41,15 +41,17 @@ public class ReservationDao {
 			cardVoList.add(vo);
 		}
 
+		System.out.println(cardVoList);
+
 		close(rs);
 		close(pstmt);
 
 		return cardVoList;
 	}
 
-	//예약시 룸 정보 가져오기
+	// 예약시 룸 정보 가져오기
 	public List<ReservationVo> getRoomDetail(Connection conn, String roomNo) throws Exception {
-		String sql = "SELECT R.IMG_01, H.NAME AS HOST_NAME, H.PROFILE, H.ENROLL_DATE, R.NAME AS ROOM_NAME, R.WEEKDAY_PRICE, R.WEEKEND_PRICE FROM ROOM R JOIN ACCOMMODATION A ON R.ACCOM_NO = A.NO JOIN HOST H ON H.NO = A.HOST_NO WHERE R.NO = ?";
+		String sql = "SELECT R.IMG_01, H.NAME AS HOST_NAME, H.PROFILE, TO_CHAR(H.ENROLL_DATE, 'YYYY-MM')ENROLL_DATE, R.NAME AS ROOM_NAME, R.WEEKDAY_PRICE, R.WEEKEND_PRICE FROM ROOM R JOIN ACCOMMODATION A ON R.ACCOM_NO = A.NO JOIN HOST H ON H.NO = A.HOST_NO WHERE R.NO = ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, roomNo);
 		ResultSet rs = pstmt.executeQuery();
@@ -75,6 +77,7 @@ public class ReservationDao {
 			vo.setWeekendPrice(weekendPrice);
 			roomDetail.add(vo);
 		}
+
 		return roomDetail;
 
 	}
@@ -82,8 +85,8 @@ public class ReservationDao {
 	// 예약 내역 등록하기
 	public int ReservationInsert(Connection conn, ReservationVo vo) throws Exception {
 
-		String sql = "INSERT INTO RESERVATION (NO, PAY_METHOD_CODE, RESERVATOR_NO, ROOM_NO, SUM, IN_DATE, OUT_DATE)\r\n"
-				+ "VALUES (SEQ_RESERVATION.NEXTVAL, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO RESERVATION (NO, PAY_METHOD_CODE, RESERVATOR_NO, ROOM_NO, SUM, IN_DATE, OUT_DATE, GUEST_COUNT, CARD_NO)\r\n"
+				+ "VALUES (SEQ_RESERVATION.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, vo.getPayMethodCode());
 		pstmt.setString(2, vo.getReservatorNo());
@@ -91,53 +94,52 @@ public class ReservationDao {
 		pstmt.setString(4, vo.getSum());
 		pstmt.setString(5, vo.getInDate());
 		pstmt.setString(6, vo.getOutDate());
+		pstmt.setString(7, vo.getGuestCount());
+		pstmt.setString(8, vo.getCardNo());
 		int result = pstmt.executeUpdate();
 
 		return result;
 	}
 
 	// 예약확인
-	public List<ReservationVo> getMostRecentReservation(Connection conn, String loginMemNo) throws Exception {
-		String sql = "SELECT * FROM ( SELECT RV.IN_DATE, RV.OUT_DATE, R.IMG_01, H.NAME AS HOST_NAME, RV.SUM, R.NAME AS ROOM_NAME, RV.GUEST_COUNT FROM RESERVATION RV JOIN ROOM R ON RV.ROOM_NO = R.NO JOIN ACCOMMODATION A ON R.ACCOM_NO = A.NO JOIN HOST H ON H.NO = A.HOST_NO WHERE RV.RESERVATOR_NO = ? AND RV.DEL_YN = 'N' AND RV.REFUND_YN = 'N' AND RV.IN_DATE > SYSDATE ORDER BY RV.RESERVE_DATE DESC ) WHERE ROWNUM = 1";
+	public ReservationVo getNewReservation(Connection conn, String loginMemNo) throws Exception {
+		String sql = "SELECT * FROM ( SELECT RV.IN_DATE , A.ADDRESS ,RV.OUT_DATE , R.NAME AS ROOM_NAME , R.IMG_01 , RV.SUM, H.NAME AS HOST_NAME , H.PROFILE, RV.GUEST_COUNT FROM RESERVATION RV JOIN ROOM R ON RV.ROOM_NO = R.NO JOIN ACCOMMODATION A ON R.ACCOM_NO = A.NO JOIN HOST H ON H.NO = A.HOST_NO WHERE RESERVATOR_NO = ? AND RV.DEL_YN ='N' AND RV.REFUND_YN ='N' ORDER BY RESERVE_DATE DESC ) WHERE ROWNUM = 1";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, loginMemNo);
 		ResultSet rs = pstmt.executeQuery();
 
-		List<ReservationVo> reservationList = new ArrayList<ReservationVo>();
-		while (rs.next()) {
+		ReservationVo vo = null;
+		if (rs.next()) {
 
 			String roomImg = rs.getString("IMG_01");
 			String inDate = rs.getString("IN_DATE");
 			String outDate = rs.getString("OUT_DATE");
 			String roomName = rs.getString("ROOM_NAME");
 			String hostName = rs.getString("HOST_NAME");
-			String weekdayPrice = rs.getString("WEEKDAY_PRICE");
-			String weekendPrice = rs.getString("WEEKEND_PRICE");
 			String sum = rs.getString("SUM");
 			String guestCount = rs.getString("GUEST_COUNT");
+			String address = rs.getString("ADDRESS");
 
-			ReservationVo vo = new ReservationVo();
+			vo = new ReservationVo();
 			vo.setRoomImg(roomImg);
 			vo.setInDate(inDate);
 			vo.setOutDate(outDate);
 			vo.setRoomName(roomName);
 			vo.setHostName(hostName);
-			vo.setWeekdayPrice(weekdayPrice);
-			vo.setWeekendPrice(weekendPrice);
 			vo.setSum(sum);
 			vo.setGuestCount(guestCount);
+			vo.setAddress(address);
 
-			reservationList.add(vo);
 		}
-
-		return reservationList;
+		return vo;
 	}
 
 	// 예약내역조회 - 예정된 예약
 	public List<ReservationVo> getReservationList(Connection conn, String loginMemNo) throws Exception {
 
 		// 예정된 예약
-		String sql = "SELECT RV.IN_DATE ,RV.OUT_DATE , R.NAME , R.IMG_01 FROM RESERVATION RV JOIN ROOM R ON RV.ROOM_NO =R.NO WHERE RESERVATOR_NO = ? AND RV.DEL_YN ='N' AND RV.REFUND_YN ='N' AND IN_DATE > SYSDATE ORDER BY RESERVE_DATE DESC";
+		String sql = "SELECT RV.IN_DATE ,RV.OUT_DATE, A.ADDRESS , R.NAME AS ROOM_NAME , R.IMG_01 , RV.SUM, H.NAME AS HOST_NAME, H.PHONE, H.PROFILE FROM RESERVATION RV JOIN ROOM R ON RV.ROOM_NO = R.NO JOIN ACCOMMODATION A ON R.ACCOM_NO = A.NO JOIN HOST H ON H.NO = A.HOST_NO WHERE RESERVATOR_NO = ? AND RV.DEL_YN ='N' AND RV.REFUND_YN ='N' AND IN_DATE > SYSDATE ORDER BY RESERVE_DATE DESC";
+
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, loginMemNo);
 		ResultSet rs = pstmt.executeQuery();
@@ -146,14 +148,24 @@ public class ReservationDao {
 		while (rs.next()) {
 			String inDate = rs.getString("IN_DATE");
 			String outDate = rs.getString("OUT_DATE");
-			String name = rs.getString("NAME");
+			String name = rs.getString("ROOM_NAME");
 			String img_01 = rs.getString("IMG_01");
+			String sum = rs.getString("SUM");
+			String hostName = rs.getString("HOST_NAME");
+			String hostPhone = rs.getString("PHONE");
+			String hostProfile = rs.getString("PROFILE");
+			String address = rs.getString("ADDRESS");
 
 			ReservationVo vo = new ReservationVo();
 			vo.setInDate(inDate);
 			vo.setOutDate(outDate);
 			vo.setRoomName(name);
 			vo.setRoomNo(img_01);
+			vo.setSum(sum);
+			vo.setHostName(hostName);
+			vo.setHostPhone(hostPhone);
+			vo.setHostProfile(hostProfile);
+			vo.setAddress(address);
 			reservationList.add(vo);
 		}
 		return reservationList;
@@ -163,7 +175,7 @@ public class ReservationDao {
 	public List<ReservationVo> getHistoryList(Connection conn, String loginMemNo) throws Exception {
 
 		// 예정된 예약
-		String sql = "SELECT RV.IN_DATE ,RV.OUT_DATE , R.NAME , R.IMG_01 FROM RESERVATION RV JOIN ROOM R ON RV.ROOM_NO =R.NO WHERE RESERVATOR_NO = ? AND RV.DEL_YN ='N' AND RV.REFUND_YN ='N' AND OUT_DATE < SYSDATE ORDER BY RESERVE_DATE DESC";
+		String sql = "SELECT RV.NO RESERVE_NO, RV.IN_DATE ,RV.OUT_DATE, R.NAME , R.IMG_01, RW.NO REVIEW_NO FROM RESERVATION RV JOIN ROOM R ON RV.ROOM_NO = R.NO LEFT JOIN REVIEW RW ON RV.NO = RW.RESERVE_NO WHERE RESERVATOR_NO = ? AND RV.DEL_YN ='N' AND RV.REFUND_YN ='N' AND OUT_DATE < SYSDATE ORDER BY RESERVE_DATE DESC";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, loginMemNo);
 		ResultSet rs = pstmt.executeQuery();
@@ -174,12 +186,17 @@ public class ReservationDao {
 			String outDate = rs.getString("OUT_DATE");
 			String name = rs.getString("NAME");
 			String img_01 = rs.getString("IMG_01");
+			String reviewNo = rs.getString("REVIEW_NO");
+			String reserveNo = rs.getString("RESERVE_NO");
 
 			ReservationVo vo = new ReservationVo();
 			vo.setInDate(inDate);
 			vo.setOutDate(outDate);
 			vo.setRoomName(name);
 			vo.setRoomNo(img_01);
+			vo.setRoomNo(img_01);
+			vo.setReviewNo(reviewNo);
+			vo.setReserveNo(reserveNo);
 			historyList.add(vo);
 		}
 		return historyList;
@@ -189,7 +206,7 @@ public class ReservationDao {
 	public List<ReservationVo> getRefundList(Connection conn, String loginMemNo) throws Exception {
 
 		// 예정된 예약
-		String sql = "SELECT RV.RESERVE_DATE , R.NAME , R.IMG_01 FROM RESERVATION RV JOIN ROOM R ON RV.ROOM_NO =R.NO WHERE RESERVATOR_NO = ? AND RV.DEL_YN ='N' AND RV.REFUND_YN ='Y' ORDER BY RESERVE_DATE DESC";
+		String sql = "SELECT RV.IN_DATE ,RV.OUT_DATE, R.NAME , R.IMG_01 FROM RESERVATION RV JOIN ROOM R ON RV.ROOM_NO =R.NO WHERE RESERVATOR_NO = ? AND RV.DEL_YN ='N' AND RV.REFUND_YN ='Y' ORDER BY RESERVE_DATE DESC";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, loginMemNo);
 		ResultSet rs = pstmt.executeQuery();

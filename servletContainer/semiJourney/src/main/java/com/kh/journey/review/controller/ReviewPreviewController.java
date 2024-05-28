@@ -12,23 +12,21 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.journey.review.service.ReviewService;
 import com.kh.journey.review.vo.ReviewVo;
 
-@WebServlet("/review/list")
-public class ReviewListController extends HttpServlet {
+@WebServlet("/review/preview")
+public class ReviewPreviewController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
+			//해당 room 리뷰리스트보기
 			String roomNo = req.getParameter("roomNo");
 
 			ReviewService rs = new ReviewService();
-			List<ReviewVo> voList = rs.getReviewListAllByRoomNo(roomNo);
-
-			System.out.println(voList);
+			List<ReviewVo> voList = rs.getReviewListByRoomNo(roomNo);
 			req.setAttribute("voList", voList);
-			req.getRequestDispatcher("/WEB-INF/views/review/list.jsp").forward(req, resp);
-		} catch (
-
-		Exception e) {
+			req.setAttribute("roomNo", roomNo);
+			req.getRequestDispatcher("/WEB-INF/views/review/preview.jsp").forward(req, resp);
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 			req.setAttribute("errMsg", e.getMessage());

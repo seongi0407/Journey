@@ -1,0 +1,513 @@
+/*확인 및 결제*/
+#navText {
+	padding: 30px 130px 20px 130px;
+	font-size: 20px;
+	display: grid;
+	grid-template-columns: 0.1fr 2fr;
+}
+
+#navText img {
+	place-items: center;
+	width: 50px;
+}
+
+#navText img:hover {
+	background-color: #f4f4f4;
+	border-radius: 50px;
+}
+
+#backImgBox {
+	padding-top: 25px;
+}
+
+.main {
+	height: 100%;
+	width: 90%;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+#section {
+	padding-left: 80px;
+}
+
+#aside {
+	padding-right: 80px;
+}
+
+#sectionLeft {
+	display: grid;
+	grid-template-rows: 0.8fr 0.4fr 1.1fr 0.4fr 0.4fr 0.3fr;
+	justify-items: end;
+}
+
+#sectionLeft>div {
+	width: 80%;
+	padding: 30px;
+}
+
+
+
+.rsvInnerBox{
+	border-bottom: 1px solid rgb(221, 221, 221);
+	padding: 10px;
+}
+
+/*예약정보*/
+#reservationInformationOutter h2 {
+	margin-bottom: 10px;
+}
+
+.reservationInformationInner {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	justify-content: space-between;
+}
+
+.reservationInformationInner>div {
+	width: 90%;
+}
+
+.reservationInformationInner h3 {
+	margin-bottom: 10px;
+}
+
+#modifyDate, #modifyCntPeople {
+	align-content: center;
+	text-align: end;
+}
+
+#modifyDateText, #modifyCntPeopleText {
+	cursor: pointer;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+/*결제수단*/
+#billingInformationTitle {
+	width: 230px;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+}
+
+#payimgoutter {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	justify-content: end;
+	align-items: center;
+}
+
+.payimg>img {
+	height: 10px;
+}
+
+.select {
+	position: relative;
+	height: 30px;
+}
+
+.text {
+	font-size: 20px;
+}
+
+.select .option-list {
+	position: absolute;
+	top: 90%;
+	left: 0;
+	width: 100%;
+	overflow: hidden;
+	max-height: 0;
+}
+
+.select.active .option-list {
+	max-height: none;
+	background-color: white;
+}
+
+.option img {
+	width: 40px;
+	margin: 8px;
+}
+
+/* 테마 적용하기 */
+#select_card .select {
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+	padding: 10px;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+#select_card .select:hover {
+	color: #333;
+	transition: all .3s;
+}
+
+#select_card .option-list {
+	list-style: none;
+	padding: 0;
+	border-radius: 5px;
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+	overflow-y: auto; /* 스크롤 가능 */
+	max-height: 300px; /* 최대 높이 설정 */
+	display: none; 
+	position: absolute; 
+	background: white; 
+	z-index: 1000;
+}
+/* 활성화 시 보이기*/
+#select_card .select.active .option-list {
+	display: block; 
+}
+
+.text>img {
+	height: 15px;
+}
+
+#select_card .option {
+	padding: 10px;
+}
+
+#select_card .option:hover {
+	background-color: #f2f2f2;
+}
+
+/*호스트 메시지*/
+.hostInformation {
+	display: grid;
+	grid-template-columns: 1fr 6.5fr;
+	font-size: 16px;
+	padding: 20px 0;
+}
+
+#hostText {
+	align-content: center;
+	text-align: start;
+}
+
+.sendMessageToHost textarea {
+	width: 100%;
+	height: 100px;
+	border-radius: 5px;
+	resize: vertical;
+}
+
+#hostImgBox {
+	width: 60px;
+	height: 60px;
+}
+
+#hostImg {
+	width: 100%;
+	height: 100%;
+	border-radius: 50px;
+	object-fit: cover;
+}
+
+#hostName {
+	font-weight: bold;
+}
+
+/*환불정책안내*/
+#refundText, #refundPolicy {
+	font-weight: bold;
+}
+
+#refundPolicy {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+#refundPolicy a:link {
+	color: rgb(39, 39, 39);
+}
+
+#refundPolicy a:hover {
+	color: black;
+}
+
+/*예약 요청 버튼*/
+.accommPolicy {
+	cursor: pointer;
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+#rsvBtnText {
+	font-size: 10px;
+	border: none;
+}
+
+#rsvBtn {
+	width: 147px;
+	height: 57px;
+	background-color: rgb(230, 30, 77);
+	border: none;
+	border-radius: 10px;
+	font-size: 16px;
+	font-weight: bold;
+	color: white;
+	padding: 15px;
+	cursor: pointer;
+}
+
+#rsvBtn:active {
+	background-color: rgb(238, 58, 100);
+	width: 145px;
+	height: 55px;
+	font-size: 17px;
+}
+
+#rsvBtnBox {
+	border-bottom: none;
+}
+
+/*요금세부정보*/
+#accommodationFeeDetails {
+	 height: auto;
+	width: 23%;
+	padding: 24px;
+	border: 1px solid rgb(221, 221, 221);
+	border-radius: 12px;
+	position: fixed;
+	right: 18%;
+	top: 30%;
+	background-color: transparent;
+	margin: 0;
+}
+
+.totalPayInfo span{
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.paymentMethod {
+	border-bottom: 1px solid rgb(221, 221, 221);
+	padding: 10px 0;
+}
+
+#roomInfo {
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+}
+
+#roomImgBox {
+	width: 100px;
+	height: 100px;
+}
+
+#roomImg {
+	width: 100%;
+	height: 100%;
+	border-radius: 10px;
+	object-fit: cover;
+}
+
+#roomText {
+	align-content: center;
+	text-align: start;
+}
+
+#roomName {
+	font-weight: bold;
+	font-size : 25px;
+}
+
+.payInformation, #totalPayInfo {
+	display: grid;
+	grid-template-columns: 1.5fr 1fr;
+	font-size: 16px;
+}
+
+.payInformation div, #totalPayInfo div {
+	padding: 5px;
+}
+
+.payInformationRight, #totalPayInfoRight {
+	text-align: end;
+}
+
+/* 팝업 배경 */
+.popup {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+.popup-content {
+	position: relative;
+	top: 55%;
+	left: 50%;
+	overflow: auto;
+	max-height: 450px;
+	max-width: 450px;
+	transform: translate(-50%, -50%);
+	z-index: 1002;
+	box-sizing: border-box;
+	background: #fff;
+	box-shadow: 2px 5px 10px 0px rgba(0, 0, 0, 0.35);
+	-webkit-box-shadow: 2px 5px 10px 0px rgba(0, 0, 0, 0.35);
+	-moz-box-shadow: 2px 5px 10px 0px rgba(0, 0, 0, 0.35);
+	border-radius: 10px;
+	padding: 30px;
+	display: grid;
+}
+
+.close-button {
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.close-button:hover, .close-button:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+#rsvBtnText {
+	font-size: 10px;
+	border: none;
+}
+
+/*수정 팝업창 스타일*/
+
+.checkInDate .checkOutDate{
+	width: 100px;
+	height: 50px;
+}
+
+.saveDateBtn, .savePeopleBtn {
+	width: 100px;
+	height: 50px;
+	background-color: rgb(230, 30, 77);
+	border: none;
+	border-radius: 10px;
+	font-size: 16px;
+	font-weight: bold;
+	color: white;
+	padding: 15px;
+	cursor: pointer;
+	right: 100px;
+	bottom: 20px;
+}
+
+.saveDateBtn:active, .savePeopleBtn:active {
+	background-color: rgb(238, 58, 100);
+	width: 105px;
+	height: 52px;
+	font-size: 17px;
+}
+
+/* 달력 */
+
+/* 날짜 입력 필드 정렬 */
+.date-inputs {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-group label {
+    margin-bottom: 5px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.input-group input {
+    width: 150px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#peopleCountInput{
+	width: 150px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.calendar_container {
+    display: flex;
+    justify-content:space-evenly;
+    width: 90%;
+}
+
+.hide {
+    display:none;
+}
+
+.calendar_container > button {
+    margin-top: 4%;
+    font-weight: bold;
+    height:10%;
+}
+
+.left_button {
+    margin-left:17%;
+    border: transparent;
+}
+
+.right_button {
+    margin-right:17%;
+    border: transparent;
+}
+
+.calendar {
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    margin-top: 3%;
+    margin-right:2.5%;
+}
+
+
+.calendar_days > button  {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    background-color: transparent;
+    border: transparent;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+.day {
+    text-align: center;
+    font-size:11px;
+    font-weight: bold;
+    color:rgb(189, 189, 189);
+}
+
+
+.day_hover {
+    border: 1px solid gray !important;
+}
+
+.day_selected {
+    background-color: black !important;
+    color: #ffff;
+}
+
+.gray {
+    background-color: rgb(241, 241, 241) !important;
+}
+/*---------------------------------------*/
+

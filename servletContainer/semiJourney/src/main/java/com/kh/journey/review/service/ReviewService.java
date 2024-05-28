@@ -17,11 +17,11 @@ public class ReviewService {
 	}
 
 	// 리뷰 등록
-	public int insert(ReviewVo vo) throws Exception {
+	public int reviewInsert(ReviewVo vo) throws Exception {
 
 		Connection conn = getConnection();
 		ReviewDao dao = new ReviewDao();
-		int result = dao.insert(conn, vo);
+		int result = dao.reviewInsert(conn, vo);
 
 		if (result == 1) {
 			commit(conn);
@@ -34,28 +34,39 @@ public class ReviewService {
 		return result;
 	}
 
-	public List<ReviewVo> getReviewsByPage(int roomNo) throws Exception {
+	// 최신리뷰 6개
+	public List<ReviewVo> getReviewListByRoomNo(String roomNo) throws Exception {
 		ReviewDao dao = new ReviewDao();
 		Connection conn = getConnection();
-		List<ReviewVo> voList = dao.getReviewsByPage(conn, roomNo);
+		List<ReviewVo> voList = dao.getReviewListByRoomNo(conn, roomNo);
 		close(conn);
 		return voList;
 	}
 
-	// 리뷰 조회(목록/상세)
-	public List<ReviewVo> selectReviewList(int roomNo) throws Exception {
+	// 해당 객실 모든 리뷰보기
+	public List<ReviewVo> getReviewListAllByRoomNo(String roomNo) throws Exception {
 		Connection conn = getConnection();
-		List<ReviewVo> voList = dao.selectReviewList(conn, roomNo);
+		List<ReviewVo> voList = dao.getReviewListAllByRoomNo(conn, roomNo);
 
 		close(conn);
 
 		return voList;
 	}
 
-	// 리뷰 삭제
-	public int deleteReview(String reviewNo) throws Exception {
+	// 리뷰 수정(내용가져오기)
+	public List<ReviewVo> getReviewByNo(String reserveNo) throws Exception {
 		Connection conn = getConnection();
-		int result = dao.deleteReview(conn, reviewNo);
+		List<ReviewVo> review = dao.getReviewByNo(conn, reserveNo);
+
+		close(conn);
+
+		return review;
+	}
+
+	// 리뷰 수정(업데이트)
+	public int editReviewContent(ReviewVo vo) throws Exception {
+		Connection conn = getConnection();
+		int result = dao.editReviewContent(conn, vo);
 
 		if (result == 1) {
 			commit(conn);
@@ -65,6 +76,26 @@ public class ReviewService {
 		close(conn);
 
 		return result;
+
 	}
 
+	// 리뷰 삭제
+	public int deleteReview(String[] reviewNoList) throws Exception {
+		Connection conn = getConnection();
+
+		int result = 0;
+
+		for (String reviewNo : reviewNoList) {
+			result += dao.deleteReview(conn, reviewNo);
+		}
+
+		if (result == reviewNoList.length) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+
+		return result;
+	}
 }
