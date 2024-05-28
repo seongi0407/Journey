@@ -138,7 +138,7 @@ public class ReservationDao {
 	public List<ReservationVo> getReservationList(Connection conn, String loginMemNo) throws Exception {
 
 		// 예정된 예약
-		String sql = "SELECT RV.IN_DATE ,RV.OUT_DATE, A.ADDRESS , R.NAME AS ROOM_NAME , R.IMG_01 , RV.SUM, H.NAME AS HOST_NAME, H.PHONE, H.PROFILE FROM RESERVATION RV JOIN ROOM R ON RV.ROOM_NO = R.NO JOIN ACCOMMODATION A ON R.ACCOM_NO = A.NO JOIN HOST H ON H.NO = A.HOST_NO WHERE RESERVATOR_NO = ? AND RV.DEL_YN ='N' AND RV.REFUND_YN ='N' AND IN_DATE > SYSDATE ORDER BY RESERVE_DATE DESC";
+		String sql = "SELECT RV.NO RESERVE_NO, RV.IN_DATE ,RV.OUT_DATE, A.ADDRESS , R.NAME AS ROOM_NAME , R.IMG_01 , RV.SUM, H.NAME AS HOST_NAME, H.PHONE, H.PROFILE FROM RESERVATION RV JOIN ROOM R ON RV.ROOM_NO = R.NO JOIN ACCOMMODATION A ON R.ACCOM_NO = A.NO JOIN HOST H ON H.NO = A.HOST_NO WHERE RESERVATOR_NO = ? AND RV.DEL_YN ='N' AND RV.REFUND_YN ='N' AND IN_DATE > SYSDATE ORDER BY RESERVE_DATE DESC";
 
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, loginMemNo);
@@ -155,6 +155,7 @@ public class ReservationDao {
 			String hostPhone = rs.getString("PHONE");
 			String hostProfile = rs.getString("PROFILE");
 			String address = rs.getString("ADDRESS");
+			String reserveNo = rs.getString("RESERVE_NO");
 
 			ReservationVo vo = new ReservationVo();
 			vo.setInDate(inDate);
@@ -166,6 +167,7 @@ public class ReservationDao {
 			vo.setHostPhone(hostPhone);
 			vo.setHostProfile(hostProfile);
 			vo.setAddress(address);
+			vo.setReserveNo(reserveNo);
 			reservationList.add(vo);
 		}
 		return reservationList;
@@ -262,5 +264,17 @@ public class ReservationDao {
 			reservationList.add(vo);
 		}
 		return reservationList;
+	}
+
+	// 예약 취소
+	public int cancelReservation(Connection conn, String reserveNo) throws Exception {
+		String sql = "UPDATE RESERVATION SET REFUND_YN='Y' WHERE NO=?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, reserveNo);
+
+		int result = pstmt.executeUpdate();
+
+		close(pstmt);
+		return result;
 	}
 }

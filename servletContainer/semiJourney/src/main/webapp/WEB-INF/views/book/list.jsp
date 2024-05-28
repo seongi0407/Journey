@@ -34,7 +34,7 @@
 						<div id="place-name" class="place-name">
 							<h1>${reservation.roomName}</h1>
 							<button class="cancelBtn"
-								onclick="location.href='/journey/review/belete?reserveNo=${history.reserveNo}">예약취소</button>
+								onclick="location.href='/journey/book/cancel?reserveNo=${reservation.reserveNo}'">예약취소</button>
 						</div>
 						<hr>
 						<br>

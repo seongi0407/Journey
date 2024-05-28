@@ -144,8 +144,16 @@ public class ReservationService {
 		return refundList;
 	}
 
-	public int cancelBook(String no) {
-		
-		return 0;
+	// 예약 취소
+	public int cancelReservation(String reserveNo) throws Exception {
+		Connection conn = getConnection();
+		int result = dao.cancelReservation(conn, reserveNo);
+		if (result == 1) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
 	}
 }
