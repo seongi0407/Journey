@@ -1,0 +1,420 @@
+body{
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+}
+aside{
+    background-color: whitesmoke;
+}
+#wrap{
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    
+    display: grid;
+    grid-template-rows: 6.5fr 1.5fr;
+}
+main{
+    margin-top: 120px;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+#main > div{
+    height: 12%;
+}
+
+
+
+#room-info{
+    display: grid;
+    grid-template-rows: 1fr 10fr;
+    margin: 1% 1%;
+}
+
+#room-photo{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+#first-img{
+    grid-row: span 2;
+    grid-column: span 2;
+    
+    width: 98%;
+    height: 98%;
+
+    margin: 1% 1%;
+
+    border-radius: 10px;
+}
+
+.room-img{
+    width: 96%;
+    height: 96%;
+
+    margin: 2% 2%;
+
+    border-radius: 10px;
+}
+
+
+
+#reservation{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+#room-explain{
+    margin: 3% 3%;
+}
+
+#host-short{
+    margin: 2% 2%;
+    padding: 2% 2%;
+    
+    border-top: 2px solid lightgray;
+    border-bottom: 2px solid lightgray;
+
+    display: grid;
+    grid-template-columns: 1fr 8fr;
+
+    align-items: center;
+}
+
+#host-short > img{
+    width: 50%;
+    height: 5ch;
+}
+
+#room-short{
+    margin: 3% 3%;
+    
+    display: grid;
+    grid-template-columns: 1fr 8fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+
+    border-bottom: 1px solid lightgray;
+
+    align-items: center;
+}
+
+#room-short > img{
+    width: 50%;
+    height: 50%;
+
+    border-radius: 10px;
+
+    justify-self: center;
+}
+
+#room-short > div{
+    margin: 2% 2%;
+}
+
+#right{
+    height: 70%;
+    width: 85%;
+
+    border: 3px solid lightgray;
+    border-radius: 10px;  
+}
+
+#reserve-table{
+    height: 95%;
+
+    margin: 4% 4%;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 0.8fr 1.6fr 1.2fr 0.4fr 0.3fr;
+}
+
+
+
+#reserve-select{
+    grid-column: span 2;
+
+    border-top: 2px solid lightgray;
+    border-bottom: 2px solid lightgray;
+    border-left: 2px solid lightgray;
+    border-right: 2px solid lightgray;
+
+    width: 80%;
+    height: 80%;
+
+    justify-self: center;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+#price-per-day{
+    grid-column: span 2;
+}
+
+#check-in{
+    border-right: 2px solid lightgray;
+    border-bottom: 2px solid lightgray;
+}
+
+#check-out{
+    border-bottom: 2px solid lightgray;
+}
+
+#guest-num{
+    grid-column: span 2;
+}
+
+#reserve-btn{
+    grid-column: span 2;
+
+    width: 60%;
+    height: 60%;
+
+    font-size: 1.5em;
+
+    justify-self: center;
+    
+    border-color: whitesmoke;
+
+    background-color: palevioletred;
+
+    border-radius: 10px;
+}
+
+#reserve-btn > button{
+    width: 100%;
+    height: 70%;
+}
+
+#reserve-price{
+    grid-column: span 2;
+
+    border-bottom: 1px solid gray;
+
+    padding-bottom: 2%;
+
+    align-self: center;
+
+    display: grid;
+}
+
+#reserve-price-sum{
+    grid-column: span 2;
+}
+
+
+
+#review{
+    height: 100%;
+    width: 100%;
+
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+
+    border-bottom: 1px solid lightgray;
+}
+
+#review > div{
+    height: 100%;
+    width: 100%;
+
+    display: grid;
+    grid-template-rows: 1fr 2fr;
+    grid-template-columns: 1fr 4fr;
+
+    align-items: center;
+}
+
+#review > div > img{
+    height: 35%;
+    width: 35%;
+
+    display: grid;
+    grid-template-rows: 1fr 2fr;
+    grid-template-columns: 1fr 4fr;
+
+    border-radius: 10px;
+
+    justify-self: center;
+}
+
+#review > div > div > h4, h5{
+    margin: 2% 0%;
+}
+
+.review-zone{
+    padding: 3% 3%;
+
+    grid-column: span 2;
+    align-self: flex-start;
+}
+
+.review-zone > div{
+    padding-top: 2%;
+    padding-bottom: 2%;
+    padding-left: 2%;
+    padding-right: 20%;
+}
+
+#map{
+    width: 90%;
+    height: 90%;
+
+    justify-self: center;
+    align-self: center;
+}
+
+
+
+/* ------------------------------ */
+
+
+
+header{
+    border-bottom: 1px solid rgb(221, 221, 221);
+    height: 50px;
+    padding-left: 25px;
+    padding-top: 25px;
+
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 70px;
+
+    /* 추가한 부분 */
+    position: fixed; 
+    top: 0; 
+    width: 59.2%;
+    background-color: white; 
+    z-index: 4; 
+}
+
+#img-logo{
+    width: 110px;
+    height: 60px;
+}
+
+.header-right{
+    display: flex;
+}
+
+#introduce{
+    padding: 20px 30px;
+    font-weight:bolder;
+}
+
+#profile-icon{
+    border: 1px solid #DDDDDD;
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+
+    /* 테두리 안 */
+    padding: 0 15px 0 15px;
+
+    /* 테두리 밖 */
+    margin-right: 70px;
+}
+
+#menu-icon{
+    padding: 0 8px;
+}
+
+#user-icon{
+    padding: 0 0 0 8px;
+}
+
+
+
+/* ------------------------------ */
+
+
+
+.footer{
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-top: 1px solid #e9e7e7;
+}
+
+.footer-content{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.footer-column{
+    margin: 20px;
+}
+
+.footer-column h4{
+    font-weight: bold;
+}
+
+.footer-column ul{
+    list-style: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.footer-column ul li{
+    margin-bottom: 10px;
+}
+
+.footer-column ul li a{
+    text-decoration: none; 
+    color: inherit; 
+}
+
+.footer-bottom{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-top: 1px solid #e7e7e7;
+    padding-top: 10px;
+}
+
+.footer-bottom span{
+    margin-bottom: 10px;
+}
+
+.footer-link{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.footer-bottom a{
+    margin: 10px;
+    color: #555;
+    text-decoration: none;
+}
+
+.footer-language{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 30px;
+}
+
+.footer-language span{
+    margin-left: 15px;
+    color: #555;
+}
+
+.footer-sns{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 30px;
+    cursor: pointer;
+}
+
+.footer-sns img{
+    width: 24px;
+    height: 24px;
+    margin: 0 10px;
+}
