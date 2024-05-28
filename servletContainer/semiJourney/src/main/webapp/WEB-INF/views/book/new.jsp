@@ -7,27 +7,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>예약 및 결제</title>
-<link rel="stylesheet" href="../resources/css/reservationPayment.css">
-<script defer src="../resources/js/reservationPayment.js"></script>
-</head>
+<link rel="stylesheet" href="/journey/resources/css/bookNew.css">
+<script defer src="/journey/resources/js/bookNew.js"></script>
 
+<link rel="stylesheet" href="/journey/resources/css/layout.css">
+<script defer src="/journey/resources/js/layout.js"></script>
+
+</head>
+<%@ include file="/WEB-INF/views/layout/util.jsp"%>
 <body>
 
-	<header>
-		<img id="img-logo" src="../resources/img/airbnb.png" alt="">
-		<div class="header-right">
-			<div id="introduce">당신의 공간을 여정하세요</div>
-			<div id="profile-icon" onclick="showAccountContent()">
-				<img id="menu-icon" width="16" src="../resources/img/menu.svg"
-					alt="메뉴 아이콘"> <img id="user-icon" width="30"
-					src="../resources/img/profile.svg" alt="유저 아이콘">
-			</div>
-		</div>
-	</header>
+	<%@ include file="/WEB-INF/views/layout/header.jsp"%>
 
 	<nav class="rsv_inner" id="navText">
 		<div id="backImgBox">
-			<img src="../resources/img/뒤로가기.png">
+			<img src="/journey/resources/img/뒤로가기.png">
 		</div>
 		<div>
 			<h1>확인 및 결제</h1>
@@ -35,13 +29,16 @@
 	</nav>
 
 	<main class="main">
-		<form action="/app/book/new" method="post">
+		<form action="/journey/book/new" method="post">
 
 			<input type="hidden" name="roomNo" value="${vo.roomNo}"> <input
 				type="hidden" name="inDate" value="${vo.inDate}"> <input
 				type="hidden" name="outDate" value="${vo.outDate}"> <input
 				type="hidden" name="guestCount" value="${vo.guestCount}"> <input
-				type="hidden" name="sum" value="${vo.sum}">
+				type="hidden" name="sum" value="${vo.sum}"> <input
+				type="hidden" name="paymentMethod" value="${card.payMethodCode}">
+				<input
+				type="hidden" name="cardNo" value="${card.cardNo}">
 
 			<section class="rsv_inner" id="section">
 				<div id="sectionLeft">
@@ -57,23 +54,23 @@
 								<div>
 									<h3>날짜</h3>
 								</div>
+
 								<div id="days" class="days" id="checkInDate">
-									<p>${vo.inDate}</p>
-									~
-									<p>${vo.outDate}</p>
+									<p id="stayPeriod">${vo.inDate}~${vo.outDate}</p>
 								</div>
 							</div>
 							<div id="modifyDate">
 								<span id="modifyDateText" role="button" onclick="editDate()">수정</span>
 							</div>
 						</div>
+						<br>
 
 						<div class="reservationInformationInner">
 							<div>
 								<div>
 									<h3>인원</h3>
 								</div>
-								<div id="peopleCount">${vo.guestCount}명</div>
+								<div id="guestCount">${vo.guestCount}명</div>
 							</div>
 							<div id="modifyCntPeople">
 								<span id="modifyCntPeopleText" role="button">수정</span>
@@ -86,35 +83,57 @@
 							<h2>결제수단</h2>
 							<div class="billingInformation" id="payimgoutter">
 								<div class="payimg">
-									<img src="../resources/img/visa.svg">
+									<img src="/journey/resources/img/visa.svg">
 								</div>
 								<div class="payimg">
-									<img src="../resources/img/master.svg">
+									<img src="/journey/resources/img/amaxs.svg">
 								</div>
 								<div class="payimg">
-									<img src="../resources/img/amaxs.svg">
+									<img src="/journey/resources/img/npay.svg">
 								</div>
 								<div class="payimg">
-									<img src="../resources/img/npay.svg">
+									<img src="/journey/resources/img/kakaopay.png">
 								</div>
 							</div>
 						</div>
-						<section id="theme">
-							<div class="select" onclick="onClickSelect(event)">
-								<div class="text">선택</div>
+						<section id="select_card">
+							<div class="select">
+								<div class="text" onclick="onClickSelect(event)"> 결제 방법 선택</div>
 								<ul class="option-list">
 									<c:forEach var="card" items="${cardVoList}">
-										<li class="option"><img src="../resources/img/visa.svg">
-											${card.cardNick} ${card.cardNum}</li>
+										<li class="option" data-code="P1" data-no="${card.no}" data-pwd="${card.pwd}"
+											onclick="selectCard(event)" name="paymentMethod"><img
+											src="/journey/resources/img/amaxs.svg">${card.no}|${card.cardNick}|
+											${card.cardNum}|${card.pwd}</li>
 									</c:forEach>
-									<li class="option"><img src="../resources/img/카드.png">
-										결제수단 추가</li>
-									<li class="option"><img src="../resources/img/무통장.png">
-										무통장입금</li>
+									<hr>
+									<li>간편결제</li>
+									<li class="option" onclick="selectCard(event)"
+										data-code="P3"  id="KAKAOPAY" name="paymentMethod"><img
+										src="/journey/resources/img/kakaopay.png"> KAKAO PAY</li>
+									<li class="option" onclick="selectCard(event)"
+										data-code="P3"  id="TOSS-PAY" name="paymentMethod"><img
+										src="/journey/resources/img/Toss.png"> TOSS-PAY</li>
+									<li class="option" onclick="selectCard(event)"
+										data-code="P3"  id="N-PAY" name="paymentMethod"><img
+										src="/journey/resources/img/npay.svg"> N-PAY</li>
+									<hr>
+									<li class="option" onclick="selectCard(event)"
+										 id="addCard"><img
+										src="/journey/resources/img/카드.png"> 결제수단 추가</li>
+									<li class="option" onclick="selectCard(event)" data-code="P2"
+										 id="deposit"><img
+										src="/journey/resources/img/무통장.png" name="paymentMethod"> 무통장입금</li>
 								</ul>
 							</div>
 						</section>
-
+						<div id="passwordSection" style="display: none;">
+							<label for="passwordInput">비밀번호:</label> <input type="password"
+								id="passwordInput">
+							<button type="button" onclick="checkPassword()">확인</button>
+							<div id="passwordError" style="color: red; display: none;">비밀번호가
+								일치하지 않습니다</div>
+						</div>
 					</div>
 
 					<div class="rsvInnerBox" id="sendMessageToHost">
@@ -127,11 +146,11 @@
 
 							<div class="hostInformation">
 								<div id="hostImgBox">
-									<img id="hostImg" src="${roomDetail.profile}">
+									<img id="hostImg" src="${vo.hostProfile}">
 								</div>
 								<div id="hostText">
-									<div id="hostName">${roomDetail.hostName}</div>
-									<div>에어비앤비 가입 : ${roomDetail.hostEnrollDate}</div>
+									<div id="hostName">${vo.hostName}</div>
+									<div>에어비앤비 가입 : ${vo.hostEnrollDate}</div>
 								</div>
 							</div>
 						</div>
@@ -145,10 +164,21 @@
 						</div>
 						<div class="refundInfoText">
 							<span id="refundText">${refundPolicyText}</span> 그 이후에는 취소 시점에 따라
-							환불액이 결정됩니다. <span id="refundPolicy" role="button"><a
-								href="javascript:openPop()"> 자세히 알아보기</a></span>
+							환불액이 결정됩니다.
+							<p>
+								<span id="refundPolicy" role="button"><a
+									href="javascript:openPop()"> 자세히 알아보기</a></span>
+							</p>
+						</div>
+						<div id="passwordSection" style="display: none;">
+							<label for="passwordInput">비밀번호:</label> <input type="password"
+								id="passwordInput">
+							<button type="button" onclick="checkPassword()">확인</button>
+							<div id="passwordError" style="color: red; display: none;">비밀번호가
+								일치하지 않습니다</div>
 						</div>
 					</div>
+
 
 
 					<div class="rsvInnerBox" id="rsvBtnText">
@@ -172,22 +202,23 @@
 				<div id="paymentMethod">
 					<div class="paymentMethod" id="roomInfo">
 						<div id="roomImgBox">
-							<img id="roomImg" src="../resources/img/대표img.webp">
+							<img id="roomImg" src="${vo.roomImg}">
 						</div>
 						<div id="roomText">
-							<div id="roomName">${roomDetail.roomName}</div>
+							<div id="roomName">${vo.roomName}</div>
 							<div>
-								<span>${roomDetail.rating}</span>
+								<span>'${vo.hostName}'님의 숙소</span>
 							</div>
 						</div>
 					</div>
 					<div class="paymentMethod">
 						<h3>요금세부정보</h3>
 						<div class="payInformation">
-							<div>₩${roomDetail.weekdayPrice} x ${stayDay}박</div>
+							<div class="result" id="result">₩${vo.weekdayPrice} x
+								${vo.stayDay}박</div>
 						</div>
-						<hr>
-						<div id="totalPayInfo">
+
+						<div id="totalPayInfo" class="totalPayInfo">
 							<div>
 								<h3>총합계</h3>
 							</div>
@@ -198,147 +229,67 @@
 					</div>
 				</div>
 		</aside>
-	</main>
+	</main>、
 
-	<footer class="footer">
-		<div class="footer-content">
-			<div class="footer-column">
-				<h4>에어비앤비 지원</h4>
-				<ul>
-					<li><a href="https://www.airbnb.co.kr/help">도움말 센터</a></li>
-					<li><a href="https://www.airbnb.co.kr/help/article/3218">에어커버</a></li>
-					<li><a href="https://www.airbnb.co.kr/against-discrimination">차별
-							반대</a></li>
-					<li><a href="https://www.airbnb.co.kr/accessibility">장애인
-							지원</a></li>
-					<li><a href="https://www.airbnb.co.kr/help/article/2701">예약
-							취소 옵션</a></li>
-					<li><a href="https://www.airbnb.co.kr/help/article/3290">이웃
-							민원 신고</a></li>
-				</ul>
-			</div>
-			<div class="footer-column">
-				<h4>호스팅</h4>
-				<ul>
-					<li><a
-						href="https://www.airbnb.co.kr/host/homes?from_footer=1">당신의
-							공간을 여정하세요</a></li>
-					<li><a
-						href="https://www.airbnb.co.kr/host/homes?from_footer=1">호스트를
-							위한 에어커버</a></li>
-					<li><a href="https://www.airbnb.co.kr/resources/hosting-homes">호스팅
-							자료</a></li>
-					<li><a
-						href="https://community.withairbnb.com/t5/custom/page/page-id/CommunityCenterNotFound">커뮤니티
-							포럼</a></li>
-					<li><a href="https://www.airbnb.co.kr/help/article/1387">책임감
-							있는 호스팅</a></li>
-					<li><a href="https://www.airbnb.co.kr/ambassadors/joinaclass">무료
-							호스팅 클래스 참여하기</a></li>
-				</ul>
-			</div>
-			<div class="footer-column">
-				<h4>여정</h4>
-				<ul>
-					<li><a href="https://news.airbnb.com/">뉴스룸</a></li>
-					<li><a href="https://www.airbnb.co.kr/release">새로운 기능</a></li>
-					<li><a href="https://careers.airbnb.com/">채용정보</a></li>
-					<li><a href="https://investors.airbnb.com/home/default.aspx">투자자
-							정보</a></li>
-					<li><a
-						href="https://ko.airbnb.org/?_set_bev_on_new_domain=1715824984_ZWY5ZmRiZjk5MTg0">여정
-							긴급 속보</a></li>
-				</ul>
-			</div>
-		</div>
-		<div class="footer-language">
-			<span>한국어 (KR)</span> <span>₩ KRW</span>
-		</div>
-		<div class="footer-sns">
-			<img src="../resources/img//facebook.png" alt="facebook"> <img
-				src="../resources/img/twitter.png" alt="twitter"> <img
-				src="../resources/img/instagram.png" alt="instagram"> <img
-				src="../resources/img/blog.png" alt="blog">
-		</div>
-		<div class="footer-bottom">
-			<span>© 2024 여정, Inc.</span>
-			<div class="footer-link">
-				<a href="">개인정보 처리방침</a> <a href="">이용약관</a> <a href="">사이트맵</a> <a
-					href="">한국의 변경된 환불 정책</a> <a href="">회사 세부정보</a>
-			</div>
-		</div>
-	</footer>
+	<%@ include file="/WEB-INF/views/layout/footer.jsp"%>
 
 	<!-- 팝업창 -->
 	<!-- 날짜수정 -->
-	<div id="editDate_popup" class="modal">
-		<div class="editDate_popup modal-content">
+	<div id="editDate_popup" class="popup">
+		<div class="popup-content">
 			<span class="close-button" onclick="close_editDate()">&times;</span>
 			<h2>날짜 수정</h2>
-			<label for="checkInDate">체크인 날짜:</label> <input type="date"
-				id="checkInDate"><br> <label for="checkOutDate">체크아웃
-				날짜:</label> <input type="date" id="checkOutDate"><br>
-			<button id="saveButton" onclick="saveDates()">저장</button>
+			<div class="date-inputs">
+				<div class="input-group">
+					<label for="checkInDate">체크인 날짜</label> <input type="date"
+						id="checkInDate" onchange="validateDates()">
+				</div>
+				<div class="input-group">
+					<label for="checkOutDate">체크아웃 날짜</label> <input type="date"
+						id="checkOutDate" onchange="validateDates()">
+				</div>
+			</div>
+			<button id="saveDateBtn" class="saveDateBtn" onclick="saveDates()">수정</button>
 		</div>
 	</div>
 
 	<!-- 인원수정 -->
 	<div id="editPeople_popup" class="popup">
 		<div class="popup-content">
-			<span class="close-button">&times;</span>
+			<span class="close-button" onclick="close_editPeople()">&times;</span>
 			<h2>인원 수정</h2>
 			<label for="peopleCountInput">인원:</label> <input type="number"
 				id="peopleCountInput" min="1" max="10"><br>
-			<button id="savePeopleButton">저장</button>
+			<button id="savePeopleBtn" class="savePeopleBtn">수정</button>
 		</div>
 	</div>
+
+
 
 	<!-- 환불정책 -->
-	<div class="popup_layer" id="popup_layer" style="display: none;">
-		<div class="popup_box">
-			<div>
-				<a href="javascript:closePop();"><img id="closeImg"
-					src="../resources/img/close.png"></a>
-			</div>
-			<!--팝업 컨텐츠 영역-->
-			<div class="popup_cont">
-				<div class="returnPopup">
-					<h2>환불정책</h2>
-					<div class="refundInformation">
-						<div>
-							<div>전</div>
-							<div>5월15일</div>
-							<div>오후3:00</div>
-						</div>
-						<div>
-							<div>부분환불</div>
-							<div>전체 숙박 요금 중 50%를 환불받으실 수 있습니다.</div>
-							<div>서비스 수수료는 전액 환불됩니다.</div>
-						</div>
-					</div>
-					<div class="refundInformation">
-						<div>
-							<div>전</div>
-							<div>5월15일</div>
-							<div>오후3:00</div>
-						</div>
-						<div>
-							<div>부분환불</div>
-							<div>전체 숙박 요금 중 50%를 환불받으실 수 있습니다.</div>
-							<div>서비스 수수료는 전액 환불됩니다.</div>
-						</div>
-					</div>
+	<div id="popup_refundInfo" class="popup">
+		<div class="popup-content">
+			<span class="close-button" onclick="closePop()">&times;</span>
+			<h2>환불정책</h2>
+			<div class="refundInformation">
+				<hr>
+				<div>
+					<div>전체 환불</div>
+					<div>입실 1주일 이전가지는 100%를 환불받으실 수 있습니다.</div>
 				</div>
-				<!--팝업 버튼 영역-->
-				<div class="returnDetailBtn">
-					<div>체크인 전에 예약을 취소하면 청소비는 언제나 환불됩니다.</div>
-					<a href="">환불 정책 자세히 알아보기</a>
+				<div>
+					<hr>
+					<div>부분환불</div>
+					<div>5일전 : 전체 숙박 요금 중 50%를 환불받으실 수 있습니다.</div>
+					<div>3일전 : 전체 숙박 요금 중 30%를 환불받으실 수 있습니다.</div>
+					<div>서비스 수수료는 전액 환불됩니다.</div>
+					<hr>
+					<div>환불 불가</div>
+					<div>입실 2일전 부터는 환불이 불가능합니다.</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
-
 </body>
 
 

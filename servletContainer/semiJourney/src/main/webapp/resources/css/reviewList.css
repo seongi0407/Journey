@@ -1,4 +1,4 @@
-/* Main Styles */
+/* -------메인-------- */
 main {
 	padding: 40px 25px;
 	margin-top: 93px;
@@ -30,6 +30,7 @@ hr {
 	margin-bottom: 20px;
 }
 
+/* -------리뷰 표-------- */
 .review-table {
 	width: 100%;
 	border-collapse: collapse;
@@ -49,6 +50,30 @@ hr {
 	border-radius: 50%;
 }
 
-button:hover {
+.deleteBtn {
+	display: inline-block;
+	padding: 10px 20px;
+	background-color: #ff5a5f;
+	color: #fff;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 16px;
+	transition: background-color 0.3s;
+}
+
+/* -------버튼-------- */
+
+.deleteBtn:hover {
 	background-color: #e04e50;
+}
+
+.reviewListBtn {
+	border: none;
+	background-color: white;
+}
+
+.reviewListBtn:hover {
+	color: #ff5a5f;
+	cursor: pointer;
 }

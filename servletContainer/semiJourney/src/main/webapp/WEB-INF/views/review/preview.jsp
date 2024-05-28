@@ -6,26 +6,28 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>리뷰 상세</title>
-<link rel="stylesheet" href="/journey/resources/css/reviewList.css">
-<script defer src="/journey/resources/js/reviewDelete.js"></script>
+<title>리뷰</title>
+<link rel="stylesheet" href="../resources/css/reviewList.css">
 
 <link rel="stylesheet" href="/journey/resources/css/layout.css">
 <script defer src="/journey/resources/js/layout.js"></script>
+
+
+<%@ include file="/WEB-INF/views/layout/util.jsp"%>
+
 </head>
 <body>
-	<%@ include file="/WEB-INF/views/layout/header.jsp"%>
 
+	<%@ include file="/WEB-INF/views/layout/header.jsp"%>
+	
 	<main>
 		<section class="review-section">
 			<div class="review-container">
-				<h2>리뷰 상세</h2>
+				<h2>최신리뷰 6개</h2>
 				<hr>
 				<table class="review-table">
 					<thead>
 						<tr>
-							<th><input type="checkbox" onclick="checkboxAll(this);"></th>
-							<th>no</th>
 							<th>프로필</th>
 							<th>작성자</th>
 							<th>평점</th>
@@ -36,27 +38,20 @@
 					<tbody>
 						<c:forEach items="${voList}" var="vo">
 							<tr>
-								<td><input type="checkbox" name="reviewCheckbox"
-									value="${vo.no}"></td>
-								<td>${vo.no}</td>
 								<td><img width="100px" height="100px" alt="profile"
-									src="/journey/resources/upload/${vo.profile}"></td>
+									src="/app/resources/upload/${vo.profile}"></td>
 								<td>${vo.writerName}</td>
 								<td>${vo.starAvg}</td>
 								<td>${vo.enrollDate}</td>
 								<td>${vo.content}</td>
-
-
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
-				<br>
-				<button class="deleteBtn" onclick="deleteCheckedBoard();">삭제하기</button>
 			</div>
+			<button class="reviewListBtn" href="http://127.0.0.1:8888/journey/review/list?roomNo=${roomNo}">리뷰 더보기</button>
 		</section>
 	</main>
-
 	<%@ include file="/WEB-INF/views/layout/footer.jsp"%>
 
 </body>

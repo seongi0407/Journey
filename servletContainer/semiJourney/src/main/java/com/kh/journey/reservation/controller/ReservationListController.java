@@ -21,6 +21,12 @@ public class ReservationListController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		doPost(req, resp);
+
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 			HttpSession session = req.getSession();
 //			MemberVo loginMemberVo = (MemberVo) session.getAttribute("loginMemberVo");
@@ -34,9 +40,6 @@ public class ReservationListController extends HttpServlet {
 			List<ReservationVo> historyList = rs.getHistoryList(loginMemNo);
 			List<ReservationVo> refundList = rs.getRefundList(loginMemNo);
 
-			System.out.println(reservationList);
-			System.out.println(historyList);
-			System.out.println(refundList);
 			req.setAttribute("reservationList", reservationList);
 			req.setAttribute("historyList", historyList);
 			req.setAttribute("refundList", refundList);
@@ -49,11 +52,5 @@ public class ReservationListController extends HttpServlet {
 			req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
 
 		}
-
-	}
-
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		doGet(req, resp);
 	}
 }

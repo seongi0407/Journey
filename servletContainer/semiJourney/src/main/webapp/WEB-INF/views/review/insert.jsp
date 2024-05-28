@@ -6,11 +6,11 @@
 <meta charset="UTF-8">
 <title>리뷰작성</title>
 
-<link rel="stylesheet" href="../resources/css/reviewInsert.css">
-<script defer src="../resources/js/reviewInsert.js"></script>
+<link rel="stylesheet" href="/journey/resources/css/reviewInsert.css">
+<script defer src="/journey/resources/js/reviewInsert.js"></script>
 
-<link rel="stylesheet" href="../resources/css/layout.css">
-<script defer src="../resources/js/layout.js"></script>
+<link rel="stylesheet" href="/journey/resources/css/layout.css">
+<script defer src="/journey/resources/js/layout.js"></script>
 
 <%@ include file="/WEB-INF/views/layout/util.jsp"%>
 
@@ -24,7 +24,8 @@
 				<br>
 				<hr>
 				<br>
-				<form id="reviewForm" action="/app/review/insert" method="post">
+				<form id="reviewForm" action="/journey/review/insert" method="post">
+				<input type="hidden" name="reserveNo" value="${reserveNo}">
 					<div class="form-group">
 						<label for="cleanlinessRating">청결도</label>
 						<div class="star-rating" id="cleanlinessRating">

@@ -1,0 +1,95 @@
+/* -------메인-------- */
+body {
+	margin: 0;
+	margin-top: 93px;
+	font-family: Arial, sans-serif;
+}
+
+h1 {
+	font-size: 24px;
+	margin: 0;
+}
+
+main {
+	padding: 40px 25px;
+	background-color: #f7f7f7;
+}
+
+.review-section {
+	max-width: 800px;
+	margin: 0 auto;
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.review-container h1 {
+	font-size: 22px;
+	margin-bottom: 20px;
+}
+
+label {
+	display: block;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+/* -------별점-------- */
+.star-rating {
+	display: flex;
+	flex-direction: row-reverse;
+	font-size: 1.3em;
+	position: relative;
+}
+
+.star-rating input {
+	display: none;
+}
+
+.star-rating label {
+	color: #ddd;
+	display: inline-block;
+	position: relative;
+	width: 1em;
+	font-size: 1.5em;
+}
+
+.star-rating label::before {
+	content: '★';
+	position: absolute;
+	left: 0;
+}
+
+.star-rating input:checked ~ label::before {
+	color: #ffc107;
+}
+
+
+.ratingValue {
+	font-size: 1.5em;
+	margin-top: 10px;
+}
+
+/* -------content 작성칸-------- */
+textarea {
+	width: 95%;
+	resize: none;
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	font-family: inherit;
+	font-size: 14px;
+}
+
+#submitReviewBtn {
+	display: inline-block;
+	padding: 10px 20px;
+	background-color: #ff5a5f;
+	color: #fff;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 16px;
+	transition: background-color 0.3s;
+}
