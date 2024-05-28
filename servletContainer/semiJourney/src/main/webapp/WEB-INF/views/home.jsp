@@ -19,14 +19,65 @@
 <body>
 	<%@ include file="/WEB-INF/views/layout/header.jsp"%>
 
-	<!-- 회원가입 창 -->
+	<!-- Member, Host, Admin 회원가입 선택하는 창 -->
+	<div class="select-account" id="select-account-join">
+		<div id="admin">
+			<button>
+				<img src="https://cdn3.emoji.gg/emojis/2342-admin.png" alt="관리자">
+			</button>
+			<span>관리자</span>
+		</div>
+		<div id="host">
+			<!-- 포트번호 확인해서 바꾸기 -->
+			<button>
+				<a href="http://127.0.0.1:8888/journey/host/join"><img
+					src="https://cdn3.emoji.gg/emojis/2342-admin.png" alt="호스트"></a>
+			</button>
+			<span>호스트</span>
+		</div>
+		<div id="member">
+			<button id="memberJoin" onclick="showMemberJoin()">
+				<img src="https://cdn3.emoji.gg/emojis/2342-admin.png" alt="회원">
+			</button>
+			<span>회원</span>
+		</div>
+		<button class="close-button" id="close-button-join">닫 기</button>
+	</div>
+
+	<!-- Member, Host, Admin 로그인 선택하는 창 -->
+	<div class="select-account" id="select-account-login">
+		<div id="admin">
+			<button>
+				<img src="https://cdn3.emoji.gg/emojis/2342-admin.png" alt="관리자">
+			</button>
+			<span>관리자</span>
+		</div>
+		<div id="host">
+			<!-- 포트번호 확인해서 바꾸기 -->
+			<button>
+				<a href="http://127.0.0.1:8888/journey/host/login"><img
+					src="https://cdn3.emoji.gg/emojis/2342-admin.png" alt="호스트"></a>
+			</button>
+			<span>호스트</span>
+		</div>
+		<div id="member">
+			<button id="memberLogin" onclick="showMemberLogin()">
+				<img src="https://cdn3.emoji.gg/emojis/2342-admin.png" alt="회원">
+			</button>
+			<span>회원</span>
+		</div>
+		<button class="close-button" id="close-button-login">닫 기</button>
+	</div>
+
+	<!-- Member 회원가입 창 -->
 	<div class="join-content" id="join-content">
-		<form action="/journey/member/join" method="post" enctype="multipart/form-data" class="join-box">
+		<form action="/journey/member/join" method="post"
+			enctype="multipart/form-data" class="join-box">
 			<h3>회원가입 완료하기</h3>
 			<hr>
 			<h4>실명</h4>
-			<input type="text" size="22" name="name" placeholder="신분증에 기재된 이름(예:길동)" required>
-			<br> 
+			<input type="text" size="22" name="name"
+				placeholder="신분증에 기재된 이름(예:길동)" required> <br>
 			<h6>
 				정부 발급 신분증에 기재된 이름과 일치해야 합니다. 평소 다른 이름을 사용하는 경우, <u>선호하는 이름</u>을
 				입력하세요.
@@ -35,9 +86,9 @@
 			<input type="text" name="birth-date" required>
 			<h6>18세 이상인 성인만 회원으로 가입할 수 있습니다. 생일은 여행의 정석의 다른 회원에게 공개되지 않습니다.</h6>
 			<h4>Contact Info</h4>
-			전화번호 : <input type="tel" name="phone"
-				placeholder="01012345678" required> <br> 이메일 : <input
-				type="email" name="email" placeholder="kh11@gmail.com" required>
+			전화번호 : <input type="tel" name="phone" placeholder="01012345678"
+				required> <br> 이메일 : <input type="email" name="email"
+				placeholder="kh11@gmail.com" required>
 			<div class="id-checkDup">
 				<h4>아이디</h4>
 				<input type="text" name="id" required> <input type="button"
@@ -48,7 +99,7 @@
 			<h4>비밀번호 확인</h4>
 			<input type="password" name="pwd2" required>
 			<h4>프로필 이미지</h4>
-			<input type="file" name="profile" > <br>
+			<input type="file" name="profile"> <br>
 			<hr>
 			<br>
 			<div class="checkbox-container">
@@ -67,19 +118,22 @@
 					이용약관</u>, <u>차별 금지 정책</u>, <u>개인정보 처리방침</u>에 동의합니다.
 			</h4>
 			<input type="submit" value="동의 및 계속하기" class="join-submit-button">
+			<button type="button" id="join-close-button">닫기</button>
 		</form>
 	</div>
 	<!--  -->
 
-	<!-- 로그인 창 -->
+
+	<!-- Member 로그인 창 -->
 	<div class="login-content" id="login-content">
 		<form action="/journey/member/login" method="post" class="login-box">
 			<h3>로그인</h3>
 			<hr>
 			<h2>여행의 정석에 오신 것을 환영합니다.</h2>
-			<br> <input id="login-id" type="text" name="id" placeholder="아이디" required>
-			<br> <br> <input id="login-password" type="password" name="pwd"
-				placeholder="비밀번호" required>
+			<br> <input id="login-id" type="text" name="id"
+				placeholder="아이디" required> <br> <br> <input
+				id="login-password" type="password" name="pwd" placeholder="비밀번호"
+				required>
 			<!-- 비밀번호 보기 -->
 			<button type="button" class="show-password" onclick="showPassword()">비밀번호
 				보기</button>
@@ -88,9 +142,11 @@
 			<h4>
 				<u>비밀번호를 잊으셨나요?</u>
 			</h4>
+			<button type="button" id="login-close-button">닫기</button>
 		</form>
 	</div>
 	<!--  -->
+
 
 	<nav>
 		<div class="search">
@@ -139,10 +195,10 @@
 					<button onclick="updateSearchBar('대전')">대전</button>
 					<button onclick="updateSearchBar('제주도')">제주도</button>
 					<button onclick="updateSearchBar('인천')">인천</button>
-					<button onclick="updateSearchBar('서울')">경기</button>
-					<button onclick="updateSearchBar('서울')">대전</button>
-					<button onclick="updateSearchBar('서울')">충북</button>
-					<button onclick="updateSearchBar('서울')">경남</button>
+					<button onclick="updateSearchBar('경기')">경기</button>
+					<button onclick="updateSearchBar('대전')">대전</button>
+					<button onclick="updateSearchBar('충북')">충북</button>
+					<button onclick="updateSearchBar('경남')">경남</button>
 				</div>
 			</div>
 		</div>
@@ -242,199 +298,23 @@
 
 	<div class="main">
 		<div class="image-container">
-			<div class="accomodation">
-				<img
-					src="https://cdn.travelview.co.kr/travelview/2021/01/21020223/post_41596968_30400772_4.jpg"
-					alt="숙소 사진">
-				<div class="heart-icon" onclick="clickHeart(this)">
-					<img class="heart-empty"
-						src="/journey/resources/img/emptyheart.svg" alt="빈 찜 하트"> <img
-						class="heart-filled" src="/journey/resources/img/pinkheart.png"
-						alt="찜 하트">
+			<c:forEach var="room" items="${roomList}">
+				<div class="accomodation">
+					<img src="${room.img01} alt=" 숙소사진">
+					<div class="heart-icon" room_no="${room.no}"
+						onclick="clickHeart(this)">
+						<img class="heart-empty"
+							src="/journey/resources/img/emptyheart.svg" alt="빈 찜 하트"> <img
+							class="heart-filled" src="/journey/resources/img/pinkheart.png"
+							alt="찜 하트">
+					</div>
+					<div id="place-name">${room.name}</div>
+					<div id="place-score">★ ${room.grade}</div>
+					<div id="place">${room.address}</div>
+					<!-- 평일과 금토일 가격 다르게 해야함 !!!!!!!!!!!!!!!!!-->
+					<div id="place-date">₩ ${room.weekdayPrice} / 박</div>
 				</div>
-				<div id="place-name">한국 애월읍, 제주시</div>
-				<div id="place-score">★ 4.79</div>
-				<div id="place">협재해수욕장</div>
-				<div id="place-date">₩273,882 / 박</div>
-			</div>
-			<div class="accomodation">
-				<img src="https://ppss.kr/wp-content/uploads/2023/06/1-1-2.jpeg"
-					alt="숙소 사진">
-				<div class="heart-icon" onclick="clickHeart(this)">
-					<img class="heart-empty"
-						src="/journey/resources/img/emptyheart.svg" alt="빈 찜 하트"> <img
-						class="heart-filled" src="/journey/resources/img/pinkheart.png"
-						alt="찜 하트">
-				</div>
-				<div id="place-name">한국 애월읍, 제주시</div>
-				<div id="place-score">★ 4.79</div>
-				<div id="place">협재해수욕장</div>
-				<div id="place-date">₩273,882 / 박</div>
-			</div>
-			<div class="accomodation">
-				<img
-					src="https://digitalchosun.dizzo.com/site/data/img_dir/2020/07/06/2020070680034_2.jpg"
-					alt="숙소 사진">
-				<div class="heart-icon" onclick="clickHeart(this)">
-					<img class="heart-empty"
-						src="/journey/resources/img/emptyheart.svg" alt="빈 찜 하트"> <img
-						class="heart-filled" src="/journey/resources/img/pinkheart.png"
-						alt="찜 하트">
-				</div>
-				<div id="place-name">한국 애월읍, 제주시</div>
-				<div id="place-score">★ 4.79</div>
-				<div id="place">협재해수욕장</div>
-				<div id="place-date">₩273,882 / 박</div>
-			</div>
-			<div class="accomodation">
-				<img
-					src="https://static.wixstatic.com/media/66a42d_330ccf54067345bc8bcb525b1a05156a~mv2.jpg/v1/fill/w_602,h_480,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/GFXS8145-Pano.jpg"
-					alt="숙소 사진">
-				<div class="heart-icon" onclick="clickHeart(this)">
-					<img class="heart-empty"
-						src="/journey/resources/img/emptyheart.svg" alt="빈 찜 하트"> <img
-						class="heart-filled" src="/journey/resources/img/pinkheart.png"
-						alt="찜 하트">
-				</div>
-				<div id="place-name">한국 애월읍, 제주시</div>
-				<div id="place-score">★ 4.79</div>
-				<div id="place">협재해수욕장</div>
-				<div id="place-date">₩273,882 / 박</div>
-			</div>
-			<div class="accomodation">
-				<img
-					src="https://mblogthumb-phinf.pstatic.net/MjAyMTA5MDZfMTIg/MDAxNjMwOTI3NjY3OTAx.Pvai0H6Gd37tT4sTp12Nz8gDK6skinSIv5_UcRvu7KEg.P5SD62MQP5UlbbEEnwp59_qx3jrkng3FqkYlVtreFNEg.JPEG.so_hee510/IMG_4458.jpg?type=w800"
-					alt="숙소 사진">
-				<div class="heart-icon" onclick="clickHeart(this)">
-					<img class="heart-empty"
-						src="/journey/resources/img/emptyheart.svg" alt="빈 찜 하트"> <img
-						class="heart-filled" src="/journey/resources/img/pinkheart.png"
-						alt="찜 하트">
-				</div>
-				<div id="place-name">한국 애월읍, 제주시</div>
-				<div id="place-score">★ 4.79</div>
-				<div id="place">협재해수욕장</div>
-				<div id="place-date">₩273,882 / 박</div>
-			</div>
-			<div class="accomodation">
-				<img
-					src="https://a.cdn-hotels.com/gdcs/production97/d585/64d53349-591e-46f8-af08-d9dc0649ea1a.jpg"
-					alt="숙소 사진">
-				<div class="heart-icon" onclick="clickHeart(this)">
-					<img class="heart-empty"
-						src="/journey/resources/img/emptyheart.svg" alt="빈 찜 하트"> <img
-						class="heart-filled" src="/journey/resources/img/pinkheart.png"
-						alt="찜 하트">
-				</div>
-				<div id="place-name">한국 애월읍, 제주시</div>
-				<div id="place-score">★ 4.79</div>
-				<div id="place">협재해수욕장</div>
-				<div id="place-date">₩273,882 / 박</div>
-			</div>
-			<div class="accomodation">
-				<img
-					src="https://yaimg.yanolja.com/v5/2021/12/27/11/1280/61c9a852b80a75.50854466.jpg"
-					alt="숙소 사진">
-				<div class="heart-icon" onclick="clickHeart(this)">
-					<img class="heart-empty"
-						src="/journey/resources/img/emptyheart.svg" alt="빈 찜 하트"> <img
-						class="heart-filled" src="/journey/resources/img/pinkheart.png"
-						alt="찜 하트">
-				</div>
-				<div id="place-name">한국 애월읍, 제주시</div>
-				<div id="place-score">★ 4.79</div>
-				<div id="place">협재해수욕장</div>
-				<div id="place-date">₩273,882 / 박</div>
-			</div>
-			<div class="accomodation">
-				<img src="https://image6.yanolja.com/makers/SK4JH2imjjw7wIpn"
-					alt="숙소 사진">
-				<div class="heart-icon" onclick="clickHeart(this)">
-					<img class="heart-empty"
-						src="/journey/resources/img/emptyheart.svg" alt="빈 찜 하트"> <img
-						class="heart-filled" src="/journey/resources/img/pinkheart.png"
-						alt="찜 하트">
-				</div>
-				<div id="place-name">한국 애월읍, 제주시</div>
-				<div id="place-score">★ 4.79</div>
-				<div id="place">협재해수욕장</div>
-				<div id="place-date">₩273,882 / 박</div>
-			</div>
-			<div class="accomodation">
-				<img
-					src="https://d3edy9y3v7d67c.cloudfront.net/rooms/10764/images/960/i87122.jpg"
-					alt="숙소 사진">
-				<div class="heart-icon" onclick="clickHeart(this)">
-					<img class="heart-empty"
-						src="/journey/resources/img/emptyheart.svg" alt="빈 찜 하트"> <img
-						class="heart-filled" src="/journey/resources/img/pinkheart.png"
-						alt="찜 하트">
-				</div>
-				<div id="place-name">한국 애월읍, 제주시</div>
-				<div id="place-score">★ 4.79</div>
-				<div id="place">협재해수욕장</div>
-				<div id="place-date">₩273,882 / 박</div>
-			</div>
-			<div class="accomodation">
-				<img
-					src="https://a0.muscache.com/im/pictures/57a113aa-57a6-4a54-b0ec-1c4e6ef70164.jpg?im_w=1920"
-					alt="숙소 사진">
-				<div class="heart-icon" onclick="clickHeart(this)">
-					<img class="heart-empty"
-						src="/journey/resources/img/emptyheart.svg" alt="빈 찜 하트"> <img
-						class="heart-filled" src="/journey/resources/img/pinkheart.png"
-						alt="찜 하트">
-				</div>
-				<div id="place-name">한국 애월읍, 제주시</div>
-				<div id="place-score">★ 4.79</div>
-				<div id="place">협재해수욕장</div>
-				<div id="place-date">₩273,882 / 박</div>
-			</div>
-			<div class="accomodation">
-				<img
-					src="https://cdn.onews.tv/news/photo/202403/201148_242757_5858.jpeg"
-					alt="숙소 사진">
-				<div class="heart-icon" onclick="clickHeart(this)">
-					<img class="heart-empty"
-						src="/journey/resources/img/emptyheart.svg" alt="빈 찜 하트"> <img
-						class="heart-filled" src="/journey/resources/img/pinkheart.png"
-						alt="찜 하트">
-				</div>
-				<div id="place-name">한국 애월읍, 제주시</div>
-				<div id="place-score">★ 4.79</div>
-				<div id="place">협재해수욕장</div>
-				<div id="place-date">₩273,882 / 박</div>
-			</div>
-			<div class="accomodation">
-				<img
-					src="https://a0.muscache.com/im/pictures/miso/Hosting-33759190/original/bd1f00ce-741f-4e34-9dca-1b05e6df65ce.jpeg?im_w=720"
-					alt="숙소 사진">
-				<div class="heart-icon" onclick="clickHeart(this)">
-					<img class="heart-empty"
-						src="/journey/resources/img/emptyheart.svg" alt="빈 찜 하트"> <img
-						class="heart-filled" src="/journey/resources/img/pinkheart.png"
-						alt="찜 하트">
-				</div>
-				<div id="place-name">한국 애월읍, 제주시</div>
-				<div id="place-score">★ 4.79</div>
-				<div id="place">협재해수욕장</div>
-				<div id="place-date">₩273,882 / 박</div>
-			</div>
-			<div class="accomodation">
-				<img
-					src="https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/advices/167238542406438811.jpeg?w=960&h=960&c=c"
-					alt="숙소 사진">
-				<div class="heart-icon" onclick="clickHeart(this)">
-					<img class="heart-empty"
-						src="/journey/resources/img/emptyheart.svg" alt="빈 찜 하트"> <img
-						class="heart-filled" src="/journey/resources/img/pinkheart.png"
-						alt="찜 하트">
-				</div>
-				<div id="place-name">한국 애월읍, 제주시</div>
-				<div id="place-score">★ 4.79</div>
-				<div id="place">협재해수욕장</div>
-				<div id="place-date">₩273,882 / 박</div>
-			</div>
+			</c:forEach>
 		</div>
 	</div>
 

@@ -1,0 +1,48 @@
+.accom-container {
+	max-width: 50%;
+	margin: 0 auto;
+	padding: 20px;
+}
+
+.accom-list {
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	overflow: hidden;
+	margin-bottom: 20px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.accom-list img {
+	width: 100%;
+	height: auto;
+	display: block;
+}
+
+.accom-list .accom-detail {
+	padding: 15px;
+}
+
+.accom-list img{
+	width: 500px;
+	height: 500px;
+}
+
+.accom-list .accom-detail h3 {
+	margin: 0;
+	font-size: 18px;
+}
+
+.accom-card .accom-detail p {
+	margin: 5px 0;
+	color: #666;
+}
+
+.status {
+	display: inline-block;
+	padding: 2px 6px;
+	font-size: 12px;
+	color: #fff;
+	background-color: #ff6f61;
+	border-radius: 4px;
+	margin-top: 10px;
+}
