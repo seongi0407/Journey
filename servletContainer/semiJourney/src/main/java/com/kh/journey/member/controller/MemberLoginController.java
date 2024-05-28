@@ -19,7 +19,7 @@ public class MemberLoginController extends HttpServlet {
 	
 	// Constructor
 	public MemberLoginController() {
-		service = new MemberService();
+		this.service = new MemberService();
 	}
 	
 	@Override

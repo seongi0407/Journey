@@ -47,16 +47,15 @@
 	<!-- Member, Host, Admin 로그인 선택하는 창 -->
 	<div class="select-account" id="select-account-login">
 		<div id="admin">
-			<button>
+			<button onclick="showAdminLogin()">
 				<img src="https://cdn3.emoji.gg/emojis/2342-admin.png" alt="관리자">
 			</button>
 			<span>관리자</span>
 		</div>
 		<div id="host">
 			<!-- 포트번호 확인해서 바꾸기 -->
-			<button>
-				<a href="http://127.0.0.1:8888/journey/host/login"><img
-					src="https://cdn3.emoji.gg/emojis/2342-admin.png" alt="호스트"></a>
+			<button onclick="showHostLogin()">
+				<img src="https://cdn3.emoji.gg/emojis/2342-admin.png" alt="호스트">
 			</button>
 			<span>호스트</span>
 		</div>
@@ -125,8 +124,52 @@
 
 
 	<!-- Member 로그인 창 -->
-	<div class="login-content" id="login-content">
+	<div class="login-content" id="login-member-content">
 		<form action="/journey/member/login" method="post" class="login-box">
+			<h3>로그인</h3>
+			<hr>
+			<h2>여행의 정석에 오신 것을 환영합니다.</h2>
+			<br> <input id="login-id" type="text" name="id"
+				placeholder="아이디" required> <br> <br> <input
+				id="login-password" type="password" name="pwd" placeholder="비밀번호"
+				required>
+			<!-- 비밀번호 보기 -->
+			<button type="button" class="show-password" onclick="showPassword()">비밀번호
+				보기</button>
+			<br> <br> <input type="submit" value="로그인"
+				class="login-submit-button"> <br>
+			<h4>
+				<u>비밀번호를 잊으셨나요?</u>
+			</h4>
+			<button type="button" id="login-close-button">닫기</button>
+		</form>
+	</div>
+	<!--  -->
+	<!-- Host 로그인 창 -->
+	<div class="login-content" id="login-host-content">
+		<form action="/journey/host/login" method="post" class="login-box">
+			<h3>로그인</h3>
+			<hr>
+			<h2>여행의 정석에 오신 것을 환영합니다.</h2>
+			<br> <input id="login-id" type="text" name="id"
+				placeholder="아이디" required> <br> <br> <input
+				id="login-password" type="password" name="pwd" placeholder="비밀번호"
+				required>
+			<!-- 비밀번호 보기 -->
+			<button type="button" class="show-password" onclick="showPassword()">비밀번호
+				보기</button>
+			<br> <br> <input type="submit" value="로그인"
+				class="login-submit-button"> <br>
+			<h4>
+				<u>비밀번호를 잊으셨나요?</u>
+			</h4>
+			<button type="button" id="login-close-button">닫기</button>
+		</form>
+	</div>
+	<!--  -->
+	<!-- Admin 로그인 창 -->
+	<div class="login-content" id="login-admin-content">
+		<form action="/journey/admin/login" method="post" class="login-box">
 			<h3>로그인</h3>
 			<hr>
 			<h2>여행의 정석에 오신 것을 환영합니다.</h2>
