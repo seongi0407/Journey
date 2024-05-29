@@ -1,6 +1,7 @@
 package com.kh.journey.wish.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,17 +33,18 @@ public class WishInsertController extends HttpServlet {
 		 try{
 	            // 로그인 확인
 	            HttpSession session = req.getSession();
-	            MemberVo loginMemberVo = (MemberVo) session.getAttribute("loginMemberVo");
-	            if (loginMemberVo == null) {
+//	            MemberVo loginMemberVo = (MemberVo) session.getAttribute("loginMemberVo");
+//	            if (loginMemberVo == null) {
 //	                resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 //	                resp.getWriter().write("로그인이 필요합니다.");
 //	                return;
-	            	throw new Exception("로그인이 필요합니다.");
-	            }
+//	            	throw new Exception("로그인이 필요합니다.");
+//	            }
 
 	            // 데이터 꺼내기
 	            String roomNo = req.getParameter("roomNo");
-	            String memberNo = loginMemberVo.getNo();
+//	            String memberNo = loginMemberVo.getNo();
+	            String memberNo = req.getParameter("memberNo");
 
 	            // 데이터 뭉치기
 	            WishVo vo = new WishVo();
@@ -57,7 +59,10 @@ public class WishInsertController extends HttpServlet {
 	            if (result < 1) {
 	                throw new Exception("위시리스트 등록을 실패했습니다.");
 	            }
-	            resp.sendRedirect("/journey/wish/list");
+	            
+	            PrintWriter out = resp.getWriter();
+	            out.write("result: " + result);
+//	            resp.sendRedirect("/journey/wish/list");
 
 	        }catch(Exception e) {
 				System.out.println(e.getMessage());
