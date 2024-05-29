@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,10 +9,11 @@
 <title>여행의 정석</title>
 
 <link rel="stylesheet" href="/journey/resources/css/home.css">
+<link rel="stylesheet" href="/journey/resources/css/layout.css">
+
 <script defer src="/journey/resources/js/home.js"></script>
 
-<link rel="stylesheet" href="/journey/resources/css/layout.css">
-<script defer src="/journey/resources/js/layout.js"></script>
+<%@ include file="/WEB-INF/views/layout/util.jsp" %>
 </head>
 
 <body>
@@ -47,16 +47,15 @@
 	<!-- Member, Host, Admin 로그인 선택하는 창 -->
 	<div class="select-account" id="select-account-login">
 		<div id="admin">
-			<button>
+			<button onclick="showAdminLogin()">
 				<img src="https://cdn3.emoji.gg/emojis/2342-admin.png" alt="관리자">
 			</button>
 			<span>관리자</span>
 		</div>
 		<div id="host">
 			<!-- 포트번호 확인해서 바꾸기 -->
-			<button>
-				<a href="http://127.0.0.1:8888/journey/host/login"><img
-					src="https://cdn3.emoji.gg/emojis/2342-admin.png" alt="호스트"></a>
+			<button onclick="showHostLogin()">
+				<img src="https://cdn3.emoji.gg/emojis/2342-admin.png" alt="호스트">
 			</button>
 			<span>호스트</span>
 		</div>
@@ -125,8 +124,52 @@
 
 
 	<!-- Member 로그인 창 -->
-	<div class="login-content" id="login-content">
+	<div class="login-content" id="login-member-content">
 		<form action="/journey/member/login" method="post" class="login-box">
+			<h3>로그인</h3>
+			<hr>
+			<h2>여행의 정석에 오신 것을 환영합니다.</h2>
+			<br> <input id="login-id" type="text" name="id"
+				placeholder="아이디" required> <br> <br> <input
+				id="login-password" type="password" name="pwd" placeholder="비밀번호"
+				required>
+			<!-- 비밀번호 보기 -->
+			<button type="button" class="show-password" onclick="showPassword()">비밀번호
+				보기</button>
+			<br> <br> <input type="submit" value="로그인"
+				class="login-submit-button"> <br>
+			<h4>
+				<u>비밀번호를 잊으셨나요?</u>
+			</h4>
+			<button type="button" id="login-close-button">닫기</button>
+		</form>
+	</div>
+	<!--  -->
+	<!-- Host 로그인 창 -->
+	<div class="login-content" id="login-host-content">
+		<form action="/journey/host/login" method="post" class="login-box">
+			<h3>로그인</h3>
+			<hr>
+			<h2>여행의 정석에 오신 것을 환영합니다.</h2>
+			<br> <input id="login-id" type="text" name="id"
+				placeholder="아이디" required> <br> <br> <input
+				id="login-password" type="password" name="pwd" placeholder="비밀번호"
+				required>
+			<!-- 비밀번호 보기 -->
+			<button type="button" class="show-password" onclick="showPassword()">비밀번호
+				보기</button>
+			<br> <br> <input type="submit" value="로그인"
+				class="login-submit-button"> <br>
+			<h4>
+				<u>비밀번호를 잊으셨나요?</u>
+			</h4>
+			<button type="button" id="login-close-button">닫기</button>
+		</form>
+	</div>
+	<!--  -->
+	<!-- Admin 로그인 창 -->
+	<div class="login-content" id="login-admin-content">
+		<form action="/journey/admin/login" method="post" class="login-box">
 			<h3>로그인</h3>
 			<hr>
 			<h2>여행의 정석에 오신 것을 환영합니다.</h2>
@@ -340,74 +383,7 @@
 	</div>
 	<!-- ----------------------------------------------------------------- -->
 
-	<footer class="footer">
-		<div class="footer-content">
-			<div class="footer-column">
-				<h4>에어비앤비 지원</h4>
-				<ul>
-					<li><a href="https://www.airbnb.co.kr/help">도움말 센터</a></li>
-					<li><a href="https://www.airbnb.co.kr/help/article/3218">에어커버</a></li>
-					<li><a href="https://www.airbnb.co.kr/against-discrimination">차별
-							반대</a></li>
-					<li><a href="https://www.airbnb.co.kr/accessibility">장애인
-							지원</a></li>
-					<li><a href="https://www.airbnb.co.kr/help/article/2701">예약
-							취소 옵션</a></li>
-					<li><a href="https://www.airbnb.co.kr/help/article/3290">이웃
-							민원 신고</a></li>
-				</ul>
-			</div>
-			<div class="footer-column">
-				<h4>호스팅</h4>
-				<ul>
-					<li><a
-						href="https://www.airbnb.co.kr/host/homes?from_footer=1">당신의
-							공간을 여정하세요</a></li>
-					<li><a
-						href="https://www.airbnb.co.kr/host/homes?from_footer=1">호스트를
-							위한 에어커버</a></li>
-					<li><a href="https://www.airbnb.co.kr/resources/hosting-homes">호스팅
-							자료</a></li>
-					<li><a
-						href="https://community.withairbnb.com/t5/custom/page/page-id/CommunityCenterNotFound">커뮤니티
-							포럼</a></li>
-					<li><a href="https://www.airbnb.co.kr/help/article/1387">책임감
-							있는 호스팅</a></li>
-					<li><a href="https://www.airbnb.co.kr/ambassadors/joinaclass">무료
-							호스팅 클래스 참여하기</a></li>
-				</ul>
-			</div>
-			<div class="footer-column">
-				<h4>여정</h4>
-				<ul>
-					<li><a href="https://news.airbnb.com/">뉴스룸</a></li>
-					<li><a href="https://www.airbnb.co.kr/release">새로운 기능</a></li>
-					<li><a href="https://careers.airbnb.com/">채용정보</a></li>
-					<li><a href="https://investors.airbnb.com/home/default.aspx">투자자
-							정보</a></li>
-					<li><a
-						href="https://ko.airbnb.org/?_set_bev_on_new_domain=1715824984_ZWY5ZmRiZjk5MTg0">여정
-							긴급 속보</a></li>
-				</ul>
-			</div>
-		</div>
-		<div class="footer-language">
-			<span>한국어 (KR)</span> <span>₩ KRW</span>
-		</div>
-		<div class="footer-sns">
-			<img src="/journey/resources/img//facebook.png" alt="facebook">
-			<img src="/journey/resources/img/twitter.png" alt="twitter"> <img
-				src="/journey/resources/img/instagram.png" alt="instagram"> <img
-				src="/journey/resources/img/blog.png" alt="blog">
-		</div>
-		<div class="footer-bottom">
-			<span>© 2024 여정, Inc.</span>
-			<div class="footer-link">
-				<a href="">개인정보 처리방침</a> <a href="">이용약관</a> <a href="">사이트맵</a> <a
-					href="">한국의 변경된 환불 정책</a> <a href="">회사 세부정보</a>
-			</div>
-		</div>
-	</footer>
+	<%@ include file="/WEB-INF/views/layout/footer.jsp"%>
 
 </body>
 </html>

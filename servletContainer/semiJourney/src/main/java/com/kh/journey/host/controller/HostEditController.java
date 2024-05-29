@@ -33,7 +33,7 @@ public class HostEditController extends HttpServlet {
 				throw new Exception();
 			}
 
-			req.getRequestDispatcher("/WEB-INF/views/ju/host/edit.jsp").forward(req, resp);
+			req.getRequestDispatcher("/WEB-INF/views/host/edit.jsp").forward(req, resp);
 			
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -75,9 +75,10 @@ public class HostEditController extends HttpServlet {
 			resp.sendRedirect("/journey/home");
 			
 		} catch (Exception e) {
+			
 			System.out.println(e.getMessage());
 			e.printStackTrace();
-			req.setAttribute("errMsg", "회원정보 수정 중 에러 발생");
+			req.setAttribute("errMsg", e.getMessage());
 			req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
 		}
 	} // doPost

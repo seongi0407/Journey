@@ -68,7 +68,15 @@ document.getElementById('join-close-button').addEventListener('click', function(
 
 // 회원의 로그인 창 나올 수 있도록
 function showMemberLogin() {
-	document.getElementById('login-content').classList.toggle('show');
+	document.getElementById('login-member-content').classList.toggle('show');
+}
+// 호스트의 로그인 창 나올 수 있도록
+function showHostLogin() {
+	document.getElementById('login-host-content').classList.toggle('show');
+}
+// 관리자의 로그인 창 나올 수 있도록
+function showAdminLogin() {
+	document.getElementById('login-admin-content').classList.toggle('show');
 }
 // 닫기 버튼
 document.getElementById('login-close-button').addEventListener('click', function() {
