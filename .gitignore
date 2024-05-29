@@ -10,3 +10,8 @@
 *.policy
 *.properties
 *.jar
+*.png
+*.svg
+*.jpg
+*.webp
+*.jpeg
