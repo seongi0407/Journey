@@ -60,7 +60,8 @@ public class AccomInsertController extends HttpServlet {
 				String originFileName = imgUrl.getSubmittedFileName();
 				InputStream is = imgUrl.getInputStream();
 
-				String path = "D:\\dev\\semiWorkspace\\semiJourney\\src\\main\\webapp\\resources\\upload\\";
+//				!!!!!!!!!!!!경로 확인하기
+				String path = "D:\\dev\\Team_Journey\\servletContainer\\semiJourney\\src\\main\\webapp\\resources\\upload\\";
 				String random = UUID.randomUUID().toString();
 				String ext = originFileName.substring(originFileName.lastIndexOf("."));
 				changeName = System.currentTimeMillis() + "_" + random + ext;
