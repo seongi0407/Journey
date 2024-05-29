@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.kh.journey.member.vo.MemberVo;
+import com.kh.journey.accom.service.AccomService;
+import com.kh.journey.accom.vo.AccomVo;
 import com.kh.journey.wish.service.WishService;
 import com.kh.journey.wish.vo.WishVo;
 
@@ -29,18 +30,25 @@ public class WishListController extends HttpServlet{
 		try {
 			
 			HttpSession session = req.getSession();
-            MemberVo loginMemberVo = (MemberVo) session.getAttribute("loginMemberVo");
-            if (loginMemberVo == null) {
-                resp.sendRedirect("/journey/member/login");
-                return;
-            }
-            String memberNo = loginMemberVo.getNo();
+			
+//            MemberVo loginMemberVo = (MemberVo) session.getAttribute("loginMemberVo");
+//            if (loginMemberVo == null) {
+//                resp.sendRedirect("/journey/member/login");
+//                return;
+//            }
+			
+//			String memberNo = loginMemberVo.getNo();
+            String memberNo = req.getParameter("memberNo");
 			
 //			데이터 꺼내기 
-            List<WishVo> voList = ws.selectWishList(memberNo);
-			
+//          서비스 호출
+            WishService ws = new WishService();
+            List<WishVo> wishList = ws.selectWishList(memberNo);   
+            System.out.println(wishList);
+
+ 
 //			결과 	
-			req.setAttribute("voList", voList);			
+			req.setAttribute("wishList", wishList);	
 			req.getRequestDispatcher("/WEB-INF/views/wish/list.jsp").forward(req, resp);
 			
 		}catch(Exception e) {

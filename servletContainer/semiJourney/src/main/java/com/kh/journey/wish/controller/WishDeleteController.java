@@ -24,17 +24,18 @@ public class WishDeleteController extends HttpServlet {
 			
 //			로그인 확인
 			HttpSession session = req.getSession();
-			MemberVo loginMemberVo = (MemberVo) session.getAttribute("loginMemberVo");
-			if(loginMemberVo == null) {
-//				throw new Exception("로그인이 필요합니다.");
-				PrintWriter out = resp.getWriter();
-				out.write("로그인이 필요합니다.");
-			}
+//			MemberVo loginMemberVo = (MemberVo) session.getAttribute("loginMemberVo");
+//			if(loginMemberVo == null) {
+////				throw new Exception("로그인이 필요합니다.");
+//				PrintWriter out = resp.getWriter();
+//				out.write("로그인이 필요합니다.");
+//			}
 			
 			
 			//데이터 꺼내기
 			String no = req.getParameter("no");
-			String memberNo = loginMemberVo.getNo();
+//			String memberNo = loginMemberVo.getNo();
+			String memberNo = req.getParameter("memberNo");
 			
 			WishVo wishVo = new WishVo();
 		 	wishVo.setNo(no);
@@ -50,7 +51,7 @@ public class WishDeleteController extends HttpServlet {
 			
 			//결과 
 			session.setAttribute("alertMsg", "위시리스트 삭제를 성공했습니다.");
-			resp.sendRedirect("/journey/wish/list");
+//			resp.sendRedirect("/journey/wish/list");
 			
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
