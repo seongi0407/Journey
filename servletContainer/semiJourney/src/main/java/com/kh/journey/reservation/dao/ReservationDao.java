@@ -134,12 +134,12 @@ public class ReservationDao {
 		return vo;
 	}
 
-	// 예약내역조회 - 예정된 예약
+	// 회원화면
+	// 멤버 - 예약내역조회 - 예정된 예약
 	public List<ReservationVo> getReservationList(Connection conn, String loginMemNo) throws Exception {
 
 		// 예정된 예약
-		String sql = "SELECT RV.NO RESERVE_NO, RV.IN_DATE ,RV.OUT_DATE, A.ADDRESS , R.NAME AS ROOM_NAME , R.IMG_01 , RV.SUM, H.NAME AS HOST_NAME, H.PHONE, H.PROFILE FROM RESERVATION RV JOIN ROOM R ON RV.ROOM_NO = R.NO JOIN ACCOMMODATION A ON R.ACCOM_NO = A.NO JOIN HOST H ON H.NO = A.HOST_NO WHERE RESERVATOR_NO = ? AND RV.DEL_YN ='N' AND RV.REFUND_YN ='N' AND IN_DATE > SYSDATE ORDER BY RESERVE_DATE DESC";
-
+		String sql = "SELECT RV.NO RESERVE_NO, RV.IN_DATE ,RV.OUT_DATE, A.ADDRESS , R.NAME AS ROOM_NAME , R.IMG_01 , RV.SUM, H.NAME AS HOST_NAME, H.PHONE, H.PROFILE FROM RESERVATION RV JOIN ROOM R ON RV.ROOM_NO = R.NO JOIN ACCOMMODATION A ON R.ACCOM_NO = A.NO JOIN HOST H ON H.NO = A.HOST_NO WHERE RESERVATOR_NO = ? AND RV.DEL_YN ='N' AND RV.REFUND_YN ='N' AND IN_DATE > SYSDATE ORDER BY RV.IN_DATE";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, loginMemNo);
 		ResultSet rs = pstmt.executeQuery();
@@ -173,11 +173,11 @@ public class ReservationDao {
 		return reservationList;
 	}
 
-	// 예약내역조회 - 지난 예약
+	// 멤버 - 예약내역조회 - 지난 예약
 	public List<ReservationVo> getHistoryList(Connection conn, String loginMemNo) throws Exception {
 
 		// 예정된 예약
-		String sql = "SELECT RV.NO RESERVE_NO, RV.IN_DATE ,RV.OUT_DATE, R.NAME , R.IMG_01, RW.NO REVIEW_NO FROM RESERVATION RV JOIN ROOM R ON RV.ROOM_NO = R.NO LEFT JOIN REVIEW RW ON RV.NO = RW.RESERVE_NO WHERE RESERVATOR_NO = ? AND RV.DEL_YN ='N' AND RV.REFUND_YN ='N' AND OUT_DATE < SYSDATE ORDER BY RESERVE_DATE DESC";
+		String sql = "SELECT RV.NO RESERVE_NO, RV.IN_DATE ,RV.OUT_DATE, R.NAME , R.IMG_01, RW.NO REVIEW_NO FROM RESERVATION RV JOIN ROOM R ON RV.ROOM_NO = R.NO LEFT JOIN REVIEW RW ON RV.NO = RW.RESERVE_NO WHERE RESERVATOR_NO = ? AND RV.DEL_YN ='N' AND RV.REFUND_YN ='N' AND OUT_DATE < SYSDATE ORDER BY RV.OUT_DATE DESC";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, loginMemNo);
 		ResultSet rs = pstmt.executeQuery();
@@ -204,7 +204,7 @@ public class ReservationDao {
 		return historyList;
 	}
 
-	// 예약내역조회 - 환불된 예약
+	// 멤버 - 예약내역조회 - 환불된 예약
 	public List<ReservationVo> getRefundList(Connection conn, String loginMemNo) throws Exception {
 
 		// 예정된 예약
@@ -228,6 +228,94 @@ public class ReservationDao {
 			refundList.add(vo);
 		}
 		return refundList;
+	}
+
+	// 호스트화면
+	// 호스트 - 예정된 예약
+	public List<ReservationVo> getReservationListByHostNo(Connection conn, String hostNo) throws Exception {
+		String sql = "SELECT RV.NO, R.NAME, RV.IN_DATE, RV.OUT_DATE, RV.SUM , RV.GUEST_COUNT, M.PROFILE, M.NAME MEM_NAME, M.EMAIL, M.PHONE FROM RESERVATION RV JOIN ROOM R ON RV.ROOM_NO = R.NO JOIN ACCOMMODATION A ON R.ACCOM_NO = A.NO JOIN HOST H ON H.NO = A.HOST_NO JOIN MEMBER M ON M.NO= RV.RESERVATOR_NO WHERE H.NO = ? AND RV.DEL_YN = 'N' AND RV.REFUND_YN = 'N' AND RV.IN_DATE >= SYSDATE ORDER BY RV.IN_DATE";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, hostNo);
+		ResultSet rs = pstmt.executeQuery();
+
+		List<ReservationVo> reservationList = new ArrayList<>();
+		while (rs.next()) {
+			String reserveNo = rs.getString("NO");
+			String inDate = rs.getString("IN_DATE");
+			String outDate = rs.getString("OUT_DATE");
+			String roomName = rs.getString("NAME");
+			String sum = rs.getString("SUM");
+			String guestCount = rs.getString("GUEST_COUNT");
+			String reservatorProfile = rs.getString("PROFILE");
+			String reservatorName = rs.getString("MEM_NAME");
+			String reservatorEmail = rs.getString("EMAIL");
+			String reservatorPhone = rs.getString("PHONE");
+			
+			ReservationVo vo = new ReservationVo();
+			vo.setReserveNo(reserveNo);
+			vo.setInDate(inDate);
+			vo.setOutDate(outDate);
+			vo.setRoomName(roomName);
+			vo.setSum(sum);
+			vo.setGuestCount(guestCount);
+			vo.setReservatorProfile(reservatorProfile);
+			vo.setReservatorName(reservatorName);
+			vo.setReservatorEmail(reservatorEmail);
+			vo.setReservatorPhone(reservatorPhone);
+
+			reservationList.add(vo);
+		}
+		
+		System.out.println("dao"+reservationList);
+		return reservationList;
+	}
+
+	// 호스트 - 지난예약
+	public List<ReservationVo> getHistoryListByHostNo(Connection conn, String hostNo) throws Exception {
+		String sql = "SELECT RV.NO, R.NAME, RV.IN_DATE, RV.OUT_DATE, RV.SUM , RV.GUEST_COUNT, M.PROFILE, M.NAME MEM_NAME, M.EMAIL, M.PHONE FROM RESERVATION RV JOIN ROOM R ON RV.ROOM_NO = R.NO JOIN ACCOMMODATION A ON R.ACCOM_NO = A.NO JOIN HOST H ON H.NO = A.HOST_NO JOIN MEMBER M ON M.NO= RV.RESERVATOR_NO WHERE H.NO = ? AND RV.REFUND_YN ='N' AND OUT_DATE < SYSDATE ORDER BY RV.OUT_DATE DESC";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, hostNo);
+		ResultSet rs = pstmt.executeQuery();
+
+		List<ReservationVo> historyList = new ArrayList<>();
+		while (rs.next()) {
+			ReservationVo vo = new ReservationVo();
+			vo.setReserveNo(rs.getString("NO"));
+			vo.setInDate(rs.getString("IN_DATE"));
+			vo.setOutDate(rs.getString("OUT_DATE"));
+			vo.setRoomName(rs.getString("NAME"));
+			vo.setSum(rs.getString("SUM"));
+			vo.setGuestCount(rs.getString("GUEST_COUNT"));
+			vo.setReservatorProfile(rs.getString("PROFILE"));
+			vo.setReservatorName(rs.getString("MEM_NAME"));
+			vo.setReservatorEmail(rs.getString("EMAIL"));
+			vo.setReservatorPhone(rs.getString("PHONE"));
+
+			historyList.add(vo);
+		}
+		return historyList;
+	}
+
+	// 호스트 - 환불된 예약
+	public List<ReservationVo> getRefundListByHostNo(Connection conn, String hostNo) throws Exception {
+		String sql = "SELECT RV.NO, R.NAME, RV.SUM , M.PROFILE, M.NAME MEM_NAME FROM RESERVATION RV JOIN ROOM R ON RV.ROOM_NO = R.NO JOIN ACCOMMODATION A ON R.ACCOM_NO = A.NO JOIN HOST H ON H.NO = A.HOST_NO JOIN MEMBER M ON M.NO= RV.RESERVATOR_NO WHERE H.NO = ? AND RV.DEL_YN ='N' AND RV.REFUND_YN ='Y' ORDER BY RESERVE_DATE DESC";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, hostNo);
+		ResultSet rs = pstmt.executeQuery();
+
+		List<ReservationVo> refundList = new ArrayList<>();
+		while (rs.next()) {
+			ReservationVo vo = new ReservationVo();
+			vo.setReserveNo(rs.getString("NO"));
+			vo.setRoomName(rs.getString("NAME"));
+			vo.setSum(rs.getString("SUM"));
+			vo.setReservatorProfile(rs.getString("PROFILE"));
+			vo.setReservatorName(rs.getString("MEM_NAME"));
+
+			refundList.add(vo);
+		}
+		return refundList;
+
 	}
 
 	// 예약상세조회
@@ -277,4 +365,5 @@ public class ReservationDao {
 		close(pstmt);
 		return result;
 	}
+
 }

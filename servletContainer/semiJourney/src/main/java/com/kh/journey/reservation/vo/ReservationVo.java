@@ -3,18 +3,23 @@ package com.kh.journey.reservation.vo;
 public class ReservationVo {
 
 	
+	private String reserveNo;
 	public ReservationVo() {
 		super();
 	}
-	public ReservationVo(String reserveNo, String reservatorNo, String reservatorName, String sum, String inDate,
-			String outDate, String stayDay, String reserveDate, String delYn, String refundYn, String guestCount,
-			String reviewNo, String roomNo, String roomName, String roomImg, String weekdayPrice, String weekendPrice,
-			String address, String hostName, String hostEnrollDate, String hostPhone, String hostProfile,
-			String payMethodName, String cardNo, String payMethodCode) {
+	public ReservationVo(String reserveNo, String reservatorNo, String reservatorName, String reservatorEmail,
+			String reservatorPhone, String reservatorProfile, String sum, String inDate, String outDate, String stayDay,
+			String reserveDate, String delYn, String refundYn, String guestCount, String reviewNo, String roomNo,
+			String roomName, String roomImg, String weekdayPrice, String weekendPrice, String address, String hostName,
+			String hostEnrollDate, String hostPhone, String hostProfile, String payMethodName, String cardNo,
+			String payMethodCode) {
 		super();
 		this.reserveNo = reserveNo;
 		this.reservatorNo = reservatorNo;
 		this.reservatorName = reservatorName;
+		this.reservatorEmail = reservatorEmail;
+		this.reservatorPhone = reservatorPhone;
+		this.reservatorProfile = reservatorProfile;
 		this.sum = sum;
 		this.inDate = inDate;
 		this.outDate = outDate;
@@ -41,13 +46,14 @@ public class ReservationVo {
 	@Override
 	public String toString() {
 		return "ReservationVo [reserveNo=" + reserveNo + ", reservatorNo=" + reservatorNo + ", reservatorName="
-				+ reservatorName + ", sum=" + sum + ", inDate=" + inDate + ", outDate=" + outDate + ", stayDay="
-				+ stayDay + ", reserveDate=" + reserveDate + ", delYn=" + delYn + ", refundYn=" + refundYn
-				+ ", guestCount=" + guestCount + ", reviewNo=" + reviewNo + ", roomNo=" + roomNo + ", roomName="
-				+ roomName + ", roomImg=" + roomImg + ", weekdayPrice=" + weekdayPrice + ", weekendPrice="
-				+ weekendPrice + ", address=" + address + ", hostName=" + hostName + ", hostEnrollDate="
-				+ hostEnrollDate + ", hostPhone=" + hostPhone + ", hostProfile=" + hostProfile + ", payMethodName="
-				+ payMethodName + ", cardNo=" + cardNo + ", payMethodCode=" + payMethodCode + "]";
+				+ reservatorName + ", reservatorEmail=" + reservatorEmail + ", reservatorPhone=" + reservatorPhone
+				+ ", reservatorProfile=" + reservatorProfile + ", sum=" + sum + ", inDate=" + inDate + ", outDate="
+				+ outDate + ", stayDay=" + stayDay + ", reserveDate=" + reserveDate + ", delYn=" + delYn + ", refundYn="
+				+ refundYn + ", guestCount=" + guestCount + ", reviewNo=" + reviewNo + ", roomNo=" + roomNo
+				+ ", roomName=" + roomName + ", roomImg=" + roomImg + ", weekdayPrice=" + weekdayPrice
+				+ ", weekendPrice=" + weekendPrice + ", address=" + address + ", hostName=" + hostName
+				+ ", hostEnrollDate=" + hostEnrollDate + ", hostPhone=" + hostPhone + ", hostProfile=" + hostProfile
+				+ ", payMethodName=" + payMethodName + ", cardNo=" + cardNo + ", payMethodCode=" + payMethodCode + "]";
 	}
 	public String getReserveNo() {
 		return reserveNo;
@@ -66,6 +72,24 @@ public class ReservationVo {
 	}
 	public void setReservatorName(String reservatorName) {
 		this.reservatorName = reservatorName;
+	}
+	public String getReservatorEmail() {
+		return reservatorEmail;
+	}
+	public void setReservatorEmail(String reservatorEmail) {
+		this.reservatorEmail = reservatorEmail;
+	}
+	public String getReservatorPhone() {
+		return reservatorPhone;
+	}
+	public void setReservatorPhone(String reservatorPhone) {
+		this.reservatorPhone = reservatorPhone;
+	}
+	public String getReservatorProfile() {
+		return reservatorProfile;
+	}
+	public void setReservatorProfile(String reservatorProfile) {
+		this.reservatorProfile = reservatorProfile;
 	}
 	public String getSum() {
 		return sum;
@@ -199,9 +223,11 @@ public class ReservationVo {
 	public void setPayMethodCode(String payMethodCode) {
 		this.payMethodCode = payMethodCode;
 	}
-	private String reserveNo;
 	private String reservatorNo;
 	private String reservatorName;
+	private String reservatorEmail;
+	private String reservatorPhone;
+	private String reservatorProfile;
 	private String sum;
 	private String inDate;
 	private String outDate;
@@ -218,7 +244,7 @@ public class ReservationVo {
 	private String weekdayPrice;
 	private String weekendPrice;
 	private String address;
-	
+
 	private String hostName;
 	private String hostEnrollDate;
 	private String hostPhone;
@@ -227,7 +253,5 @@ public class ReservationVo {
 	private String payMethodName;
 	private String cardNo;
 	private String payMethodCode;
-	
-
 
 }

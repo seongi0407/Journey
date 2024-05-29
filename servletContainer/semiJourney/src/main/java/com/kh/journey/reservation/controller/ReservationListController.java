@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.plaf.synth.SynthOptionPaneUI;
 
+import com.kh.journey.host.vo.HostVo;
 import com.kh.journey.member.vo.MemberVo;
 import com.kh.journey.reservation.service.ReservationService;
 import com.kh.journey.reservation.vo.ReservationVo;
@@ -20,31 +20,51 @@ public class ReservationListController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		doPost(req, resp);
-
-	}
-
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-			HttpSession session = req.getSession();
+//			HttpSession session = req.getSession();
 //			MemberVo loginMemberVo = (MemberVo) session.getAttribute("loginMemberVo");
-			String loginMemNo = "1";
-			// loginMemberVo.getNo();
+//			HostVo loginHostVo = (HostVo) session.getAttribute("loginHostVo");
+//
+//			String loginMemNo = loginMemberVo.getNo();
+//			String hostNo = loginHostVo.getNo();
 
-			// 서비스 호출
-			ReservationService rs = new ReservationService();
+//			if (loginHostVo == null && loginMemberVo == null) {
+//				resp.sendRedirect("/journey/home");
+//			}
 
-			List<ReservationVo> reservationList = rs.getReservationList(loginMemNo);
-			List<ReservationVo> historyList = rs.getHistoryList(loginMemNo);
-			List<ReservationVo> refundList = rs.getRefundList(loginMemNo);
+//			else 
 
-			req.setAttribute("reservationList", reservationList);
-			req.setAttribute("historyList", historyList);
-			req.setAttribute("refundList", refundList);
+			String loginMemNo = req.getParameter("memNo");
+			String hostNo = req.getParameter("hostNo");
 
-			req.getRequestDispatcher("/WEB-INF/views/book/list.jsp").forward(req, resp);
+			if (hostNo != null) {
+				// 호스트 화면
+				ReservationService rs = new ReservationService();
+				List<ReservationVo> reservationList = rs.getReservationListByHostNo(hostNo);
+				List<ReservationVo> historyList = rs.getHistoryListByHostNo(hostNo);
+				List<ReservationVo> refundList = rs.getRefundListByHostNo(hostNo);
+
+				req.setAttribute("reservationList", reservationList);
+				req.setAttribute("historyList", historyList);
+				req.setAttribute("refundList", refundList);
+
+				req.getRequestDispatcher("/WEB-INF/views/book/hostBookInfo.jsp").forward(req, resp);
+			} else if (loginMemNo != null) {
+				// 회원 화면
+				ReservationService rs = new ReservationService();
+				List<ReservationVo> reservationList = rs.getReservationList(loginMemNo);
+				List<ReservationVo> historyList = rs.getHistoryList(loginMemNo);
+				List<ReservationVo> refundList = rs.getRefundList(loginMemNo);
+
+				req.setAttribute("reservationList", reservationList);
+				req.setAttribute("historyList", historyList);
+				req.setAttribute("refundList", refundList);
+				req.getRequestDispatcher("/WEB-INF/views/book/list.jsp").forward(req, resp);
+			}
+			else {
+				req.getRequestDispatcher("/WEB-INF/views/home.jsp").forward(req, resp);
+			}
+
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
@@ -52,5 +72,11 @@ public class ReservationListController extends HttpServlet {
 			req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
 
 		}
+
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doGet(req, resp);
 	}
 }
