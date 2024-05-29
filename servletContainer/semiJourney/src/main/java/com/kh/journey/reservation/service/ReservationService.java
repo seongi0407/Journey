@@ -115,10 +115,12 @@ public class ReservationService {
 	// 예약확인
 	public ReservationVo getNewReservation(String memberNo) throws Exception {
 		Connection conn = getConnection();
-		ReservationVo reservationCheck= dao.getNewReservation(conn, memberNo);
+		ReservationVo reservationCheck = dao.getNewReservation(conn, memberNo);
 		close(conn);
 		return reservationCheck;
 	}
+
+	// 회원화면
 
 	// 예약내역조회 - 예정된 예약
 	public List<ReservationVo> getReservationList(String memberNo) throws Exception {
@@ -144,6 +146,29 @@ public class ReservationService {
 		return refundList;
 	}
 
+	// 호스트 화면
+
+	public List<ReservationVo> getReservationListByHostNo(String hostNo) throws Exception {
+		Connection conn = getConnection();
+		List<ReservationVo> reservationList = dao.getReservationListByHostNo(conn, hostNo);
+		close(conn);
+		return reservationList;
+	}
+
+	public List<ReservationVo> getHistoryListByHostNo(String hostNo) throws Exception {
+		Connection conn = getConnection();
+		List<ReservationVo> historyList = dao.getHistoryListByHostNo(conn, hostNo);
+		close(conn);
+		return historyList;
+	}
+
+	public List<ReservationVo> getRefundListByHostNo(String hostNo) throws Exception {
+		Connection conn = getConnection();
+		List<ReservationVo> refundList = dao.getRefundListByHostNo(conn, hostNo);
+		close(conn);
+		return refundList;
+	}
+
 	// 예약 취소
 	public int cancelReservation(String reserveNo) throws Exception {
 		Connection conn = getConnection();
@@ -156,4 +181,5 @@ public class ReservationService {
 		close(conn);
 		return result;
 	}
+
 }
