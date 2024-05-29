@@ -24,22 +24,7 @@ public class MemberEditController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		try {
-			HttpSession session = req.getSession();
-			MemberVo loginMemberVo = (MemberVo) session.getAttribute("loginMemberVo");
-			
-			if(loginMemberVo == null) {
-				throw new Exception();
-			}
-
-			req.getRequestDispatcher("/WEB-INF/views/ju/member/edit.jsp").forward(req, resp);
-			
-		} catch(Exception e) {
-			e.printStackTrace();
-			req.setAttribute("errMsg", e.getMessage());
-			req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
-		}
+		req.getRequestDispatcher("/WEB-INF/views/member/edit.jsp").forward(req, resp);
 	} // doGet
 	
 	@Override
@@ -79,7 +64,7 @@ public class MemberEditController extends HttpServlet {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
-			req.setAttribute("errMsg", "회원정보 수정 중 에러 발생 ..");
+			req.setAttribute("errMsg", e.getMessage());
 			req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);	
 		}
 	} // doPost

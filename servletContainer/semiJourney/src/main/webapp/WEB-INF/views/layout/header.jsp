@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <header>
-	<img id="img-logo" src="/journey/resources/img/airbnb.png" alt="">
+	<img id="img-logo" src="/journey/resources/img/airbnb.png" alt="" onclick="location.href='/journey/home'">
 	
 	<div class="header-right">
 		<div id="introduce">당신의 공간을 여정하세요</div>
@@ -20,8 +20,8 @@
 					<button>메세지</button>
 					<button>경고주기</button>
 					<hr>
-					<button>리뷰 관리</button>
-					<button>FAQ</button>
+					<button onclick="location.href='/journey/home'">리뷰 관리</button>
+					<button onclick="location.href='/journey/home'">FAQ</button>
 					<button>QNA</button>
 					<hr>
 					<button>도움말 센터</button>
@@ -35,8 +35,8 @@
 					<button>예약</button>
 					<button>호스팅 수입</button>
 					<hr>
-					<button>계정</button>
-					<button>숙소 관리</button>
+					<button onclick="location.href='/journey/host/my'">계정</button>
+					<button onclick="location.href='/journey/accom/list'">숙소 관리</button>
 					<hr>
 					<button>도움말 센터</button>
 					<button onclick="location.href='/journey/host/logout'">로그아웃</button>
@@ -47,9 +47,9 @@
 				<div class="account-content" id="account-content">
 					<button>메세지</button>
 					<button>여행</button>
-					<button>위시리스트</button>
+					<button onclick="location.href='/journey/wish/list'">위시리스트</button>
 					<hr>
-					<button>계정</button>
+					<button onclick="location.href='/journey/member/my'">계정</button>
 					<button>호스트 추천하기</button>
 					<hr>
 					<button>도움말 센터</button>

@@ -45,8 +45,10 @@ public class HostQuitController extends HttpServlet {
 			resp.sendRedirect("/journey/home");
 			
 		} catch(Exception e) {
+			
 			System.out.println(e.getMessage());
 			e.printStackTrace();
+			req.setAttribute("errMsg", e.getMessage());
 			req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
 		}
 	} // doGet
