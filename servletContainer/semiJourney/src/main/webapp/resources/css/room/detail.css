@@ -43,20 +43,24 @@ main{
     grid-column: span 2;
     
     width: 98%;
-    height: 98%;
+    height: 88%;
 
     margin: 1% 1%;
 
     border-radius: 10px;
+    
+    object-fit: cover;
 }
 
 .room-img{
-    width: 96%;
-    height: 96%;
+    width: 94%;
+    height: 76%;
 
     margin: 2% 2%;
 
     border-radius: 10px;
+    
+    object-fit: cover;
 }
 
 
@@ -85,7 +89,8 @@ main{
 
 #host-short > img{
     width: 50%;
-    height: 5ch;
+    height: 50%;
+    object-fit: cover;
 }
 
 #room-short{
@@ -107,6 +112,8 @@ main{
     border-radius: 10px;
 
     justify-self: center;
+    
+    object-fit: cover;
 }
 
 #room-short > div{
@@ -241,6 +248,8 @@ main{
     border-radius: 10px;
 
     justify-self: center;
+    
+    object-fit: cover;
 }
 
 #review > div > div > h4, h5{
@@ -364,63 +373,293 @@ table {
 
 
 
-/* ------------------------------ */
-
-
-
-header{
-    border-bottom: 1px solid rgb(221, 221, 221);
-    height: 50px;
-    padding-left: 25px;
-    padding-top: 25px;
-
-    display: flex;
-    justify-content: space-between;
-    padding: 30px 70px;
-
-    /* 추가한 부분 */
-    position: fixed; 
-    top: 0; 
-    width: 59.2%;
-    background-color: white; 
-    z-index: 4; 
+/* header */
+* {
+	margin: 0;
+	padding: 0;
 }
 
-#img-logo{
-    width: 110px;
-    height: 60px;
+body {
+	line-height: 1.6;
 }
 
-.header-right{
-    display: flex;
+header {
+	border-bottom: 1px solid rgb(221, 221, 221);
+	height: 50px;
+	padding-left: 25px;
+	padding-top: 25px;
+	display: flex;
+	justify-content: space-between;
+	padding: 30px 70px;
+	/* 추가한 부분 */
+	position: fixed;
+	top: 0;
+	width: 60%;
+	background-color: white;
+	z-index: 4;
 }
 
-#introduce{
-    padding: 20px 30px;
-    font-weight:bolder;
+#img-logo {
+	width: 110px;
+	height: 60px;
 }
 
-#profile-icon{
-    border: 1px solid #DDDDDD;
-    border-radius: 40px;
-    display: flex;
-    align-items: center;
-
-    /* 테두리 안 */
-    padding: 0 15px 0 15px;
-
-    /* 테두리 밖 */
-    margin-right: 70px;
+.header-right {
+	display: flex;
 }
 
-#menu-icon{
-    padding: 0 8px;
+#introduce {
+	padding: 20px 30px;
+	font-weight: bolder;
 }
 
-#user-icon{
-    padding: 0 0 0 8px;
+#profile-icon {
+	border: 1px solid #DDDDDD;
+	border-radius: 40px;
+	display: flex;
+	align-items: center;
+	/* 테두리 안 */
+	padding: 0 15px 0 15px;
+	/* 테두리 밖 */
+	margin-right: 70px;
 }
-/* ------------------------------ */
+
+#menu-icon {
+	padding: 0 8px;
+}
+
+#user-icon {
+	padding: 0 0 0 8px;
+}
+/* --------------------------- */
+
+/* -------------계정 창 띄우기-------------*/
+.account-content {
+	display: none;
+	position: absolute;
+	top: 80px;
+	/* profile-icon에 margin-right랑 같이 움직여야 함. */
+	right: 80px;
+	background-color: white;
+	box-shadow: 0 3px 5px #DDDDDD;
+	/* 높이 설정할 때 z-index 필요할수도 */
+	/* z-index: 2000; */
+	border: 1px solid rgb(218, 217, 217);
+	border-radius: 20px;
+	padding: 10px;
+	width: 270px;
+}
+
+.account-content button:first-child {
+	font-weight: bolder
+}
+
+.account-content button {
+	background: none;
+	border: none;
+	width: 100%;
+	padding: 8px 20px;
+	text-align: left;
+	cursor: pointer;
+	font-size: medium;
+}
+
+.account-content button:hover {
+	background-color: #f1f1f1;
+}
+
+.account-content.show {
+	display: block;
+}
+/* ----------------------------------*/
+/* admin, host, member 계정 고르기 (회원가입/로그인) */
+.select-account {
+	display: none;
+	position: fixed;
+	margin-top: 10%;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(19, 0, 0, 0.4);
+	justify-content: center;
+	align-items: flex-start;
+	z-index: 6;
+	cursor: pointer;
+}
+
+.select-account.show {
+	display: flex;
+}
+
+#admin img, #host img, #member img {
+	width: 300px;
+	height: 300px;
+}
+
+#admin span, #host span, #member span {
+	display: flex;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	font-weight: bolder;
+	color: white;
+	font-size: xx-large;
+}
+
+.close-button {
+	position: absolute;
+	margin-top: 25%;
+	padding: 10px 20px;
+	font-size: xx-large;
+	font-weight: bold;
+	color: white;
+	background-color: rgb(230, 39, 87);
+	width: 20%;
+	height: 80px;
+	border: none;
+	cursor: pointer;
+}
+/* ----------------------------------------- */
+
+/* -------------회원가입 창 띄우기-------------*/
+.join-content {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.4);
+	justify-content: center;
+	align-items: flex-start;
+	z-index: 6;
+}
+
+.join-content.show {
+	display: flex;
+}
+
+.join-box {
+	background-color: white;
+	border: 1px solid black;
+	height: 80%;
+	margin-top: 7%;
+	width: 30%;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
+	text-align: left;
+	padding-left: 2%;
+	padding-right: 2%;
+	padding-bottom: 2%;
+	z-index: 7;
+	/* 내용 찰 경우, 스크롤 내려지게 하기  */
+	overflow-y: auto;
+}
+
+.checkbox-container {
+	display: flex;
+	align-items: center;
+	/* justify-content: center; */
+}
+
+.join-submit-button {
+	width: 100%;
+	height: 10%;
+	background-color: rgb(248, 75, 104);
+	border: 1px solid gray;
+	border-radius: 30px;
+	font-size: larger;
+	font-weight: bold;
+}
+
+#join-close-button {
+	display: block;
+	margin: 30% auto 0;
+	margin-top: 10%;
+	padding: 10px 20px;
+	font-size: large;
+	font-weight: bold;
+	color: white;
+	background-color: rgb(175, 174, 174);
+	border: none;
+	cursor: pointer;
+}
+/* ----------------------------------*/
+
+/* -------------로그인 창 띄우기-------------*/
+.login-content {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.4);
+	justify-content: center;
+	align-items: flex-start;
+	z-index: 6;
+}
+
+.login-content.show {
+	display: flex;
+}
+
+.login-box {
+	background-color: white;
+	border: 1px solid black;
+	height: 50%;
+	margin-top: 7%;
+	width: 30%;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
+	text-align: left;
+	padding-left: 2%;
+	padding-right: 2%;
+	padding-bottom: 2%;
+	z-index: 7;
+	/* 내용 찰 경우, 스크롤 내려지게 하기  */
+	/* overflow-y: auto; */
+}
+
+#login-id {
+	width: 99%;
+	height: 10%;
+	border-radius: 20px;
+}
+
+#login-password {
+	width: 99%;
+	height: 10%;
+	border-radius: 20px;
+}
+
+.login-submit-button {
+	width: 100%;
+	height: 15%;
+	background-color: rgb(248, 75, 104);
+	border: 1px solid gray;
+	border-radius: 30px;
+	font-size: larger;
+	font-weight: bold;
+}
+
+.show-password {
+	border: none;
+	background-color: transparent;
+}
+
+#login-close-button {
+	display: block;
+	margin: 30% auto 0;
+	margin-top: 10%;
+	padding: 10px 20px;
+	font-size: large;
+	font-weight: bold;
+	color: white;
+	background-color: rgb(175, 174, 174);
+	border: none;
+	cursor: pointer;
+}
+/* ----------------------------------*/
 
 
 

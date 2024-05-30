@@ -12,11 +12,11 @@ import com.kh.journey.host.vo.HostVo;
 
 public class HostService {
 	
-	private HostDao dao = null;
+	private final HostDao dao;
 	
 	// Constructor
 	public HostService() {
-		dao = new HostDao();
+		this.dao = new HostDao();
 	}
 	
 	// 로그 인

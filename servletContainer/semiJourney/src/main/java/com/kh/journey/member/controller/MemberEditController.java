@@ -15,11 +15,11 @@ import com.kh.journey.member.vo.MemberVo;
 @WebServlet("/member/edit")
 public class MemberEditController extends HttpServlet {
 	
-	private MemberService service = null;
+	private final MemberService service;
 	
 	// Constructor
 	public MemberEditController() {
-		service = new MemberService();
+		this.service = new MemberService();
 	}
 	
 	@Override

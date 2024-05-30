@@ -19,7 +19,7 @@ public class MemberQuitController extends HttpServlet {
 	
 	// Constructor
 	public MemberQuitController() {
-		service = new MemberService();
+		this.service = new MemberService();
 	}
 	
 	@Override
@@ -32,8 +32,7 @@ public class MemberQuitController extends HttpServlet {
 			String no = loginMemberVo.getNo();
 			
 			// 복잡한 작업
-			MemberService ms = new MemberService();
-			int result = ms.quit(no);
+			int result = service.quit(no);
 			
 			// 결과
 			if(result < 1) {

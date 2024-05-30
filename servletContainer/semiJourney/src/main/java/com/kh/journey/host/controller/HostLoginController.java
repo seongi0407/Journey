@@ -15,11 +15,11 @@ import com.kh.journey.host.vo.HostVo;
 @WebServlet("/host/login")
 public class HostLoginController extends HttpServlet {
 	
-	private HostService service = null;
+	private final HostService service;
 	
 	// Constructor
 	public HostLoginController() {
-		service = new HostService();
+		this.service = new HostService();
 	}
 	
 	@Override
@@ -42,12 +42,8 @@ public class HostLoginController extends HttpServlet {
 			vo.setId(id);
 			vo.setPwd(pwd);
 			
-			System.out.println(vo);
-			
 			// 서비스 호출
-			HostService service = new HostService();
-			HostVo loginHostVo;
-			loginHostVo = service.login(vo);
+			HostVo loginHostVo = service.login(vo);
 			
 			// 결과
 			if(loginHostVo != null) {

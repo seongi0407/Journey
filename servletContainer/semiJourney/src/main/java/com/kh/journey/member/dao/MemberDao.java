@@ -47,8 +47,6 @@ public class MemberDao {
 			loginMemberVo.setDelYn(delYn);
 		}
 		
-		System.out.println(loginMemberVo);
-		
 		close(rs);
 		close(pstmt);
 		

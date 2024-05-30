@@ -30,7 +30,7 @@ public class RoomInsertController extends HttpServlet {
 	
 	// Constructor
 	public RoomInsertController() {
-		service = new RoomService();
+		this.service = new RoomService();
 	}
 	
 	@Override
@@ -135,7 +135,11 @@ public class RoomInsertController extends HttpServlet {
 			resp.sendRedirect("/journey/home");
 			
 		} catch(Exception e) {
+			
+			System.out.println(e.getMessage());
 			e.printStackTrace();
+			req.setAttribute("errMsg", e.getMessage());
+			req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
 		}
 	} // doPost
 } // class

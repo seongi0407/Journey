@@ -140,12 +140,8 @@ public class RoomDao {
 	public List<RoomVo> getRoomList(Connection conn) throws Exception {
 		
 		// sql
-		String sql = "SELECT R.NAME , R.WEEKDAY_PRICE , R.GRADE , A.ADDRESS FROM ROOM R JOIN ACCOMMODATION A ON (R.ACCOM_NO = A.NO) WHERE R.ACCOM_NO = ? AND R.DEL_YN = 'N' ORDER BY R.NO DESC";
+		String sql = "SELECT R.NAME , R.WEEKDAY_PRICE , R.GRADE , R.IMG_01 , A.ADDRESS , T.THEME_NAME FROM ROOM R JOIN ACCOMMODATION A ON (R.ACCOM_NO = A.NO) JOIN THEME T ON (R.THEME_CODE = T.THEME_CODE) WHERE R.DEL_YN = 'N' ORDER BY R.NO DESC";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
-		
-		// 숙소 번호 넣어주기
-		pstmt.setString(1, "2");
-		
 		ResultSet rs = pstmt.executeQuery();
 		
 		RoomVo vo = null;
@@ -156,6 +152,7 @@ public class RoomDao {
 			String weekdayPrice = rs.getString("WEEKDAY_PRICE");
 			String grade = rs.getString("GRADE");
 			String address = rs.getString("ADDRESS");
+			String themeName = rs.getString("THEME_NAME");
 			
 			vo = new RoomVo();
 			
@@ -163,6 +160,7 @@ public class RoomDao {
 			vo.setWeekdayPrice(weekdayPrice);
 			vo.setGrade(grade);
 			vo.setAddress(address);
+			vo.setThemeName(themeName);
 			
 			voList.add(vo);
 		}

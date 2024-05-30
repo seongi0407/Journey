@@ -15,11 +15,11 @@ import com.kh.journey.host.vo.HostVo;
 @WebServlet("/host/edit")
 public class HostEditController extends HttpServlet {
 	
-	private HostService service = null;
+	private final HostService service;
 	
 	// Constructor
 	public HostEditController() {
-		service = new HostService();
+		this.service = new HostService();
 	}
 	
 	@Override

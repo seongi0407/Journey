@@ -68,6 +68,175 @@
 			</c:otherwise>
 			
 		</c:choose>
-		
 	</div>
+			<!-- Member, Host, Admin 회원가입 선택하는 창 -->
+	<div class="select-account" id="select-account-join">
+		<div id="admin">
+			<button>
+				<img src="https://cdn3.emoji.gg/emojis/2342-admin.png" alt="관리자">
+			</button>
+			<span>관리자</span>
+		</div>
+		<div id="host">
+			<!-- 포트번호 확인해서 바꾸기 -->
+			<button>
+				<a href="http://127.0.0.1:8888/journey/host/join"><img
+					src="https://cdn3.emoji.gg/emojis/2342-admin.png" alt="호스트"></a>
+			</button>
+			<span>호스트</span>
+		</div>
+		<div id="member">
+			<button id="memberJoin" onclick="showMemberJoin()">
+				<img src="https://cdn3.emoji.gg/emojis/2342-admin.png" alt="회원">
+			</button>
+			<span>회원</span>
+		</div>
+		<button class="close-button" id="close-button-join">닫 기</button>
+	</div>
+
+	<!-- Member, Host, Admin 로그인 선택하는 창 -->
+	<div class="select-account" id="select-account-login">
+		<div id="admin">
+			<button onclick="showAdminLogin()">
+				<img src="https://cdn3.emoji.gg/emojis/2342-admin.png" alt="관리자">
+			</button>
+			<span>관리자</span>
+		</div>
+		<div id="host">
+			<!-- 포트번호 확인해서 바꾸기 -->
+			<button onclick="showHostLogin()">
+				<img src="https://cdn3.emoji.gg/emojis/2342-admin.png" alt="호스트">
+			</button>
+			<span>호스트</span>
+		</div>
+		<div id="member">
+			<button id="memberLogin" onclick="showMemberLogin()">
+				<img src="https://cdn3.emoji.gg/emojis/2342-admin.png" alt="회원">
+			</button>
+			<span>회원</span>
+		</div>
+		<button class="close-button" id="close-button-login">닫 기</button>
+	</div>
+
+	<!-- Member 회원가입 창 -->
+	<div class="join-content" id="join-content">
+		<form action="/journey/member/join" method="post"
+			enctype="multipart/form-data" class="join-box">
+			<h3>회원가입 완료하기</h3>
+			<hr>
+			<h4>실명</h4>
+			<input type="text" size="22" name="name"
+				placeholder="신분증에 기재된 이름(예:길동)" required> <br>
+			<h6>
+				정부 발급 신분증에 기재된 이름과 일치해야 합니다. 평소 다른 이름을 사용하는 경우, <u>선호하는 이름</u>을
+				입력하세요.
+			</h6>
+			<h4>생년월일</h4>
+			<input type="text" name="birth-date" required>
+			<h6>18세 이상인 성인만 회원으로 가입할 수 있습니다. 생일은 여행의 정석의 다른 회원에게 공개되지 않습니다.</h6>
+			<h4>Contact Info</h4>
+			전화번호 : <input type="tel" name="phone" placeholder="01012345678"
+				required> <br> 이메일 : <input type="email" name="email"
+				placeholder="kh11@gmail.com" required>
+			<div class="id-checkDup">
+				<h4>아이디</h4>
+				<input type="text" name="id" required> <input type="button"
+					value="중복 확인">
+			</div>
+			<h4>비밀번호</h4>
+			<input type="password" name="pwd" required>
+			<h4>비밀번호 확인</h4>
+			<input type="password" name="pwd2" required>
+			<h4>프로필 이미지</h4>
+			<input type="file" name="profile"> <br>
+			<hr>
+			<br>
+			<div class="checkbox-container">
+				<h5>개인정보 수집 및 이용에 동의합니다.</h5>
+				<input type="checkbox" required>
+			</div>
+			<div class="checkbox-container">
+				<h5>마케팅 이메일 수신을 원합니다(선택).</h5>
+				<input type="checkbox">
+			</div>
+			<br>
+			<hr>
+			<br>
+			<h4>
+				동의 및 계속하기를 선택하여 여행의 정석 <u>서비스 약관</u>, <u>결제 서비스 약관</u>, <u>위치기반서비스
+					이용약관</u>, <u>차별 금지 정책</u>, <u>개인정보 처리방침</u>에 동의합니다.
+			</h4>
+			<input type="submit" value="동의 및 계속하기" class="join-submit-button">
+			<button type="button" id="join-close-button">닫기</button>
+		</form>
+	</div>
+	<!--  -->
+
+
+	<!-- Member 로그인 창 -->
+	<div class="login-content" id="login-member-content">
+		<form action="/journey/member/login" method="post" class="login-box">
+			<h3>로그인</h3>
+			<hr>
+			<h2>여행의 정석에 오신 것을 환영합니다.</h2>
+			<br> <input id="login-id" type="text" name="id"
+				placeholder="아이디" required> <br> <br> <input
+				id="login-password" type="password" name="pwd" placeholder="비밀번호"
+				required>
+			<!-- 비밀번호 보기 -->
+			<button type="button" class="show-password" onclick="showPassword()">비밀번호
+				보기</button>
+			<br> <br> <input type="submit" value="로그인"
+				class="login-submit-button"> <br>
+			<h4>
+				<u>비밀번호를 잊으셨나요?</u>
+			</h4>
+			<button type="button" id="login-close-button">닫기</button>
+		</form>
+	</div>
+	<!--  -->
+	<!-- Host 로그인 창 -->
+	<div class="login-content" id="login-host-content">
+		<form action="/journey/host/login" method="post" class="login-box">
+			<h3>로그인</h3>
+			<hr>
+			<h2>여행의 정석에 오신 것을 환영합니다.</h2>
+			<br> <input id="login-id" type="text" name="id"
+				placeholder="아이디" required> <br> <br> <input
+				id="login-password" type="password" name="pwd" placeholder="비밀번호"
+				required>
+			<!-- 비밀번호 보기 -->
+			<button type="button" class="show-password" onclick="showPassword()">비밀번호
+				보기</button>
+			<br> <br> <input type="submit" value="로그인"
+				class="login-submit-button"> <br>
+			<h4>
+				<u>비밀번호를 잊으셨나요?</u>
+			</h4>
+			<button type="button" id="login-close-button">닫기</button>
+		</form>
+	</div>
+	<!--  -->
+	<!-- Admin 로그인 창 -->
+	<div class="login-content" id="login-admin-content">
+		<form action="/journey/admin/login" method="post" class="login-box">
+			<h3>로그인</h3>
+			<hr>
+			<h2>여행의 정석에 오신 것을 환영합니다.</h2>
+			<br> <input id="login-id" type="text" name="id"
+				placeholder="아이디" required> <br> <br> <input
+				id="login-password" type="password" name="pwd" placeholder="비밀번호"
+				required>
+			<!-- 비밀번호 보기 -->
+			<button type="button" class="show-password" onclick="showPassword()">비밀번호
+				보기</button>
+			<br> <br> <input type="submit" value="로그인"
+				class="login-submit-button"> <br>
+			<h4>
+				<u>비밀번호를 잊으셨나요?</u>
+			</h4>
+			<button type="button" id="login-close-button">닫기</button>
+		</form>
+	</div>
+	<!--  -->
 </header>

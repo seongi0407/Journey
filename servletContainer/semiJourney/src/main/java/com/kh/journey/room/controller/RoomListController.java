@@ -19,7 +19,7 @@ public class RoomListController extends HttpServlet {
 	
 	// Constructor
 	public RoomListController() {
-		service = new RoomService();
+		this.service = new RoomService();
 	}
 	
 	@Override
@@ -30,13 +30,16 @@ public class RoomListController extends HttpServlet {
 			List<RoomVo> voList = service.getRoomList();
 			
 			// 결과
-			System.out.println(voList);
 			req.setAttribute("voList", voList);
 			
 			req.getRequestDispatcher("/WEB-INF/views/list2.jsp").forward(req, resp);
 			
 		} catch(Exception e) {
+			
+			System.out.println(e.getMessage());
 			e.printStackTrace();
+			req.setAttribute("errMsg", e.getMessage());
+			req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
 		}
 	} // doGet
 	

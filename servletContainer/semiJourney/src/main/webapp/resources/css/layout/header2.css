@@ -19,7 +19,7 @@ header {
 	/* 추가한 부분 */
 	position: fixed;
 	top: 0;
-	width: 60%;
+	width: 95%;
 	background-color: white;
 	z-index: 4;
 }
@@ -97,6 +97,7 @@ header {
 	display: block;
 }
 /* ----------------------------------*/
+
 /* admin, host, member 계정 고르기 (회원가입/로그인) */
 .select-account {
 	display: none;
@@ -284,4 +285,3 @@ header {
 	border: none;
 	cursor: pointer;
 }
-/* ----------------------------------*/

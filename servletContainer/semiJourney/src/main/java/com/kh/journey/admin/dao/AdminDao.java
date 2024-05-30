@@ -36,8 +36,6 @@ public class AdminDao {
 			loginAdminVo.setDelYn(delYn);
 		}
 		
-		System.out.println(loginAdminVo);
-		
 		close(rs);
 		close(pstmt);
 		

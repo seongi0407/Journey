@@ -10,9 +10,8 @@
 
 <link rel="stylesheet" href="/journey/resources/css/room/detail.css">
 
-<script defer src="/journey/resources/js/room/detail.js"></script>
-
-<script defer src="/journey/resources/js/home.js"></script>
+<script defer src="/journey/resources/js/layout/header.js"></script>
+<script defer src="/journey/resources/js/room/map.js"></script>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f1deaaca1522c6065545245daaba71a4&libraries=services"></script>
 </head>
@@ -21,7 +20,7 @@
 
     <div id="wrap">
 
-        <%@ include file="/WEB-INF/views/room/header.jsp"%>
+        <%@ include file="/WEB-INF/views/layout/header.jsp"%>
 
 
 

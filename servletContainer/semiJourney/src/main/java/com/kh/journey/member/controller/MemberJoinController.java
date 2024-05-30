@@ -25,7 +25,7 @@ import com.kh.journey.member.vo.MemberVo;
 @WebServlet("/member/join")
 public class MemberJoinController extends HttpServlet {
 	
-	private MemberService service = null;
+	private final MemberService service;
 	
 	// Contructor
 	public MemberJoinController() {

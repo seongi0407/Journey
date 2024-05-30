@@ -25,11 +25,11 @@ import com.kh.journey.host.vo.HostVo;
 @WebServlet("/host/join")
 public class HostJoinController extends HttpServlet {
 	
-	private HostService service = null;
+	private final HostService service;
 	
 	// Contructor
 	public HostJoinController() {
-		service = new HostService();
+		this.service = new HostService();
 	}
 	
 	@Override

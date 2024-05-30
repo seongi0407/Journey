@@ -17,7 +17,7 @@ public class MemberService {
 	
 	// Constructor
 	public MemberService() {
-		dao = new MemberDao();
+		this.dao = new MemberDao();
 	}
 	
 	// 로그 인

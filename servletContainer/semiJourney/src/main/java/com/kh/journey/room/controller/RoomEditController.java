@@ -18,7 +18,7 @@ public class RoomEditController extends HttpServlet {
 	
 	// Constructor
 	public RoomEditController() {
-		service = new RoomService();
+		this.service = new RoomService();
 	}
 	
 	@Override
@@ -95,8 +95,6 @@ public class RoomEditController extends HttpServlet {
 			vo.setHeatingYn(heatingYn);
 			vo.setHairdryerYn(hairdryerYn);
 			
-			System.out.println(vo);
-			
 			// service 호출
 			int result = service.edit(vo);
 			
@@ -107,7 +105,11 @@ public class RoomEditController extends HttpServlet {
 			resp.sendRedirect("/journey/home");
 			
 		} catch(Exception e) {
+
+			System.out.println(e.getMessage());
 			e.printStackTrace();
+			req.setAttribute("errMsg", e.getMessage());
+			req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
 		}
 	} // doPost
 } // class

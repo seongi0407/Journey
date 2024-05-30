@@ -15,7 +15,7 @@ import com.kh.journey.member.vo.MemberVo;
 @WebServlet("/member/login")
 public class MemberLoginController extends HttpServlet {
 	
-	private MemberService service = null;
+	private final MemberService service;
 	
 	// Constructor
 	public MemberLoginController() {
@@ -42,12 +42,8 @@ public class MemberLoginController extends HttpServlet {
 			vo.setId(id);
 			vo.setPwd(pwd);
 			
-			System.out.println(vo);
-			
 			// 서비스 호출
-			MemberService service = new MemberService();
-			MemberVo loginMemberVo;
-			loginMemberVo = service.login(vo);
+			MemberVo loginMemberVo = service.login(vo);
 			
 			// 결과
 			if(loginMemberVo != null) {

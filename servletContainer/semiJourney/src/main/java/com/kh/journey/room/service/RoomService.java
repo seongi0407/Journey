@@ -19,7 +19,7 @@ public class RoomService {
 	
 	// Constructor
 	public RoomService() {
-		dao = new RoomDao();
+		this.dao = new RoomDao();
 	}
 
 	// 객실 등록

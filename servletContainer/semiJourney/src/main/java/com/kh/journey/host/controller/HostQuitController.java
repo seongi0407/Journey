@@ -15,11 +15,11 @@ import com.kh.journey.host.vo.HostVo;
 @WebServlet("/host/quit")
 public class HostQuitController extends HttpServlet {
 
-	private HostService service = null;
+	private final HostService service;
 	
 	// Constructor
 	public HostQuitController() {
-		service = new HostService();
+		this.service = new HostService();
 	}
 	
 	@Override

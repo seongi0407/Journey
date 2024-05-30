@@ -15,11 +15,11 @@ import com.kh.journey.admin.vo.AdminVo;
 @WebServlet("/admin/login")
 public class AdminLoginController extends HttpServlet {
 	
-	private AdminService service = null;
+	private final AdminService service;
 	
 	// Constructor
 	public AdminLoginController() {
-		service = new AdminService();
+		this.service = new AdminService();
 	}
 	
 	@Override
@@ -41,10 +41,7 @@ public class AdminLoginController extends HttpServlet {
 			vo.setId(id);
 			vo.setPwd(pwd);
 			
-			System.out.println(vo);
-			
 			// 서비스 호출
-			service = new AdminService();
 			AdminVo loginAdminVo = service.login(vo);
 			
 			// 결과

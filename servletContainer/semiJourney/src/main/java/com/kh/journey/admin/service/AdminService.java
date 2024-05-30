@@ -10,11 +10,11 @@ import com.kh.journey.admin.vo.AdminVo;
 
 public class AdminService {
 	
-	private AdminDao dao = null;
+	private final AdminDao dao;
 	
 	// Constructor
 	public AdminService() {
-		dao = new AdminDao();
+		this.dao = new AdminDao();
 	}
 	
 	public AdminVo login(AdminVo vo) throws Exception {

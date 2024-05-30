@@ -22,7 +22,7 @@ public class RoomDetailController extends HttpServlet {
 	
 	// Constructor
 	public RoomDetailController() {
-		service = new RoomService();
+		this.service = new RoomService();
 	}
 	
 	@Override
@@ -39,8 +39,6 @@ public class RoomDetailController extends HttpServlet {
 				throw new Exception("객실 상세 조회 실패");
 			}
 			
-			System.out.println(vo);
-			
 			req.setAttribute("vo", vo);
 			req.setAttribute("attVoList", attVoList);
 			req.setAttribute("reVoList", reVoList);
@@ -48,7 +46,11 @@ public class RoomDetailController extends HttpServlet {
 			req.getRequestDispatcher("/WEB-INF/views/room/detail.jsp").forward(req, resp);
 			
 		} catch(Exception e) {
+			
+			System.out.println(e.getMessage());
 			e.printStackTrace();
+			req.setAttribute("errMsg", e.getMessage());
+			req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
 		}
 	} // doGet
 	

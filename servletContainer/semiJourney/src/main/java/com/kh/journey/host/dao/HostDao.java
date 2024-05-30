@@ -41,8 +41,6 @@ public class HostDao {
 			loginHostVo.setDelYn(delYn);
 		}
 		
-		System.out.println(loginHostVo);
-		
 		close(rs);
 		close(pstmt);
 		
