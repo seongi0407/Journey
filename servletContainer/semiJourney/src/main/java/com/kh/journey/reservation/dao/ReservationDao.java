@@ -149,7 +149,7 @@ public class ReservationDao {
 			String inDate = rs.getString("IN_DATE");
 			String outDate = rs.getString("OUT_DATE");
 			String name = rs.getString("ROOM_NAME");
-			String img_01 = rs.getString("IMG_01");
+			String roomImg = rs.getString("IMG_01");
 			String sum = rs.getString("SUM");
 			String hostName = rs.getString("HOST_NAME");
 			String hostPhone = rs.getString("PHONE");
@@ -161,7 +161,7 @@ public class ReservationDao {
 			vo.setInDate(inDate);
 			vo.setOutDate(outDate);
 			vo.setRoomName(name);
-			vo.setRoomNo(img_01);
+			vo.setRoomImg(roomImg);
 			vo.setSum(sum);
 			vo.setHostName(hostName);
 			vo.setHostPhone(hostPhone);
@@ -187,7 +187,7 @@ public class ReservationDao {
 			String inDate = rs.getString("IN_DATE");
 			String outDate = rs.getString("OUT_DATE");
 			String name = rs.getString("NAME");
-			String img_01 = rs.getString("IMG_01");
+			String roomImg = rs.getString("IMG_01");
 			String reviewNo = rs.getString("REVIEW_NO");
 			String reserveNo = rs.getString("RESERVE_NO");
 
@@ -195,8 +195,7 @@ public class ReservationDao {
 			vo.setInDate(inDate);
 			vo.setOutDate(outDate);
 			vo.setRoomName(name);
-			vo.setRoomNo(img_01);
-			vo.setRoomNo(img_01);
+			vo.setRoomImg(roomImg);
 			vo.setReviewNo(reviewNo);
 			vo.setReserveNo(reserveNo);
 			historyList.add(vo);
@@ -218,13 +217,13 @@ public class ReservationDao {
 			String inDate = rs.getString("IN_DATE");
 			String outDate = rs.getString("OUT_DATE");
 			String name = rs.getString("NAME");
-			String img_01 = rs.getString("IMG_01");
+			String roomImg = rs.getString("IMG_01");
 
 			ReservationVo vo = new ReservationVo();
 			vo.setInDate(inDate);
 			vo.setOutDate(outDate);
 			vo.setRoomName(name);
-			vo.setRoomNo(img_01);
+			vo.setRoomImg(roomImg);
 			refundList.add(vo);
 		}
 		return refundList;
@@ -250,7 +249,7 @@ public class ReservationDao {
 			String reservatorName = rs.getString("MEM_NAME");
 			String reservatorEmail = rs.getString("EMAIL");
 			String reservatorPhone = rs.getString("PHONE");
-			
+
 			ReservationVo vo = new ReservationVo();
 			vo.setReserveNo(reserveNo);
 			vo.setInDate(inDate);
@@ -265,8 +264,8 @@ public class ReservationDao {
 
 			reservationList.add(vo);
 		}
-		
-		System.out.println("dao"+reservationList);
+
+		System.out.println("dao" + reservationList);
 		return reservationList;
 	}
 
@@ -279,17 +278,28 @@ public class ReservationDao {
 
 		List<ReservationVo> historyList = new ArrayList<>();
 		while (rs.next()) {
+			String reserveNo = rs.getString("NO");
+			String inDate = rs.getString("IN_DATE");
+			String outDate = rs.getString("OUT_DATE");
+			String roomName = rs.getString("NAME");
+			String sum = rs.getString("SUM");
+			String guestCount = rs.getString("GUEST_COUNT");
+			String reservatorProfile = rs.getString("PROFILE");
+			String reservatorName = rs.getString("MEM_NAME");
+			String reservatorEmail = rs.getString("EMAIL");
+			String reservatorPhone = rs.getString("PHONE");
+
 			ReservationVo vo = new ReservationVo();
-			vo.setReserveNo(rs.getString("NO"));
-			vo.setInDate(rs.getString("IN_DATE"));
-			vo.setOutDate(rs.getString("OUT_DATE"));
-			vo.setRoomName(rs.getString("NAME"));
-			vo.setSum(rs.getString("SUM"));
-			vo.setGuestCount(rs.getString("GUEST_COUNT"));
-			vo.setReservatorProfile(rs.getString("PROFILE"));
-			vo.setReservatorName(rs.getString("MEM_NAME"));
-			vo.setReservatorEmail(rs.getString("EMAIL"));
-			vo.setReservatorPhone(rs.getString("PHONE"));
+			vo.setReserveNo(reserveNo);
+			vo.setInDate(inDate);
+			vo.setOutDate(outDate);
+			vo.setRoomName(roomName);
+			vo.setSum(sum);
+			vo.setGuestCount(guestCount);
+			vo.setReservatorProfile(reservatorProfile);
+			vo.setReservatorName(reservatorName);
+			vo.setReservatorEmail(reservatorEmail);
+			vo.setReservatorPhone(reservatorPhone);
 
 			historyList.add(vo);
 		}
@@ -305,12 +315,18 @@ public class ReservationDao {
 
 		List<ReservationVo> refundList = new ArrayList<>();
 		while (rs.next()) {
+			String reserveNo = rs.getString("NO");
+			String roomName = rs.getString("NAME");
+			String sum = rs.getString("SUM");
+			String reservatorProfile = rs.getString("PROFILE");
+			String reservatorName = rs.getString("MEM_NAME");
+
 			ReservationVo vo = new ReservationVo();
-			vo.setReserveNo(rs.getString("NO"));
-			vo.setRoomName(rs.getString("NAME"));
-			vo.setSum(rs.getString("SUM"));
-			vo.setReservatorProfile(rs.getString("PROFILE"));
-			vo.setReservatorName(rs.getString("MEM_NAME"));
+			vo.setReserveNo(reserveNo);
+			vo.setRoomName(roomName);
+			vo.setSum(sum);
+			vo.setReservatorProfile(reservatorProfile);
+			vo.setReservatorName(reservatorName);
 
 			refundList.add(vo);
 		}

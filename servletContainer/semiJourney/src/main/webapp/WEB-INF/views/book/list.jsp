@@ -6,15 +6,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>예약 및 결제</title>
-<link rel="stylesheet" href="../resources/css/bookList.css">
-<script defer src="../resources/js/bookList.js"></script>
+<title>여행</title>
+<link rel="stylesheet" href="/journey/resources/css/book/bookList.css">
+<script defer src="/journey/resources/js/book/bookList.js"></script>
 
-<link rel="stylesheet" href="/journey/resources/css/layout.css">
-<script defer src="/journey/resources/js/layout.js"></script>
+
+<link rel="stylesheet" href="/journey/resources/css/layout/header.css">
+<link rel="stylesheet" href="/journey/resources/css/layout/footer.css">
+<script defer src="/journey/resources/js/home.js"></script>
 </head>
 
 <%@ include file="/WEB-INF/views/layout/util.jsp"%>
+
 <body>
 
 	<%@ include file="/WEB-INF/views/layout/header.jsp"%>
@@ -25,7 +28,7 @@
 			<h1>여행</h1>
 		</div>
 		<div>
-			<h2>예정된 예약</h2>
+			<h2>예정된 여행</h2>
 		</div>
 		<div class="roomScheduleOutter">
 			<c:forEach var="reservation" items="${reservationList}">
@@ -47,26 +50,26 @@
 						<br>
 						<div id="hostProfileDiv" class="hostInfo">
 							<img id="hostProfile" class="hostProfile"
-								src="https://cdn.travelview.co.kr/travelview/2021/01/21020223/post_41596968_30400772_4.jpg"
+								src="/journey/resources/upload/host/${reservation.hostProfile}"
 								alt="hostProfile">
 							<div>${reservation.hostName}</div>
 							<div id="place-date">Phone : ${reservation.hostPhone}</div>
 						</div>
 					</div>
 					<img id="roomImg" class="room-image"
-						src="https://cdn.travelview.co.kr/travelview/2021/01/21020223/post_41596968_30400772_4.jpg"
+						src="/journey/resources/upload/room/${reservation.roomImg}"
 						alt="RoomImage">
 				</div>
 			</c:forEach>
 		</div>
-		<h2>이전 여행지</h2>
+		<h2>지난 여행</h2>
 		</div>
 		<div class="imageContainer">
 			<c:forEach var="history" items="${historyList}">
 				<div class="roomContainer">
 					<div>
 						<img
-							src="https://cdn.travelview.co.kr/travelview/2021/01/21020223/post_41596968_30400772_4.jpg"
+							src="/journey/resources/upload/room/${history.roomImg}"
 							alt="RoomImage" class="room-image" />
 					</div>
 					<div id="historyText" class="historyText">
@@ -92,7 +95,7 @@
 				<div class="roomContainer">
 					<div>
 						<img
-							src="https://cdn.travelview.co.kr/travelview/2021/01/21020223/post_41596968_30400772_4.jpg"
+							src="/journey/resources/upload/room/${refund.roomImg}"
 							alt="RoomImage" class="room-image" />
 					</div>
 					<div id="roomText">

@@ -7,21 +7,23 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>예약 및 결제</title>
-<link rel="stylesheet" href="/journey/resources/css/bookNew.css">
-<script defer src="/journey/resources/js/bookNew.js"></script>
+<link rel="stylesheet" href="/journey/resources/css/book/bookNew.css">
+<script defer src="/journey/resources/js/book/bookNew.js"></script>
 
-<link rel="stylesheet" href="/journey/resources/css/layout.css">
-<script defer src="/journey/resources/js/layout.js"></script>
-
+<link rel="stylesheet" href="/journey/resources/css/layout/header.css">
+<link rel="stylesheet" href="/journey/resources/css/layout/footer.css">
+<script defer src="/journey/resources/js/home.js"></script>
 </head>
+
 <%@ include file="/WEB-INF/views/layout/util.jsp"%>
+
 <body>
 
 	<%@ include file="/WEB-INF/views/layout/header.jsp"%>
 
 	<nav class="rsv_inner" id="navText">
 		<div id="backImgBox">
-			<img src="/journey/resources/img/뒤로가기.png">
+			<img src="/journey/resources/img/book/back.png">
 		</div>
 		<div>
 			<h1>확인 및 결제</h1>
@@ -37,8 +39,7 @@
 				type="hidden" name="guestCount" value="${vo.guestCount}"> <input
 				type="hidden" name="sum" value="${vo.sum}"> <input
 				type="hidden" name="paymentMethod" value="${card.payMethodCode}">
-				<input
-				type="hidden" name="cardNo" value="${card.cardNo}">
+			<input type="hidden" name="cardNo" value="${card.cardNo}">
 
 			<section class="rsv_inner" id="section">
 				<div id="sectionLeft">
@@ -83,47 +84,49 @@
 							<h2>결제수단</h2>
 							<div class="billingInformation" id="payimgoutter">
 								<div class="payimg">
-									<img src="/journey/resources/img/visa.svg">
+									<img src="/journey/resources/img/book/visa.svg">
 								</div>
 								<div class="payimg">
-									<img src="/journey/resources/img/amaxs.svg">
+									<img src="/journey/resources/img/book/amaxs.svg">
 								</div>
 								<div class="payimg">
-									<img src="/journey/resources/img/npay.svg">
+									<img src="/journey/resources/img/book/npay.svg">
 								</div>
 								<div class="payimg">
-									<img src="/journey/resources/img/kakaopay.png">
+									<img src="/journey/resources/img/book/kakaopay.png">
 								</div>
 							</div>
 						</div>
 						<section id="select_card">
 							<div class="select">
-								<div class="text" onclick="onClickSelect(event)"> 결제 방법 선택</div>
+								<div class="text" onclick="onClickSelect(event)">결제 방법 선택</div>
 								<ul class="option-list">
 									<c:forEach var="card" items="${cardVoList}">
-										<li class="option" data-code="P1" data-no="${card.no}" data-pwd="${card.pwd}"
-											onclick="selectCard(event)" name="paymentMethod"><img
-											src="/journey/resources/img/amaxs.svg">${card.no}|${card.cardNick}|
+										<li class="option" data-code="P1" data-no="${card.no}"
+											data-pwd="${card.pwd}" onclick="selectCard(event)"
+											name="paymentMethod"><img
+											src="/journey/resources/img/book/amaxs.svg">${card.no}|${card.cardNick}|
 											${card.cardNum}|${card.pwd}</li>
 									</c:forEach>
 									<hr>
 									<li>간편결제</li>
-									<li class="option" onclick="selectCard(event)"
-										data-code="P3"  id="KAKAOPAY" name="paymentMethod"><img
-										src="/journey/resources/img/kakaopay.png"> KAKAO PAY</li>
-									<li class="option" onclick="selectCard(event)"
-										data-code="P3"  id="TOSS-PAY" name="paymentMethod"><img
-										src="/journey/resources/img/Toss.png"> TOSS-PAY</li>
-									<li class="option" onclick="selectCard(event)"
-										data-code="P3"  id="N-PAY" name="paymentMethod"><img
-										src="/journey/resources/img/npay.svg"> N-PAY</li>
+									<li class="option" onclick="selectCard(event)" data-code="P3"
+										id="KAKAOPAY" name="paymentMethod"><img
+										src="/journey/resources/img/book/kakaopay.png"> KAKAO
+										PAY</li>
+									<li class="option" onclick="selectCard(event)" data-code="P3"
+										id="TOSS-PAY" name="paymentMethod"><img
+										src="/journey/resources/img/book/Toss.png"> TOSS-PAY</li>
+									<li class="option" onclick="selectCard(event)" data-code="P3"
+										id="N-PAY" name="paymentMethod"><img
+										src="/journey/resources/img/book/npay.svg"> N-PAY</li>
 									<hr>
-									<li class="option" onclick="selectCard(event)"
-										 id="addCard"><img
-										src="/journey/resources/img/카드.png"> 결제수단 추가</li>
+									<li class="option" onclick="selectCard(event)" id="addCard"><img
+										src="/journey/resources/img/book/카드.png"> 결제수단 추가</li>
 									<li class="option" onclick="selectCard(event)" data-code="P2"
-										 id="deposit"><img
-										src="/journey/resources/img/무통장.png" name="paymentMethod"> 무통장입금</li>
+										id="deposit"><img
+										src="/journey/resources/img/book/무통장.png" name="paymentMethod">
+										무통장입금</li>
 								</ul>
 							</div>
 						</section>
@@ -146,7 +149,7 @@
 
 							<div class="hostInformation">
 								<div id="hostImgBox">
-									<img id="hostImg" src="${vo.hostProfile}">
+									<img id="hostImg" src="/journey/resources/upload/host/${vo.hostProfile}">
 								</div>
 								<div id="hostText">
 									<div id="hostName">${vo.hostName}</div>
@@ -202,7 +205,7 @@
 				<div id="paymentMethod">
 					<div class="paymentMethod" id="roomInfo">
 						<div id="roomImgBox">
-							<img id="roomImg" src="${vo.roomImg}">
+							<img id="roomImg" src="/journey/resources/upload/room/${vo.roomImg}">
 						</div>
 						<div id="roomText">
 							<div id="roomName">${vo.roomName}</div>
@@ -229,7 +232,8 @@
 					</div>
 				</div>
 		</aside>
-	</main>、
+	</main>
+	、
 
 	<%@ include file="/WEB-INF/views/layout/footer.jsp"%>
 

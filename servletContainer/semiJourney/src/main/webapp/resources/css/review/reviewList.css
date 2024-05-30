@@ -34,6 +34,7 @@ hr {
 .review-table {
 	width: 100%;
 	border-collapse: collapse;
+	text-align: center;
 }
 
 .review-table th, .review-table td {
@@ -46,10 +47,32 @@ hr {
 	background-color: #f9f9f9;
 }
 
-.review-table img {
-	border-radius: 50%;
+.writer-info, .room-info{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
 }
 
+.memberProfile {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	margin-right: 10px;
+}
+
+.writer-name, .roomName {
+	font-weight: bold;
+}
+
+.roomImg {
+	width: 50px;
+	height: 50px;
+	border-radius: 5%;
+	margin-right: 10px;
+}
+
+/* -------버튼-------- */
 .deleteBtn {
 	display: inline-block;
 	padding: 10px 20px;
@@ -62,18 +85,22 @@ hr {
 	transition: background-color 0.3s;
 }
 
-/* -------버튼-------- */
-
 .deleteBtn:hover {
 	background-color: #e04e50;
 }
 
-.reviewListBtn {
+.editBtn {
+	display: inline-block;
+	padding: 5px 5px;
+	background-color: #ff5a5f;
+	color: #fff;
 	border: none;
-	background-color: white;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 12px;
+	transition: background-color 0.3s;
 }
 
-.reviewListBtn:hover {
-	color: #ff5a5f;
-	cursor: pointer;
+.editBtn:hover {
+	background-color: #e04e50;
 }

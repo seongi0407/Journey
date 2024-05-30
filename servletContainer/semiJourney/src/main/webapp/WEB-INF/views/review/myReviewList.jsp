@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>리뷰</title>
+<title>내가 작성한 리뷰</title>
 <link rel="stylesheet"
 	href="/journey/resources/css/review/reviewList.css">
 <script defer src="/journey/resources/js/review/reviewDelete.js"></script>
@@ -25,40 +25,45 @@
 	<main>
 		<section class="review-section">
 			<div class="review-container">
-				<h2>리뷰 상세</h2>
+				<h2>내가 작성한 리뷰</h2>
 				<hr>
 				<table class="review-table">
 					<thead>
 						<tr>
-
+							<th><input type="checkbox" onclick="checkboxAll(this);"></th>
 							<th>no</th>
-							<th>작성자</th>
+							<th>숙소</th>
 							<th>평점</th>
 							<th>날짜</th>
 							<th>내용</th>
-
+							<th>수정</th>
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach items="${voList}" var="vo">
 							<tr>
+								<td><input type="checkbox" name="reviewCheckbox"
+									value="${vo.no}"></td>
 								<td>${vo.no}</td>
-								<td class="writer-info">
+								<td class="room-info">
 									<div>
-										<img class="memberProfile" alt="profile"
-											src="/journey/resources/upload/member/${vo.profile}">
-										<div class="writer-name">${vo.writerName}</div>
+										<img class="roomImg" alt="roomImg"
+											src="/journey/resources/upload/room/${vo.roomImg}">
+										<div class="roomName">${vo.roomName}</div>
 									</div>
 								</td>
 								<td>${vo.starAvg}</td>
 								<td>${vo.enrollDate}</td>
 								<td>${vo.content}</td>
-
+								<td><button
+										onclick="location.href='/journey/review/edit?reviewNo=${vo.no}'"
+										class="editBtn">수정</button></td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
 				<br>
+				<button class="deleteBtn" onclick="deleteCheckedBoard();">삭제하기</button>
 			</div>
 		</section>
 	</main>

@@ -114,12 +114,51 @@ public class ReviewDao {
 		return voList;
 	}
 
+	// 내가 쓴 리뷰 보기
+	public List<ReviewVo> getReviewListAllByMemberNo(Connection conn, String memberNo) throws Exception {
+		String sql = "SELECT R.NO, RM.IMG_01 ROOM_IMG, RM.NAME ROOM_NAME, R.CONTENT , R.ACCURACY , R.CLEAN , R.CHECKIN , R.LOCATION , R.COMMUNICATION , R.ENROLL_DATE FROM REVIEW R JOIN RESERVATION RV ON R.RESERVE_NO = RV.NO JOIN MEMBER M ON RV.RESERVATOR_NO=M.NO JOIN ROOM RM ON RM.NO = RV.ROOM_NO WHERE RV.RESERVATOR_NO = ? AND R.DEL_YN = 'N' AND M.DEL_YN = 'N' ORDER BY R.ENROLL_DATE DESC";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, memberNo);
+		ResultSet rs = pstmt.executeQuery();
+
+		List<ReviewVo> voList = new ArrayList<ReviewVo>();
+		ReviewVo vo = null;
+		while (rs.next()) {
+			String no = rs.getString("NO");
+			String roomImg = rs.getString("ROOM_IMG");
+			String roomName = rs.getString("ROOM_NAME");
+			String content = rs.getString("CONTENT");
+			String enrollDate = rs.getString("ENROLL_DATE");
+			int accuracy = rs.getInt("ACCURACY");
+			int clean = rs.getInt("CLEAN");
+			int checkin = rs.getInt("CHECKIN");
+			int loation = rs.getInt("LOCATION");
+			int communication = rs.getInt("COMMUNICATION");
+
+			String starAvg = Integer.toString((accuracy + clean + checkin + loation + communication) / 5);
+			System.out.println(starAvg);
+
+			vo = new ReviewVo();
+			vo.setNo(no);
+			vo.setRoomImg(roomImg);
+			vo.setRoomName(roomName);
+			vo.setContent(content);
+			vo.setEnrollDate(enrollDate);
+			vo.setStarAvg(starAvg);
+
+			voList.add(vo);
+		}
+		close(pstmt);
+		close(rs);
+		return voList;
+	}
+
 	// 리뷰 수정(내용가져오기)
-	public List<ReviewVo> getReviewByNo(Connection conn, String reserveNo) throws Exception {
+	public List<ReviewVo> getReviewByNo(Connection conn, String reviewNo) throws Exception {
 
 		String sql = "SELECT * FROM REVIEW WHERE NO = ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, reserveNo);
+		pstmt.setString(1, reviewNo);
 		ResultSet rs = pstmt.executeQuery();
 
 		List<ReviewVo> review = new ArrayList<ReviewVo>();
@@ -134,6 +173,7 @@ public class ReviewDao {
 			String communication = rs.getString("COMMUNICATION");
 
 			vo = new ReviewVo();
+			vo.setNo(reviewNo);
 			vo.setContent(content);
 			vo.setAccuracy(accuracy);
 			vo.setClean(clean);
@@ -149,11 +189,10 @@ public class ReviewDao {
 
 	// 리뷰 수정(업데이트)
 	public int editReviewContent(Connection conn, ReviewVo vo) throws Exception {
-
-		String sql = "UPDATE REVIEW SET CONTENT = ? WHERE RESERVE_NO = ?";
+		String sql = "UPDATE REVIEW SET CONTENT = ? WHERE NO = ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, vo.getContent());
-		pstmt.setString(2, vo.getReserveNo());
+		pstmt.setString(2, vo.getNo());
 		int result = pstmt.executeUpdate();
 
 		close(pstmt);

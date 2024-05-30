@@ -1,5 +1,6 @@
 /*확인 및 결제*/
 #navText {
+	margin-top: 130px;
 	padding: 30px 130px 20px 130px;
 	font-size: 20px;
 	display: grid;
@@ -9,16 +10,16 @@
 #navText img {
 	place-items: center;
 	width: 50px;
+	cursor: pointer;
 }
 
 #navText img:hover {
 	background-color: #f4f4f4;
 	border-radius: 50px;
+	
 }
 
-#backImgBox {
-	padding-top: 25px;
-}
+
 
 .main {
 	height: 100%;
@@ -46,9 +47,7 @@
 	padding: 30px;
 }
 
-
-
-.rsvInnerBox{
+.rsvInnerBox {
 	border-bottom: 1px solid rgb(221, 221, 221);
 	padding: 10px;
 }
@@ -149,14 +148,14 @@
 	box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
 	overflow-y: auto; /* 스크롤 가능 */
 	max-height: 300px; /* 최대 높이 설정 */
-	display: none; 
-	position: absolute; 
-	background: white; 
+	display: none;
+	position: absolute;
+	background: white;
 	z-index: 1000;
 }
 /* 활성화 시 보이기*/
 #select_card .select.active .option-list {
-	display: block; 
+	display: block;
 }
 
 .text>img {
@@ -263,7 +262,7 @@
 
 /*요금세부정보*/
 #accommodationFeeDetails {
-	 height: auto;
+	height: auto;
 	width: 23%;
 	padding: 24px;
 	border: 1px solid rgb(221, 221, 221);
@@ -275,7 +274,7 @@
 	margin: 0;
 }
 
-.totalPayInfo span{
+.totalPayInfo span {
 	font-weight: bold;
 	font-size: 20px;
 }
@@ -309,7 +308,7 @@
 
 #roomName {
 	font-weight: bold;
-	font-size : 25px;
+	font-size: 25px;
 }
 
 .payInformation, #totalPayInfo {
@@ -377,8 +376,7 @@
 }
 
 /*수정 팝업창 스타일*/
-
-.checkInDate .checkOutDate{
+.checkInDate .checkOutDate {
 	width: 100px;
 	height: 50px;
 }
@@ -409,105 +407,102 @@
 
 /* 날짜 입력 필드 정렬 */
 .date-inputs {
-    display: flex;
-    justify-content: space-between;
-    margin: 10px 0;
+	display: flex;
+	justify-content: space-between;
+	margin: 10px 0;
 }
 
 .input-group {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .input-group label {
-    margin-bottom: 5px;
-    font-size: 15px;
-    font-weight: bold;
+	margin-bottom: 5px;
+	font-size: 15px;
+	font-weight: bold;
 }
 
 .input-group input {
-    width: 150px;
-    padding: 5px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+	width: 150px;
+	padding: 5px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
 }
 
-#peopleCountInput{
+#peopleCountInput {
 	width: 150px;
-    padding: 5px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+	padding: 5px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
 }
 
 .calendar_container {
-    display: flex;
-    justify-content:space-evenly;
-    width: 90%;
+	display: flex;
+	justify-content: space-evenly;
+	width: 90%;
 }
 
 .hide {
-    display:none;
+	display: none;
 }
 
-.calendar_container > button {
-    margin-top: 4%;
-    font-weight: bold;
-    height:10%;
+.calendar_container>button {
+	margin-top: 4%;
+	font-weight: bold;
+	height: 10%;
 }
 
 .left_button {
-    margin-left:17%;
-    border: transparent;
+	margin-left: 17%;
+	border: transparent;
 }
 
 .right_button {
-    margin-right:17%;
-    border: transparent;
+	margin-right: 17%;
+	border: transparent;
 }
 
 .calendar {
-    display:flex;
-    flex-direction: column;
-    justify-content:center;
-    align-items: center;
-    margin-top: 3%;
-    margin-right:2.5%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-top: 3%;
+	margin-right: 2.5%;
 }
 
-
-.calendar_days > button  {
-    width: 30px;
-    height: 30px;
-    border-radius: 100%;
-    background-color: transparent;
-    border: transparent;
+.calendar_days>button {
+	width: 30px;
+	height: 30px;
+	border-radius: 100%;
+	background-color: transparent;
+	border: transparent;
 }
 
 table {
-    border-collapse: separate;
-    border-spacing: 0 10px;
+	border-collapse: separate;
+	border-spacing: 0 10px;
 }
 
 .day {
-    text-align: center;
-    font-size:11px;
-    font-weight: bold;
-    color:rgb(189, 189, 189);
+	text-align: center;
+	font-size: 11px;
+	font-weight: bold;
+	color: rgb(189, 189, 189);
 }
 
-
 .day_hover {
-    border: 1px solid gray !important;
+	border: 1px solid gray !important;
 }
 
 .day_selected {
-    background-color: black !important;
-    color: #ffff;
+	background-color: black !important;
+	color: #ffff;
 }
 
 .gray {
-    background-color: rgb(241, 241, 241) !important;
+	background-color: rgb(241, 241, 241) !important;
 }
 /*---------------------------------------*/
-

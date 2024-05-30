@@ -14,8 +14,8 @@ import com.kh.journey.member.vo.MemberVo;
 import com.kh.journey.review.service.ReviewService;
 import com.kh.journey.review.vo.ReviewVo;
 
-@WebServlet("/review/list")
-public class ReviewListController extends HttpServlet {
+@WebServlet("/member/review/list")
+public class MyReviewListController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -23,14 +23,14 @@ public class ReviewListController extends HttpServlet {
 			HttpSession session = req.getSession();
 			MemberVo loginMemberVo = (MemberVo) session.getAttribute("loginMemberVo");
 
-			String roomNo = req.getParameter("roomNo");
+			String memberNo = req.getParameter("memberNo");
 
 			ReviewService rs = new ReviewService();
-			List<ReviewVo> voList = rs.getReviewListAllByRoomNo(roomNo);
+			List<ReviewVo> voList = rs.getReviewListAllByMemberNo(memberNo);
 
 			System.out.println(voList);
 			req.setAttribute("voList", voList);
-			req.getRequestDispatcher("/WEB-INF/views/review/list.jsp").forward(req, resp);
+			req.getRequestDispatcher("/WEB-INF/views/review/myReviewList.jsp").forward(req, resp);
 		} catch (
 
 		Exception e) {

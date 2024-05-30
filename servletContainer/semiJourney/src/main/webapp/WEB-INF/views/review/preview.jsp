@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>리뷰</title>
+<title>최신리뷰</title>
 <link rel="stylesheet" href="../resources/css/reviewList.css">
 
 <link rel="stylesheet" href="/journey/resources/css/layout.css">

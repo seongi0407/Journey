@@ -45,6 +45,7 @@ public class ReviewService {
 
 	// 해당 객실 모든 리뷰보기
 	public List<ReviewVo> getReviewListAllByRoomNo(String roomNo) throws Exception {
+		
 		Connection conn = getConnection();
 		List<ReviewVo> voList = dao.getReviewListAllByRoomNo(conn, roomNo);
 
@@ -53,10 +54,22 @@ public class ReviewService {
 		return voList;
 	}
 
-	// 리뷰 수정(내용가져오기)
-	public List<ReviewVo> getReviewByNo(String reserveNo) throws Exception {
+	// 내가 쓴 리뷰
+	public List<ReviewVo> getReviewListAllByMemberNo(String memberNo) throws Exception {
+
 		Connection conn = getConnection();
-		List<ReviewVo> review = dao.getReviewByNo(conn, reserveNo);
+		List<ReviewVo> review = dao.getReviewListAllByMemberNo(conn, memberNo);
+
+		close(conn);
+
+		return review;
+	}
+
+	// 리뷰 수정(내용가져오기)
+	public List<ReviewVo> getReviewByNo(String reviewNo) throws Exception {
+		
+		Connection conn = getConnection();
+		List<ReviewVo> review = dao.getReviewByNo(conn, reviewNo);
 
 		close(conn);
 
@@ -65,6 +78,7 @@ public class ReviewService {
 
 	// 리뷰 수정(업데이트)
 	public int editReviewContent(ReviewVo vo) throws Exception {
+		System.out.println(vo);
 		Connection conn = getConnection();
 		int result = dao.editReviewContent(conn, vo);
 
@@ -98,4 +112,5 @@ public class ReviewService {
 
 		return result;
 	}
+
 }

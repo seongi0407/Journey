@@ -6,17 +6,20 @@
 <meta charset="UTF-8">
 <title>리뷰작성</title>
 
-<link rel="stylesheet" href="/journey/resources/css/reviewInsert.css">
-<script defer src="/journey/resources/js/reviewInsert.js"></script>
+<link rel="stylesheet" href="/journey/resources/css/review/reviewInsert.css">
+<script defer src="/journey/resources/js/review/reviewInsert.js"></script>
 
-<link rel="stylesheet" href="/journey/resources/css/layout.css">
-<script defer src="/journey/resources/js/layout.js"></script>
+<link rel="stylesheet" href="/journey/resources/css/layout/header.css">
+<link rel="stylesheet" href="/journey/resources/css/layout/footer.css">
+<script defer src="/journey/resources/js/home.js"></script>
+</head>
 
 <%@ include file="/WEB-INF/views/layout/util.jsp"%>
 
-</head>
 <body>
+
 	<%@ include file="/WEB-INF/views/layout/header.jsp"%>
+
 	<main>
 		<section class="review-section">
 			<div class="review-container">

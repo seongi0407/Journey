@@ -1,0 +1,80 @@
+/* 전체 레이아웃 */
+main {
+	padding: 120px 15% 20px 15%;
+}
+
+main h1, main h2 {
+	margin: 20px 0;
+}
+
+/* 예약 섹션 */
+.reservation-section {
+	margin-bottom: 40px;
+}
+
+.reservation-section h2 {
+	margin-bottom: 20px;
+}
+
+/* 이미지 컨테이너 */
+.imageContainer {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 20px;
+}
+
+/* 방 컨테이너 */
+.roomContainer {
+	background-color: white;
+	border-radius: 20px;
+	box-shadow: 5px 5px 10px rgba(215, 215, 215, 0.7);
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	width: 200px; 
+}
+
+.guestInfo {
+	width: 200px; 
+	display : grid;
+	grid-template-columns: auto auto;
+	grid-template-rows: 1fr 1fr 1fr;
+	display: grid;
+}
+
+.guestProfile {
+	grid-row: span 2;
+	width: 50px;
+	height: 50px;
+	border-radius: 50px;
+}
+.guestEmail{
+	grid-column: span 2;
+}
+
+
+/* 리뷰 작성 버튼 */
+.cancelBtn {
+	width: 100%;
+	padding: 10px;
+	background-color: #ff5a5f;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 16px;
+	transition: background-color 0.3s;
+	font-weight: bold;
+	margin-top: 10px;
+}
+
+.cancelBtn:hover {
+	background-color: #e04e50;
+}
+
+/* 방 이름 스타일 */
+.place-name {
+	font-weight: bold;
+	font-size: 20px;
+}

@@ -20,13 +20,13 @@ public class ReviewEditController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-			HttpSession session = req.getSession();
-			String reserveNo = req.getParameter("no");
+			
+			String reviewNo = req.getParameter("reviewNo");
 
 			// 서비스 호출
 			ReviewService rs = new ReviewService();
 
-			List<ReviewVo> review = rs.getReviewByNo(reserveNo);
+			List<ReviewVo> review = rs.getReviewByNo(reviewNo);
 
 			System.out.println(review);
 			req.setAttribute("review", review);
@@ -51,17 +51,18 @@ public class ReviewEditController extends HttpServlet {
 
 			// 데이터 꺼내기
 
-			String reserveNo = "2";
+			String no = req.getParameter("no");
 			String content = req.getParameter("content");
 
 			ReviewVo vo = new ReviewVo();
-			vo.setReserveNo(reserveNo);
+			vo.setNo(no);
 			vo.setContent(content);
-
+			
 			// 서비스 호출
 			ReviewService bs = new ReviewService();
 			int result = bs.editReviewContent(vo);
-
+			
+			
 			if (result != 1) {
 				throw new Exception("리뷰 수정 실패");
 			}

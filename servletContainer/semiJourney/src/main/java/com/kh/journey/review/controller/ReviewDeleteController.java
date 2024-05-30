@@ -28,8 +28,6 @@ public class ReviewDeleteController extends HttpServlet {
 				throw new Exception("삭제할 리뷰를 선택해주세요.");
 			}
 
-			System.out.println("리뷰 번호: " + Arrays.toString(reviewNoList));
-
 			ReviewService rs = new ReviewService();
 			int result = rs.deleteReview(reviewNoList);
 			if (result != reviewNoList.length) {

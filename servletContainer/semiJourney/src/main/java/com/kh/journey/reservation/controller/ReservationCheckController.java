@@ -37,6 +37,8 @@ public class ReservationCheckController extends HttpServlet {
 			req.setAttribute("newReservation", newReservation);
 			
 			req.getRequestDispatcher("/WEB-INF/views/book/bookCheck.jsp").forward(req, resp);
+			
+			req.getRequestDispatcher("/WEB-INF/views/book/bookCheck.jsp").forward(req, resp);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();

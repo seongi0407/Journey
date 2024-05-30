@@ -4,17 +4,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>리뷰 수정</title>
+<title>리뷰수정</title>
 
-<link rel="stylesheet" href="/journey/resources/css/reviewEdit.css">
+<link rel="stylesheet" href="/journey/resources/css/review/reviewEdit.css">
 
-<link rel="stylesheet" href="/journey/resources/css/layout.css">
+<link rel="stylesheet" href="/journey/resources/css/layout/header.css">
+<link rel="stylesheet" href="/journey/resources/css/layout/footer.css">
 <script defer src="/journey/resources/js/layout.js"></script>
+</head>
 
 <%@ include file="/WEB-INF/views/layout/util.jsp"%>
 
-</head>
 <body>
+
 	<%@ include file="/WEB-INF/views/layout/header.jsp"%>
 
 		    <main>
@@ -27,6 +29,9 @@
                 <form id="reviewForm" action="/journey/review/edit" method="post">
                     <input type="hidden" name="id" value="${param.id}">
                     <c:forEach var="review" items="${review}">
+                    
+                    
+                    <input type="hidden" name="no" value="${review.no}">
                         <div class="form-group">
                             <label for="cleanlinessRating">청결도</label>
                             <div class="star-rating" id="cleanlinessRating">
