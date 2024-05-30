@@ -27,7 +27,7 @@ public class RoomListController extends HttpServlet {
 		
 		try {
 			// service 호출
-			List<RoomVo> voList = service.getRoomList();
+			List<RoomVo> voList = service.getRoomListForHome();
 			
 			// 결과
 			req.setAttribute("voList", voList);

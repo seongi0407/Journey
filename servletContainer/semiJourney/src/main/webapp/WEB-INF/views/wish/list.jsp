@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,9 +15,7 @@
 
 <script defer src="/journey/resources/js/home.js"></script>
 
-<%@ include file="/WEB-INF/views/layout/util.jsp" %>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<%@ include file="/WEB-INF/views/layout/util.jsp"%>
 <script>
 	function deleteWish(no) {
 		$
@@ -50,7 +47,7 @@
 </script>
 </head>
 <body>
-	
+
 	<%@ include file="/WEB-INF/views/layout/header.jsp"%>
 
 	<section>
@@ -59,20 +56,21 @@
 
 	<div class="main">
 		<div class="image-container">
-			<c:forEach var="wish" items="${wishList}">
-				<div class="accomodation" id="wish-${wish.no}">
-					<img src="${wish.accomImgUrl}" alt="숙소 사진">
-					<div class="heart-icon" room_no="${wish.roomNo}"
-						onclick="clickHeart(this)">
-						<img class="heart-empty" src="/journey/resources/img/home/emptyheart.svg" alt="빈 찜 하트"> 
-						<img class="heart-filled" src="/journey/resources/img/home/pinkheart.png" alt="찜 하트">
-					</div>
-					<div id="place-name">${wish.roomName}</div>
-					<div id="place-score">★ ${wish.grade}</div>
-					<div id="place">${wish.accomAddress}</div>
-					<!-- 평일과 금토일 가격 다르게 해야함 !!!!!!!!!!!!!!!!!-->
-					<div id="place-date">₩ ${wish.roomWeekdayPrice} / 박</div>
-					<div id="place-date-weekend">₩ ${wish.roomWeekendPrice} / 박</div>
+			<c:forEach var="room" items="${roomVoList}">
+				<div class="accomodation">
+					<img src="/journey/resources/upload/room/${room.img01}" alt="숙소 사진">
+					<div id="place-name">${room.name}</div>
+					<c:choose>
+						<c:when test="${not empty sessionScope.loginMemberVo}">
+							<button id="gym">해물찜</button>
+						</c:when>
+						<c:otherwise>
+							<button id="gym">해물찜</button>
+						</c:otherwise>
+					</c:choose>
+					<div id="place-score">★ ${room.grade}</div>
+					<div id="place">${room.address}</div>
+					<div id="place-date">₩ ${room.weekdayPrice} / 박</div>
 				</div>
 			</c:forEach>
 		</div>
