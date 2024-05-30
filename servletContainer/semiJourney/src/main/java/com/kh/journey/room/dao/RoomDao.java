@@ -214,6 +214,46 @@ public class RoomDao {
       
       return voList;
    } // getRoomListForWish
+   
+   // 객실 목록 조회 (위시리스트 전용)
+   public List<RoomVo> getRoomListForHost(Connection conn, String no) throws Exception {
+      
+      // sql
+      String sql = "SELECT R.NO , R.NAME , R.WEEKDAY_PRICE , R.GRADE , R.IMG_01 , A.ADDRESS , T.THEME_NAME FROM ROOM R JOIN ACCOMMODATION A ON (R.ACCOM_NO = A.NO) JOIN THEME T ON (R.THEME_CODE = T.THEME_CODE) JOIN WISH_LIST W ON (W.ROOM_NO = R.NO) JOIN MEMBER M ON (W.MEM_NO = M.NO) WHERE M.NO = ? AND R.DEL_YN = 'N' AND A.DEL_YN = 'N' AND M.DEL_YN = 'N'";
+      PreparedStatement pstmt = conn.prepareStatement(sql);
+      pstmt.setString(1, no);;
+      ResultSet rs = pstmt.executeQuery();
+      
+      RoomVo vo = null;
+      List<RoomVo> voList = new ArrayList<RoomVo>();
+      
+      while(rs.next()) {
+         String name = rs.getString("NAME");
+         String weekdayPrice = rs.getString("WEEKDAY_PRICE");
+         String grade = rs.getString("GRADE");
+         String address = rs.getString("ADDRESS");
+         String themeName = rs.getString("THEME_NAME");
+         String imgUrl = rs.getString("IMG_01");
+         String roomNo = rs.getString("NO");
+         
+         vo = new RoomVo();
+         
+         vo.setName(name);
+         vo.setWeekdayPrice(weekdayPrice);
+         vo.setGrade(grade);
+         vo.setAddress(address);
+         vo.setThemeName(themeName);
+         vo.setImg01(imgUrl);
+         vo.setNo(roomNo);
+         
+         voList.add(vo);
+      }
+      
+      close(rs);
+      close(pstmt);
+      
+      return voList;
+   } // getRoomListForHost
 
    public RoomVo getRoomDetail(Connection conn, String no) throws Exception {
       

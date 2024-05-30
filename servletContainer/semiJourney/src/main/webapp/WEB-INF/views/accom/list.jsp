@@ -14,9 +14,9 @@
 
 </head>
 <body>
-	<div class="accom-container">
-		<h1>숙소 목록</h1>
+	<h1>숙소 목록</h1>
 
+	<div class="accom-container">
 		<!-- 숙소 삭제했을 때 삭제했다는 알림 띄우기 -->
 		<c:if test="${not empty sessionScope.alertMsg}">
 			<script type="text/javascript">
@@ -29,7 +29,8 @@
 			<c:when test="${not empty voList}">
 				<c:forEach var="vo" items="${voList}">
 					<div id="${vo.no}" class="accom-list">
-						<img src="/journey/resources/upload/${vo.imgUrl}" alt="숙소 사진">
+						<img src="/journey/resources/upload/accom/${vo.imgUrl}"
+							alt="숙소 사진">
 						<div class="accom-detail">
 							<span id="status-${vo.no}" class="status">등록 중</span>
 							<h3>${vo.name}</h3>
@@ -41,7 +42,7 @@
 							</form>
 
 							<button type="button" onclick="handleDelete(${vo.no});">삭제</button>
-							
+
 						</div>
 					</div>
 				</c:forEach>

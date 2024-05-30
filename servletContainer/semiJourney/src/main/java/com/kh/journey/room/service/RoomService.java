@@ -103,6 +103,18 @@ public class RoomService {
       
       return voList;
    } // getRoomListForWish
+   
+   // 객실 목록 조회 (호스트 전용)
+   public List<RoomVo> getRoomListForHost(String no) throws Exception {
+      
+      // dao 호출
+      Connection conn = getConnection();
+      List<RoomVo> voList = dao.getRoomListForHost(conn, no);
+      
+      close(conn);
+      
+      return voList;
+   } // getRoomListForHost
 
    public RoomVo getRoomDetail(String no) throws Exception {
       

@@ -24,12 +24,12 @@ public class WishDeleteController extends HttpServlet {
 			
 //			로그인 확인
 			HttpSession session = req.getSession();
-//			MemberVo loginMemberVo = (MemberVo) session.getAttribute("loginMemberVo");
-//			if(loginMemberVo == null) {
-////				throw new Exception("로그인이 필요합니다.");
+			MemberVo loginMemberVo = (MemberVo) session.getAttribute("loginMemberVo");
+			if(loginMemberVo == null) {
+				throw new Exception("로그인이 필요합니다.");
 //				PrintWriter out = resp.getWriter();
 //				out.write("로그인이 필요합니다.");
-//			}
+			}
 			
 			
 			//데이터 꺼내기
@@ -41,6 +41,8 @@ public class WishDeleteController extends HttpServlet {
 		 	wishVo.setNo(no);
             wishVo.setMemNo(memberNo);
 			
+            System.out.println("vo: " + wishVo);
+            
 			//서비스 호출 
 			WishService ws = new WishService();
 			int result = ws.delete(wishVo);
