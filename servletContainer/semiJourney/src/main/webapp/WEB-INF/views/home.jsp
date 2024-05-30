@@ -220,7 +220,7 @@
 			<div class="search-place" id="search-place">
 				<h5 class="search-place-letter">지역으로 검색하기</h5>
 				<button class="search-place-button">
-					<img src="/journey/resources/img/place-search.png" alt="유연한 검색">
+					<img src="/journey/resources/img/home/place-search.png" alt="유연한 검색">
 					<span>유연한 검색</span>
 				</button>
 				<br>
@@ -290,51 +290,51 @@
 	<section>
 		<div class="theme">
 			<button id="theme-detail">
-				<img src="/journey/resources/img/sea.svg" alt="테마"> <span
+				<img src="/journey/resources/img/home/sea.svg" alt="테마"> <span
 					id="theme-name">해변 바로 앞</span>
 			</button>
 			<button id="theme-detail">
-				<img src="/journey/resources/img/hanok.svg" alt="테마"> <span
+				<img src="/journey/resources/img/home/hanok.svg" alt="테마"> <span
 					id="theme-name">한옥</span>
 			</button>
 			<button id="theme-detail">
-				<img src="/journey/resources/img/view.svg" alt="테마"> <span
+				<img src="/journey/resources/img/home/view.svg" alt="테마"> <span
 					id="theme-name">최고의 전망</span>
 			</button>
 			<button id="theme-detail">
-				<img src="/journey/resources/img/pool.svg" alt="테마"> <span
+				<img src="/journey/resources/img/home/pool.svg" alt="테마"> <span
 					id="theme-name">멋진 수영장</span>
 			</button>
 			<button id="theme-detail">
-				<img src="/journey/resources/img/camping.svg" alt="테마"> <span
+				<img src="/journey/resources/img/home/camping.svg" alt="테마"> <span
 					id="theme-name">캠핑장</span>
 			</button>
 			<button id="theme-detail">
-				<img src="/journey/resources/img/wierd.svg" alt="테마"> <span
+				<img src="/journey/resources/img/home/wierd.svg" alt="테마"> <span
 					id="theme-name">기상천외한</span>
 			</button>
 			<button id="theme-detail">
-				<img src="/journey/resources/img/world.png" alt="테마"> <span
+				<img src="/journey/resources/img/home/world.png" alt="테마"> <span
 					id="theme-name">속세를 벗어난</span>
 			</button>
 			<button id="theme-detail">
-				<img src="/journey/resources/img/top.svg" alt="테마"> <span
+				<img src="/journey/resources/img/home/top.svg" alt="테마"> <span
 					id="theme-name">세상의 꼭대기</span>
 			</button>
 			<button id="theme-detail">
-				<img src="/journey/resources/img/farm.svg" alt="테마"> <span
+				<img src="/journey/resources/img/home/farm.svg" alt="테마"> <span
 					id="theme-name">농장</span>
 			</button>
 			<button id="theme-detail">
-				<img src="/journey/resources/img/surfing.svg" alt="테마"> <span
+				<img src="/journey/resources/img/home/surfing.svg" alt="테마"> <span
 					id="theme-name">서핑</span>
 			</button>
 			<button id="theme-detail">
-				<img src="/journey/resources/img/cabin.svg" alt="테마"> <span
+				<img src="/journey/resources/img/home/cabin.svg" alt="테마"> <span
 					id="theme-name">통나무집</span>
 			</button>
 			<button id="theme-detail">
-				<img src="/journey/resources/img/countryside.png" alt="테마"> <span
+				<img src="/journey/resources/img/home/countryside.png" alt="테마"> <span
 					id="theme-name">한적한 시골</span>
 			</button>
 		</div>
@@ -344,19 +344,18 @@
 		<div class="image-container">
 			<c:forEach var="room" items="${roomList}">
 				<div class="accomodation">
-					<img src="${room.img01} alt=" 숙소사진">
+					<img src="${accom.imgUrl}" alt="숙소 사진">
 					<div class="heart-icon" room_no="${room.no}"
 						onclick="clickHeart(this)">
-						<img class="heart-empty"
-							src="/journey/resources/img/emptyheart.svg" alt="빈 찜 하트"> <img
-							class="heart-filled" src="/journey/resources/img/pinkheart.png"
-							alt="찜 하트">
+						<img class="heart-empty" src="/journey/resources/img/home/emptyheart.svg" alt="빈 찜 하트"> 
+						<img class="heart-filled" src="/journey/resources/img/home/pinkheart.png" alt="찜 하트">
 					</div>
 					<div id="place-name">${room.name}</div>
 					<div id="place-score">★ ${room.grade}</div>
 					<div id="place">${room.address}</div>
 					<!-- 평일과 금토일 가격 다르게 해야함 !!!!!!!!!!!!!!!!!-->
 					<div id="place-date">₩ ${room.weekdayPrice} / 박</div>
+					<div id="place-date-weekend">₩ ${room.weekendPrice} / 박</div>
 				</div>
 			</c:forEach>
 		</div>

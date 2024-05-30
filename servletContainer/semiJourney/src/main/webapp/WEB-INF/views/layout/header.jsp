@@ -3,14 +3,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <header>
-	<img id="img-logo" src="/journey/resources/img/airbnb.png" alt="" onclick="location.href='/journey/home'">
+	<img id="img-logo" src="/journey/resources/img/header/airbnb.png" alt="" onclick="location.href='/journey/home'">
 	
 	<div class="header-right">
 		<div id="introduce">당신의 공간을 여정하세요</div>
 		<div id="profile-icon" onclick="showAccountContent()">
-			<img id="menu-icon" width="16" src="/journey/resources/img/menu.svg"
+			<img id="menu-icon" width="16" src="/journey/resources/img/header/menu.svg"
 				alt="메뉴 아이콘"> <img id="user-icon" width="30"
-				src="/journey/resources/img/profile.svg" alt="유저 아이콘">
+				src="/journey/resources/img/header/profile.svg" alt="유저 아이콘">
 		</div>
 		
 		<c:choose>
