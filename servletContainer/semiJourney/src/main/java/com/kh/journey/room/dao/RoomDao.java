@@ -140,7 +140,7 @@ public class RoomDao {
 	public List<RoomVo> getRoomList(Connection conn) throws Exception {
 		
 		// sql
-		String sql = "SELECT R.NAME , R.WEEKDAY_PRICE , R.GRADE , R.IMG_01 , A.ADDRESS , T.THEME_NAME FROM ROOM R JOIN ACCOMMODATION A ON (R.ACCOM_NO = A.NO) JOIN THEME T ON (R.THEME_CODE = T.THEME_CODE) WHERE R.DEL_YN = 'N' ORDER BY R.NO DESC";
+		String sql = "SELECT R.NO, R.NAME , R.WEEKDAY_PRICE , R.GRADE , R.IMG_01 , A.ADDRESS , T.THEME_NAME FROM ROOM R JOIN ACCOMMODATION A ON (R.ACCOM_NO = A.NO) JOIN THEME T ON (R.THEME_CODE = T.THEME_CODE) WHERE R.DEL_YN = 'N' ORDER BY R.NO DESC";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		ResultSet rs = pstmt.executeQuery();
 		
@@ -153,6 +153,8 @@ public class RoomDao {
 			String grade = rs.getString("GRADE");
 			String address = rs.getString("ADDRESS");
 			String themeName = rs.getString("THEME_NAME");
+			String imgUrl = rs.getString("IMG_01");
+			String no = rs.getString("NO");
 			
 			vo = new RoomVo();
 			
@@ -161,6 +163,8 @@ public class RoomDao {
 			vo.setGrade(grade);
 			vo.setAddress(address);
 			vo.setThemeName(themeName);
+			vo.setImg01(imgUrl);
+			vo.setNo(no);
 			
 			voList.add(vo);
 		}
@@ -171,14 +175,14 @@ public class RoomDao {
 		return voList;
 	} // getRoomList
 
-	public RoomVo getRoomDetail(Connection conn) throws Exception {
+	public RoomVo getRoomDetail(Connection conn, String no) throws Exception {
 		
 		// sql
 		String sql = "SELECT H.NAME HOST_NAME , H.PROFILE , A.ADDRESS , T.THEME_NAME , R.WEEKDAY_PRICE , R.CAPACITY , R.ROOM_NUM , R.BATH_NUM , R.BED_SINGLE , R.BED_DOUBLE , R.BED_QUEEN , R.GRADE , R.NAME FROM ROOM R JOIN ACCOMMODATION A ON (R.ACCOM_NO = A.NO) JOIN HOST H ON (A.HOST_NO = H.NO) JOIN THEME T ON (R.THEME_CODE = T.THEME_CODE) WHERE R.NO = ? AND R.DEL_YN = 'N'";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		
 		// 객실 번호 넣어주기
-		pstmt.setString(1, "1");
+		pstmt.setString(1, no);
 		
 		ResultSet rs = pstmt.executeQuery();
 		
@@ -234,14 +238,14 @@ public class RoomDao {
 	} // getRoomDetail
 
 	// 객실 이미지 가져오기
-	public List<AttachmentVo> getAttachment(Connection conn) throws Exception {
+	public List<AttachmentVo> getAttachment(Connection conn, String refNo) throws Exception {
 		
 		// sql
-		String sql = "SELECT * FROM ROOM_ATTACHMENT WHERE REF_NO = ? AND DEL_YN = 'N'";
+		String sql = "SELECT ORIGIN_NAME, CHANGE_NAME, UPLOAD_DATE FROM ROOM_ATTACHMENT WHERE REF_NO = ? AND DEL_YN = 'N'";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		
 		// 객실 번호 넣어주기
-		pstmt.setString(1, "1");
+		pstmt.setString(1, refNo);
 		
 		ResultSet rs = pstmt.executeQuery();
 		
@@ -249,7 +253,6 @@ public class RoomDao {
 		AttachmentVo attVo = null;
 		
 		while(rs.next()) {
-			String refNo = rs.getString("REF_NO");
 			String originName = rs.getString("ORIGIN_NAME");
 			String changeName = rs.getString("CHANGE_NAME");
 			String uploadDate = rs.getString("UPLOAD_DATE");
@@ -270,14 +273,14 @@ public class RoomDao {
 		return attVoList;
 	} // getAttachment
 
-	public List<ReviewVo> getReview(Connection conn) throws Exception {
+	public List<ReviewVo> getReview(Connection conn, String no) throws Exception {
 		
 		// sql
 		String sql = "SELECT * FROM ( SELECT ROWNUM AS RNUM , T.* FROM ( SELECT RE.CONTENT , RE.ACCURACY , RE.CLEAN , RE.CHECKIN , RE.LOCATION , RE.COMMUNICATION , RE.ENROLL_DATE , M.NAME , M.PROFILE FROM REVIEW RE JOIN RESERVATION RV ON (RE.RESERVE_NO = RV.NO) JOIN ROOM R ON (R.NO = RV.ROOM_NO) JOIN MEMBER M ON (M.NO = RV.RESERVATOR_NO) WHERE R.NO = ? AND RE.DEL_YN = 'N' ORDER BY RE.ENROLL_DATE DESC ) T ) WHERE RNUM BETWEEN 1 AND 6";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		
 		// 객실 번호 넣어주기
-		pstmt.setString(1, "1");
+		pstmt.setString(1, no);
 		
 		ResultSet rs = pstmt.executeQuery();
 		

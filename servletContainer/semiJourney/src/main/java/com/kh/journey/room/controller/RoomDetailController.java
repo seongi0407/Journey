@@ -29,10 +29,13 @@ public class RoomDetailController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		try {
+			// data
+			String no = req.getParameter("no");
+			
 			// service 호출
-			RoomVo vo = service.getRoomDetail();
-			List<AttachmentVo> attVoList = service.getAttachment();
-			List<ReviewVo> reVoList = service.getReview();
+			RoomVo vo = service.getRoomDetail(no);
+			List<AttachmentVo> attVoList = service.getAttachment(no);
+			List<ReviewVo> reVoList = service.getReview(no);
 
 			// 결과
 			if(vo == null) {

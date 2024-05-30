@@ -53,6 +53,7 @@
 		<div class="wishlist-letter">위시리스트</div>
 	</section>
 
+<!--  
 	<div class="main">
 		<div class="image-container">
 			<c:forEach var="room" items="${roomList}">
@@ -66,13 +67,13 @@
 					<div id="place-name">${room.name}</div>
 					<div id="place-score">★ ${room.grade}</div>
 					<div id="place">${room.address}</div>
-					<!-- 평일과 금토일 가격 다르게 해야함 !!!!!!!!!!!!!!!!!-->
 					<div id="place-date">₩ ${room.weekdayPrice} / 박</div>
 					<div id="place-date-weekend">₩ ${room.weekendPrice} / 박</div>
 				</div>
 			</c:forEach>
 		</div>
 	</div>
+-->
 
 	<br>
 	<br>

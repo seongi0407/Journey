@@ -9,7 +9,7 @@
 <title>여행의 정석</title>
 
 <link rel="stylesheet" href="/journey/resources/css/home.css">
-<link rel="stylesheet" href="/journey/resources/css/layout/header.css">
+<link rel="stylesheet" href="/journey/resources/css/layout/header2.css">
 <link rel="stylesheet" href="/journey/resources/css/layout/footer.css">
 
 <script defer src="/journey/resources/js/home.js"></script>
@@ -171,20 +171,21 @@
 
 	<div class="main">
 		<div class="image-container">
-			<c:forEach var="room" items="${roomList}">
-				<div class="accomodation">
-					<img src="${accom.imgUrl}" alt="숙소 사진">
-					<div class="heart-icon" room_no="${room.no}"
-						onclick="clickHeart(this)">
-						<img class="heart-empty" src="/journey/resources/img/home/emptyheart.svg" alt="빈 찜 하트"> 
-						<img class="heart-filled" src="/journey/resources/img/home/pinkheart.png" alt="찜 하트">
-					</div>
-					<div id="place-name">${room.name}</div>
-					<div id="place-score">★ ${room.grade}</div>
-					<div id="place">${room.address}</div>
-					<!-- 평일과 금토일 가격 다르게 해야함 !!!!!!!!!!!!!!!!!-->
-					<div id="place-date">₩ ${room.weekdayPrice} / 박</div>
-					<div id="place-date-weekend">₩ ${room.weekendPrice} / 박</div>
+			<c:forEach var="vo" items="${voList}">
+				<div class="home">
+					<img src="/journey/resources/upload/room/${vo.img01}" onclick="location.href='/journey/room/detail?no=${vo.no}'" alt="숙소 사진">
+					<div id="place-name">${vo.name}</div>
+					<c:choose>
+						<c:when test="${not empty sessionScope.loginMemberVo}">
+							<button id="gym" onclick="clickHeart('${vo.no}', '${sessionScope.loginMemberVo.no}')">해물찜</button>
+						</c:when>
+						<c:otherwise>
+							<button id="gym" onclick="clickNothing()">해물찜</button>
+						</c:otherwise>
+					</c:choose>
+					<div id="place-score">★ ${vo.grade}</div>
+					<div id="place">${vo.address}</div>
+					<div id="place-date">₩ ${vo.weekdayPrice} / 박</div>
 				</div>
 			</c:forEach>
 		</div>

@@ -20,6 +20,8 @@ public class WishDao {
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setString(1, vo.getMemNo());
         pstmt.setString(2, vo.getRoomNo());
+        
+        System.out.println(vo);
 
         int result = pstmt.executeUpdate();
 

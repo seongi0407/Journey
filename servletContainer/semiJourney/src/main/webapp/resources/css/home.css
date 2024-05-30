@@ -542,8 +542,8 @@ section {
 .heart-icon {
 	/* 자식에 absolute */
 	position: absolute;
-	top: 20px;
-	right: 20px;
+	top: 40%;
+	right: 40%;
 	cursor: pointer;
 }
 

@@ -92,11 +92,11 @@ public class RoomService {
 		return voList;
 	} // getRoomList
 
-	public RoomVo getRoomDetail() throws Exception {
+	public RoomVo getRoomDetail(String no) throws Exception {
 		
 		// dao 호출
 		Connection conn = getConnection();
-		RoomVo vo = dao.getRoomDetail(conn);
+		RoomVo vo = dao.getRoomDetail(conn, no);
 		
 		close(conn);
 		
@@ -104,24 +104,24 @@ public class RoomService {
 	} // getRoomDetail
 
 	// 객실 이미지 가져오기
-	public List<AttachmentVo> getAttachment() throws Exception {
+	public List<AttachmentVo> getAttachment(String no) throws Exception {
 		
 		// dao
 		Connection conn = getConnection();
 		
-		List<AttachmentVo> attVoList = dao.getAttachment(conn);
+		List<AttachmentVo> attVoList = dao.getAttachment(conn, no);
 		
 		close(conn);
 		
 		return attVoList;
 	} // getAttachment
 
-	public List<ReviewVo> getReview() throws Exception {
+	public List<ReviewVo> getReview(String no) throws Exception {
 		
 		// dao 호출
 		Connection conn = getConnection();
 		
-		List<ReviewVo> reVoList = dao.getReview(conn);
+		List<ReviewVo> reVoList = dao.getReview(conn, no);
 		
 		close(conn);
 		

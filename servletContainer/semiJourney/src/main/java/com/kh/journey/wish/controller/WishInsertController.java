@@ -60,9 +60,9 @@ public class WishInsertController extends HttpServlet {
 	                throw new Exception("위시리스트 등록을 실패했습니다.");
 	            }
 	            
-	            PrintWriter out = resp.getWriter();
-	            out.write("result: " + result);
-//	            resp.sendRedirect("/journey/wish/list");
+//	            PrintWriter out = resp.getWriter();
+//	            out.write("result: " + result);
+	            resp.sendRedirect("/journey/wish/list");
 
 	        }catch(Exception e) {
 				System.out.println(e.getMessage());
