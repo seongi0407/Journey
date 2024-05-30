@@ -45,7 +45,7 @@ public class RoomDetailController extends HttpServlet {
 			req.setAttribute("attVoList", attVoList);
 			req.setAttribute("reVoList", reVoList);
 			
-			req.getRequestDispatcher("/WEB-INF/views/detail2.jsp").forward(req, resp);
+			req.getRequestDispatcher("/WEB-INF/views/room/detail.jsp").forward(req, resp);
 			
 		} catch(Exception e) {
 			e.printStackTrace();

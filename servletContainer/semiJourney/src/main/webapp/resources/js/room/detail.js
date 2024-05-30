@@ -1,3 +1,4 @@
+/* ----- map -----*/
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div
     mapOption = {
         center: new kakao.maps.LatLng(37.499154, 127.032770), // 지도의 중심좌표
@@ -30,3 +31,4 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
     var resultDiv = document.getElementById('clickLatlng'); 
     resultDiv.innerHTML = message; 
 });
+/* ----- map ----- */
