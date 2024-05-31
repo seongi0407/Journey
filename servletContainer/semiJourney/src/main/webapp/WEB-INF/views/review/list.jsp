@@ -46,7 +46,7 @@
 					<tbody>
 						<c:forEach items="${voList}" var="vo">
 							<tr>
-								<td>${vo.no}</td>
+								<td>${vo.rownum}</td>
 								<td class="writer-info">
 									<div>
 										<img class="memberProfile" alt="profile"
@@ -65,21 +65,6 @@
 				<br>
 			</div>
 			
-			<div id="page-area">
-				<c:if test="${pvo.currentPage > 1}">
-					<a href="/app/board/list?pno=${pvo.currentPage-1}">이전</a>
-				</c:if>
-				<c:forEach begin="${pvo.startPage}" end="${pvo.endPage}" var="x">
-					<c:if test="${pvo.currentPage == x}">
-						<strong>${x}</strong>
-					</c:if>
-					<c:if test="${pvo.currentPage != x}">
-						<a href="/app/board/list?pno=${x}">${x}</a>
-					</c:if>
-				</c:forEach>
-				<c:if test="${pvo.currentPage < pvo.maxPage }">
-					<a href="/app/board/list?pno=${pvo.currentPage+1}">다음</a>
-				</c:if>
 		</section>
 	</main>
 

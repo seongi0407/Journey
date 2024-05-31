@@ -45,7 +45,7 @@
 							<tr>
 								<td><input type="checkbox" name="reviewCheckbox"
 									value="${vo.no}"></td>
-								<td>${vo.no}</td>
+								<td>${vo.rownum}</td>
 								<td class="room-info">
 									<div>
 										<img class="roomImg" alt="roomImg"

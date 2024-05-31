@@ -2,14 +2,29 @@ package com.kh.journey.review.vo;
 
 public class ReviewVo {
 	
-
-	public ReviewVo() {
-		super();
-	}
+	private String no;
+	private String reserveNo;
+	private String content;
+	private String accuracy;
+	private String clean;
+	private String checkin;
+	private String location;
+	private String communication;
+	private String delYn;
+	private String enrollDate;
+	private String modifyDate;
+	private String writerName;
+	private String writerNo;
+	private String profile;
+	private String roomName;
+	private String roomImg;
+	private String starAvg;
+	private String rownum;
+	
 	public ReviewVo(String no, String reserveNo, String content, String accuracy, String clean, String checkin,
 			String location, String communication, String delYn, String enrollDate, String modifyDate,
-			String writerName, String writerNo, String profile, String roomName, String roomImg, String starAvg) {
-		super();
+			String writerName, String writerNo, String profile, String roomName, String roomImg, String starAvg,
+			String rownum) {
 		this.no = no;
 		this.reserveNo = reserveNo;
 		this.content = content;
@@ -27,15 +42,20 @@ public class ReviewVo {
 		this.roomName = roomName;
 		this.roomImg = roomImg;
 		this.starAvg = starAvg;
+		this.rownum = rownum;
 	}
+	public ReviewVo() {
+	}
+	
 	@Override
 	public String toString() {
 		return "ReviewVo [no=" + no + ", reserveNo=" + reserveNo + ", content=" + content + ", accuracy=" + accuracy
 				+ ", clean=" + clean + ", checkin=" + checkin + ", location=" + location + ", communication="
 				+ communication + ", delYn=" + delYn + ", enrollDate=" + enrollDate + ", modifyDate=" + modifyDate
 				+ ", writerName=" + writerName + ", writerNo=" + writerNo + ", profile=" + profile + ", roomName="
-				+ roomName + ", roomImg=" + roomImg + ", starAvg=" + starAvg + "]";
+				+ roomName + ", roomImg=" + roomImg + ", starAvg=" + starAvg + ", rownum=" + rownum + "]";
 	}
+	
 	public String getNo() {
 		return no;
 	}
@@ -138,23 +158,10 @@ public class ReviewVo {
 	public void setStarAvg(String starAvg) {
 		this.starAvg = starAvg;
 	}
-	private String no;
-	private String reserveNo;
-	private String content;
-	private String accuracy;
-	private String clean;
-	private String checkin;
-	private String location;
-	private String communication;
-	private String delYn;
-	private String enrollDate;
-	private String modifyDate;
-	private String writerName;
-	private String writerNo;
-	private String profile;
-	private String roomName;
-	private String roomImg;
-	private String starAvg;
-	
-	
+	public String getRownum() {
+		return rownum;
+	}
+	public void setRownum(String rownum) {
+		this.rownum = rownum;
+	}
 }

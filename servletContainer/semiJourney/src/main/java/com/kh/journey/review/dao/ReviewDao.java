@@ -36,7 +36,7 @@ public class ReviewDao {
 	// 최신리뷰 6개
 	public List<ReviewVo> getReviewListByRoomNo(Connection conn, String roomNo) throws Exception {
 
-		String sql = "SELECT * FROM(SELECT R.NO, M.PROFILE, M.NAME, R.CONTENT, R.ACCURACY, R.CLEAN, R.CHECKIN, R.LOCATION, R.COMMUNICATION, R.ENROLL_DATE, ROWNUM AS RN FROM REVIEW R JOIN RESERVATION RV ON R.RESERVE_NO = RV.NO JOIN MEMBER M ON RV.RESERVATOR_NO = M.NO WHERE RV.ROOM_NO = ? AND R.DEL_YN = 'N' AND M.DEL_YN = 'N' ORDER BY R.ENROLL_DATE DESC) WHERE RN <= 6";
+		String sql = "SELECT ROWNUM , T.NO , T.PROFILE , T.NAME , T.CONTENT , T.ACCURACY , T.CLEAN , T.CHECKIN , T.LOCATION , T.COMMUNICATION , T.ENROLL_DATE FROM ( SELECT R.NO , M.PROFILE , M.NAME , R.CONTENT , R.ACCURACY , R.CLEAN , R.CHECKIN , R.LOCATION , R.COMMUNICATION , R.ENROLL_DATE , ROWNUM AS RN FROM REVIEW R JOIN RESERVATION RV ON R.RESERVE_NO = RV.NO JOIN MEMBER M ON RV.RESERVATOR_NO = M.NO WHERE RV.ROOM_NO = ? AND R.DEL_YN = 'N' AND M.DEL_YN = 'N' ORDER BY R.ENROLL_DATE DESC ) T WHERE RN <= 6";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, roomNo);
 		ResultSet rs = pstmt.executeQuery();
@@ -77,7 +77,7 @@ public class ReviewDao {
 	// 해당 객실 모든 리뷰보기
 	public List<ReviewVo> getReviewListAllByRoomNo(Connection conn, String roomNo) throws Exception {
 
-		String sql = "SELECT R.NO, M.PROFILE , M.NAME , R.CONTENT , R.ACCURACY , R.CLEAN , R.CHECKIN , R.LOCATION , R.COMMUNICATION , R.ENROLL_DATE FROM REVIEW R JOIN RESERVATION RV ON R.RESERVE_NO = RV.NO JOIN MEMBER M ON RV.RESERVATOR_NO=M.NO JOIN ROOM RM ON RM.NO = RV.ROOM_NO WHERE RV.ROOM_NO = ? AND R.DEL_YN = 'N' AND M.DEL_YN = 'N' ORDER BY R.ENROLL_DATE DESC";
+		String sql = "SELECT ROWNUM , T.NO , T.PROFILE , T.NAME , T.CONTENT , T.ACCURACY , T.CLEAN , T.CHECKIN , T.LOCATION , T.COMMUNICATION , T.ENROLL_DATE FROM ( SELECT R.NO , M.PROFILE , M.NAME , R.CONTENT , R.ACCURACY , R.CLEAN , R.CHECKIN , R.LOCATION , R.COMMUNICATION , R.ENROLL_DATE FROM REVIEW R JOIN RESERVATION RV ON R.RESERVE_NO = RV.NO JOIN MEMBER M ON RV.RESERVATOR_NO=M.NO JOIN ROOM RM ON RM.NO = RV.ROOM_NO WHERE RV.ROOM_NO = ? AND R.DEL_YN = 'N' AND M.DEL_YN = 'N' ORDER BY R.ENROLL_DATE DESC ) T";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, roomNo);
 		ResultSet rs = pstmt.executeQuery();
@@ -85,6 +85,7 @@ public class ReviewDao {
 		List<ReviewVo> voList = new ArrayList<ReviewVo>();
 		ReviewVo vo = null;
 		while (rs.next()) {
+			String rownum = rs.getString("ROWNUM");
 			String no = rs.getString("NO");
 			String profile = rs.getString("PROFILE");
 			String writerName = rs.getString("NAME");
@@ -106,6 +107,7 @@ public class ReviewDao {
 			vo.setContent(content);
 			vo.setEnrollDate(enrollDate);
 			vo.setStarAvg(starAvg);
+			vo.setRownum(rownum);
 
 			voList.add(vo);
 		}
@@ -116,7 +118,7 @@ public class ReviewDao {
 
 	// 내가 쓴 리뷰 보기
 	public List<ReviewVo> getReviewListAllByMemberNo(Connection conn, String memberNo) throws Exception {
-		String sql = "SELECT R.NO, RM.IMG_01 ROOM_IMG, RM.NAME ROOM_NAME, R.CONTENT , R.ACCURACY , R.CLEAN , R.CHECKIN , R.LOCATION , R.COMMUNICATION , R.ENROLL_DATE FROM REVIEW R JOIN RESERVATION RV ON R.RESERVE_NO = RV.NO JOIN MEMBER M ON RV.RESERVATOR_NO=M.NO JOIN ROOM RM ON RM.NO = RV.ROOM_NO WHERE RV.RESERVATOR_NO = ? AND R.DEL_YN = 'N' AND M.DEL_YN = 'N' ORDER BY R.ENROLL_DATE DESC";
+		String sql = "SELECT ROWNUM , AB.NO , AB.ROOM_IMG , AB.ROOM_NAME , AB.CONTENT , AB.ACCURACY , AB.CLEAN , AB.CHECKIN , AB.LOCATION , AB.COMMUNICATION , AB.ENROLL_DATE FROM ( SELECT ROWNUM RN , R.NO , RM.IMG_01 ROOM_IMG , RM.NAME ROOM_NAME , R.CONTENT , R.ACCURACY , R.CLEAN , R.CHECKIN , R.LOCATION , R.COMMUNICATION , R.ENROLL_DATE FROM REVIEW R JOIN RESERVATION RV ON R.RESERVE_NO = RV.NO JOIN MEMBER M ON RV.RESERVATOR_NO=M.NO JOIN ROOM RM ON RM.NO = RV.ROOM_NO WHERE RV.RESERVATOR_NO = ? AND R.DEL_YN = 'N' AND M.DEL_YN = 'N' ORDER BY R.ENROLL_DATE DESC ) AB";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, memberNo);
 		ResultSet rs = pstmt.executeQuery();
@@ -129,6 +131,7 @@ public class ReviewDao {
 			String roomName = rs.getString("ROOM_NAME");
 			String content = rs.getString("CONTENT");
 			String enrollDate = rs.getString("ENROLL_DATE");
+			String rownum = rs.getString("ROWNUM");
 			int accuracy = rs.getInt("ACCURACY");
 			int clean = rs.getInt("CLEAN");
 			int checkin = rs.getInt("CHECKIN");
@@ -144,6 +147,7 @@ public class ReviewDao {
 			vo.setContent(content);
 			vo.setEnrollDate(enrollDate);
 			vo.setStarAvg(starAvg);
+			vo.setRownum(rownum);
 
 			voList.add(vo);
 		}

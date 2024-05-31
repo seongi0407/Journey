@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.journey.review.service.ReviewService;
-import com.kh.journey.review.vo.PageVo;
 import com.kh.journey.review.vo.ReviewVo;
 
 @WebServlet("/review/list")
@@ -19,20 +18,11 @@ public class ReviewListController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-
 			ReviewService rs = new ReviewService();
 			String roomNo = req.getParameter("roomNo");
 			
-			String x = req.getParameter("pno") == null ? "1" : req.getParameter("pno");
-			int listCount = rs.getReviewCnt();
-			int currentPage = Integer.parseInt(x);
-			int pageLimit = 5;
-			int boardLimit = 10;
-			PageVo pvo = new PageVo(listCount, currentPage, pageLimit, boardLimit);
-			
-			List<ReviewVo> voList = rs.getReviewListAllByRoomNo(roomNo, pvo);
+			List<ReviewVo> voList = rs.getReviewListAllByRoomNo(roomNo);
 
-			req.setAttribute("pvo", pvo);
 			System.out.println(voList);
 			req.setAttribute("voList", voList);
 			req.getRequestDispatcher("/WEB-INF/views/review/list.jsp").forward(req, resp);

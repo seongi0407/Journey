@@ -32,7 +32,7 @@
 			<c:when test="${not empty sessionScope.loginHostVo.name}">
 				<div class="account-content" id="account-content">
 					<button>메세지</button>
-					<button>예약</button>
+					<button onclick="location.href='/journey/book/list'">예약</button>
 					<button>호스팅 수입</button>
 					<hr>
 					<button onclick="location.href='/journey/host/my'">계정</button>
@@ -46,10 +46,11 @@
 			<c:when test="${not empty sessionScope.loginMemberVo.name}">
 				<div class="account-content" id="account-content">
 					<button>메세지</button>
-					<button>여행</button>
+					<button onclick="location.href='/journey/book/list'">여행</button>
 					<button onclick="location.href='/journey/wish/list'">위시리스트</button>
 					<hr>
 					<button onclick="location.href='/journey/member/my'">계정</button>
+					<button onclick="location.href='/journey/member/review/list'">내가 작성한 후기</button>
 					<button>호스트 추천하기</button>
 					<hr>
 					<button>도움말 센터</button>
