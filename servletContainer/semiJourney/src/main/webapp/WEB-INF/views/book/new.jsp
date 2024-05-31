@@ -42,15 +42,15 @@
 	</nav>
 
 	<main class="main">
-		<form action="/journey/book/new" class="temp-form" method="post">
+		<form action="/journey/book/new" id="temp-form"  class="temp-form" method="post">
 
-			<input type="hidden" name="roomNo" value="${vo.roomNo}"> <input
-				type="hidden" name="inDate" value="${vo.inDate}"> <input
-				type="hidden" name="outDate" value="${vo.outDate}"> <input
-				type="hidden" name="guestCount" value="${vo.guestCount}"> <input
+			<input type="hidden" id="roomNo" name="roomNo" value="${vo.roomNo}"> <input
+				type="hidden" id="inDate" name="inDate" value="${vo.inDate}"> <input
+				type="hidden" id="outDate" name="outDate" value="${vo.outDate}"> <input
+				type="hidden" id="guestCount" name="guestCount" value="${vo.guestCount}"> <input
 				type="hidden" name="sum" value="${vo.sum}"> <input
-				type="hidden" name="payMethodCode" value="${vo.payMethodCode}">
-			<input type="hidden" name="cardNo" value="${vo.cardNo}">
+				type="hidden" id="payMethodCode" name="payMethodCode" value="${vo.payMethodCode}">
+			<input type="hidden" id="cardNo" name="cardNo" value="${vo.cardNo}">
 
 			<section class="rsv_inner" id="section">
 				<div id="sectionLeft">
@@ -132,8 +132,6 @@
 										id="N-PAY"><img
 										src="/journey/resources/img/book/npay.svg"> N-PAY</li>
 									<hr>
-									<li class="option" onclick="selectCard(event)" id="addCard"><img
-										src="/journey/resources/img/book/card.png"> 결제수단 추가</li>
 									<li class="option" onclick="selectCard(event)" data-code="P2"
 										id="deposit"><img
 										src="/journey/resources/img/book/deposit.png"> 무통장입금</li>
@@ -146,6 +144,8 @@
 							<button type="button" onclick="checkPassword()">확인</button>
 							<div id="passwordError" style="color: red; display: none;">비밀번호가
 								일치하지 않습니다</div>
+							<div id="passwordSuccess" style="color: blue; display: none;">비밀번호가
+								일치합니다</div>
 						</div>
 
 					</div>
@@ -240,7 +240,7 @@
 								<h3>총합계</h3>
 							</div>
 							<div id="totalPayInfoRight">
-								<span id="sum">${vo.sum}</span>
+								<span id="sum" >${vo.sum}</span>
 							</div>
 						</div>
 					</div>

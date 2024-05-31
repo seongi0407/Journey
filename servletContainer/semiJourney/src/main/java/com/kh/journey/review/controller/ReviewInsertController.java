@@ -59,16 +59,17 @@ public class ReviewInsertController extends HttpServlet {
 			int result = bs.reviewInsert(vo);
 
 			if (result != 1) {
+				session.setAttribute("alertMsg", "리뷰 작성 실패");
+
 				throw new Exception("리뷰 작성 실패");
 			}
-
+			session.setAttribute("alertMsg", "리뷰 작성 성공");
 			resp.sendRedirect("/journey/member/review/list");
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
-			req.setAttribute("errMsg", e.getMessage());
-			req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
+
 		}
 
 		// 결과 출력

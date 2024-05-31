@@ -29,6 +29,10 @@ main h1, main h2 {
 	align-items: center;
 }
 
+#place-name {
+	font-weight: bold;
+}
+
 #roomText {
 	padding: 20px;
 }
@@ -81,10 +85,14 @@ main h1, main h2 {
 .historyText {
 	display: grid;
 	grid-template-columns: 3fr 1fr;
-	grid-template-rows: auto auto;
+	grid-template-rows: 1fr 1fr;
 }
 
 /*리뷰 작성 버튼*/
+.reviewBtnDiv {
+	grid-row: span 2;
+}
+
 .reviewBtn, .cancelBtn {
 	grid-row: span 2;
 	width: 80px;

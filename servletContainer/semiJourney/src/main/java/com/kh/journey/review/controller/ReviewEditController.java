@@ -61,14 +61,16 @@ public class ReviewEditController extends HttpServlet {
 			int result = bs.editReviewContent(vo);
 
 			if (result != 1) {
+				session.setAttribute("alertMsg", "리뷰 수정 실패");
+
 				throw new Exception("리뷰 수정 실패");
 			}
-			resp.sendRedirect("/journey/home");
+			session.setAttribute("alertMsg", "리뷰 수정 성공");
+			resp.sendRedirect("/journey/member/review/list");
+
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
-			req.setAttribute("errMsg", e.getMessage());
-			req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
 		}
 	}
 }

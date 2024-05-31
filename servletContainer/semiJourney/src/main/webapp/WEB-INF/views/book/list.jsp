@@ -68,19 +68,20 @@
 			<c:forEach var="history" items="${historyList}">
 				<div class="roomContainer">
 					<div>
-						<img
-							src="/journey/resources/upload/room/${history.roomImg}"
+						<img src="/journey/resources/upload/room/${history.roomImg}"
 							alt="RoomImage" class="room-image" />
 					</div>
 					<div id="historyText" class="historyText">
 						<p id="place-name">${history.roomName}</p>
-						<c:if test="${history.reviewNo == null}">
-							<button class="reviewBtn"
-								onclick="location.href='/journey/review/insert?reserveNo=${history.reserveNo}'">리뷰작성</button>
-						</c:if>
-						<c:if test="${history.reviewNo != null}">
-							<button class="completedReviewBtn" disabled>작성완료</button>
-						</c:if>
+						<div class="reviewBtnDiv">
+							<c:if test="${history.reviewNo == null}">
+								<button class="reviewBtn"
+									onclick="location.href='/journey/review/insert?reserveNo=${history.reserveNo}'">리뷰작성</button>
+							</c:if>
+							<c:if test="${history.reviewNo != null}">
+								<button class="completedReviewBtn" disabled>작성완료</button>
+							</c:if>
+						</div>
 						<p id="stay-date">${history.inDate}~${history.outDate}</p>
 					</div>
 				</div>
@@ -94,8 +95,7 @@
 			<c:forEach var="refund" items="${refundList}">
 				<div class="roomContainer">
 					<div>
-						<img
-							src="/journey/resources/upload/room/${refund.roomImg}"
+						<img src="/journey/resources/upload/room/${refund.roomImg}"
 							alt="RoomImage" class="room-image" />
 					</div>
 					<div id="roomText">
