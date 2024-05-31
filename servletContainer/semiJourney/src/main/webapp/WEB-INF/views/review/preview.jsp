@@ -9,9 +9,11 @@
 <title>최신리뷰</title>
 <link rel="stylesheet" href="../resources/css/reviewList.css">
 
-<link rel="stylesheet" href="/journey/resources/css/layout.css">
-<script defer src="/journey/resources/js/layout.js"></script>
+<link rel="stylesheet" href="/journey/resources/css/layout/header2.css">
+<link rel="stylesheet" href="/journey/resources/css/layout/footer.css">
 
+<script defer src="/journey/resources/js/layout/header.js"></script>
+</head>
 
 <%@ include file="/WEB-INF/views/layout/util.jsp"%>
 

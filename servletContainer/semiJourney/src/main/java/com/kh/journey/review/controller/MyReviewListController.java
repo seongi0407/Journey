@@ -22,15 +22,17 @@ public class MyReviewListController extends HttpServlet {
 		try {
 			HttpSession session = req.getSession();
 			MemberVo loginMemberVo = (MemberVo) session.getAttribute("loginMemberVo");
+			String memberNo = loginMemberVo.getNo();
 
-			String memberNo = req.getParameter("memberNo");
+			if (loginMemberVo != null) {
+				ReviewService rs = new ReviewService();
+				List<ReviewVo> voList = rs.getReviewListAllByMemberNo(memberNo);
 
-			ReviewService rs = new ReviewService();
-			List<ReviewVo> voList = rs.getReviewListAllByMemberNo(memberNo);
-
-			System.out.println(voList);
-			req.setAttribute("voList", voList);
-			req.getRequestDispatcher("/WEB-INF/views/review/myReviewList.jsp").forward(req, resp);
+				req.setAttribute("voList", voList);
+				req.getRequestDispatcher("/WEB-INF/views/review/myReviewList.jsp").forward(req, resp);
+			} else {
+				req.getRequestDispatcher("/WEB-INF/views/home.jsp").forward(req, resp);
+			}
 		} catch (
 
 		Exception e) {

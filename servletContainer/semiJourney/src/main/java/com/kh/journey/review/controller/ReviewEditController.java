@@ -20,7 +20,7 @@ public class ReviewEditController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-			
+
 			String reviewNo = req.getParameter("reviewNo");
 
 			// 서비스 호출
@@ -28,7 +28,6 @@ public class ReviewEditController extends HttpServlet {
 
 			List<ReviewVo> review = rs.getReviewByNo(reviewNo);
 
-			System.out.println(review);
 			req.setAttribute("review", review);
 			req.getRequestDispatcher("/WEB-INF/views/review/edit.jsp").forward(req, resp);
 		} catch (Exception e) {
@@ -50,28 +49,22 @@ public class ReviewEditController extends HttpServlet {
 			MemberVo loginMemberVo = (MemberVo) session.getAttribute("loginMemberVo");
 
 			// 데이터 꺼내기
-
 			String no = req.getParameter("no");
 			String content = req.getParameter("content");
 
 			ReviewVo vo = new ReviewVo();
 			vo.setNo(no);
 			vo.setContent(content);
-			
+
 			// 서비스 호출
 			ReviewService bs = new ReviewService();
 			int result = bs.editReviewContent(vo);
-			
-			
+
 			if (result != 1) {
 				throw new Exception("리뷰 수정 실패");
 			}
-
 			resp.sendRedirect("/journey/home");
-
-		} catch (
-
-		Exception e) {
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 			req.setAttribute("errMsg", e.getMessage());

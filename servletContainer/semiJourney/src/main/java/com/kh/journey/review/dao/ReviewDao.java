@@ -136,7 +136,6 @@ public class ReviewDao {
 			int communication = rs.getInt("COMMUNICATION");
 
 			String starAvg = Integer.toString((accuracy + clean + checkin + loation + communication) / 5);
-			System.out.println(starAvg);
 
 			vo = new ReviewVo();
 			vo.setNo(no);

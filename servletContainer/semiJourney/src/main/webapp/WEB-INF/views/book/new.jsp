@@ -8,11 +8,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>예약 및 결제</title>
 <link rel="stylesheet" href="/journey/resources/css/book/bookNew.css">
-<script defer src="/journey/resources/js/book/bookNew.js"></script>
 
-<link rel="stylesheet" href="/journey/resources/css/layout/header.css">
+<link rel="stylesheet" href="/journey/resources/css/layout/header2.css">
 <link rel="stylesheet" href="/journey/resources/css/layout/footer.css">
-<script defer src="/journey/resources/js/home.js"></script>
+
+<!-- port -->
+
+<!-- 포트원 결제 -->
+<script defer src="https://cdn.iamport.kr/v1/iamport.js" defer></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script defer type="text/javascript"
+	src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js" defer></script>
+<!-- 포트원 결제 -->
+<!-- <script src="https://cdn.portone.io/v2/browser-sdk.js"></script> -->
+<script defer src="/journey/resources/js/book/bookNew.js"></script>
+<script defer src="/journey/resources/js/layout/header.js"></script>
 </head>
 
 <%@ include file="/WEB-INF/views/layout/util.jsp"%>
@@ -31,15 +42,15 @@
 	</nav>
 
 	<main class="main">
-		<form action="/journey/book/new" method="post">
+		<form action="/journey/book/new" class="temp-form" method="post">
 
 			<input type="hidden" name="roomNo" value="${vo.roomNo}"> <input
 				type="hidden" name="inDate" value="${vo.inDate}"> <input
 				type="hidden" name="outDate" value="${vo.outDate}"> <input
 				type="hidden" name="guestCount" value="${vo.guestCount}"> <input
 				type="hidden" name="sum" value="${vo.sum}"> <input
-				type="hidden" name="paymentMethod" value="${card.payMethodCode}">
-			<input type="hidden" name="cardNo" value="${card.cardNo}">
+				type="hidden" name="payMethodCode" value="${vo.payMethodCode}">
+			<input type="hidden" name="cardNo" value="${vo.cardNo}">
 
 			<section class="rsv_inner" id="section">
 				<div id="sectionLeft">
@@ -103,30 +114,29 @@
 								<ul class="option-list">
 									<c:forEach var="card" items="${cardVoList}">
 										<li class="option" data-code="P1" data-no="${card.no}"
-											data-pwd="${card.pwd}" onclick="selectCard(event)"
-											name="paymentMethod"><img
+											data-code="P1" data-pwd="${card.pwd}"
+											onclick="selectCard(event)" name="paymentMethod"><img
 											src="/journey/resources/img/book/amaxs.svg">${card.no}|${card.cardNick}|
 											${card.cardNum}|${card.pwd}</li>
 									</c:forEach>
 									<hr>
 									<li>간편결제</li>
 									<li class="option" onclick="selectCard(event)" data-code="P3"
-										id="KAKAOPAY" name="paymentMethod"><img
+										id="KAKAOPAY"><img
 										src="/journey/resources/img/book/kakaopay.png"> KAKAO
 										PAY</li>
 									<li class="option" onclick="selectCard(event)" data-code="P3"
-										id="TOSS-PAY" name="paymentMethod"><img
+										id="TOSS-PAY"><img
 										src="/journey/resources/img/book/Toss.png"> TOSS-PAY</li>
 									<li class="option" onclick="selectCard(event)" data-code="P3"
-										id="N-PAY" name="paymentMethod"><img
+										id="N-PAY"><img
 										src="/journey/resources/img/book/npay.svg"> N-PAY</li>
 									<hr>
 									<li class="option" onclick="selectCard(event)" id="addCard"><img
-										src="/journey/resources/img/book/카드.png"> 결제수단 추가</li>
+										src="/journey/resources/img/book/card.png"> 결제수단 추가</li>
 									<li class="option" onclick="selectCard(event)" data-code="P2"
 										id="deposit"><img
-										src="/journey/resources/img/book/무통장.png" name="paymentMethod">
-										무통장입금</li>
+										src="/journey/resources/img/book/deposit.png"> 무통장입금</li>
 								</ul>
 							</div>
 						</section>
@@ -137,6 +147,7 @@
 							<div id="passwordError" style="color: red; display: none;">비밀번호가
 								일치하지 않습니다</div>
 						</div>
+
 					</div>
 
 					<div class="rsvInnerBox" id="sendMessageToHost">
@@ -149,7 +160,8 @@
 
 							<div class="hostInformation">
 								<div id="hostImgBox">
-									<img id="hostImg" src="/journey/resources/upload/host/${vo.hostProfile}">
+									<img id="hostImg"
+										src="/journey/resources/upload/host/${vo.hostProfile}">
 								</div>
 								<div id="hostText">
 									<div id="hostName">${vo.hostName}</div>
@@ -180,6 +192,7 @@
 							<div id="passwordError" style="color: red; display: none;">비밀번호가
 								일치하지 않습니다</div>
 						</div>
+						<div></div>
 					</div>
 
 
@@ -205,7 +218,8 @@
 				<div id="paymentMethod">
 					<div class="paymentMethod" id="roomInfo">
 						<div id="roomImgBox">
-							<img id="roomImg" src="/journey/resources/upload/room/${vo.roomImg}">
+							<img id="roomImg"
+								src="/journey/resources/upload/room/${vo.roomImg}">
 						</div>
 						<div id="roomText">
 							<div id="roomName">${vo.roomName}</div>
@@ -226,7 +240,7 @@
 								<h3>총합계</h3>
 							</div>
 							<div id="totalPayInfoRight">
-								<span>₩${vo.sum}</span>
+								<span id="sum">${vo.sum}</span>
 							</div>
 						</div>
 					</div>
@@ -241,7 +255,7 @@
 	<!-- 날짜수정 -->
 	<div id="editDate_popup" class="popup">
 		<div class="popup-content">
-			<span class="close-button" onclick="close_editDate()">&times;</span>
+			<span class="closeBtn" onclick="close_editDate()">&times;</span>
 			<h2>날짜 수정</h2>
 			<div class="date-inputs">
 				<div class="input-group">
@@ -260,7 +274,7 @@
 	<!-- 인원수정 -->
 	<div id="editPeople_popup" class="popup">
 		<div class="popup-content">
-			<span class="close-button" onclick="close_editPeople()">&times;</span>
+			<span class="closeBtn" onclick="close_editPeople()">&times;</span>
 			<h2>인원 수정</h2>
 			<label for="peopleCountInput">인원:</label> <input type="number"
 				id="peopleCountInput" min="1" max="10"><br>
@@ -273,7 +287,7 @@
 	<!-- 환불정책 -->
 	<div id="popup_refundInfo" class="popup">
 		<div class="popup-content">
-			<span class="close-button" onclick="closePop()">&times;</span>
+			<span class="closeBtn" onclick="closePop()">&times;</span>
 			<h2>환불정책</h2>
 			<div class="refundInformation">
 				<hr>

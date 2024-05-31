@@ -1,7 +1,6 @@
 package com.kh.journey.reservation.controller;
 
 import java.io.IOException;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.kh.journey.card.vo.CardVo;
+import com.kh.journey.member.vo.MemberVo;
 import com.kh.journey.reservation.service.ReservationService;
 import com.kh.journey.reservation.vo.ReservationVo;
 
@@ -23,9 +23,8 @@ public class ReservationNewController extends HttpServlet {
 		try {
 			HttpSession session = req.getSession();
 
-//			MemberVo loginMemberVo = (MemberVo) session.getAttribute("loginMemberVo");
-			String loginMemNo = "1";
-			// loginMemberVo.getNo();
+			MemberVo loginMemberVo = (MemberVo) session.getAttribute("loginMemberVo");
+			String loginMemNo = loginMemberVo.getNo();
 			String roomNo = req.getParameter("roomNo");
 			String inDate = req.getParameter("inDate");
 			String outDate = req.getParameter("outDate");
@@ -34,7 +33,7 @@ public class ReservationNewController extends HttpServlet {
 
 			ReservationService rs = new ReservationService();
 			List<CardVo> cardVoList = rs.getCardList(loginMemNo);
-			List<ReservationVo> roomDetail = rs.getRoomDetail(roomNo,inDate, outDate);
+			List<ReservationVo> roomDetail = rs.getRoomDetail(roomNo, inDate, outDate);
 			// 숙소 상세에서 예약정보 넘어오면 함께 넘겨야함.
 			ReservationVo roomInfo = roomDetail.get(0);
 			ReservationVo vo = new ReservationVo();
@@ -72,37 +71,40 @@ public class ReservationNewController extends HttpServlet {
 		try {
 			HttpSession session = req.getSession();
 
-//			MemberVo loginMemberVo = (MemberVo) session.getAttribute("loginMemberVo");
-//			String reservatorNo = loginMemberVo.getNo();
-			String loginMemNo = "1";
-			// loginMemberVo.getNo();
+			MemberVo loginMemberVo = (MemberVo) session.getAttribute("loginMemberVo");
+			String reservatorNo = loginMemberVo.getNo();
 
-			String roomNo = req.getParameter("roomNo");
-			String inDate = req.getParameter("inDate");
-			String outDate = req.getParameter("outDate");
-			String guestCount = req.getParameter("guestCount");
-			String sum = req.getParameter("sum");
-			String payMethodCode = req.getParameter("payMethodCode");
-			String cardNo= req.getParameter("cardNo");
+			if (loginMemberVo != null) {
+				String roomNo = req.getParameter("roomNo");
+				String inDate = req.getParameter("inDate");
+				String outDate = req.getParameter("outDate");
+				String guestCount = req.getParameter("guestCount");
+				String sum = req.getParameter("sum");
+				String payMethodCode = req.getParameter("payMethodCode");
+				String cardNo = req.getParameter("cardNo");
 
-			ReservationVo vo = new ReservationVo();
+				ReservationVo vo = new ReservationVo();
 
-			vo.setReservatorNo(loginMemNo);
-			vo.setRoomNo(roomNo);
-			vo.setInDate(inDate);
-			vo.setOutDate(outDate);
-			vo.setGuestCount(guestCount);
-			vo.setSum(sum);
-			vo.setPayMethodCode(payMethodCode);
+				vo.setReservatorNo(reservatorNo);
+				vo.setRoomNo(roomNo);
+				vo.setInDate(inDate);
+				vo.setOutDate(outDate);
+				vo.setGuestCount(guestCount);
+				vo.setSum(sum);
+				vo.setPayMethodCode(payMethodCode);
+				vo.setCardNo(cardNo);
+				
+				System.out.println(vo);
 
-			// 서비스 호출
-			ReservationService rs = new ReservationService();
-			int result = rs.ReservationInsert(vo);
+				// 서비스 호출
+				ReservationService rs = new ReservationService();
+				int result = rs.ReservationInsert(vo);
 
-			if (result != 1) {
-				throw new Exception("예약 실패");
+				if (result != 1) {
+					throw new Exception("예약 실패");
+				}
+				resp.sendRedirect("/journey/book/check");
 			}
-			resp.sendRedirect("/journey/book/check");
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

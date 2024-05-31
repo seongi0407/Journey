@@ -1,6 +1,9 @@
 package com.kh.journey.review.service;
 
-import static com.kh.journey.db.JDBCTemplate.*;
+import static com.kh.journey.db.JDBCTemplate.close;
+import static com.kh.journey.db.JDBCTemplate.commit;
+import static com.kh.journey.db.JDBCTemplate.getConnection;
+import static com.kh.journey.db.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.List;
@@ -45,7 +48,7 @@ public class ReviewService {
 
 	// 해당 객실 모든 리뷰보기
 	public List<ReviewVo> getReviewListAllByRoomNo(String roomNo) throws Exception {
-		
+
 		Connection conn = getConnection();
 		List<ReviewVo> voList = dao.getReviewListAllByRoomNo(conn, roomNo);
 
@@ -67,7 +70,7 @@ public class ReviewService {
 
 	// 리뷰 수정(내용가져오기)
 	public List<ReviewVo> getReviewByNo(String reviewNo) throws Exception {
-		
+
 		Connection conn = getConnection();
 		List<ReviewVo> review = dao.getReviewByNo(conn, reviewNo);
 
