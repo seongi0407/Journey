@@ -295,6 +295,8 @@ public class RoomDao {
          
          vo = new RoomVo();
          
+         vo.setNo(no);
+         
          vo.setHostName(hostName);
          vo.setHostProfile(hostProfile);
          

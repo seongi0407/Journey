@@ -80,23 +80,24 @@
                 </div>
 
                 <div id="right">
-                    <form id="reserve-table" action="/journey/book/new" method="post">
+                    <form id="reserve-table" action="/journey/book/new" method="get">
                         <h2 id="price-per-day">￦${vo.weekdayPrice}/박</h2>
+                        <input type="hidden" name="roomNo" value="${vo.no}">
                         <div id="reserve-select">
                             <div id="check-in">
-                                <label for="check-in">체크인</label>
+                                <label for="inDate">체크인</label>
                                 <br>
-                                <input type="date" name="check-in">
+                                <input type="date" name="inDate">
                             </div>
                             <div id="check-out">
-                                <label for="check-out">체크아웃</label>
+                                <label for="outDate">체크아웃</label>
                                 <br>
-                                <input type="date" name="check-out">
+                                <input type="date" name="outDate">
                             </div>
                             <div id="guest-num">
-                                <label for="guest-num">게스트 인원</label>
+                                <label for="guestCount">게스트 인원</label>
                                 <br>
-                                <select name="guest-num">
+                                <select name="guestCount">
                                     <option value="1">1명</option>
                                     <option value="2">2명</option>
                                     <option value="3">3명</option>

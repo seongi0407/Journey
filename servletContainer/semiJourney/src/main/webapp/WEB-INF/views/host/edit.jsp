@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>멤버 개인 정보 수정</title>
+<title>호스트 개인 정보 수정</title>
 
-<link rel="stylesheet" href="/journey/resources/css/member/edit.css">
+<link rel="stylesheet" href="/journey/resources/css/host/edit.css">
 <link rel="stylesheet" href="/journey/resources/css/layout/header2.css">
 <link rel="stylesheet" href="/journey/resources/css/layout/footer.css">
 
@@ -37,9 +37,9 @@
 	            <div id="name">
 	              <h3>실명</h3>
 	            </div>
-	            <div name="name"><span>${sessionScope.loginMemberVo.name}</span></div>
+	            <div name="name"><span>${sessionScope.loginHostVo.name}</span></div>
 	          </div>
-	          <div class="update"><span class="updateName" role="button" onclick="location.href='/journey/member/edit/name'">수정</span></div>
+	          <div class="update"><span class="updateName" role="button" onclick="location.href='/journey/host/edit/name'">수정</span></div>
 	        </div>
 	        <div><br>
 	          <hr />
@@ -52,7 +52,7 @@
 	            </div>
 	            <div name="e-mail"><span>********</span></div>
 	          </div>
-	          <div class="update"><span class="updateEmail" role="button" onclick="location.href='/journey/member/edit/password'">수정</span></div>
+	          <div class="update"><span class="updateEmail" role="button" onclick="location.href='/journey/host/edit/password'">수정</span></div>
 	        </div>
 	        <div><br>
 	          <hr />
@@ -63,35 +63,9 @@
 	            <div id="phone">
 	              <h3>전화번호</h3>
 	            </div>
-	            <div name="phone"><span>${sessionScope.loginMemberVo.phone}</span></div>
+	            <div name="phone"><span>${sessionScope.loginHostVo.phone}</span></div>
 	          </div>
-	          <div class="update"><span class="updatePhoneNumber" role="button" onclick="location.href='/journey/member/edit/phone'">수정</span></div>
-	        </div>
-	        <div><br>
-	          <hr />
-	        </div>
-	
-	        <div class="updateMemberPersonal">
-	          <div class="updateInner">
-	            <div id="e-mail">
-	              <h3>이메일 주소</h3>
-	            </div>
-	            <div name="e-mail"><span>${sessionScope.loginMemberVo.email}</span></div>
-	          </div>
-	          <div class="update"><span class="updateEmail" role="button" onclick="location.href='/journey/member/edit/email'">수정</span></div>
-	        </div>
-	        <div><br>
-	          <hr />
-	        </div>
-	
-	        <div class="updateMemberPersonal">
-	          <div class="updateInner">
-	            <div id="birthday">
-	              <h3>생년월일</h3>
-	            </div>
-	            <div name="birthday"><span>${sessionScope.loginMemberVo.birthDate}</span></div>
-	          </div>
-	          <div class="update"><span class="updateBirthday" role="button" onclick="location.href='/journey/member/edit/birth'">수정</span></div>
+	          <div class="update"><span class="updatePhoneNumber" role="button" onclick="location.href='/journey/host/edit/phone'">수정</span></div>
 	        </div>
 	        <div><br>
 	          <hr />

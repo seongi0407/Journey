@@ -79,17 +79,14 @@ public class MemberService {
 		return result;
 	} // quit
 	
-	// 회원 정보 수정
-	public int edit(MemberVo vo) throws Exception {
+	// 회원 정보 수정 (이름)
+	public int editName(MemberVo vo) throws Exception {
 		
 		// 비즈니스 로직
-		if(!vo.getPwd().equals(vo.getPwd2())){
-			throw new Exception("비밀번호 일치하지 않음");
-		}
 		
 		// DAO 호출
 		Connection conn = getConnection();
-		int result = dao.edit(conn, vo);
+		int result = dao.editName(conn, vo);
 		
 		if(result == 1) {
 			commit(conn);
@@ -100,5 +97,88 @@ public class MemberService {
 		close(conn);
 		
 		return result;
-	} // edit
+	} // editName
+	
+	// 회원 정보 수정 (비밀번호)
+	public int editPwd(MemberVo vo) throws Exception {
+		
+		// 비즈니스 로직
+		if(!vo.getPwd().equals(vo.getPwd2())) {
+			throw new Exception("비밀번호 변경 실패");
+		}
+		
+		// DAO 호출
+		Connection conn = getConnection();
+		int result = dao.editPwd(conn, vo);
+		
+		if(result == 1) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	} // editPwd
+	
+	// 회원 정보 수정 (전화번호)
+	public int editPhone(MemberVo vo) throws Exception {
+		
+		// 비즈니스 로직
+		
+		// DAO 호출
+		Connection conn = getConnection();
+		int result = dao.editPhone(conn, vo);
+		
+		if(result == 1) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	} // editPhone
+	
+	// 회원 정보 수정 (이메일)
+	public int editEmail(MemberVo vo) throws Exception {
+		
+		// 비즈니스 로직
+		
+		// DAO 호출
+		Connection conn = getConnection();
+		int result = dao.editEmail(conn, vo);
+		
+		if(result == 1) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	} // editEmail
+	
+	// 회원 정보 수정 (생년월일)
+	public int editBirth(MemberVo vo) throws Exception {
+		
+		// 비즈니스 로직
+		
+		// DAO 호출
+		Connection conn = getConnection();
+		int result = dao.editBirth(conn, vo);
+		
+		if(result == 1) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	} // editBirth
 } // class

@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,23 +9,22 @@
 <title>숙소 목록</title>
 
 <link rel="stylesheet" href="/journey/resources/css/accom/accomList.css">
-<script defer src="/journey/resources/js/accom/accomStatusDelete.js"></script>
+<link rel="stylesheet" href="/journey/resources/css/layout/header2.css">
+<link rel="stylesheet" href="/journey/resources/css/layout/footer.css">
 
+<script defer src="/journey/resources/js/accom/accomStatusDelete.js"></script>
+<script defer src="/journey/resources/js/layout/header.js"></script>
+
+<%@ include file="/WEB-INF/views/layout/util.jsp" %>
 </head>
 <body>
-	<h1>숙소 목록</h1>
+
+	<%@ include file="/WEB-INF/views/layout/header.jsp"%>
 
 	<div class="accom-container">
-		<!-- 숙소 삭제했을 때 삭제했다는 알림 띄우기 -->
-		<c:if test="${not empty sessionScope.alertMsg}">
-			<script type="text/javascript">
-				alert("${sessionScope.alertMsg}");
-			<%session.removeAttribute("alertMsg");%>
-			</script>
-		</c:if>
-
 		<c:choose>
 			<c:when test="${not empty voList}">
+			
 				<c:forEach var="vo" items="${voList}">
 					<div class="accom-list">
 						<img src="/journey/resources/upload/accom/${vo.imgUrl}"  alt="숙소 사진">
@@ -53,5 +51,8 @@
 
 		</c:choose>
 	</div>
+	
+	<%@ include file="/WEB-INF/views/layout/footer.jsp"%>
+	
 </body>
 </html>
