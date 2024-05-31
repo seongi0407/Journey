@@ -40,7 +40,6 @@ public class AccomDao {
 
 	public List<AccomVo> selectAccomList(Connection conn, String hostNo) throws Exception {
 
-//		R.NO, 
 		String sql = "SELECT NO , HOST_NO , NAME , ADDRESS , SWIM_YN , SPA_YN , DISABLED_YN , PARKING_YN , ELEVATOR_YN , BREAKFAST_YN , SMOKE_YN , IMG_URL FROM ACCOMMODATION WHERE HOST_NO = ? AND DEL_YN = 'N'";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, hostNo);
@@ -49,7 +48,6 @@ public class AccomDao {
 		List<AccomVo> accomList = new ArrayList<AccomVo>();
 		while (rs.next()) {
 			String no = rs.getString("NO");
-//			String roomNo = rs.getString("NO");
 			String name = rs.getString("NAME");
 			String address = rs.getString("ADDRESS");
 			String swimYn = rs.getString("SWIM_YN");
@@ -63,7 +61,6 @@ public class AccomDao {
 
 			AccomVo vo = new AccomVo();
 			vo.setNo(no);
-//			vo.setRoomNo(roomNo);
 			vo.setHostNo(hostNo);
 			vo.setName(name);
 			vo.setAddress(address);

@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import com.kh.journey.accom.service.AccomService;
@@ -45,8 +46,6 @@ public class AccomEditController extends HttpServlet {
 	    } catch (Exception e) {
 	    	System.out.println(e.getMessage());
 	        e.printStackTrace();
-	        req.setAttribute("errMsg", e.getMessage());
-	        req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
 	    }
 	}
 
@@ -56,6 +55,8 @@ public class AccomEditController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		try {
+			
+			HttpSession session = req.getSession();
 
 //			데이터 꺼내기 			
 			String no = req.getParameter("no");
@@ -128,18 +129,21 @@ public class AccomEditController extends HttpServlet {
 //			!!!!!!!!!!!!!!!
 			System.out.println("Edit result: " + result);
 			
-//			결과
-			if (result != 1) {
-				throw new Exception("숙소 정보 수정 실패...");
-			}
-			resp.sendRedirect("/journey/accom/list");
 
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			e.printStackTrace();
-			req.setAttribute("errMsg", e.getMessage());
-			req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
-		}
+			// 결과
+	         if(result < 1) {
+	            session.setAttribute("alertMsg", " 숙소 정보 수정 실패");
+	            throw new Exception("숙소 정보 수정 실패");
+	         }
+	         session.setAttribute("alertMsg", "숙소 정보 수정 성공");
+	         
+	         resp.sendRedirect("/journey/accom/list");
+	         
+	      } catch (Exception e) {
+	         System.out.println(e.getMessage());
+	         e.printStackTrace();
+	      }
+		
 	}
 
 }

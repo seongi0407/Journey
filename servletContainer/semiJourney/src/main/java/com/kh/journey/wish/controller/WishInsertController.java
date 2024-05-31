@@ -16,8 +16,7 @@ import com.kh.journey.wish.vo.WishVo;
 
 @WebServlet("/wish/insert")
 public class WishInsertController extends HttpServlet {
-	
-	
+
 //	위시리스트 화면 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -25,14 +24,13 @@ public class WishInsertController extends HttpServlet {
 		req.getRequestDispatcher("/WEB-INF/views/wish/insert.jsp").forward(req, resp);
 	}
 
-	
 //	위시리스트 구현
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	
-		 try{
-	            // 로그인 확인
-	            HttpSession session = req.getSession();
+
+		try {
+			// 로그인 확인
+			HttpSession session = req.getSession();
 //	            MemberVo loginMemberVo = (MemberVo) session.getAttribute("loginMemberVo");
 //	            if (loginMemberVo == null) {
 //	                resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
@@ -41,36 +39,34 @@ public class WishInsertController extends HttpServlet {
 //	            	throw new Exception("로그인이 필요합니다.");
 //	            }
 
-	            // 데이터 꺼내기
-	            String roomNo = req.getParameter("roomNo");
+			// 데이터 꺼내기
+			String roomNo = req.getParameter("roomNo");
 //	            String memberNo = loginMemberVo.getNo();
-	            String memberNo = req.getParameter("memberNo");
+			String memberNo = req.getParameter("memberNo");
 
-	            // 데이터 뭉치기
-	            WishVo vo = new WishVo();
-	            vo.setMemNo(memberNo);
-	            vo.setRoomNo(roomNo);
+			// 데이터 뭉치기
+			WishVo vo = new WishVo();
+			vo.setMemNo(memberNo);
+			vo.setRoomNo(roomNo);
 
-	            // 서비스 호출
-	            WishService ws = new WishService();
-	            int result = ws.insert(vo);
+			// 서비스 호출
+			WishService ws = new WishService();
+			int result = ws.insert(vo);
 
-	            // 결과
-	            if (result < 1) {
-	                throw new Exception("위시리스트 등록을 실패했습니다.");
-	            }
-	            
-//	            PrintWriter out = resp.getWriter();
-//	            out.write("result: " + result);
-	            resp.sendRedirect("/journey/wish/list");
+			// 결과
+			if (result < 1) {
+				session.setAttribute("alertMsg", "위시리스트 찜 실패");
+				throw new Exception("위시리스트 찜 실패");
+			}
+			session.setAttribute("alertMsg", "위시리스트 찜 성공");
 
-	        }catch(Exception e) {
-				System.out.println(e.getMessage());
-				e.printStackTrace();
-				req.setAttribute("errMsg", e.getMessage());
-				req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
-	        }
-		
+			resp.sendRedirect("/journey/wish/list");
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
+
 	}
 
 }

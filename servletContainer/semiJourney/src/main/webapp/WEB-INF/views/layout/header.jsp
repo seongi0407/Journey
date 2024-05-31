@@ -73,23 +73,24 @@
 	<div class="select-account" id="select-account-join">
 		<div id="admin">
 			<button>
-				<img src="https://cdn3.emoji.gg/emojis/2342-admin.png" alt="관리자">
+				<img src="/journey/resources/img/header/admin.png" alt="관리자">
 			</button>
-			<span>관리자</span>
+			<button>관리자</button>
 		</div>
 		<div id="host">
 			<!-- 포트번호 확인해서 바꾸기 -->
-			<button>
-				<a href="http://127.0.0.1:8888/journey/host/join"><img
-					src="https://cdn3.emoji.gg/emojis/2342-admin.png" alt="호스트"></a>
-			</button>
-			<span>호스트</span>
+			<a href="http://127.0.0.1:8888/journey/host/join">
+				<button>
+					<img src="/journey/resources/img/header/host.png" alt="호스트">
+				</button>
+			</a>
+			<button>호스트</button>
 		</div>
 		<div id="member">
 			<button id="memberJoin" onclick="showMemberJoin()">
-				<img src="https://cdn3.emoji.gg/emojis/2342-admin.png" alt="회원">
+				<img src="/journey/resources/img/header/member.png" alt="회원">
 			</button>
-			<span>회원</span>
+			<button>회원</button>
 		</div>
 		<button class="close-button" id="close-button-join">닫 기</button>
 	</div>
@@ -98,22 +99,22 @@
 	<div class="select-account" id="select-account-login">
 		<div id="admin">
 			<button onclick="showAdminLogin()">
-				<img src="https://cdn3.emoji.gg/emojis/2342-admin.png" alt="관리자">
+				<img src="/journey/resources/img/header/admin.png" alt="관리자">
 			</button>
-			<span>관리자</span>
+			<button>관리자</button>
 		</div>
 		<div id="host">
 			<!-- 포트번호 확인해서 바꾸기 -->
 			<button onclick="showHostLogin()">
-				<img src="https://cdn3.emoji.gg/emojis/2342-admin.png" alt="호스트">
+				<img src="/journey/resources/img/header/host.png" alt="호스트">
 			</button>
-			<span>호스트</span>
+			<button>호스트</button>
 		</div>
 		<div id="member">
 			<button id="memberLogin" onclick="showMemberLogin()">
-				<img src="https://cdn3.emoji.gg/emojis/2342-admin.png" alt="회원">
+				<img src="/journey/resources/img/header/member.png" alt="회원">
 			</button>
-			<span>회원</span>
+			<button>회원</button>
 		</div>
 		<button class="close-button" id="close-button-login">닫 기</button>
 	</div>

@@ -15,41 +15,43 @@ import com.kh.journey.host.vo.HostVo;
 
 @WebServlet("/accom/delete")
 public class AccomDeleteController extends HttpServlet {
-	
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+
 		try {
-			
-            HttpSession session = req.getSession();
 
-            // 데이터 꺼내기
-            String no = req.getParameter("no");
+			HttpSession session = req.getSession();
 
-            AccomVo vo = new AccomVo();
-            vo.setNo(no);
+			// 데이터 꺼내기
+			String no = req.getParameter("no");
 
-            // 서비스 호출
-            AccomService as = new AccomService();
-            int result = as.delete(vo);
+			AccomVo vo = new AccomVo();
+			vo.setNo(no);
 
-            if (result != 1) {
-                throw new Exception("숙소 정보 삭제 실패");
-            }
+			// 서비스 호출
+			AccomService as = new AccomService();
+			int result = as.delete(vo);
 
-            // 결과 - 목록으로 보내기
-            session.setAttribute("alertMsg", "숙소 삭제 성공");
-            resp.sendRedirect("/journey/accom/list");
+			if (result != 1) {
+				throw new Exception("숙소 정보 삭제 실패");
+			}
 
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-            req.setAttribute("errMsg", e.getMessage());
-            req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
-        }
+			// 결과
+			if (result < 1) {
+				session.setAttribute("alertMsg", "숙소 삭제 실패");
+				throw new Exception("숙소 삭제 실패");
+			}
+			session.setAttribute("alertMsg", "숙소 삭제 성공");
+
+			resp.sendRedirect("/journey/home");
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
 	}
-	
-	
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		doGet(req, resp);
