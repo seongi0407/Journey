@@ -4,31 +4,37 @@ function checkboxAll(source) {
 	checkboxes.forEach(checkbox => checkbox.checked = source.checked);
 }
 
-// 선택한 리뷰가 없을 경우 
-function deleteCheckedBoard() {
+function deleteReviews() {
+
+	//체크박스 전부 가져오기
 	const checkedBoxes = document.querySelectorAll('input[name="reviewCheckbox"]:checked');
-	if (checkedBoxes.length === 0) {
-		alert('삭제할 리뷰를 선택해주세요.');
-		return;
+	console.log("checkedBoxes : ", checkedBoxes);
+
+	let reviewNos = [];
+	for (let i = 0; i < checkedBoxes.length; ++i) {
+		if (checkedBoxes[i].checked) {
+			reviewNos.push(checkedBoxes[i].value);
+
+		}
+
 	}
 
-	// 선택한 리뷰 있을 경우
-	const form = document.createElement('form');
-	form.method = 'POST';
-	form.action = '/journey/review/delete';
-
-	checkedBoxes.forEach(box => {
-		const input = document.createElement('input');
-		input.type = 'hidden';
-		input.name = 'reviewNo';
-		input.value = box.value;
-		form.appendChild(input);
+	$.ajax({
+		
+		url: '/journey/review/delete',
+		method: 'POST',
+		contentType: 'application/json',
+		data: JSON.stringify(reviewNos),
+		success: function(data) {
+			alert('리뷰가 삭제되었습니다.');
+			// 페이지 새로고침
+			console.log(reviewNos);
+			location.reload();
+		},
+		error: function(error) {
+			alert('리뷰 삭제 중 오류가 발생하였습니다.');
+		}
 	});
 
-	document.body.appendChild(form);
-	form.submit();
 
 }
-
-
-

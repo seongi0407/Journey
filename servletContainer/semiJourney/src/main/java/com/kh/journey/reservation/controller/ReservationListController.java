@@ -21,24 +21,15 @@ public class ReservationListController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-//			HttpSession session = req.getSession();
-//			MemberVo loginMemberVo = (MemberVo) session.getAttribute("loginMemberVo");
-//			HostVo loginHostVo = (HostVo) session.getAttribute("loginHostVo");
-//
-//			String loginMemNo = loginMemberVo.getNo();
-//			String hostNo = loginHostVo.getNo();
+			HttpSession session = req.getSession();
+			MemberVo loginMemberVo = (MemberVo) session.getAttribute("loginMemberVo");
+			HostVo loginHostVo = (HostVo) session.getAttribute("loginHostVo");
 
-//			if (loginHostVo == null && loginMemberVo == null) {
-//				resp.sendRedirect("/journey/home");
-//			}
-
-//			else 
-
-			String loginMemNo = req.getParameter("memNo");
-			String hostNo = req.getParameter("hostNo");
-
-			if (hostNo != null) {
+			if (loginHostVo == null && loginMemberVo == null) {
+				resp.sendRedirect("/journey/home");
+			} else if (loginHostVo != null) {
 				// 호스트 화면
+				String hostNo = loginHostVo.getNo();
 				ReservationService rs = new ReservationService();
 				List<ReservationVo> reservationList = rs.getReservationListByHostNo(hostNo);
 				List<ReservationVo> historyList = rs.getHistoryListByHostNo(hostNo);
@@ -49,8 +40,9 @@ public class ReservationListController extends HttpServlet {
 				req.setAttribute("refundList", refundList);
 
 				req.getRequestDispatcher("/WEB-INF/views/book/hostBookInfo.jsp").forward(req, resp);
-			} else if (loginMemNo != null) {
+			} else if (loginMemberVo != null) {
 				// 회원 화면
+				String loginMemNo = loginMemberVo.getNo();
 				ReservationService rs = new ReservationService();
 				List<ReservationVo> reservationList = rs.getReservationList(loginMemNo);
 				List<ReservationVo> historyList = rs.getHistoryList(loginMemNo);
@@ -60,8 +52,7 @@ public class ReservationListController extends HttpServlet {
 				req.setAttribute("historyList", historyList);
 				req.setAttribute("refundList", refundList);
 				req.getRequestDispatcher("/WEB-INF/views/book/list.jsp").forward(req, resp);
-			}
-			else {
+			} else {
 				req.getRequestDispatcher("/WEB-INF/views/home.jsp").forward(req, resp);
 			}
 

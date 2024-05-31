@@ -357,14 +357,14 @@
 	display: grid;
 }
 
-.close-button {
+.closeBtn {
 	color: #aaa;
 	float: right;
 	font-size: 28px;
 	font-weight: bold;
 }
 
-.close-button:hover, .close-button:focus {
+.closeBtn:hover, .closeBtn:focus {
 	color: black;
 	text-decoration: none;
 	cursor: pointer;

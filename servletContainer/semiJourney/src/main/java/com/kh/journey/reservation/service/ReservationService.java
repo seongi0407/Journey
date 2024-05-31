@@ -36,7 +36,7 @@ public class ReservationService {
 	// 예약시 룸 정보 가져오기
 	public List<ReservationVo> getRoomDetail(String roomNo, String inDateStr, String outDateStr) throws Exception {
 
-		// 날짜 파싱
+		// 날짜 계산
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date inDate = sdf.parse(inDateStr);
 		Date outDate = sdf.parse(outDateStr);
@@ -57,11 +57,9 @@ public class ReservationService {
 			int weekendPrice = Integer.parseInt(roomInfo.getWeekendPrice());
 			total = calculateTotalCost(inDate, stay, weekdayPrice, weekendPrice);
 
-			roomInfo.setStayDay(String.valueOf(stay)); // 숙박 일수 설정
-			roomInfo.setSum(String.valueOf(total)); // 총 비용 설정
+			roomInfo.setStayDay(String.valueOf(stay)); // 숙박 일수
+			roomInfo.setSum(String.valueOf(total)); // 총 비용
 		}
-
-		System.out.println(roomDetail);
 
 		close(conn);
 		return roomDetail;
@@ -147,7 +145,6 @@ public class ReservationService {
 	}
 
 	// 호스트 화면
-
 	public List<ReservationVo> getReservationListByHostNo(String hostNo) throws Exception {
 		Connection conn = getConnection();
 		List<ReservationVo> reservationList = dao.getReservationListByHostNo(conn, hostNo);

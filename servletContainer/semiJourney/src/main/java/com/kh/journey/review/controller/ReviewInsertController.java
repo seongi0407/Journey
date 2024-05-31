@@ -35,7 +35,7 @@ public class ReviewInsertController extends HttpServlet {
 			MemberVo loginMemberVo = (MemberVo) session.getAttribute("loginMemberVo");
 
 			// 데이터 꺼내기
-			String writerNo = "1";
+			String writerNo = loginMemberVo.getNo();
 			String reserveNo = req.getParameter("reserveNo");
 			String content = req.getParameter("content");
 			String accuracy = req.getParameter("accuracy");
@@ -45,6 +45,7 @@ public class ReviewInsertController extends HttpServlet {
 			String communication = req.getParameter("communication");
 
 			ReviewVo vo = new ReviewVo();
+			vo.setWriterNo(writerNo);
 			vo.setReserveNo(reserveNo);
 			vo.setContent(content);
 			vo.setAccuracy(accuracy);
@@ -61,7 +62,7 @@ public class ReviewInsertController extends HttpServlet {
 				throw new Exception("리뷰 작성 실패");
 			}
 
-			resp.sendRedirect("/journey/book/list");
+			resp.sendRedirect("/journey/member/review/list");
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

@@ -21,82 +21,118 @@ document.addEventListener("DOMContentLoaded", function() {
 
 //비밀번호 체크
 function checkPassword() {
-    const inputPassword = document.querySelector("#passwordInput").value;
-    const selectedCard = document.querySelector(".option.selected");
+	const inputPassword = document.querySelector("#passwordInput").value;
+	const selectedCard = document.querySelector(".option.selected");
 
-    if (!selectedCard) {
-        console.log('No card selected');
-        return;
-    }
+	if (!selectedCard) {
+		console.log('No card selected');
+		return;
+	}
 
-    const selectedCardPwd = selectedCard.getAttribute('data-password');
+	const selectedCardPwd = selectedCard.getAttribute('data-password');
 
-    console.log(inputPassword);  // 사용자가 입력한 비밀번호
-    console.log(selectedCardPwd);  // 선택된 카드의 비밀번호
+	console.log(inputPassword);  // 사용자가 입력한 비밀번호
+	console.log(selectedCardPwd);  // 선택된 카드의 비밀번호
 
-    if (inputPassword === selectedCardPwd) {
-        document.getElementById('rsvBtn').disabled = false;
-        document.getElementById('passwordError').style.display = 'none';
-    } else {
-        document.getElementById('rsvBtn').disabled = true;
-        document.getElementById('passwordError').style.display = 'block';
-    }
+	if (inputPassword === selectedCardPwd) {
+		document.getElementById('rsvBtn').disabled = false;
+		document.getElementById('passwordError').style.display = 'none';
+	} else {
+		document.getElementById('rsvBtn').disabled = true;
+		document.getElementById('passwordError').style.display = 'block';
+	}
 }
 
 
 //간편결제는 비밀번호 체크 없음
 // 카드 선택 
 function selectCard(e) {
-    e.stopPropagation();
-    const selectedOption = e.currentTarget;
-    const selectedValue = selectedOption.innerHTML;
-    const selectContainer = selectedOption.closest('.select');
-    const displayText = selectContainer.querySelector('.text');
-    displayText.innerHTML = selectedValue;
-    selectContainer.classList.remove("active");
+	e.stopPropagation();
+	const selectedOption = e.currentTarget;
+	const selectedValue = selectedOption.innerHTML;
+	const selectContainer = selectedOption.closest('.select');
+	const displayText = selectContainer.querySelector('.text');
+	displayText.innerHTML = selectedValue;
+	selectContainer.classList.remove("active");
 
-    const selectedCode = selectedOption.getAttribute('data-code');
+	const selectedCode = selectedOption.getAttribute('data-code');
+	const cardNo = selectedOption.getAttribute('data-no');
+	
+	document.querySelector('input[name="payMethodCode"]').value = selectedCode;
+	document.querySelector('input[name="cardNo"]').value = cardNo;
 
-    // 결제 방법이 'p1'일때만 비번 입력창 나오기
-    if (selectedCode === 'P1') {
-        document.getElementById('passwordSection').style.display = 'block';
-        document.getElementById('rsvBtn').disabled = true;
-    } else {
-        document.getElementById('passwordSection').style.display = 'none';
-        document.getElementById('rsvBtn').disabled = false;
-    }
+	// 결제 방법이 'p1'일때만 비번 입력창 나오기
+	if (selectedCode === 'P1') {
+		document.getElementById('passwordSection').style.display = 'block';
+		document.getElementById('rsvBtn').disabled = true;
+	} else {
+		document.getElementById('passwordSection').style.display = 'none';
+		document.getElementById('rsvBtn').disabled = false;
+	}
 
-    // 선택된 옵션에 'selected' 클래스 추가
-    document.querySelectorAll('.option').forEach(option => {
-        option.classList.remove('selected');
-    });
-    selectedOption.classList.add('selected');
+	// 선택된 옵션에 'selected' 클래스 추가
+	document.querySelectorAll('.option').forEach(option => {
+		option.classList.remove('selected');
+	});
+	selectedOption.classList.add('selected');
 }
 
 //비밀번호 확인........
 function checkPassword() {
-    const inputPassword = document.getElementById('passwordInput').value;
-    const selectedCard = document.querySelector('.option.selected');
-    const storedPassword = selectedCard ? selectedCard.getAttribute('data-pwd') : '';
+	const inputPassword = document.getElementById('passwordInput').value;
+	const selectedCard = document.querySelector('.option.selected');
+	const storedPassword = selectedCard ? selectedCard.getAttribute('data-pwd') : '';
 
-    if (inputPassword === storedPassword) {
-        document.getElementById('rsvBtn').disabled = false;
-        document.getElementById('passwordError').style.display = 'none';
-    } else {
-        document.getElementById('rsvBtn').disabled = true;
-        document.getElementById('passwordError').style.display = 'block';
-    }
+	if (inputPassword === storedPassword) {
+		document.getElementById('rsvBtn').disabled = false;
+		document.getElementById('passwordError').style.display = 'none';
+	} else {
+		document.getElementById('rsvBtn').disabled = true;
+		document.getElementById('passwordError').style.display = 'block';
+	}
 }
+
+
+document.addEventListener("DOMContentLoaded", () => {
+	const tempFormEl = document.querySelector(".temp-form");
+	const subBtn = document.querySelector("#rsvBtn");
+	const kakaoPayEl = document.querySelector("#KAKAOPAY");
+	const sum = document.querySelector("#sum").innerHTML;
+
+	tempFormEl.addEventListener("submit", (e) => {
+		if (!kakaoPayEl.classList.contains("selected")) {
+			return;
+		};
+		// form submit 안하게함	
+		e.preventDefault();
+
+		let IMP = window.IMP;
+
+		IMP.init("imp54410645");
+		IMP.request_pay({
+			pg: "kakaopay",
+			pay_method: "card",
+			merchant_uid: "IMP" + new Date().getTime(),
+			name: "여행의 정석",
+			amount: sum,
+		}, async function(data) {
+			console.log(data);
+			if (data.status === "paid") {
+				window.location.href = "/journey/book/check";
+			} else {
+				alert("결제에 실패하였습니다.");
+			}
+		});
+	});
+	console.log(tempFormEl, subBtn, kakaoPayEl);
+})
 
 // 초기화
 document.addEventListener("DOMContentLoaded", function() {
-    document.querySelectorAll('.option').forEach(option => {
-        option.addEventListener('click', selectCard);
-    });
+	document.querySelectorAll('.option').forEach(option => {
+		option.addEventListener('click', selectCard);
+	});
 });
-
-
-
 
 //stay(박) day 계산
 const checkInDate = '<%= request.getParameter("inDate") %>';
@@ -155,24 +191,24 @@ function saveDates() {
 
 //날짜 유효성 검사
 function validateDates() {
-        const checkInDate = document.getElementById("checkInDate").value;
-        const checkOutDate = document.getElementById("checkOutDate").value;
+	const checkInDate = document.getElementById("checkInDate").value;
+	const checkOutDate = document.getElementById("checkOutDate").value;
 
-        if (checkInDate && checkOutDate) {
-            if (checkOutDate <= checkInDate) {
-                alert("체크아웃 날짜는 체크인 날짜보다 이후여야 합니다.");
-                document.getElementById("checkOutDate").value = "";
-            }
-        }
-    }
+	if (checkInDate && checkOutDate) {
+		if (checkOutDate <= checkInDate) {
+			alert("체크아웃 날짜는 체크인 날짜보다 이후여야 합니다.");
+			document.getElementById("checkOutDate").value = "";
+		}
+	}
+}
 
 
 // 인원수정 팝업
 document.addEventListener("DOMContentLoaded", function() {
 	const modifyCntPeopleText = document.querySelector("#modifyCntPeopleText");
 	const editPeoplePopup = document.querySelector("#editPeople_popup");
-	const closeBtn = document.querySelector("#editPeople_popup .close-button");
-	const savePeopleButton = document.querySelector("#savePeopleBtn"); // 변경된 ID
+	const closeBtn = document.querySelector("#editPeople_popup .closeBtn");
+	const savePeopleButton = document.querySelector("#savePeopleBtn");
 	const peopleCountDisplay = document.querySelector("#guestCount");
 	const peopleCountInput = document.querySelector("#peopleCountInput");
 
@@ -205,6 +241,10 @@ function close_editPeople() {
 	document.querySelector('#editPeople_popup').style.display = 'none';
 }
 
+function close_editPeople() {
+	document.querySelector('#editPeople_popup').style.display = 'none';
+}
+
 
 
 // 환불안내 팝업
@@ -215,5 +255,3 @@ function openPop() {
 function closePop() {
 	document.querySelector("#popup_refundInfo").style.display = "none";
 }
-
-
