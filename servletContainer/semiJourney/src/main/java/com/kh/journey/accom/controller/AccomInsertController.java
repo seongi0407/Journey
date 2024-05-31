@@ -97,20 +97,19 @@ public class AccomInsertController extends HttpServlet {
 			AccomService as = new AccomService();
 			int result = as.insert(vo);
 
-//	         결과 처리
-			if (result == 1) {
-				req.setAttribute("resultMsg", "숙소 정보 등록 성공!!!");
-			} else {
-				req.setAttribute("resultMsg", "숙소 정보 등록 실패...");
-			}
-			resp.sendRedirect("/journey/accom/list");
-
-		} catch (Exception e) {
-			System.out.println("[ERROR-M0001] : " + e.getMessage());
-			e.printStackTrace();
-			req.setAttribute("errMsg", e.getMessage());
-			req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
-		}
+			// 결과
+	         if(result < 1) {
+	            session.setAttribute("alertMsg", " 숙소 등록 실패");
+	            throw new Exception("숙소 등록 실패");
+	         }
+	         session.setAttribute("alertMsg", "숙소 등록 성공");
+	         
+	         resp.sendRedirect("/journey/accom/list");
+	         
+	      } catch (Exception e) {
+	         System.out.println(e.getMessage());
+	         e.printStackTrace();
+	      }
 
 	}
 

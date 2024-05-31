@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.kh.journey.wish.service.WishService;
@@ -22,6 +23,8 @@ public class WishDeleteController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		try {
+			HttpSession session = req.getSession();
+			
 			// 데이터 꺼내기
 			String wishNo = req.getParameter("wishNo");
 			String memberNo = req.getParameter("memberNo");
@@ -53,16 +56,19 @@ public class WishDeleteController extends HttpServlet {
 			
 			out.write(jsonStr);
 			
-			if(result < 1) {
-				throw new Exception("위시리스트 삭제 실패");
-			}
-			
-		}catch(Exception e) {
-			System.out.println(e.getMessage());
-			e.printStackTrace();
-			req.setAttribute("errMsg", e.getMessage());
-			req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
-		}
+			 // 결과
+	         if(result < 1) {
+	            session.setAttribute("alertMsg", "위시리스트 삭제 실패");
+	            throw new Exception("위시리스트 삭제 실패");
+	         }
+	         session.setAttribute("alertMsg", "위시리스트 삭제 성공");
+	         
+	         resp.sendRedirect("/journey/home");
+	         
+	      } catch (Exception e) {
+	         System.out.println(e.getMessage());
+	         e.printStackTrace();
+	      }
 	}
 	
 	@Override
