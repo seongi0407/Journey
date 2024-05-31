@@ -10,18 +10,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.kh.journey.accom.service.AccomService;
-import com.kh.journey.accom.vo.AccomVo;
-import com.kh.journey.wish.service.WishService;
-import com.kh.journey.wish.vo.WishVo;
+import com.kh.journey.member.vo.MemberVo;
+import com.kh.journey.room.service.RoomService;
+import com.kh.journey.room.vo.RoomVo;
 
 @WebServlet("/wish/list")
 public class WishListController extends HttpServlet{
 	
-	private WishService ws;
+	private final RoomService service;
 	
 	public WishListController() {
-		this.ws =  new WishService();
+		this.service =  new RoomService();
 	}
 	
 	@Override
@@ -31,24 +30,21 @@ public class WishListController extends HttpServlet{
 			
 			HttpSession session = req.getSession();
 			
-//            MemberVo loginMemberVo = (MemberVo) session.getAttribute("loginMemberVo");
-//            if (loginMemberVo == null) {
-//                resp.sendRedirect("/journey/member/login");
-//                return;
-//            }
+            MemberVo loginMemberVo = (MemberVo) session.getAttribute("loginMemberVo");
+            if (loginMemberVo == null) {
+            	throw new Exception("위시리스트 조회 중 오류 발생");
+            }
 			
-//			String memberNo = loginMemberVo.getNo();
-            String memberNo = req.getParameter("memberNo");
+			String no = loginMemberVo.getNo();
 			
-//			데이터 꺼내기 
 //          서비스 호출
-            WishService ws = new WishService();
-            List<WishVo> wishList = ws.selectWishList(memberNo);   
-            System.out.println(wishList);
-
+            List<RoomVo> roomVoList = service.getRoomListForWish(no);
+            
+            System.out.println(roomVoList);
  
 //			결과 	
-			req.setAttribute("wishList", wishList);	
+			req.setAttribute("roomVoList", roomVoList);
+			
 			req.getRequestDispatcher("/WEB-INF/views/wish/list.jsp").forward(req, resp);
 			
 		}catch(Exception e) {

@@ -42,62 +42,63 @@ public class RoomVo {
    private String hostProfile;
    private String themeName;
    private String bedNum;
+   private String wishNo;
    
-   // Constructor
-   public RoomVo(String no, String accomNo, String themeCode, String name, String capacity, String grade, String bathNum,
+	public RoomVo(String no, String accomNo, String themeCode, String name, String capacity, String grade, String bathNum,
 		String roomNum, String img01, String img02, String img03, String img04, String img05, String enrollDate,
 		String modifyDate, String exposeYn, String delYn, String bedSingle, String bedDouble, String bedQueen,
 		String weekdayPrice, String weekendPrice, String towelYn, String tvYn, String netflixYn,
 		String airconditionerYn, String heatingYn, String firealarmYn, String firstaidkitYn, String wifiYn,
 		String frigerYn, String ovenYn, String hairdryerYn, String address, String hostName, String hostNo,
-		String hostPhone, String hostProfile, String themeName, String bedNum) {
-	   	this.no = no;
-		this.accomNo = accomNo;
-		this.themeCode = themeCode;
-		this.name = name;
-		this.capacity = capacity;
-		this.grade = grade;
-		this.bathNum = bathNum;
-		this.roomNum = roomNum;
-		this.img01 = img01;
-		this.img02 = img02;
-		this.img03 = img03;
-		this.img04 = img04;
-		this.img05 = img05;
-		this.enrollDate = enrollDate;
-		this.modifyDate = modifyDate;
-		this.exposeYn = exposeYn;
-		this.delYn = delYn;
-		this.bedSingle = bedSingle;
-		this.bedDouble = bedDouble;
-		this.bedQueen = bedQueen;
-		this.weekdayPrice = weekdayPrice;
-		this.weekendPrice = weekendPrice;
-		this.towelYn = towelYn;
-		this.tvYn = tvYn;
-		this.netflixYn = netflixYn;
-		this.airconditionerYn = airconditionerYn;
-		this.heatingYn = heatingYn;
-		this.firealarmYn = firealarmYn;
-		this.firstaidkitYn = firstaidkitYn;
-		this.wifiYn = wifiYn;
-		this.frigerYn = frigerYn;
-		this.ovenYn = ovenYn;
-		this.hairdryerYn = hairdryerYn;
-		this.address = address;
-		this.hostName = hostName;
-		this.hostNo = hostNo;
-		this.hostPhone = hostPhone;
-		this.hostProfile = hostProfile;
-		this.themeName = themeName;
-		this.bedNum = bedNum;	
-   }
-   public RoomVo() {
-   }
-   
-   @Override
-   public String toString() {
-	   return "RoomVo [no=" + no + ", accomNo=" + accomNo + ", themeCode=" + themeCode + ", name=" + name + ", capacity="
+		String hostPhone, String hostProfile, String themeName, String bedNum, String wishNo) {
+	this.no = no;
+	this.accomNo = accomNo;
+	this.themeCode = themeCode;
+	this.name = name;
+	this.capacity = capacity;
+	this.grade = grade;
+	this.bathNum = bathNum;
+	this.roomNum = roomNum;
+	this.img01 = img01;
+	this.img02 = img02;
+	this.img03 = img03;
+	this.img04 = img04;
+	this.img05 = img05;
+	this.enrollDate = enrollDate;
+	this.modifyDate = modifyDate;
+	this.exposeYn = exposeYn;
+	this.delYn = delYn;
+	this.bedSingle = bedSingle;
+	this.bedDouble = bedDouble;
+	this.bedQueen = bedQueen;
+	this.weekdayPrice = weekdayPrice;
+	this.weekendPrice = weekendPrice;
+	this.towelYn = towelYn;
+	this.tvYn = tvYn;
+	this.netflixYn = netflixYn;
+	this.airconditionerYn = airconditionerYn;
+	this.heatingYn = heatingYn;
+	this.firealarmYn = firealarmYn;
+	this.firstaidkitYn = firstaidkitYn;
+	this.wifiYn = wifiYn;
+	this.frigerYn = frigerYn;
+	this.ovenYn = ovenYn;
+	this.hairdryerYn = hairdryerYn;
+	this.address = address;
+	this.hostName = hostName;
+	this.hostNo = hostNo;
+	this.hostPhone = hostPhone;
+	this.hostProfile = hostProfile;
+	this.themeName = themeName;
+	this.bedNum = bedNum;
+	this.wishNo = wishNo;
+}
+	public RoomVo() {
+}
+
+	@Override
+public String toString() {
+	return "RoomVo [no=" + no + ", accomNo=" + accomNo + ", themeCode=" + themeCode + ", name=" + name + ", capacity="
 			+ capacity + ", grade=" + grade + ", bathNum=" + bathNum + ", roomNum=" + roomNum + ", img01=" + img01
 			+ ", img02=" + img02 + ", img03=" + img03 + ", img04=" + img04 + ", img05=" + img05 + ", enrollDate="
 			+ enrollDate + ", modifyDate=" + modifyDate + ", exposeYn=" + exposeYn + ", delYn=" + delYn + ", bedSingle="
@@ -107,21 +108,20 @@ public class RoomVo {
 			+ ", firstaidkitYn=" + firstaidkitYn + ", wifiYn=" + wifiYn + ", frigerYn=" + frigerYn + ", ovenYn="
 			+ ovenYn + ", hairdryerYn=" + hairdryerYn + ", address=" + address + ", hostName=" + hostName + ", hostNo="
 			+ hostNo + ", hostPhone=" + hostPhone + ", hostProfile=" + hostProfile + ", themeName=" + themeName
-			+ ", bedNum=" + bedNum + "]";
-   }
-   
-   // Getter, Setter
-   public String getNo() {
-	   return no;
-   }
-   public void setNo(String no) {
+			+ ", bedNum=" + bedNum + ", wishNo=" + wishNo + "]";
+}
+	
+	public String getNo() {
+		return no;
+	}
+	public void setNo(String no) {
 		this.no = no;
 	}
 	public String getAccomNo() {
 		return accomNo;
 	}
 	public void setAccomNo(String accomNo) {
-	this.accomNo = accomNo;
+		this.accomNo = accomNo;
 	}
 	public String getThemeCode() {
 		return themeCode;
@@ -350,5 +350,11 @@ public class RoomVo {
 	}
 	public void setBedNum(String bedNum) {
 		this.bedNum = bedNum;
+	}
+	public String getWishNo() {
+		return wishNo;
+	}
+	public void setWishNo(String wishNo) {
+		this.wishNo = wishNo;
 	}
 } // class
