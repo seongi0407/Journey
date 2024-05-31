@@ -12,19 +12,19 @@ import javax.servlet.http.HttpSession;
 import com.kh.journey.host.service.HostService;
 import com.kh.journey.host.vo.HostVo;
 
-@WebServlet("/host/edit/password")
-public class HostEditPwdController extends HttpServlet {
+@WebServlet("/host/edit/phone")
+public class HostEditPhoneController extends HttpServlet {
 	
 	private final HostService service;
 	
 	// Constructor
-	public HostEditPwdController() {
+	public HostEditPhoneController() {
 		this.service = new HostService();
 	}
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/WEB-INF/views/host/edit/password.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/views/host/edit/phone.jsp").forward(req, resp);
 	} // doGet
 	
 	@Override
@@ -36,16 +36,14 @@ public class HostEditPwdController extends HttpServlet {
 			HostVo loginHostVo = (HostVo) session.getAttribute("loginHostVo");
 		
 			String no = loginHostVo.getNo();
-			String pwd = req.getParameter("pwd");
-			String pwd2 = req.getParameter("pwd2");
+			String name = req.getParameter("name");
 			
 			HostVo vo = new HostVo();
 			vo.setNo(no);
-			vo.setPwd(pwd);
-			vo.setPwd2(pwd2);
+			vo.setName(name);
 			
 			// 서비스 호출
-			int result = service.editPwd(vo);
+			int result = service.editName(vo);
 			
 			// 결과
 			if(result < 1) {
@@ -53,7 +51,7 @@ public class HostEditPwdController extends HttpServlet {
 				throw new Exception("회원 정보 수정 실패");
 			}
 			
-			loginHostVo.setPwd(pwd);
+			loginHostVo.setName(name);
 			req.removeAttribute("loginHostVo");
 			
 			session.setAttribute("loginHostVo", loginHostVo);

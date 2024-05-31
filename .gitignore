@@ -15,3 +15,17 @@
 *.jpg
 *.webp
 *.jpeg
+.metadata/.plugins/org.eclipse.ui.intro/introstate
+*.setup
+*.ser
+*.log
+.metadata/.plugins/org.eclipse.jdt.core/assumedExternalFilesCache
+.metadata/.plugins/org.eclipse.jdt.core/externalFilesCache
+*.xmi
+*.resources
+.metadata/.plugins/org.eclipse.jdt.core/nonChainingJarsCache
+*.ini
+*.lock
+*.zip
+*.txt
+*.dat
