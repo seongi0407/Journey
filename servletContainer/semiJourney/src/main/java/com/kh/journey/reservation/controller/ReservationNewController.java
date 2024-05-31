@@ -29,7 +29,6 @@ public class ReservationNewController extends HttpServlet {
 			String inDate = req.getParameter("inDate");
 			String outDate = req.getParameter("outDate");
 			String guestCount = req.getParameter("guestCount");
-			String sum = req.getParameter("sum");
 
 			ReservationService rs = new ReservationService();
 			List<CardVo> cardVoList = rs.getCardList(loginMemNo);
@@ -93,7 +92,7 @@ public class ReservationNewController extends HttpServlet {
 				vo.setSum(sum);
 				vo.setPayMethodCode(payMethodCode);
 				vo.setCardNo(cardNo);
-				
+
 				System.out.println(vo);
 
 				// 서비스 호출
@@ -101,16 +100,16 @@ public class ReservationNewController extends HttpServlet {
 				int result = rs.ReservationInsert(vo);
 
 				if (result != 1) {
-					throw new Exception("예약 실패");
+					session.setAttribute("alertMsg", "숙소 예약 실패");
+					throw new Exception("예약실패");
 				}
+				
 				resp.sendRedirect("/journey/book/check");
 			}
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
-			req.setAttribute("errMsg", e.getMessage());
-			req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
 		}
 	}
 }

@@ -19,10 +19,10 @@ document.addEventListener("DOMContentLoaded", function() {
 	}
 });
 
-//비밀번호 체크
+// 비밀번호 체크 함수
 function checkPassword() {
-	const inputPassword = document.querySelector("#passwordInput").value;
-	const selectedCard = document.querySelector(".option.selected");
+	const inputPassword = document.querySelector("#passwordInput").value; // 사용자가 입력한 비밀번호
+	const selectedCard = document.querySelector(".option.selected"); // 선택된 카드의 비밀번호
 
 	if (!selectedCard) {
 		console.log('No card selected');
@@ -31,10 +31,26 @@ function checkPassword() {
 
 	const selectedCardPwd = selectedCard.getAttribute('data-password');
 
-	console.log(inputPassword);  // 사용자가 입력한 비밀번호
-	console.log(selectedCardPwd);  // 선택된 카드의 비밀번호
-
 	if (inputPassword === selectedCardPwd) {
+		document.querySelector('#rsvBtn').disabled = false;
+		document.querySelector('#passwordError').style.display = 'none';
+		document.querySelector('#passwordSuccess').style.display = 'block';
+		console.log('비밀번호 일치');
+	} else {
+		document.querySelector('#rsvBtn').disabled = true;
+		document.querySelector('#passwordError').style.display = 'block';
+		document.querySelector('#passwordSuccess').style.display = 'none';
+		console.log('비밀번호 불일치');
+	}
+}
+
+//비밀번호 확인........
+function checkPassword() {
+	const inputPassword = document.getElementById('passwordInput').value;
+	const selectedCard = document.querySelector('.option.selected');
+	const storedPassword = selectedCard ? selectedCard.getAttribute('data-pwd') : '';
+
+	if (inputPassword === storedPassword) {
 		document.getElementById('rsvBtn').disabled = false;
 		document.getElementById('passwordError').style.display = 'none';
 	} else {
@@ -57,7 +73,7 @@ function selectCard(e) {
 
 	const selectedCode = selectedOption.getAttribute('data-code');
 	const cardNo = selectedOption.getAttribute('data-no');
-	
+
 	document.querySelector('input[name="payMethodCode"]').value = selectedCode;
 	document.querySelector('input[name="cardNo"]').value = cardNo;
 
@@ -77,24 +93,11 @@ function selectCard(e) {
 	selectedOption.classList.add('selected');
 }
 
-//비밀번호 확인........
-function checkPassword() {
-	const inputPassword = document.getElementById('passwordInput').value;
-	const selectedCard = document.querySelector('.option.selected');
-	const storedPassword = selectedCard ? selectedCard.getAttribute('data-pwd') : '';
-
-	if (inputPassword === storedPassword) {
-		document.getElementById('rsvBtn').disabled = false;
-		document.getElementById('passwordError').style.display = 'none';
-	} else {
-		document.getElementById('rsvBtn').disabled = true;
-		document.getElementById('passwordError').style.display = 'block';
-	}
-}
 
 
 document.addEventListener("DOMContentLoaded", () => {
-	const tempFormEl = document.querySelector(".temp-form");
+	//	const tempFormEl = document.querySelector(".temp-form");
+	const tempFormEl = document.querySelector("#temp-form");
 	const subBtn = document.querySelector("#rsvBtn");
 	const kakaoPayEl = document.querySelector("#KAKAOPAY");
 	const sum = document.querySelector("#sum").innerHTML;
@@ -110,6 +113,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		IMP.init("imp54410645");
 		IMP.request_pay({
+			// Store ID 설정
+			storeId: "store-ace42a29-d07d-4792-a9a1-1669939707a5",
+			// 채널 키 설정
+			channelKey: "channel-key-d2cf9894-e4d8-44d1-98db-2b0f658a477e",
 			pg: "kakaopay",
 			pay_method: "card",
 			merchant_uid: "IMP" + new Date().getTime(),
@@ -118,7 +125,29 @@ document.addEventListener("DOMContentLoaded", () => {
 		}, async function(data) {
 			console.log(data);
 			if (data.status === "paid") {
-				window.location.href = "/journey/book/check";
+				// 결제 성공 시 서버로 데이터 전송
+				//const formData = new FormData(tempFormEl);
+				const reviewData = {
+					inDate: document.querySelector("#inDate").value,
+					outDate: document.querySelector("#outDate").value,
+					guestCount: document.querySelector("#guestCount").value,
+					cardNo: document.querySelector('input[name="cardNo"]').value,
+					payMethodCode: "p3",
+					sum: sum,
+				};
+				$.ajax({
+					url: '/journey/book/new',
+					method: 'POST',
+					contentType: 'application/json',
+					data: JSON.stringify(reviewData),
+					success: function(x) {
+						alert('결제가 성공적으로 완료되었습니다.');
+					},
+					error: function(error) {
+						alert('결제 데이터 전송 중 오류가 발생하였습니다.');
+					}
+				});
+
 			} else {
 				alert("결제에 실패하였습니다.");
 			}
