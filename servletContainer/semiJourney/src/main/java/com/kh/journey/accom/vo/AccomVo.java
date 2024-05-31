@@ -22,6 +22,8 @@ public class AccomVo {
 
 	private String hostName;
 	private String hostPhone;
+	
+	private String roomNo;
 
 	public AccomVo() {
 
@@ -30,8 +32,7 @@ public class AccomVo {
 	public AccomVo(String no, String hostNo, String name, String address, String imgUrl, String enrollDate,
 			String modifyDate, String delYn, String exposeYn, String latitude, String longitude, String swimYn,
 			String spaYn, String disabledYn, String parkingYn, String elevatorYn, String breakfastYn, String smokeYn,
-			String hostName, String hostPhone) {
-		super();
+			String hostName, String hostPhone, String roomNo) {
 		this.no = no;
 		this.hostNo = hostNo;
 		this.name = name;
@@ -52,6 +53,7 @@ public class AccomVo {
 		this.smokeYn = smokeYn;
 		this.hostName = hostName;
 		this.hostPhone = hostPhone;
+		this.roomNo = roomNo;
 	}
 
 	public String getNo() {
@@ -214,6 +216,15 @@ public class AccomVo {
 		this.hostPhone = hostPhone;
 	}
 
+	public String getRoomNo() {
+		return roomNo;
+	}
+
+	public void setRoomNo(String roomNo) {
+		this.roomNo = roomNo;
+	}
+
+	
 	@Override
 	public String toString() {
 		return "AccomVo [no=" + no + ", hostNo=" + hostNo + ", name=" + name + ", address=" + address + ", imgUrl="
@@ -221,7 +232,9 @@ public class AccomVo {
 				+ ", exposeYn=" + exposeYn + ", latitude=" + latitude + ", longitude=" + longitude + ", swimYn="
 				+ swimYn + ", spaYn=" + spaYn + ", disabledYn=" + disabledYn + ", parkingYn=" + parkingYn
 				+ ", elevatorYn=" + elevatorYn + ", breakfastYn=" + breakfastYn + ", smokeYn=" + smokeYn + ", hostName="
-				+ hostName + ", hostPhone=" + hostPhone + "]";
+				+ hostName + ", hostPhone=" + hostPhone + ", roomNo=" + roomNo + "]";
 	}
+
+	
 
 }

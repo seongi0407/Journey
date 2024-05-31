@@ -179,7 +179,7 @@ public class RoomDao {
    public List<RoomVo> getRoomListForWish(Connection conn, String no) throws Exception {
       
       // sql
-      String sql = "SELECT R.NO , R.NAME , R.WEEKDAY_PRICE , R.GRADE , R.IMG_01 , A.ADDRESS , T.THEME_NAME FROM ROOM R JOIN ACCOMMODATION A ON (R.ACCOM_NO = A.NO) JOIN THEME T ON (R.THEME_CODE = T.THEME_CODE) JOIN WISH_LIST W ON (W.ROOM_NO = R.NO) JOIN MEMBER M ON (W.MEM_NO = M.NO) WHERE M.NO = ? AND R.DEL_YN = 'N' AND A.DEL_YN = 'N' AND M.DEL_YN = 'N'";
+      String sql = "SELECT R.NO , R.NAME , R.WEEKDAY_PRICE , R.GRADE , R.IMG_01 , A.ADDRESS , T.THEME_NAME , W.NO WISH_NO FROM ROOM R JOIN ACCOMMODATION A ON (R.ACCOM_NO = A.NO) JOIN THEME T ON (R.THEME_CODE = T.THEME_CODE) JOIN WISH_LIST W ON (W.ROOM_NO = R.NO) JOIN MEMBER M ON (W.MEM_NO = M.NO) WHERE M.NO = ? AND R.DEL_YN = 'N' AND A.DEL_YN = 'N' AND M.DEL_YN = 'N'";
       PreparedStatement pstmt = conn.prepareStatement(sql);
       pstmt.setString(1, no);;
       ResultSet rs = pstmt.executeQuery();
@@ -195,6 +195,7 @@ public class RoomDao {
          String themeName = rs.getString("THEME_NAME");
          String imgUrl = rs.getString("IMG_01");
          String roomNo = rs.getString("NO");
+         String wishNo = rs.getString("WISH_NO");
          
          vo = new RoomVo();
          
@@ -205,6 +206,7 @@ public class RoomDao {
          vo.setThemeName(themeName);
          vo.setImg01(imgUrl);
          vo.setNo(roomNo);
+         vo.setWishNo(wishNo);
          
          voList.add(vo);
       }

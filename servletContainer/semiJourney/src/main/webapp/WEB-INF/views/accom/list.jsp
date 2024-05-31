@@ -28,9 +28,8 @@
 		<c:choose>
 			<c:when test="${not empty voList}">
 				<c:forEach var="vo" items="${voList}">
-					<div id="${vo.no}" class="accom-list">
-						<img src="/journey/resources/upload/accom/${vo.imgUrl}"
-							alt="숙소 사진">
+					<div class="accom-list">
+						<img src="/journey/resources/upload/accom/${vo.imgUrl}"  alt="숙소 사진">
 						<div class="accom-detail">
 							<span id="status-${vo.no}" class="status">등록 중</span>
 							<h3>${vo.name}</h3>

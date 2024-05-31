@@ -66,11 +66,10 @@ public class WishService {
 
 		System.out.println("vo: " + wishVo);
 
-		if (result == 1) {
+		if (result >= 1) {
 			commit(conn);
 		} else {
 			rollback(conn);
-			throw new Exception("게시글 삭제 중에 예외 발생...");
 		}
 		close(conn);
 

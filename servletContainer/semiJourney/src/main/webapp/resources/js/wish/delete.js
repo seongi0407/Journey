@@ -1,18 +1,21 @@
 /*찜 취소 클릭시 db에 등록 + 로그인 안 하면 알림창 띄우기 */
-function deleteWish(no, memberNo) {
+function deleteWish(wishNo, memberNo) {
         $.ajax({
         url: 'http://127.0.0.1:8888/journey/wish/delete',
         method: 'GET',
         data: {
-            no: no,
+            wishNo: wishNo,
             memberNo: memberNo
         },
         success: (data) => {
             console.log("통신 성공");
-            console.log(no);
-            console.log(memberNo);
             console.log(data);
-            alert("위시리스트에서 삭제되었습니다.");
+            if(data.result >= 1){
+				alert("위시리스트 삭제 성공");
+			} else{
+				alert("위시리스트 삭제 실패");
+			}
+			location.reload();
         },
         error: (error) => { 
             console.log("통신 실패");

@@ -34,7 +34,7 @@
 					<div id="place-name">${room.name}</div>
 					<c:choose>
 						<c:when test="${not empty sessionScope.loginMemberVo}">
-							<button id="gym" onclick="deleteWish('${room.no}', '${sessionScope.loginMemberVo.no}')">취소</button>
+							<button id="gym" onclick="deleteWish('${room.wishNo}', '${sessionScope.loginMemberVo.no}')">취소</button>
 						</c:when>
 						<c:otherwise>
 							<button id="gym" onclick="clickNothing()">취소</button>
