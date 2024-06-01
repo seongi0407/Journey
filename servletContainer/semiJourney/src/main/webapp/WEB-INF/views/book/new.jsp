@@ -9,7 +9,7 @@
 <title>예약 및 결제</title>
 <link rel="stylesheet" href="/journey/resources/css/book/bookNew.css">
 
-<link rel="stylesheet" href="/journey/resources/css/layout/header2.css">
+<link rel="stylesheet" href="/journey/resources/css/layout/header.css">
 <link rel="stylesheet" href="/journey/resources/css/layout/footer.css">
 
 <!-- port -->

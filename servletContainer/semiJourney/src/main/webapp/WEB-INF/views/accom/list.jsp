@@ -9,7 +9,7 @@
 <title>숙소 목록</title>
 
 <link rel="stylesheet" href="/journey/resources/css/accom/accomList.css">
-<link rel="stylesheet" href="/journey/resources/css/layout/header2.css">
+<link rel="stylesheet" href="/journey/resources/css/layout/header.css">
 <link rel="stylesheet" href="/journey/resources/css/layout/footer.css">
 
 <script defer src="/journey/resources/js/accom/accomStatusDelete.js"></script>

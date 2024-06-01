@@ -7,7 +7,7 @@
 <title>멤버 개인 정보 수정</title>
 
 <link rel="stylesheet" href="/journey/resources/css/member/edit.css">
-<link rel="stylesheet" href="/journey/resources/css/layout/header2.css">
+<link rel="stylesheet" href="/journey/resources/css/layout/header.css">
 <link rel="stylesheet" href="/journey/resources/css/layout/footer.css">
 
 <script defer src="/journey/resources/js/layout/header.js"></script>

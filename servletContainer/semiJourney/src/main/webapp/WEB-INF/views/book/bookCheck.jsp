@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>예약확인</title>
 
-<link rel="stylesheet" href="/journey/resources/css/layout/header2.css">
+<link rel="stylesheet" href="/journey/resources/css/layout/header.css">
 <link rel="stylesheet" href="/journey/resources/css/layout/footer.css">
 
 <link rel="stylesheet" href="/journey/resources/css/book/bookCheck.css">
