@@ -9,8 +9,21 @@
 		<div id="introduce">당신의 공간을 여정하세요</div>
 		<div id="profile-icon" onclick="showAccountContent()">
 			<img id="menu-icon" width="16" src="/journey/resources/img/header/menu.svg"
-				alt="메뉴 아이콘"> <img id="user-icon" width="30"
-				src="/journey/resources/img/header/profile.svg" alt="유저 아이콘">
+				alt="메뉴 아이콘">
+				<c:choose>
+					<c:when test="${not empty sessionScope.loginHostVo.name}">
+						<img id="user-icon" width="30"
+						src="/journey/resources/upload/host/${sessionScope.loginHostVo.profile}" alt="유저 아이콘">
+					</c:when>
+					<c:when test="${not empty sessionScope.loginMemberVo.name}">
+						<img id="user-icon" width="30"
+						src="/journey/resources/upload/member/${sessionScope.loginMemberVo.profile}" alt="유저 아이콘">
+					</c:when>
+					<c:otherwise>
+						<img id="user-icon" width="30"
+						src="/journey/resources/img/header/profile.svg" alt="유저 아이콘">
+					</c:otherwise>
+				</c:choose>
 		</div>
 		
 		<c:choose>
@@ -65,7 +78,7 @@
 					<hr>
 					<button>당신의 공간을 여정하세요</button>
 					<button>도움말 센터</button>
-				</div>				
+				</div>
 			</c:otherwise>
 			
 		</c:choose>
@@ -80,15 +93,13 @@
 		</div>
 		<div id="host">
 			<!-- 포트번호 확인해서 바꾸기 -->
-			<a href="http://127.0.0.1:8888/journey/host/join">
-				<button>
-					<img src="/journey/resources/img/header/host.png" alt="호스트">
-				</button>
-			</a>
+			<button onclick="location.href='/journey/host/join'">
+				<img src="/journey/resources/img/header/host.png" alt="호스트">
+			</button>
 			<button>호스트</button>
 		</div>
 		<div id="member">
-			<button id="memberJoin" onclick="showMemberJoin()">
+			<button id="memberJoin" onclick="location.href='/journey/member/join'">
 				<img src="/journey/resources/img/header/member.png" alt="회원">
 			</button>
 			<button>회원</button>

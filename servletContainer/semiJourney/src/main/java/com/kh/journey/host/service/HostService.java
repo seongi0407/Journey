@@ -9,7 +9,6 @@ import java.sql.Connection;
 
 import com.kh.journey.host.dao.HostDao;
 import com.kh.journey.host.vo.HostVo;
-import com.kh.journey.member.vo.MemberVo;
 
 public class HostService {
 	
@@ -38,11 +37,6 @@ public class HostService {
 	public int join(HostVo vo) throws Exception {
 		
 		// 비지니스 로직
-		// 아이디 유효성 검사
-		// 비밀번호 일치여부 검사
-		if(!vo.getPwd().equals(vo.getPwd2())) {
-			throw new Exception("비밀번호가 일치하지 않습니다.");
-		}
 		
 		// DAO 호출
 		Connection conn = getConnection();
@@ -141,4 +135,18 @@ public class HostService {
 		
 		return result;
 	} // editPhone
+
+	// 아이디 중복 검사
+	public HostVo checkDup(String id) throws Exception {
+		
+		// 비즈니스 로직
+		
+		// DAO 호출
+		Connection conn = getConnection();
+		HostVo vo = dao.checkDup(conn, id);
+		
+		close(conn);
+		
+		return vo;
+	} // checkDup
 } // class

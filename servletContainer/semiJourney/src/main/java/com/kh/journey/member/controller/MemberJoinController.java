@@ -34,6 +34,7 @@ public class MemberJoinController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.getRequestDispatcher("/WEB-INF/views/member/join.jsp").forward(req, resp);
 	} // doGet
 	
 	@Override
@@ -47,7 +48,7 @@ public class MemberJoinController extends HttpServlet {
 			String name = req.getParameter("name");
 			String email = req.getParameter("email");
 			String phone = req.getParameter("phone");
-			String birthDate = req.getParameter("birth-date");
+			String birthDate = req.getParameter("birthDate");
 			Part profile = req.getPart("profile");
 
 			String changeName = "";
@@ -57,7 +58,7 @@ public class MemberJoinController extends HttpServlet {
 				InputStream is = profile.getInputStream();
 				
 				// 파일아웃풋 스트림 준비
-				String path = "C:\\Users\\seong\\project\\semi\\servletContainer\\semiJourney\\src\\main\\webapp\\resources\\upload\\";
+				String path = "C:\\Users\\seong\\project\\journey\\servletContainer\\semiJourney\\src\\main\\webapp\\resources\\upload\\member\\";
 				String random = UUID.randomUUID().toString();
 				String ext = originName.substring(originName.lastIndexOf("."));
 				changeName = "member_" + System.currentTimeMillis() + "_" + random + ext;

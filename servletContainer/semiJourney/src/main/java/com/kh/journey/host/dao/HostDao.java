@@ -7,7 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import com.kh.journey.host.vo.HostVo;
-import com.kh.journey.member.vo.MemberVo;
 
 public class HostDao {
 	
@@ -124,4 +123,27 @@ public class HostDao {
 		
 		return result;
 	} // editPhone
+
+	// 아이디 중복 검사
+	public HostVo checkDup(Connection conn, String id) throws Exception {
+		
+		// SQL
+		String sql = "SELECT NO FROM HOST WHERE ID = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, id);
+		ResultSet rs = pstmt.executeQuery();
+		
+		HostVo vo = null;
+		if(rs.next()) {
+			
+			String no = rs.getString("NO");
+			vo = new HostVo();
+			vo.setNo(no);
+		}
+
+		close(rs);
+		close(pstmt);
+		
+		return vo;
+	} // checkDup
 } // class

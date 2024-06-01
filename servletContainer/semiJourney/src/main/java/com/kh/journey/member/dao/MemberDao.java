@@ -161,4 +161,27 @@ public class MemberDao {
 		
 		return result;
 	} // editBirth
+	
+	// 아이디 중복 검사
+	public MemberVo checkDup(Connection conn, String id) throws Exception {
+		
+		// SQL
+		String sql = "SELECT NO FROM MEMBER WHERE ID = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, id);
+		ResultSet rs = pstmt.executeQuery();
+		
+		MemberVo vo = null;
+		if(rs.next()) {
+			
+			String no = rs.getString("NO");
+			vo = new MemberVo();
+			vo.setNo(no);
+		}
+
+		close(rs);
+		close(pstmt);
+		
+		return vo;
+	} // checkDup
 } // class

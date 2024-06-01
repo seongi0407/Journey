@@ -34,7 +34,7 @@ public class HostJoinController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/WEB-INF/views/ju/host/join.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/views/host/join.jsp").forward(req, resp);
 	} // doGet
 	
 	@Override
@@ -56,7 +56,7 @@ public class HostJoinController extends HttpServlet {
 				InputStream is = profile.getInputStream();
 				
 				// 파일아웃풋 스트림 준비
-				String path = "D:\\dev\\servletWorkspace\\test\\src\\main\\webapp\\resources\\upload\\";
+				String path = "C:\\Users\\seong\\project\\journey\\servletContainer\\semiJourney\\src\\main\\webapp\\resources\\upload\\host\\";
 				String random = UUID.randomUUID().toString();
 				String ext = originName.substring(originName.lastIndexOf("."));
 				changeName = "host_" + System.currentTimeMillis() + "_" + random + ext;

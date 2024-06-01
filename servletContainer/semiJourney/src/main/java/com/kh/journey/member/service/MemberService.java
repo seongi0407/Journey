@@ -38,11 +38,6 @@ public class MemberService {
 	public int join(MemberVo vo) throws Exception {
 		
 		// 비지니스 로직
-		// 아이디 유효성 검사
-		// 비밀번호 일치여부 검사
-		if(!vo.getPwd().equals(vo.getPwd2())) {
-			throw new Exception("비밀번호가 일치하지 않습니다.");
-		}
 		
 		// DAO 호출
 		Connection conn = getConnection();
@@ -181,4 +176,18 @@ public class MemberService {
 		
 		return result;
 	} // editBirth
+	
+	// 아이디 중복 검사
+	public MemberVo checkDup(String id) throws Exception {
+		
+		// 비즈니스 로직
+		
+		// DAO 호출
+		Connection conn = getConnection();
+		MemberVo vo = dao.checkDup(conn, id);
+		
+		close(conn);
+		
+		return vo;
+	} // checkDup
 } // class
