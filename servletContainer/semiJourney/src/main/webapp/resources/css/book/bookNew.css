@@ -1,7 +1,7 @@
 /*확인 및 결제*/
 #navText {
-	margin-top: 130px;
-	padding: 30px 130px 20px 130px;
+	margin-top: 120px;
+	padding: 40px 130px 20px 130px;
 	font-size: 20px;
 	display: grid;
 	grid-template-columns: 0.1fr 2fr;
@@ -16,20 +16,19 @@
 #navText img:hover {
 	background-color: #f4f4f4;
 	border-radius: 50px;
-	
 }
-
-
 
 .main {
 	height: 100%;
 	width: 90%;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
+	word-break:keep-all;
 }
 
 #section {
 	padding-left: 80px;
+	word-break:keep-all;
 }
 
 #aside {

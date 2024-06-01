@@ -36,6 +36,11 @@ label {
 }
 
 /* -------별점-------- */
+
+.disabledText{
+	color: red;
+	font-weight: bold;
+}
 .star-rating {
 	display: flex;
 	flex-direction: row-reverse;

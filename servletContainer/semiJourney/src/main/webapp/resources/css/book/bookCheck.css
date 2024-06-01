@@ -1,9 +1,11 @@
 body {
+	word-break:keep-all;
     margin: 0;
     height: 80vh;
     width: 100vw;
     background-color: rgb(244, 242, 237);
 }
+
 
 .rogoImg{
     width: 110px;
@@ -21,6 +23,7 @@ body {
 
 /* 숙소정보 */
 #section {
+	word-break:keep-all;
     width: 300px;
     height: 550px;
     perspective: 1100px;
@@ -41,7 +44,7 @@ body {
 #sectionInnerFront {
     background-color: white;
     display: grid;
-    grid-template-rows: 9fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
 }
 
 #sectionInnerBack {
@@ -55,7 +58,7 @@ body {
 
 #roomImg {
     width: 100%;
-    height: 100%;
+    height: 300px;
     border-radius: 10px;
     object-fit: cover;
 }
@@ -80,6 +83,7 @@ body {
 }
 
 #aside {
+	word-break:keep-all;
     padding-left: 5%;
     padding-right: 50%;
 }

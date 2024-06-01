@@ -103,7 +103,7 @@ public class ReservationNewController extends HttpServlet {
 					session.setAttribute("alertMsg", "숙소 예약 실패");
 					throw new Exception("예약실패");
 				}
-				
+
 				resp.sendRedirect("/journey/book/check");
 			}
 

@@ -1,749 +1,318 @@
-body{
-    width: 100vw;
-    height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 4fr 1fr;
-}
-aside{
-    background-color: whitesmoke;
-}
-#wrap{
-    width: 100%;
-    height: 100%;
-    margin: auto;
-    
-    display: grid;
-    grid-template-rows: 6.5fr 1.5fr;
-}
-main{
-    margin-top: 120px;
-    display: grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-}
-#main > div{
-    height: 12%;
+#wrap {
+	margin: auto;
+	padding-left: 15%;
+	padding-right: 15%;
+	display: grid;
 }
 
-
-
-#room-info{
-    display: grid;
-    grid-template-rows: 1fr 10fr;
-    margin: 1% 1%;
+main {
+	margin-top: 120px;
+	display: grid;
+	grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
 }
 
-#room-photo{
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+#main>div {
+	height: 12%;
 }
 
-#first-img{
-    grid-row: span 2;
-    grid-column: span 2;
-    
-    width: 98%;
-    height: 88%;
-
-    margin: 1% 1%;
-
-    border-radius: 10px;
-    
-    object-fit: cover;
+#room-info {
+	display: grid;
+	grid-template-rows: 1fr 10fr;
+	margin: 1% 1%;
 }
 
-.room-img{
-    width: 94%;
-    height: 76%;
-
-    margin: 2% 2%;
-
-    border-radius: 10px;
-    
-    object-fit: cover;
+#room-photo {
+	display: grid;
+	grid-template-rows: 1fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
-
-
-#reservation{
-    display: grid;
-    grid-template-columns: 2fr 1fr;
+#first-img {
+	grid-row: span 2;
+	grid-column: span 2;
+	width: 98%;
+	height: 88%;
+	margin: 1% 1%;
+	border-radius: 10px;
+	object-fit: cover;
 }
 
-#room-explain{
-    margin: 3% 3%;
+.room-img {
+	width: 94%;
+	height: 76%;
+	margin: 2% 2%;
+	border-radius: 10px;
+	object-fit: cover;
 }
 
-#host-short{
-    margin: 2% 2%;
-    padding: 2% 2%;
-    
-    border-top: 2px solid lightgray;
-    border-bottom: 2px solid lightgray;
-
-    display: grid;
-    grid-template-columns: 1fr 8fr;
-
-    align-items: center;
+#reservation {
+	display: grid;
+	grid-template-columns: 2fr 1fr;
 }
 
-#host-short > img{
-    width: 50%;
-    height: 50%;
-    object-fit: cover;
+#room-explain {
+	margin: 3% 3%;
 }
 
-#room-short{
-    margin: 3% 3%;
-    
-    display: grid;
-    grid-template-columns: 1fr 8fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
-
-    border-bottom: 1px solid lightgray;
-
-    align-items: center;
+#host-short {
+	margin: 2% 2%;
+	padding: 2% 2%;
+	border-top: 2px solid lightgray;
+	border-bottom: 2px solid lightgray;
+	display: grid;
+	grid-template-columns: 1fr 8fr;
+	align-items: center;
 }
 
-#room-short > img{
-    width: 50%;
-    height: 50%;
-
-    border-radius: 10px;
-
-    justify-self: center;
-    
-    object-fit: cover;
+#host-short>img {
+	width: 50%;
+	height: 50%;
+	object-fit: cover;
 }
 
-#room-short > div{
-    margin: 2% 2%;
+#room-short {
+	margin: 3% 3%;
+	display: grid;
+	grid-template-columns: 1fr 8fr;
+	grid-template-rows: 1fr 1fr 1fr 1fr;
+	border-bottom: 1px solid lightgray;
+	align-items: center;
 }
 
-#right{
-    height: 70%;
-    width: 85%;
-
-    border: 3px solid lightgray;
-    border-radius: 10px;  
+#room-short>img {
+	width: 50%;
+	height: 50%;
+	border-radius: 10px;
+	justify-self: center;
+	object-fit: cover;
 }
 
-#reserve-table{
-    height: 95%;
+#room-short>div {
+	margin: 2% 2%;
+}
 
-    margin: 4% 4%;
+#right {
+	height: 70%;
+	width: 85%;
+	border: 3px solid lightgray;
+	border-radius: 10px;
+}
 
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 0.8fr 1.6fr 1.2fr 0.4fr 0.3fr;
+#reserve-table {
+	height: 95%;
+	margin: 4% 4%;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 0.8fr 1.6fr 1.2fr 0.4fr 0.3fr;
+}
+
+#reserve-select {
+	grid-column: span 2;
+	border-top: 2px solid lightgray;
+	border-bottom: 2px solid lightgray;
+	border-left: 2px solid lightgray;
+	border-right: 2px solid lightgray;
+	width: 80%;
+	height: 80%;
+	justify-self: center;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr 1fr;
+}
+
+#price-per-day {
+	grid-column: span 2;
+}
+
+#check-in, #check-out {
+	border-right: 2px solid lightgray;
+	border-bottom: 2px solid lightgray; 
+	& input { 
+	width : 80%;
+	height: 50%;
+}
+
 }
 
 
-
-#reserve-select{
-    grid-column: span 2;
-
-    border-top: 2px solid lightgray;
-    border-bottom: 2px solid lightgray;
-    border-left: 2px solid lightgray;
-    border-right: 2px solid lightgray;
-
-    width: 80%;
-    height: 80%;
-
-    justify-self: center;
-
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+#guest-num {
+	grid-column: span 2;
+	
 }
 
-#price-per-day{
-    grid-column: span 2;
+#reserve-btn {
+	width: 100px;
+	height: 50px;
+	background-color: rgb(230, 30, 77);
+	border: none;
+	border-radius: 10px;
+	font-size: 16px;
+	font-weight: bold;
+	color: white;
+	padding: 15px;
+	cursor: pointer;
+	right: 100px;
+	bottom: 20px;
+	grid-column: span 2;
+	justify-self: center;
 }
 
-#check-in{
-    border-right: 2px solid lightgray;
-    border-bottom: 2px solid lightgray;
+#reserve-btn:active {
+	background-color: rgb(238, 58, 100);
+	width: 105px;
+	height: 52px;
+	font-size: 17px;
 }
 
-#check-out{
-    border-bottom: 2px solid lightgray;
+#reserve-price {
+	grid-column: span 2;
+	border-bottom: 1px solid gray;
+	padding-bottom: 2%;
+	align-self: center;
+	display: grid;
 }
 
-#guest-num{
-    grid-column: span 2;
+#reserve-price-sum {
+	grid-column: span 2;
 }
 
-#reserve-btn{
-    grid-column: span 2;
-
-    width: 60%;
-    height: 60%;
-
-    font-size: 1.5em;
-
-    justify-self: center;
-    
-    border-color: whitesmoke;
-
-    background-color: palevioletred;
-
-    border-radius: 10px;
+#review {
+	height: 100%;
+	width: 100%;
+	display: grid;
+	grid-template-rows: 1fr 1fr 1fr;
+	grid-template-columns: 1fr 1fr;
+	border-bottom: 1px solid lightgray;
 }
 
-#reserve-btn > button{
-    width: 100%;
-    height: 70%;
+#review>div {
+	height: 100%;
+	width: 100%;
+	display: grid;
+	grid-template-rows: 1fr 2fr;
+	grid-template-columns: 1fr 4fr;
+	align-items: center;
 }
 
-#reserve-price{
-    grid-column: span 2;
-
-    border-bottom: 1px solid gray;
-
-    padding-bottom: 2%;
-
-    align-self: center;
-
-    display: grid;
+#review>div>img {
+	height: 35%;
+	width: 35%;
+	display: grid;
+	grid-template-rows: 1fr 2fr;
+	grid-template-columns: 1fr 4fr;
+	border-radius: 10px;
+	justify-self: center;
+	object-fit: cover;
 }
 
-#reserve-price-sum{
-    grid-column: span 2;
+#review>div>div>h4, h5 {
+	margin: 2% 0%;
 }
 
-
-
-#review{
-    height: 100%;
-    width: 100%;
-
-    display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-template-columns: 1fr 1fr;
-
-    border-bottom: 1px solid lightgray;
+.review-zone {
+	padding: 3% 3%;
+	grid-column: span 2;
+	align-self: flex-start;
 }
 
-#review > div{
-    height: 100%;
-    width: 100%;
-
-    display: grid;
-    grid-template-rows: 1fr 2fr;
-    grid-template-columns: 1fr 4fr;
-
-    align-items: center;
-}
-
-#review > div > img{
-    height: 35%;
-    width: 35%;
-
-    display: grid;
-    grid-template-rows: 1fr 2fr;
-    grid-template-columns: 1fr 4fr;
-
-    border-radius: 10px;
-
-    justify-self: center;
-    
-    object-fit: cover;
-}
-
-#review > div > div > h4, h5{
-    margin: 2% 0%;
-}
-
-.review-zone{
-    padding: 3% 3%;
-
-    grid-column: span 2;
-    align-self: flex-start;
-}
-
-.review-zone > div{
-    padding-top: 2%;
-    padding-bottom: 2%;
-    padding-left: 2%;
-    padding-right: 20%;
+.review-zone>div {
+	padding-top: 2%;
+	padding-bottom: 2%;
+	padding-left: 2%;
+	padding-right: 20%;
 }
 
 /* ----- map ----- */
-#map-wrap{
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
-    align-items: center;
+#map-wrap {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
-#map{
-    width: 75%;
-    height: 75%;
+#map {
+	width: 75%;
+	height: 75%;
 }
 /* ----- map ----- */
-
-
 
 /* ----- calendar -----*/
 .calendar_container {
-    left:29%;
-    top:25%;
-    display: flex;
-    justify-content:space-evenly;
-    width: 75%;
-    height: 75%;
-    background-color: white;
-    box-shadow: 1px 1px 25px rgb(0, 0, 0 / 17%);
-    border: 1px solid black;
-    border-radius: 50px;
-    justify-self: center;
-    justify-content: center;
-    align-self: center;
+	left: 29%;
+	top: 25%;
+	display: flex;
+	justify-content: space-evenly;
+	width: 75%;
+	height: 75%;
+	background-color: white;
+	box-shadow: 1px 1px 25px rgb(0, 0, 0/ 17%);
+	border: 1px solid black;
+	border-radius: 50px;
+	justify-self: center;
+	justify-content: center;
+	align-self: center;
 }
 
 .hide {
-    display:none;
+	display: none;
 }
 
-.calendar_container > button {
-    margin-top: 4%;
-    font-weight: bold;
-    height:10%;
+.calendar_container>button {
+	margin-top: 4%;
+	font-weight: bold;
+	height: 10%;
 }
 
 .left_button {
-    margin-left:17%;
-    border: transparent;
+	margin-left: 17%;
+	border: transparent;
 }
 
 .right_button {
-    margin-right:17%;
-    border: transparent;
+	margin-right: 17%;
+	border: transparent;
 }
 
 .calendar {
-    display:flex;
-    flex-direction: column;
-    justify-content:center;
-    align-items: center;
-    margin-top: 3%;
-    margin-right:2.5%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-top: 3%;
+	margin-right: 2.5%;
 }
 
-
-.calendar_days > button  {
-    width: 48px;
-    height: 47px;
-    border-radius: 100%;
-    background-color: transparent;
-    border: transparent;
+.calendar_days>button {
+	width: 48px;
+	height: 47px;
+	border-radius: 100%;
+	background-color: transparent;
+	border: transparent;
 }
 
 table {
-    border-collapse: separate;
-    border-spacing: 0 10px;
+	border-collapse: separate;
+	border-spacing: 0 10px;
 }
 
 .day {
-    text-align: center;
-    font-size:12px;
-    font-weight: bold;
-    color:rgb(189, 189, 189);
+	text-align: center;
+	font-size: 12px;
+	font-weight: bold;
+	color: rgb(189, 189, 189);
 }
 
-
 .day_hover {
-    border: 1px solid black !important;
+	border: 1px solid black !important;
 }
 
 .day_selected {
-    background-color: black !important;
-    color: #ffff;
+	background-color: black !important;
+	color: #ffff;
 }
 
 .gray {
-    background-color: rgb(241, 241, 241) !important;
+	background-color: rgb(241, 241, 241) !important;
 }
 
 /* ----- calendar ----- */
-
-
-
-/* header */
-* {
-	margin: 0;
-	padding: 0;
-}
-
-body {
-	line-height: 1.6;
-}
-
-header {
-	border-bottom: 1px solid rgb(221, 221, 221);
-	height: 50px;
-	padding-left: 25px;
-	padding-top: 25px;
-	display: flex;
-	justify-content: space-between;
-	padding: 30px 70px;
-	/* 추가한 부분 */
-	position: fixed;
-	top: 0;
-	width: 60%;
-	background-color: white;
-	z-index: 4;
-}
-
-#img-logo {
-	width: 110px;
-	height: 60px;
-}
-
-.header-right {
-	display: flex;
-}
-
-#introduce {
-	padding: 20px 30px;
-	font-weight: bolder;
-}
-
-#profile-icon {
-	border: 1px solid #DDDDDD;
-	border-radius: 40px;
-	display: flex;
-	align-items: center;
-	/* 테두리 안 */
-	padding: 0 15px 0 15px;
-	/* 테두리 밖 */
-	margin-right: 70px;
-}
-
-#menu-icon {
-	padding: 0 8px;
-}
-
-#user-icon {
-	padding: 0 0 0 8px;
-}
-/* --------------------------- */
-
-/* -------------계정 창 띄우기-------------*/
-.account-content {
-	display: none;
-	position: absolute;
-	top: 80px;
-	/* profile-icon에 margin-right랑 같이 움직여야 함. */
-	right: 80px;
-	background-color: white;
-	box-shadow: 0 3px 5px #DDDDDD;
-	/* 높이 설정할 때 z-index 필요할수도 */
-	/* z-index: 2000; */
-	border: 1px solid rgb(218, 217, 217);
-	border-radius: 20px;
-	padding: 10px;
-	width: 270px;
-}
-
-.account-content button:first-child {
-	font-weight: bolder
-}
-
-.account-content button {
-	background: none;
-	border: none;
-	width: 100%;
-	padding: 8px 20px;
-	text-align: left;
-	cursor: pointer;
-	font-size: medium;
-}
-
-.account-content button:hover {
-	background-color: #f1f1f1;
-}
-
-.account-content.show {
-	display: block;
-}
-/* ----------------------------------*/
-/* admin, host, member 계정 고르기 (회원가입/로그인) */
-.select-account {
-	display: none;
-	position: fixed;
-	margin-top: 10%;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(19, 0, 0, 0.4);
-	justify-content: center;
-	align-items: flex-start;
-	z-index: 6;
-	cursor: pointer;
-}
-
-.select-account.show {
-	display: flex;
-}
-
-#admin img, #host img, #member img {
-	width: 300px;
-	height: 300px;
-}
-
-#admin span, #host span, #member span {
-	display: flex;
-	text-align: center;
-	align-items: center;
-	justify-content: center;
-	font-weight: bolder;
-	color: white;
-	font-size: xx-large;
-}
-
-.close-button {
-	position: absolute;
-	margin-top: 25%;
-	padding: 10px 20px;
-	font-size: xx-large;
-	font-weight: bold;
-	color: white;
-	background-color: rgb(230, 39, 87);
-	width: 20%;
-	height: 80px;
-	border: none;
-	cursor: pointer;
-}
-/* ----------------------------------------- */
-
-/* -------------회원가입 창 띄우기-------------*/
-.join-content {
-	display: none;
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.4);
-	justify-content: center;
-	align-items: flex-start;
-	z-index: 6;
-}
-
-.join-content.show {
-	display: flex;
-}
-
-.join-box {
-	background-color: white;
-	border: 1px solid black;
-	height: 80%;
-	margin-top: 7%;
-	width: 30%;
-	border-radius: 10px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
-	text-align: left;
-	padding-left: 2%;
-	padding-right: 2%;
-	padding-bottom: 2%;
-	z-index: 7;
-	/* 내용 찰 경우, 스크롤 내려지게 하기  */
-	overflow-y: auto;
-}
-
-.checkbox-container {
-	display: flex;
-	align-items: center;
-	/* justify-content: center; */
-}
-
-.join-submit-button {
-	width: 100%;
-	height: 10%;
-	background-color: rgb(248, 75, 104);
-	border: 1px solid gray;
-	border-radius: 30px;
-	font-size: larger;
-	font-weight: bold;
-}
-
-#join-close-button {
-	display: block;
-	margin: 30% auto 0;
-	margin-top: 10%;
-	padding: 10px 20px;
-	font-size: large;
-	font-weight: bold;
-	color: white;
-	background-color: rgb(175, 174, 174);
-	border: none;
-	cursor: pointer;
-}
-/* ----------------------------------*/
-
-/* -------------로그인 창 띄우기-------------*/
-.login-content {
-	display: none;
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.4);
-	justify-content: center;
-	align-items: flex-start;
-	z-index: 6;
-}
-
-.login-content.show {
-	display: flex;
-}
-
-.login-box {
-	background-color: white;
-	border: 1px solid black;
-	height: 50%;
-	margin-top: 7%;
-	width: 30%;
-	border-radius: 10px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
-	text-align: left;
-	padding-left: 2%;
-	padding-right: 2%;
-	padding-bottom: 2%;
-	z-index: 7;
-	/* 내용 찰 경우, 스크롤 내려지게 하기  */
-	/* overflow-y: auto; */
-}
-
-#login-id {
-	width: 99%;
-	height: 10%;
-	border-radius: 20px;
-}
-
-#login-password {
-	width: 99%;
-	height: 10%;
-	border-radius: 20px;
-}
-
-.login-submit-button {
-	width: 100%;
-	height: 15%;
-	background-color: rgb(248, 75, 104);
-	border: 1px solid gray;
-	border-radius: 30px;
-	font-size: larger;
-	font-weight: bold;
-}
-
-.show-password {
-	border: none;
-	background-color: transparent;
-}
-
-#login-close-button {
-	display: block;
-	margin: 30% auto 0;
-	margin-top: 10%;
-	padding: 10px 20px;
-	font-size: large;
-	font-weight: bold;
-	color: white;
-	background-color: rgb(175, 174, 174);
-	border: none;
-	cursor: pointer;
-}
-/* ----------------------------------*/
-
-
-
-.footer{
-    background-color: #f7f7f7;
-    padding: 20px;
-    border-top: 1px solid #e9e7e7;
-}
-
-.footer-content{
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    margin-bottom: 30px;
-}
-
-.footer-column{
-    margin: 20px;
-}
-
-.footer-column h4{
-    font-weight: bold;
-}
-
-.footer-column ul{
-    list-style: none;
-    padding: 0;
-    cursor: pointer;
-}
-
-.footer-column ul li{
-    margin-bottom: 10px;
-}
-
-.footer-column ul li a{
-    text-decoration: none; 
-    color: inherit; 
-}
-
-.footer-bottom{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-top: 1px solid #e7e7e7;
-    padding-top: 10px;
-}
-
-.footer-bottom span{
-    margin-bottom: 10px;
-}
-
-.footer-link{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.footer-bottom a{
-    margin: 10px;
-    color: #555;
-    text-decoration: none;
-}
-
-.footer-language{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-bottom: 30px;
-}
-
-.footer-language span{
-    margin-left: 15px;
-    color: #555;
-}
-
-.footer-sns{
-    display: flex;
-    justify-content: center;
-    padding-bottom: 30px;
-    cursor: pointer;
-}
-
-.footer-sns img{
-    width: 24px;
-    height: 24px;
-    margin: 0 10px;
-}

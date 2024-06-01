@@ -19,44 +19,31 @@ document.addEventListener("DOMContentLoaded", function() {
 	}
 });
 
+
 // 비밀번호 체크 함수
 function checkPassword() {
 	const inputPassword = document.querySelector("#passwordInput").value; // 사용자가 입력한 비밀번호
-	const selectedCard = document.querySelector(".option.selected"); // 선택된 카드의 비밀번호
+	const selectedCard = document.querySelector(".option.selected"); // 선택된 카드
 
 	if (!selectedCard) {
 		console.log('No card selected');
 		return;
 	}
 
-	const selectedCardPwd = selectedCard.getAttribute('data-password');
+	const selectedCardPwd = selectedCard.getAttribute('data-pwd'); // 선택된 카드의 비밀번호
 
 	if (inputPassword === selectedCardPwd) {
 		document.querySelector('#rsvBtn').disabled = false;
 		document.querySelector('#passwordError').style.display = 'none';
 		document.querySelector('#passwordSuccess').style.display = 'block';
-		console.log('비밀번호 일치');
+		alert('비밀번호 일치');
 	} else {
 		document.querySelector('#rsvBtn').disabled = true;
 		document.querySelector('#passwordError').style.display = 'block';
 		document.querySelector('#passwordSuccess').style.display = 'none';
-		console.log('비밀번호 불일치');
+		alert('비밀번호 불일치');
 	}
-}
 
-//비밀번호 확인........
-function checkPassword() {
-	const inputPassword = document.getElementById('passwordInput').value;
-	const selectedCard = document.querySelector('.option.selected');
-	const storedPassword = selectedCard ? selectedCard.getAttribute('data-pwd') : '';
-
-	if (inputPassword === storedPassword) {
-		document.getElementById('rsvBtn').disabled = false;
-		document.getElementById('passwordError').style.display = 'none';
-	} else {
-		document.getElementById('rsvBtn').disabled = true;
-		document.getElementById('passwordError').style.display = 'block';
-	}
 }
 
 
@@ -96,11 +83,15 @@ function selectCard(e) {
 
 
 document.addEventListener("DOMContentLoaded", () => {
-	//	const tempFormEl = document.querySelector(".temp-form");
 	const tempFormEl = document.querySelector("#temp-form");
 	const subBtn = document.querySelector("#rsvBtn");
 	const kakaoPayEl = document.querySelector("#KAKAOPAY");
 	const sum = document.querySelector("#sum").innerHTML;
+
+	console.log(tempFormEl);
+	console.log(subBtn);
+	console.log(kakaoPayEl);
+	console.log(sum);
 
 	tempFormEl.addEventListener("submit", (e) => {
 		if (!kakaoPayEl.classList.contains("selected")) {
@@ -140,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
 					method: 'POST',
 					contentType: 'application/json',
 					data: JSON.stringify(reviewData),
-					success: function(x) {
+					success: function(success) {
 						alert('결제가 성공적으로 완료되었습니다.');
 					},
 					error: function(error) {
@@ -212,6 +203,8 @@ function saveDates() {
 
 	if (checkInDate && checkOutDate) {
 		daysDiv.innerHTML = checkInDate + " ~ " + checkOutDate;
+		console.log(daysDiv.innerHTML);
+
 		close_editDate();
 	} else {
 		alert("날짜를 선택해주세요.");

@@ -30,10 +30,10 @@ public class ReservationCancelController extends HttpServlet {
 			ReservationService rs = new ReservationService();
 			int result = rs.cancelReservation(reserveNo);
 			if (result != 1) {
-				session.setAttribute("alertMsg", "회원 정보 수정 실패");
+				session.setAttribute("alertMsg", "예약 취소 실패");
 				throw new Exception("예약 취소 실패");
 			}
-			session.setAttribute("alertMsg", "회원 정보 수정 성공");
+			session.setAttribute("alertMsg", "예약 취소 성공");
 
 			resp.sendRedirect("/journey/book/list");
 		} catch (Exception e) {
