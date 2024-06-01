@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="/journey/resources/css/layout/header.css">
 <link rel="stylesheet" href="/journey/resources/css/layout/footer.css">
 
+<script defer src="/journey/resources/js/room/date.js"></script>
 <script defer src="/journey/resources/js/layout/header.js"></script>
 <script defer src="/journey/resources/js/room/map.js"></script>
 
@@ -81,19 +82,19 @@
                 </div>
 
                 <div id="right">
-                    <form id="reserve-table" action="/journey/book/new" method="get">
+                    <form onsubmit="return validateDates();" id="reserve-table" action="/journey/book/new" method="get">
                         <h2 id="price-per-day">￦${vo.weekdayPrice}/박</h2>
                         <input type="hidden" name="roomNo" value="${vo.no}">
                         <div id="reserve-select">
                             <div id="check-in">
                                 <label for="inDate">체크인</label>
                                 <br>
-                                <input type="date" name="inDate">
+                                <input type="date" id="inDate" name="inDate">
                             </div>
                             <div id="check-out">
                                 <label for="outDate">체크아웃</label>
                                 <br>
-                                <input type="date" name="outDate">
+                                <input type="date" id="outDate" name="outDate">
                             </div>
                             <div id="guest-num">
                                 <label for="guestCount">게스트 인원</label>
