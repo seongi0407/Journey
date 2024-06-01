@@ -28,7 +28,7 @@
         <main>
 
             <div id="room-info">
-                <div id="room-name"><h1>${vo.themeName}</h1></div>
+                <div id="room-name"><h1>${vo.accomName}</h1></div>
 
                 <div id="room-photo">
                     <img id="first-img" src="/journey/resources/upload/room/${attVoList[0].changeName}" alt="img01">
@@ -42,7 +42,7 @@
             <div id="reservation">
                 <div id="left">
                     <div id="room-explain">
-                        <h1>${vo.name}, ${vo.hostName}의 집 전체</h1>
+                        <h1>${vo.themeName}, ${vo.name}, ${vo.hostName}의 집 전체</h1>
                         <h4>최대 인원 ${vo.capacity}명, 침대 ${vo.bedNum}개, 욕실 ${vo.bathNum}개</h4>
                         <h5>⭐ 4.27 후기 209개</h5>
                     </div>
@@ -50,7 +50,7 @@
                         <img src="/journey/resources/upload/host/${vo.hostProfile}" alt="호스트 사진">
                         <div>
                             <h3>호스트: ${vo.hostName}님</h3>
-                            <h4>슈퍼호스트 · 호스팅 경력 ??년</h4>
+                            <h4>슈퍼호스트 · 호스팅 경력 12년</h4>
                         </div>
                     </div>
                     <div id="room-short">
@@ -68,7 +68,7 @@
 
                         <img src="/journey/resources/img/room/ame03.png" alt="사진03">
                         <div>
-                            <h3>6월 11일 전까지 무료 취소 가능</h3>
+                            <h3>무료 취소 가능</h3>
                             <h4>여행 계획이 변경되어도 전액 환불 받으실 수 있습니다.</h4>
                         </div>
 
@@ -99,107 +99,34 @@
                                 <label for="guestCount">게스트 인원</label>
                                 <br>
                                 <select name="guestCount">
-                                    <option value="1">1명</option>
-                                    <option value="2">2명</option>
-                                    <option value="3">3명</option>
-                                    <option value="4">4명</option>
-                                    <option value="5">5명</option>
-                                    <option value="6">6명</option>
-                                    <option value="7">7명</option>
-                                    <option value="8">8명</option>
-                                    <option value="9">9명</option>
-                                    <option value="10">10명</option>
+                                	<c:forEach begin="1" end="${vo.capacity}" varStatus="i" >
+                                		<option value="${i.index}">${i.index}명</option>
+                                	</c:forEach>
                                 </select>
                             </div>
                         </div>
                         <input id="reserve-btn" type="submit" value="예약하기">
-                            
-                        <h4 id="reserve-price">${vo.weekdayPrice} x ??(며칠) = **(총 얼마)</h4>
-                            
-                        <h4 id="reserve-price-sum">??(총합) = ??(얼마)</h4>
                     </form>
                 </div>
             </div>
 
             <div id="review">
-                <div id="review01">
-                    <img src="/journey/resources/upload/member/${reVoList[0].profile}" alt="리뷰01">
-                    <div>
-                        <h4>${reVoList[0].writerName}</h4>
-                        <h5>서울, 한국</h5>
-                    </div>
-                    <div class="review-zone">
-                        ⭐⭐⭐⭐⭐ · ${reVoList[0].enrollDate}
-                        <div>
-                            ${reVoList[0].content}
-                        </div>
-                    </div>
-                </div>
-                <div id="review02">
-                    <img src="/journey/resources/upload/member/${reVoList[1].profile}" alt="리뷰02">
-                    <div>
-                        <h4>${reVoList[1].writerName}</h4>
-                        <h5>서울, 한국</h5>
-                    </div>
-                    <div class="review-zone">
-                        ⭐⭐⭐⭐⭐ · ${reVoList[1].enrollDate}
-                        <div>
-                            ${reVoList[1].content}
-                        </div>
-                    </div>
-                </div>
-                <div id="review03">
-                    <img src="/journey/resources/upload/member/${reVoList[2].profile}" alt="리뷰03">
-                    <div>
-                        <h4>${reVoList[2].writerName}</h4>
-                        <h5>서울, 한국</h5>
-                    </div>
-                    <div class="review-zone">
-                        ⭐⭐⭐⭐⭐ · ${reVoList[2].enrollDate}
-                        <div>
-                            ${reVoList[2].content}
-                        </div>
-                    </div>
-                </div>
-                <div id="review04">
-                    <img src="/journey/resources/upload/member/${reVoList[3].profile}" alt="리뷰04">
-                    <div>
-                        <h4>${reVoList[3].writerName}</h4>
-                        <h5>서울, 한국</h5>
-                    </div>
-                    <div class="review-zone">
-                        ⭐⭐⭐⭐⭐ · ${reVoList[3].enrollDate}
-                        <div>
-                            ${reVoList[3].content}
-                        </div>
-                    </div>
-                </div>
-                <div id="review05">
-                    <img src="/journey/resources/upload/member/${reVoList[4].profile}" alt="리뷰05">
-                    <div>
-                        <h4>${reVoList[4].writerName}</h4>
-                        <h5>서울, 한국</h5>
-                    </div>
-                    <div class="review-zone">
-                        ⭐⭐⭐⭐⭐ · ${reVoList[4].enrollDate}
-                        <div>
-                            ${reVoList[4].content}
-                        </div>
-                    </div>
-                </div>
-                <div id="review06">
-                    <img src="/journey/resources/upload/member/${reVoList[5].profile}" alt="리뷰06">
-                    <div>
-                        <h4>${reVoList[5].writerName}</h4>
-                        <h5>서울, 한국</h5>
-                    </div>
-                    <div class="review-zone">
-                        ⭐⭐⭐⭐⭐ · ${reVoList[5].enrollDate}
-                        <div>
-                            ${reVoList[5].content}
-                        </div>
-                    </div>
-                </div>
+            	<c:forEach items="${reVoList}" var="reVoList">
+	                <div>
+	                    <img src="/journey/resources/upload/member/${reVoList.profile}" alt="리뷰01">
+	                    <div>
+	                        <h4>${reVoList.writerName}</h4>
+	                        <h5>서울, 한국</h5>
+	                    </div>
+	                    <div class="review-zone">
+	                        ⭐⭐⭐⭐⭐ · ${reVoList.enrollDate}
+	                        <div>
+	                            ${reVoList.content}
+	                        </div>
+	                    </div>
+	                </div>
+            	</c:forEach>
+                <button onclick="location.href='/journey/review/list?roomNo=${vo.no}'">후기 모두 보기</button>
             </div>
 
             <div id="map-wrap">

@@ -260,7 +260,7 @@ public class RoomDao {
    public RoomVo getRoomDetail(Connection conn, String no) throws Exception {
       
       // sql
-      String sql = "SELECT H.NAME HOST_NAME , H.PROFILE , A.ADDRESS , T.THEME_NAME , R.WEEKDAY_PRICE , R.CAPACITY , R.ROOM_NUM , R.BATH_NUM , R.BED_SINGLE , R.BED_DOUBLE , R.BED_QUEEN , R.GRADE , R.NAME FROM ROOM R JOIN ACCOMMODATION A ON (R.ACCOM_NO = A.NO) JOIN HOST H ON (A.HOST_NO = H.NO) JOIN THEME T ON (R.THEME_CODE = T.THEME_CODE) WHERE R.NO = ? AND R.DEL_YN = 'N'";
+      String sql = "SELECT H.NAME HOST_NAME , H.PROFILE , A.NAME ACCOM_NAME, A.ADDRESS , T.THEME_NAME , R.WEEKDAY_PRICE , R.CAPACITY , R.ROOM_NUM , R.BATH_NUM , R.BED_SINGLE , R.BED_DOUBLE , R.BED_QUEEN , R.GRADE , R.NAME FROM ROOM R JOIN ACCOMMODATION A ON (R.ACCOM_NO = A.NO) JOIN HOST H ON (A.HOST_NO = H.NO) JOIN THEME T ON (R.THEME_CODE = T.THEME_CODE) WHERE R.NO = ? AND R.DEL_YN = 'N'";
       PreparedStatement pstmt = conn.prepareStatement(sql);
       
       // 객실 번호 넣어주기
@@ -272,6 +272,7 @@ public class RoomDao {
       
       if(rs.next()) {
          String hostName = rs.getString("HOST_NAME");
+         String accomName = rs.getString("ACCOM_NAME");
          String hostProfile = rs.getString("PROFILE");
          
          String address = rs.getString("ADDRESS");
@@ -297,6 +298,7 @@ public class RoomDao {
          
          vo.setNo(no);
          
+         vo.setAccomName(accomName);
          vo.setHostName(hostName);
          vo.setHostProfile(hostProfile);
          

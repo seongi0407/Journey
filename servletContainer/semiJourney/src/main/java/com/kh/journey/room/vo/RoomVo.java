@@ -1,116 +1,121 @@
 package com.kh.journey.room.vo;
 
 public class RoomVo {
-   private String no;
-   private String accomNo;
-   private String themeCode;
-   private String name;
-   private String capacity;
-   private String grade;
-   private String bathNum;
-   private String roomNum;
-   private String img01;
-   private String img02;
-   private String img03;
-   private String img04;
-   private String img05;
-   private String enrollDate;
-   private String modifyDate;
-   private String exposeYn;
-   private String delYn;
-   private String bedSingle;
-   private String bedDouble;
-   private String bedQueen;
-   private String weekdayPrice;
-   private String weekendPrice;
-   private String towelYn;
-   private String tvYn;
-   private String netflixYn;
-   private String airconditionerYn;
-   private String heatingYn;
-   private String firealarmYn;
-   private String firstaidkitYn;
-   private String wifiYn;
-   private String frigerYn;
-   private String ovenYn;
-   private String hairdryerYn;
+	private String no;
+    private String accomNo;
+    private String themeCode;
+    private String name;
+    private String capacity;
+    private String grade;
+    private String bathNum;
+    private String roomNum;
+    private String img01;
+    private String img02;
+    private String img03;
+    private String img04;
+    private String img05;
+    private String enrollDate;
+    private String modifyDate;
+    private String exposeYn;
+    private String delYn;
+    private String bedSingle;
+    private String bedDouble;
+    private String bedQueen;
+    private String weekdayPrice;
+    private String weekendPrice;
+    private String towelYn;
+    private String tvYn;
+    private String netflixYn;
+    private String airconditionerYn;
+    private String heatingYn;
+    private String firealarmYn;
+    private String firstaidkitYn;
+    private String wifiYn;
+    private String frigerYn;
+    private String ovenYn;
+    private String hairdryerYn;
    
-   private String address;
-   private String hostName;
-   private String hostNo;
-   private String hostPhone;
-   private String hostProfile;
-   private String themeName;
-   private String bedNum;
-   private String wishNo;
-   
-	public RoomVo(String no, String accomNo, String themeCode, String name, String capacity, String grade, String bathNum,
-		String roomNum, String img01, String img02, String img03, String img04, String img05, String enrollDate,
-		String modifyDate, String exposeYn, String delYn, String bedSingle, String bedDouble, String bedQueen,
-		String weekdayPrice, String weekendPrice, String towelYn, String tvYn, String netflixYn,
-		String airconditionerYn, String heatingYn, String firealarmYn, String firstaidkitYn, String wifiYn,
-		String frigerYn, String ovenYn, String hairdryerYn, String address, String hostName, String hostNo,
-		String hostPhone, String hostProfile, String themeName, String bedNum, String wishNo) {
-	this.no = no;
-	this.accomNo = accomNo;
-	this.themeCode = themeCode;
-	this.name = name;
-	this.capacity = capacity;
-	this.grade = grade;
-	this.bathNum = bathNum;
-	this.roomNum = roomNum;
-	this.img01 = img01;
-	this.img02 = img02;
-	this.img03 = img03;
-	this.img04 = img04;
-	this.img05 = img05;
-	this.enrollDate = enrollDate;
-	this.modifyDate = modifyDate;
-	this.exposeYn = exposeYn;
-	this.delYn = delYn;
-	this.bedSingle = bedSingle;
-	this.bedDouble = bedDouble;
-	this.bedQueen = bedQueen;
-	this.weekdayPrice = weekdayPrice;
-	this.weekendPrice = weekendPrice;
-	this.towelYn = towelYn;
-	this.tvYn = tvYn;
-	this.netflixYn = netflixYn;
-	this.airconditionerYn = airconditionerYn;
-	this.heatingYn = heatingYn;
-	this.firealarmYn = firealarmYn;
-	this.firstaidkitYn = firstaidkitYn;
-	this.wifiYn = wifiYn;
-	this.frigerYn = frigerYn;
-	this.ovenYn = ovenYn;
-	this.hairdryerYn = hairdryerYn;
-	this.address = address;
-	this.hostName = hostName;
-	this.hostNo = hostNo;
-	this.hostPhone = hostPhone;
-	this.hostProfile = hostProfile;
-	this.themeName = themeName;
-	this.bedNum = bedNum;
-	this.wishNo = wishNo;
-}
+    private String address;
+    private String hostName;
+    private String hostNo;
+    private String hostPhone;
+    private String hostProfile;
+    private String themeName;
+    private String bedNum;
+    private String wishNo;
+    private String accomName;
+    
+    // constructor
+    public RoomVo(String no, String accomNo, String themeCode, String name, String capacity, String grade,
+			String bathNum, String roomNum, String img01, String img02, String img03, String img04, String img05,
+			String enrollDate, String modifyDate, String exposeYn, String delYn, String bedSingle, String bedDouble,
+			String bedQueen, String weekdayPrice, String weekendPrice, String towelYn, String tvYn, String netflixYn,
+			String airconditionerYn, String heatingYn, String firealarmYn, String firstaidkitYn, String wifiYn,
+			String frigerYn, String ovenYn, String hairdryerYn, String address, String hostName, String hostNo,
+			String hostPhone, String hostProfile, String themeName, String bedNum, String wishNo, String accomName) {
+		this.no = no;
+		this.accomNo = accomNo;
+		this.themeCode = themeCode;
+		this.name = name;
+		this.capacity = capacity;
+		this.grade = grade;
+		this.bathNum = bathNum;
+		this.roomNum = roomNum;
+		this.img01 = img01;
+		this.img02 = img02;
+		this.img03 = img03;
+		this.img04 = img04;
+		this.img05 = img05;
+		this.enrollDate = enrollDate;
+		this.modifyDate = modifyDate;
+		this.exposeYn = exposeYn;
+		this.delYn = delYn;
+		this.bedSingle = bedSingle;
+		this.bedDouble = bedDouble;
+		this.bedQueen = bedQueen;
+		this.weekdayPrice = weekdayPrice;
+		this.weekendPrice = weekendPrice;
+		this.towelYn = towelYn;
+		this.tvYn = tvYn;
+		this.netflixYn = netflixYn;
+		this.airconditionerYn = airconditionerYn;
+		this.heatingYn = heatingYn;
+		this.firealarmYn = firealarmYn;
+		this.firstaidkitYn = firstaidkitYn;
+		this.wifiYn = wifiYn;
+		this.frigerYn = frigerYn;
+		this.ovenYn = ovenYn;
+		this.hairdryerYn = hairdryerYn;
+		this.address = address;
+		this.hostName = hostName;
+		this.hostNo = hostNo;
+		this.hostPhone = hostPhone;
+		this.hostProfile = hostProfile;
+		this.themeName = themeName;
+		this.bedNum = bedNum;
+		this.wishNo = wishNo;
+		this.accomName = accomName;
+	}
 	public RoomVo() {
-}
-
-	@Override
-public String toString() {
-	return "RoomVo [no=" + no + ", accomNo=" + accomNo + ", themeCode=" + themeCode + ", name=" + name + ", capacity="
-			+ capacity + ", grade=" + grade + ", bathNum=" + bathNum + ", roomNum=" + roomNum + ", img01=" + img01
-			+ ", img02=" + img02 + ", img03=" + img03 + ", img04=" + img04 + ", img05=" + img05 + ", enrollDate="
-			+ enrollDate + ", modifyDate=" + modifyDate + ", exposeYn=" + exposeYn + ", delYn=" + delYn + ", bedSingle="
-			+ bedSingle + ", bedDouble=" + bedDouble + ", bedQueen=" + bedQueen + ", weekdayPrice=" + weekdayPrice
-			+ ", weekendPrice=" + weekendPrice + ", towelYn=" + towelYn + ", tvYn=" + tvYn + ", netflixYn=" + netflixYn
-			+ ", airconditionerYn=" + airconditionerYn + ", heatingYn=" + heatingYn + ", firealarmYn=" + firealarmYn
-			+ ", firstaidkitYn=" + firstaidkitYn + ", wifiYn=" + wifiYn + ", frigerYn=" + frigerYn + ", ovenYn="
-			+ ovenYn + ", hairdryerYn=" + hairdryerYn + ", address=" + address + ", hostName=" + hostName + ", hostNo="
-			+ hostNo + ", hostPhone=" + hostPhone + ", hostProfile=" + hostProfile + ", themeName=" + themeName
-			+ ", bedNum=" + bedNum + ", wishNo=" + wishNo + "]";
-}
+	}
 	
+	@Override
+	public String toString() {
+		return "RoomVo [no=" + no + ", accomNo=" + accomNo + ", themeCode=" + themeCode + ", name=" + name
+				+ ", capacity=" + capacity + ", grade=" + grade + ", bathNum=" + bathNum + ", roomNum=" + roomNum
+				+ ", img01=" + img01 + ", img02=" + img02 + ", img03=" + img03 + ", img04=" + img04 + ", img05=" + img05
+				+ ", enrollDate=" + enrollDate + ", modifyDate=" + modifyDate + ", exposeYn=" + exposeYn + ", delYn="
+				+ delYn + ", bedSingle=" + bedSingle + ", bedDouble=" + bedDouble + ", bedQueen=" + bedQueen
+				+ ", weekdayPrice=" + weekdayPrice + ", weekendPrice=" + weekendPrice + ", towelYn=" + towelYn
+				+ ", tvYn=" + tvYn + ", netflixYn=" + netflixYn + ", airconditionerYn=" + airconditionerYn
+				+ ", heatingYn=" + heatingYn + ", firealarmYn=" + firealarmYn + ", firstaidkitYn=" + firstaidkitYn
+				+ ", wifiYn=" + wifiYn + ", frigerYn=" + frigerYn + ", ovenYn=" + ovenYn + ", hairdryerYn="
+				+ hairdryerYn + ", address=" + address + ", hostName=" + hostName + ", hostNo=" + hostNo
+				+ ", hostPhone=" + hostPhone + ", hostProfile=" + hostProfile + ", themeName=" + themeName + ", bedNum="
+				+ bedNum + ", wishNo=" + wishNo + ", accomName=" + accomName + "]";
+	}
+	
+	// getter, setter
 	public String getNo() {
 		return no;
 	}
@@ -356,5 +361,11 @@ public String toString() {
 	}
 	public void setWishNo(String wishNo) {
 		this.wishNo = wishNo;
+	}
+	public String getAccomName() {
+		return accomName;
+	}
+	public void setAccomName(String accomName) {
+		this.accomName = accomName;
 	}
 } // class
