@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="/journey/resources/css/layout/footer.css">
 
 <script defer src="/journey/resources/js/layout/header.js"></script>
+<script defer src="/journey/resources/js/member/my.js"></script>
 
 <%@ include file="/WEB-INF/views/layout/util.jsp" %>
 </head>
@@ -41,7 +42,7 @@
 	      <div class="memnuContent">예약 정보를 관리합니다.</div>
 	    </div>
 	    <div class="menuInner">
-	      <div class="menuIcon" onclick="location.href='/journey/member/quit'"><img id="iconImg" src="/journey/resources/img/my/cardAdd.png"></div>
+	      <div class="menuIcon" onclick="checkDup();"><img id="iconImg" src="/journey/resources/img/my/cardAdd.png"></div>
 	      <div class="menuTitle">회원 탈퇴</div>
 	      <div class="memnuContent">회원 탈퇴를 진행합니다.</div>
 	    </div>

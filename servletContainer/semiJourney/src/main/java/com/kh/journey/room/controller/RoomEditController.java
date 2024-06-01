@@ -1,6 +1,7 @@
 package com.kh.journey.room.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,7 +24,22 @@ public class RoomEditController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/WEB-INF/views/test2.jsp").forward(req, resp);
+		try {
+			String no = req.getParameter("no");
+			
+			RoomVo vo = service.getRoomDetail(no);
+			List<RoomVo> thVoList = service.getTheme();
+			req.setAttribute("no", no);
+			req.setAttribute("vo", vo);
+			req.setAttribute("thVoList", thVoList);
+			
+			req.getRequestDispatcher("/WEB-INF/views/room/edit.jsp").forward(req, resp);
+			
+		} catch(Exception e) {
+			
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
 	} // doGet
 
 	@Override
@@ -61,7 +77,10 @@ public class RoomEditController extends HttpServlet {
 			String frigerYn = req.getParameter("frigerYn");
 			String ovenYn = req.getParameter("ovenYn");
 			String hairdryerYn = req.getParameter("hairdryerYn");
-			
+
+			// 숙소 번호
+			String no = req.getParameter("no");
+						
 			RoomVo vo = new RoomVo();
 			
 			// 기본 입력 값
@@ -94,6 +113,9 @@ public class RoomEditController extends HttpServlet {
 			vo.setFrigerYn(frigerYn);
 			vo.setHeatingYn(heatingYn);
 			vo.setHairdryerYn(hairdryerYn);
+			
+			// 객실 번호
+			vo.setNo(no);
 			
 			// service 호출
 			int result = service.edit(vo);

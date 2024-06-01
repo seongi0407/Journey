@@ -12,9 +12,9 @@
 <link rel="stylesheet" href="/journey/resources/css/layout/header.css">
 <link rel="stylesheet" href="/journey/resources/css/layout/footer.css">
 
-<script defer src="/journey/resources/js/room/date.js"></script>
+<script defer src="/journey/resources/js/room/detail/date.js"></script>
 <script defer src="/journey/resources/js/layout/header.js"></script>
-<script defer src="/journey/resources/js/room/map.js"></script>
+<script defer src="/journey/resources/js/room/detail/map.js"></script>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f1deaaca1522c6065545245daaba71a4&libraries=services"></script>
 </head>
@@ -211,16 +211,16 @@
                 </table>
                 
                 <button class = "right_button"> > </button>
-                <script src = "/journey/resources/js/room/calendar.js"></script>
+                <script src = "/journey/resources/js/room/detail/calendar.js"></script>
             </div>
 
         </main>
 
-
-
-  		<%@ include file="/WEB-INF/views/layout/footer.jsp"%>
+        
 
     </div>
+    
+    <%@ include file="/WEB-INF/views/layout/footer.jsp"%>
 
     <aside></aside>
 </body>

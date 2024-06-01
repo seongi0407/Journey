@@ -18,7 +18,7 @@ public class RoomDao {
    public int insert(Connection conn, RoomVo vo) throws Exception {
       
       // sql
-      String sql = "INSERT INTO ROOM ( NO , NAME , THEME_CODE , CAPACITY , BATH_NUM , ROOM_NUM , BED_SINGLE , BED_DOUBLE , BED_QUEEN , WEEKDAY_PRICE , WEEKEND_PRICE , AIRCONDITIONER_YN , WIFI_YN , TOWEL_YN , OVEN_YN , FIREALARM_YN , FIRSTAIDKIT_YN , NETFLIX_YN , FRIGER_YN , HEATING_YN , HAIRDRYER_YN , TV_YN , ACCOM_NO ) VALUES ( SEQ_ROOM.NEXTVAL , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? )";
+      String sql = "INSERT INTO ROOM ( NO , NAME , THEME_CODE , CAPACITY , BATH_NUM , ROOM_NUM , BED_SINGLE , BED_DOUBLE , BED_QUEEN , WEEKDAY_PRICE , WEEKEND_PRICE , AIRCONDITIONER_YN , WIFI_YN , TOWEL_YN , OVEN_YN , FIREALARM_YN , FIRSTAIDKIT_YN , NETFLIX_YN , FRIGER_YN , HEATING_YN , HAIRDRYER_YN , TV_YN , ACCOM_NO , IMG_01 , IMG_02 , IMG_03 , IMG_04 , IMG_05) VALUES ( SEQ_ROOM.NEXTVAL , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ?)";
       PreparedStatement pstmt = conn.prepareStatement(sql);
       
       pstmt.setString(1, vo.getName());
@@ -47,8 +47,15 @@ public class RoomDao {
       pstmt.setString(20, vo.getHairdryerYn());
       pstmt.setString(21, vo.getTvYn());
       
-      // 숙소 번호 넣어주기
-      pstmt.setString(22, "1");
+      // 숙소
+      pstmt.setString(22, vo.getAccomNo());
+      
+      // 이미지
+      pstmt.setString(23, vo.getImg01());
+      pstmt.setString(24, vo.getImg02());
+      pstmt.setString(25, vo.getImg03());
+      pstmt.setString(26, vo.getImg04());
+      pstmt.setString(27, vo.getImg05());
       
       int result = pstmt.executeUpdate();
       
@@ -76,7 +83,7 @@ public class RoomDao {
    } // insertRoomAttachment
 
    // 객실 삭제
-   public int delete(Connection conn) throws Exception {
+   public int delete(Connection conn, String no) throws Exception {
       
       // sql
       String sql = "UPDATE ROOM SET DEL_YN = 'Y' WHERE NO = ? AND DEL_YN = 'N'";
@@ -84,7 +91,7 @@ public class RoomDao {
       PreparedStatement pstmt = conn.prepareStatement(sql);
       
       // 객실 번호 받아서 넣어주기
-      pstmt.setString(1, "1");
+      pstmt.setString(1, no);
       
       int result = pstmt.executeUpdate();
       
@@ -94,7 +101,7 @@ public class RoomDao {
    } // delete
    
    // 숙소 삭제 시 해당 숙소의 모든 객실 삭제
-   public int deleteAll(Connection conn, String no) throws Exception {
+   public int deleteAll(Connection conn, String accomNo) throws Exception {
       
       // sql
       String sql = "UPDATE ROOM SET DEL_YN = 'Y' WHERE ACCOM_NO = ? AND DEL_YN = 'N'";
@@ -102,7 +109,7 @@ public class RoomDao {
       PreparedStatement pstmt = conn.prepareStatement(sql);
       
       // 숙소 번호 받아서 넣어주기
-      pstmt.setString(1, no);
+      pstmt.setString(1, accomNo);
       
       int result = pstmt.executeUpdate();
       
@@ -144,8 +151,8 @@ public class RoomDao {
       pstmt.setString(20, vo.getHairdryerYn());
       pstmt.setString(21, vo.getTvYn());
       
-      // 객실 번호 받아서 넣어주기
-      pstmt.setString(22, "1");
+      // 객실 번호
+      pstmt.setString(22, vo.getNo());
       
       int result = pstmt.executeUpdate();
       
@@ -236,12 +243,12 @@ public class RoomDao {
    } // getRoomListForWish
    
    // 객실 목록 조회 (위시리스트 전용)
-   public List<RoomVo> getRoomListForHost(Connection conn, String no) throws Exception {
+   public List<RoomVo> getRoomListForHost(Connection conn, String accomNo) throws Exception {
       
       // sql
-      String sql = "SELECT R.NO , R.NAME , R.WEEKDAY_PRICE , R.GRADE , R.IMG_01 , A.ADDRESS , T.THEME_NAME FROM ROOM R JOIN ACCOMMODATION A ON (R.ACCOM_NO = A.NO) JOIN THEME T ON (R.THEME_CODE = T.THEME_CODE) JOIN WISH_LIST W ON (W.ROOM_NO = R.NO) JOIN MEMBER M ON (W.MEM_NO = M.NO) WHERE M.NO = ? AND R.DEL_YN = 'N' AND A.DEL_YN = 'N' AND M.DEL_YN = 'N'";
+      String sql = "SELECT R.NO , R.NAME , R.WEEKDAY_PRICE , R.GRADE , R.IMG_01 , A.ADDRESS , T.THEME_NAME FROM ROOM R JOIN ACCOMMODATION A ON (R.ACCOM_NO = A.NO) JOIN THEME T ON (R.THEME_CODE = T.THEME_CODE) WHERE A.NO = ? AND R.DEL_YN = 'N'";
       PreparedStatement pstmt = conn.prepareStatement(sql);
-      pstmt.setString(1, no);;
+      pstmt.setString(1, accomNo);
       ResultSet rs = pstmt.executeQuery();
       
       RoomVo vo = null;
@@ -278,7 +285,7 @@ public class RoomDao {
    public RoomVo getRoomDetail(Connection conn, String no) throws Exception {
       
       // sql
-      String sql = "SELECT H.NAME HOST_NAME , H.PROFILE , A.NAME ACCOM_NAME, A.ADDRESS , T.THEME_NAME , R.WEEKDAY_PRICE , R.CAPACITY , R.ROOM_NUM , R.BATH_NUM , R.BED_SINGLE , R.BED_DOUBLE , R.BED_QUEEN , R.GRADE , R.NAME FROM ROOM R JOIN ACCOMMODATION A ON (R.ACCOM_NO = A.NO) JOIN HOST H ON (A.HOST_NO = H.NO) JOIN THEME T ON (R.THEME_CODE = T.THEME_CODE) WHERE R.NO = ? AND R.DEL_YN = 'N'";
+      String sql = "SELECT H.NAME HOST_NAME , H.PROFILE , A.NAME ACCOM_NAME , A.ADDRESS , T.THEME_NAME , R.WEEKDAY_PRICE , R.WEEKEND_PRICE , R.CAPACITY , R.ROOM_NUM , R.BATH_NUM , R.BED_SINGLE , R.BED_DOUBLE , R.BED_QUEEN , R.GRADE , R.NAME , R.WEEKEND_PRICE , R.TOWEL_YN , R.TV_YN , R.NETFLIX_YN , R.AIRCONDITIONER_YN , R.HEATING_YN , R.FIREALARM_YN , R.FIRSTAIDKIT_YN , R.WIFI_YN , R.FRIGER_YN , R.OVEN_YN , R.HAIRDRYER_YN FROM ROOM R JOIN ACCOMMODATION A ON (R.ACCOM_NO = A.NO) JOIN HOST H ON (A.HOST_NO = H.NO) JOIN THEME T ON (R.THEME_CODE = T.THEME_CODE) WHERE R.NO = ? AND R.DEL_YN = 'N'";
       PreparedStatement pstmt = conn.prepareStatement(sql);
       
       // 객실 번호 넣어주기
@@ -299,18 +306,35 @@ public class RoomDao {
 
          String name = rs.getString("NAME");
          String weekdayPrice = rs.getString("WEEKDAY_PRICE");
+         String weekendPrice = rs.getString("WEEKEND_PRICE");
          String grade = rs.getString("GRADE");
          
          String capacity = rs.getString("CAPACITY");
          String roomNum = rs.getString("ROOM_NUM");
          String bathNum = rs.getString("BATH_NUM");
          
-         int bedSingle = rs.getInt("BED_SINGLE");
-         int bedDouble = rs.getInt("BED_DOUBLE");
-         int bedQueen = rs.getInt("BED_QUEEN");
+         String bedSingle = rs.getString("BED_SINGLE");
+         String bedDouble = rs.getString("BED_DOUBLE");
+         String bedQueen = rs.getString("BED_QUEEN");
          
-         int bedNum = bedSingle + bedDouble + bedQueen;
+         int bedSingleInt = rs.getInt("BED_SINGLE");
+         int bedDoubleInt = rs.getInt("BED_DOUBLE");
+         int bedQueenInt = rs.getInt("BED_QUEEN");
+         
+         int bedNum = bedSingleInt + bedDoubleInt + bedQueenInt;
          String bedNumString = "" + bedNum;
+         
+         String towelYn = rs.getString("TOWEL_YN");
+         String tvYn = rs.getString("TV_YN");
+         String netflix = rs.getString("NETFLIX_YN");
+         String airconditionerYn = rs.getString("AIRCONDITIONER_YN");
+         String heatingYn = rs.getString("HEATING_YN");
+         String firealarmYn = rs.getString("FIREALARM_YN");
+         String firstaidkitYn = rs.getString("FIRSTAIDKIT_YN");
+         String wifiYn = rs.getString("WIFI_YN");
+         String frigerYn = rs.getString("FRIGER_YN");
+         String ovenYn = rs.getString("OVEN_YN");
+         String hairdryerYn = rs.getString("HAIRDRYER_YN");
          
          vo = new RoomVo();
          
@@ -326,13 +350,29 @@ public class RoomDao {
          
          vo.setName(name);
          vo.setWeekdayPrice(weekdayPrice);
+         vo.setWeekendPrice(weekendPrice);
          vo.setGrade(grade);
          
          vo.setCapacity(capacity);
          vo.setRoomNum(roomNum);
          vo.setBathNum(bathNum);
          
+         vo.setBedSingle(bedSingle);
+         vo.setBedDouble(bedDouble);
+         vo.setBedQueen(bedQueen);
          vo.setBedNum(bedNumString);
+         
+         vo.setAirconditionerYn(airconditionerYn);
+         vo.setFirealarmYn(firealarmYn);
+         vo.setFirstaidkitYn(firstaidkitYn);
+         vo.setWifiYn(wifiYn);
+         vo.setTvYn(tvYn);
+         vo.setTowelYn(towelYn);
+         vo.setOvenYn(ovenYn);
+         vo.setNetflixYn(netflix);
+         vo.setHeatingYn(heatingYn);
+         vo.setHairdryerYn(hairdryerYn);
+         vo.setFrigerYn(frigerYn);
       }
       
       close(rs);
@@ -424,4 +464,54 @@ public class RoomDao {
       
       return reVoList;
    } // getReview
+
+	// 객실명 중복 검사
+	public RoomVo checkDup(Connection conn, String name) throws Exception {
+		
+		// SQL
+		String sql = "SELECT NO FROM ROOM WHERE NAME = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, name);
+		ResultSet rs = pstmt.executeQuery();
+		
+		RoomVo vo = null;
+		if(rs.next()) {
+			
+			String no = rs.getString("NO");
+			vo = new RoomVo();
+			vo.setName(name);
+		}
+
+		close(rs);
+		close(pstmt);
+		
+		return vo;
+	} // checkDup
+
+	public List<RoomVo> getTheme(Connection conn) throws Exception {
+		
+	      // sql
+	      String sql = "SELECT THEME_CODE, THEME_NAME FROM THEME";
+	      PreparedStatement pstmt = conn.prepareStatement(sql);
+	      ResultSet rs = pstmt.executeQuery();
+	      
+	      List<RoomVo> thVoList = new ArrayList<RoomVo>();
+	      RoomVo vo = null;
+	      
+	      while(rs.next()) {
+	         String themeCode = rs.getString("THEME_CODE");
+	         String themeName = rs.getString("THEME_NAME");
+	         
+	         vo = new RoomVo();
+	         vo.setThemeCode(themeCode);
+	         vo.setThemeName(themeName);
+	         
+	         thVoList.add(vo);
+	      }
+	      
+	      close(rs);
+	      close(pstmt);
+	      
+	      return thVoList;
+	} // getTheme
 } // class

@@ -47,11 +47,11 @@ public class RoomService {
    } // insert
 
    // 객실 삭제
-   public int delete() throws Exception {
+   public int delete(String no) throws Exception {
       
       // dao 호출
       Connection conn = getConnection();
-      int result = dao.delete(conn);
+      int result = dao.delete(conn, no);
       
       if(result >= 1) {
          commit(conn);
@@ -64,11 +64,11 @@ public class RoomService {
    } // delete
    
    // 숙소 삭제 시 해당 숙소의 모든 객실 삭제
-   public int deleteAll(String no) throws Exception {
+   public int deleteAll(String accomNo) throws Exception {
       
       // dao 호출
       Connection conn = getConnection();
-      int result = dao.deleteAll(conn, no);
+      int result = dao.deleteAll(conn, accomNo);
       
       if(result >= 1) {
          commit(conn);
@@ -122,11 +122,11 @@ public class RoomService {
    } // getRoomListForWish
    
    // 객실 목록 조회 (호스트 전용)
-   public List<RoomVo> getRoomListForHost(String no) throws Exception {
+   public List<RoomVo> getRoomListForHost(String accomNo) throws Exception {
       
       // dao 호출
       Connection conn = getConnection();
-      List<RoomVo> voList = dao.getRoomListForHost(conn, no);
+      List<RoomVo> voList = dao.getRoomListForHost(conn, accomNo);
       
       close(conn);
       
@@ -168,4 +168,32 @@ public class RoomService {
       
       return reVoList;
    } // getReview
+   
+	// 객실명 중복 검사
+	public RoomVo checkDup(String name) throws Exception {
+		
+		// 비즈니스 로직
+		
+		// DAO 호출
+		Connection conn = getConnection();
+		RoomVo vo = dao.checkDup(conn, name);
+		
+		close(conn);
+		
+		return vo;
+	} // checkDup
+	
+	// 테마명 가져오기
+	public List<RoomVo> getTheme() throws Exception {
+		
+		// 비즈니스 로직
+		
+		// DAO 호출
+		Connection conn = getConnection();
+		List<RoomVo> thVoList = dao.getTheme(conn);
+		
+		close(conn);
+		
+		return thVoList;
+	} // getTheme
 } // class

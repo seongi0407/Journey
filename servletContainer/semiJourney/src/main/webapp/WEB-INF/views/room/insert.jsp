@@ -21,72 +21,129 @@
 	<%@ include file="/WEB-INF/views/layout/header.jsp"%>
 
 	<div id="wrap">
-		<form action="/journey/accom/insert" method="post" enctype="multipart/form-data">
-			<h1>객실 등록</h1>
+		<form onsubmit="return validate();" action="/journey/room/insert" method="post" enctype="multipart/form-data">
+			<h1>객실등록</h1>
+			
+			<input type="hidden" name="accomNo" value="${accomNo}">
+			
+			<br>
+            <label>객실명</label>
+            <input type="text" name="name" id="name" placeholder="객실명">
+			<button type="button" onclick="checkDup();">중복검사</button>
+			<br>
+			<br>
+
+            <label>테마명</label>
+	        <select name="themeCode">
+            	<c:forEach items="${thVoList}" var="thVoList">
+	                <option value="${thVoList.themeCode}">${thVoList.themeName}</option>
+	            </c:forEach>
+            </select>
+			<br>
+			<br>
+
+			<label>최대 이용 가능 인원</label>
+			<input type="text" name="capacity" placeholder="최대 이용 가능 인원">
+			<br>
+			<label>화장실 갯수</label>
+			<input type="text" name="bathNum" placeholder="화장실 갯수">
+			<br>
+			<label>방 갯수 (화장실 제외)</label>
+			<input type="text" name="roomNum" placeholder="방 갯수 (화장실 제외)">
+			<br>
+
+			<label>싱글 사이즈 침대 갯수</label>
+			<input type="text" name="bedSingle" placeholder="싱글 사이즈 침대 갯수">
+			<br>
+			<label>더블 사이즈 침대 갯수</label>
+			<input type="text" name="bedDouble" placeholder="더블 사이즈 침대 갯수">
+			<br>
+			<label>퀸 사이즈 침대 갯수</label>
+			<input type="text" name="bedQueen" placeholder="퀸 사이즈 침대 갯수">
+			<br>
+
+			<label>평일 가격</label>
+			<input type="text" name="weekdayPrice" placeholder="평일 가격">
+			<br>
+			<label>주말 가격</label>
+			<input type="text" name="weekendPrice" placeholder="주말 가격">
+			<br>
 			<br>
 			
-			<div>
-				<label for="name">객실명:</label> 
-				<input type="text" id="name" name="name" required>
-			</div>
-			<div>
-				<label for="address">테마명</label>
-				<input type="text" id="address" name="address" required>
-			</div>
-			<div>
-				<label for="swimYn">수영장 여부:</label> 
-				<select id="swimYn" name="swimYn" required>
-					<option value="Y">Y</option>
-					<option value="N">N</option>
-				</select>
-			</div>
-			<div>
-				<label for="spaYn">스파 여부:</label> 
-				<select id="spaYn" name="spaYn" required>
-					<option value="Y">Y</option>
-					<option value="N">N</option>
-				</select>
-			</div>
-			<div>
-				<label for="disabledYn">장애인 시설 여부:</label> 
-				<select id="disabledYn" name="disabledYn" required>
-					<option value="Y">Y</option>
-					<option value="N">N</option>
-				</select>
-			</div>
-			<div>
-				<label for="parkingYn">주차장 여부:</label> 
-				<select id="parkingYn" name="parkingYn" required>
-					<option value="Y">Y</option>
-					<option value="N">N</option>
-				</select>
-			</div>
-			<div>
-				<label for="elevatorYn">엘리베이터 여부:</label> 
-				<select id="elevatorYn" name="elevatorYn" required>
-					<option value="Y">Y</option>
-					<option value="N">N</option>
-				</select>
-			</div>
-			<div>
-				<label for="breakfastYn">조식 제공 여부:</label> 
-				<select id="breakfastYn" name="breakfastYn" required>
-					<option value="Y">Y</option>
-					<option value="N">N</option>
-				</select>
-			</div>
-			<div>
-				<label for="smokeYn">흡연 가능 여부:</label>
-				<select id="smokeYn" name="smokeYn" required>
-					<option value="Y">Y</option>
-					<option value="N">N</option>
-				</select>
-			</div>
-			<div>
-				<label for="imgUrl">객실 이미지 업로드:</label> 
-				<input type="file" id="imgUrl" name="imgUrl" required>
-			</div>
-			<button type="submit">객실등록</button>
+            <label>에어컨 여부</label>
+            <select name="airconditionerYn">
+                <option value="Y">Y</option>
+                <option value="N" selected>N</option>
+            </select>
+			<br>
+            <label>와이파이 여부</label>
+            <select name="wifiYn">
+                <option value="Y">Y</option>
+                <option value="N" selected>N</option>
+            </select>
+			<br>
+            <label>TV 여부</label>
+            <select name="tvYn">
+                <option value="Y">Y</option>
+                <option value="N" selected>N</option>
+            </select>
+			<br>
+            <label>타월 여부</label>
+            <select name="towelYn">
+                <option value="Y">Y</option>
+                <option value="N" selected>N</option>
+            </select>
+			<br>
+            <label>오븐 여부</label>
+            <select name="ovenYn">
+                <option value="Y">Y</option>
+                <option value="N" selected>N</option>
+            </select>
+			<br>
+            <label>화재 경보기 여부</label>
+            <select name="firealarmYn">
+                <option value="Y">Y</option>
+                <option value="N" selected>N</option>
+            </select>
+			<br>
+            <label>응급처치키트 여부</label>
+            <select name="firstaidkitYn">
+                <option value="Y">Y</option>
+                <option value="N" selected>N</option>
+            </select>
+			<br>
+            <label>넷플릭스 여부</label>
+            <select name="netflixYn">
+                <option value="Y">Y</option>
+                <option value="N" selected>N</option>
+            </select>
+			<br>
+            <label>냉장고 여부</label>
+            <select name="frigerYn">
+                <option value="Y">Y</option>
+                <option value="N" selected>N</option>
+            </select>
+			<br>
+            <label>히터 여부</label>
+            <select name="heatingYn">
+                <option value="Y">Y</option>
+                <option value="N" selected>N</option>
+            </select>
+			<br>
+            <label>헤어 드라이기 여부</label>
+            <select name="hairdryerYn">
+                <option value="Y">Y</option>
+                <option value="N" selected>N</option>
+            </select>
+			<br>
+			<br>
+
+            <label>등록할 객실 사진 5장</label>
+            <input type="file" name="file" multiple>
+			<br>
+			<br>
+
+			<input type="submit" value="객실등록">
 		</form>
 	</div>
 	

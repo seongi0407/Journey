@@ -12,13 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.journey.room.service.RoomService;
 import com.kh.journey.room.vo.RoomVo;
 
-@WebServlet("/room/list")
-public class RoomListController extends HttpServlet {
+@WebServlet("/host/room/list")
+public class RoomListForHostController extends HttpServlet {
 	
 	private final RoomService service;
 	
 	// Constructor
-	public RoomListController() {
+	public RoomListForHostController() {
 		this.service = new RoomService();
 	}
 	
@@ -26,13 +26,17 @@ public class RoomListController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		try {
+			// date 꺼내기
+			String accomNo = req.getParameter("accomNo");
+			
 			// service 호출
-			List<RoomVo> voList = service.getRoomListForHome();
+			List<RoomVo> voList = service.getRoomListForHost(accomNo);
 			
 			// 결과
 			req.setAttribute("voList", voList);
+			req.setAttribute("accomNo", accomNo);
 			
-			req.getRequestDispatcher("/WEB-INF/views/list2.jsp").forward(req, resp);
+			req.getRequestDispatcher("/WEB-INF/views/room/list.jsp").forward(req, resp);
 			
 		} catch(Exception e) {
 			
@@ -45,6 +49,5 @@ public class RoomListController extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		doGet(req, resp);
 	} // doPost
 } // class

@@ -24,8 +24,11 @@ public class RoomDeleteController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		try {
+			// data 꺼내기
+			String no = req.getParameter("no");
+			
 			// service 호출
-			int result = service.delete();
+			int result = service.delete(no);
 			
 			if(result < 1) {
 				throw new Exception("객실 삭제 실패");

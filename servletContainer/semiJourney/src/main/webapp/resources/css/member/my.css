@@ -84,14 +84,13 @@ main{
   margin: 20px;
   border-radius: 20px;
   box-shadow: 5px 5px 10px rgb(215, 215, 215);
+
+  cursor: pointer;
 }
 
-.menuInner div{
-
- }
-
-.menuTitle, .memnuContent{
-
+.menuInner:hover{
+    cursor: pointer;
+    background-color: #f1f1f1;
 }
 
 #iconImg{

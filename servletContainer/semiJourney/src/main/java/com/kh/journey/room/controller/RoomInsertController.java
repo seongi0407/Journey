@@ -35,7 +35,20 @@ public class RoomInsertController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/WEB-INF/views/room/insert.jsp").forward(req, resp);
+		try {
+			String accomNo = req.getParameter("accomNo");
+			
+			List<RoomVo> thVoList = service.getTheme();
+			req.setAttribute("accomNo", accomNo);
+			req.setAttribute("thVoList", thVoList);
+			
+			req.getRequestDispatcher("/WEB-INF/views/room/insert.jsp").forward(req, resp);
+			
+		} catch(Exception e) {
+			
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
 	} // doGet
 	
 	@SuppressWarnings("resource")
@@ -75,6 +88,9 @@ public class RoomInsertController extends HttpServlet {
 			String ovenYn = req.getParameter("ovenYn");
 			String hairdryerYn = req.getParameter("hairdryerYn");
 			
+			// 숙소 번호
+			String accomNo = req.getParameter("accomNo");
+			
 			RoomVo vo = new RoomVo();
 			
 			// 기본 입력 값
@@ -107,6 +123,9 @@ public class RoomInsertController extends HttpServlet {
 			vo.setFrigerYn(frigerYn);
 			vo.setHeatingYn(heatingYn);
 			vo.setHairdryerYn(hairdryerYn);
+			
+			// 숙소 번호
+			vo.setAccomNo(accomNo);
 
 			// 객실 이미지			
 			Collection<Part> parts = req.getParts();
@@ -124,6 +143,12 @@ public class RoomInsertController extends HttpServlet {
 				AttachmentVo attVo = FileUpload.saveFile(f);
 				attVoList.add(attVo);
 			}
+			
+			vo.setImg01(attVoList.get(0).getChangeName());
+			vo.setImg02(attVoList.get(1).getChangeName());
+			vo.setImg03(attVoList.get(2).getChangeName());
+			vo.setImg04(attVoList.get(3).getChangeName());
+			vo.setImg05(attVoList.get(4).getChangeName());
 			
 			// service 호출
 			int result = service.insert(vo, attVoList);

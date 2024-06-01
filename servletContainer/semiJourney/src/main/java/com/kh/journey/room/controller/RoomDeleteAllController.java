@@ -25,10 +25,10 @@ public class RoomDeleteAllController extends HttpServlet {
 		
 		try {
 			// data 꺼내기
-			String no = req.getParameter("accomNo");
+			String accomNo = req.getParameter("accomNo");
 			
 			// service 호출
-			int result = service.deleteAll(no);
+			int result = service.deleteAll(accomNo);
 			
 			if(result < 1) {
 				throw new Exception("객실 삭제 실패");
