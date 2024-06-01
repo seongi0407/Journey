@@ -44,7 +44,6 @@ public class HostJoinController extends HttpServlet {
 			// 데이터 꺼내기
 			String id = req.getParameter("id");
 			String pwd = req.getParameter("pwd");
-			String pwd2 = req.getParameter("pwd2");
 			String name = req.getParameter("name");
 			String phone = req.getParameter("phone");
 			Part profile = req.getPart("profile");
@@ -77,7 +76,6 @@ public class HostJoinController extends HttpServlet {
 			HostVo vo = new HostVo();
 			vo.setId(id);
 			vo.setPwd(pwd);
-			vo.setPwd2(pwd2);
 			vo.setName(name);
 			vo.setPhone(phone);
 			vo.setProfile(changeName);

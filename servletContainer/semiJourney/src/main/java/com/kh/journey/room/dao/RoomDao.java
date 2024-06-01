@@ -92,6 +92,24 @@ public class RoomDao {
       
       return result;
    } // delete
+   
+   // 숙소 삭제 시 해당 숙소의 모든 객실 삭제
+   public int deleteAll(Connection conn, String no) throws Exception {
+      
+      // sql
+      String sql = "UPDATE ROOM SET DEL_YN = 'Y' WHERE ACCOM_NO = ? AND DEL_YN = 'N'";
+      
+      PreparedStatement pstmt = conn.prepareStatement(sql);
+      
+      // 숙소 번호 받아서 넣어주기
+      pstmt.setString(1, no);
+      
+      int result = pstmt.executeUpdate();
+      
+      close(pstmt);
+      
+      return result;
+   } // deleteAll
 
    // 객실 수정
    public int edit(Connection conn, RoomVo vo) throws Exception {

@@ -36,11 +36,13 @@ public class MemberEditBirthController extends HttpServlet {
 			MemberVo loginMemberVo = (MemberVo) session.getAttribute("loginMemberVo");
 		
 			String no = loginMemberVo.getNo();
-			String birth = req.getParameter("birth");
+			String birthDate = req.getParameter("birthDate");
+			
+			System.out.println(birthDate);
 			
 			MemberVo vo = new MemberVo();
 			vo.setNo(no);
-			vo.setBirthDate(birth);
+			vo.setBirthDate(birthDate);
 			
 			// 서비스 호출
 			int result = service.editBirth(vo);
@@ -51,7 +53,7 @@ public class MemberEditBirthController extends HttpServlet {
 				throw new Exception("회원 정보 수정 실패");
 			}
 			
-			loginMemberVo.setName(birth);
+			loginMemberVo.setBirthDate(birthDate);
 			req.removeAttribute("loginMemberVo");
 			
 			session.setAttribute("loginMemberVo", loginMemberVo);

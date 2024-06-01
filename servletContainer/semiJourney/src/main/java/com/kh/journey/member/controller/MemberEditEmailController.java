@@ -40,7 +40,7 @@ public class MemberEditEmailController extends HttpServlet {
 			
 			MemberVo vo = new MemberVo();
 			vo.setNo(no);
-			vo.setName(email);
+			vo.setEmail(email);
 			
 			// 서비스 호출
 			int result = service.editEmail(vo);

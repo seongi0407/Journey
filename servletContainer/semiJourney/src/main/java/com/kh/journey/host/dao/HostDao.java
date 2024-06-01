@@ -83,7 +83,7 @@ public class HostDao {
 	public int editName(Connection conn, HostVo vo) throws Exception {
 		
 		// SQL
-		String sql = "UPDATE HOST SET NAME = ? WHERE NO = ?";
+		String sql = "UPDATE HOST SET NAME = ? WHERE NO = ? AND DEL_YN = 'N'";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, vo.getName());
 		pstmt.setString(2, vo.getNo());
@@ -98,7 +98,7 @@ public class HostDao {
 	public int editPwd(Connection conn, HostVo vo) throws Exception {
 		
 		// SQL
-		String sql = "UPDATE HOST SET PWD = ? WHERE NO = ?";
+		String sql = "UPDATE HOST SET PWD = ? WHERE NO = ? AND DEL_YN = 'N'";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, vo.getPwd());
 		pstmt.setString(2, vo.getNo());
@@ -113,7 +113,7 @@ public class HostDao {
 	public int editPhone(Connection conn, HostVo vo) throws Exception {
 		
 		// SQL
-		String sql = "UPDATE HOST SET PHONE = ? WHERE NO = ?";
+		String sql = "UPDATE HOST SET PHONE = ? WHERE NO = ? AND DEL_YN = 'N'";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, vo.getPhone());
 		pstmt.setString(2, vo.getNo());

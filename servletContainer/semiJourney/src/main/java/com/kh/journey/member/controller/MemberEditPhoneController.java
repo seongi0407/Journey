@@ -51,7 +51,7 @@ public class MemberEditPhoneController extends HttpServlet {
 				throw new Exception("회원 정보 수정 실패");
 			}
 			
-			loginMemberVo.setName(phone);
+			loginMemberVo.setPhone(phone);
 			req.removeAttribute("loginMemberVo");
 			
 			session.setAttribute("loginMemberVo", loginMemberVo);

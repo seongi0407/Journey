@@ -34,13 +34,13 @@ public class HostEditPhoneController extends HttpServlet {
 			// 데이터 꺼내기
 			HttpSession session = req.getSession();
 			HostVo loginHostVo = (HostVo) session.getAttribute("loginHostVo");
-		
+			
 			String no = loginHostVo.getNo();
-			String name = req.getParameter("name");
+			String phone = req.getParameter("phone");
 			
 			HostVo vo = new HostVo();
 			vo.setNo(no);
-			vo.setName(name);
+			vo.setName(phone);
 			
 			// 서비스 호출
 			int result = service.editName(vo);
@@ -51,7 +51,7 @@ public class HostEditPhoneController extends HttpServlet {
 				throw new Exception("회원 정보 수정 실패");
 			}
 			
-			loginHostVo.setName(name);
+			loginHostVo.setPhone(phone);
 			req.removeAttribute("loginHostVo");
 			
 			session.setAttribute("loginHostVo", loginHostVo);

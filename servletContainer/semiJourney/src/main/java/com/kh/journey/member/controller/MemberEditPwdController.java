@@ -37,12 +37,10 @@ public class MemberEditPwdController extends HttpServlet {
 		
 			String no = loginMemberVo.getNo();
 			String pwd = req.getParameter("pwd");
-			String pwd2 = req.getParameter("pwd2");
 			
 			MemberVo vo = new MemberVo();
 			vo.setNo(no);
 			vo.setPwd(pwd);
-			vo.setPwd2(pwd2);
 			
 			// 서비스 호출
 			int result = service.editPwd(vo);

@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>멤버 전화번호 수정</title>
+<title>호스트 전화번호 수정</title>
 
 <link rel="stylesheet" href="/journey/resources/css/layout/header.css">
 <link rel="stylesheet" href="/journey/resources/css/layout/footer.css">
-<link rel="stylesheet" href="/journey/resources/css/member/edit/phone.css">
+<link rel="stylesheet" href="/journey/resources/css/host/edit/phone.css">
 
 <script defer src="/journey/resources/js/layout/header.js"></script>
 
@@ -20,8 +20,8 @@
 	<%@ include file="/WEB-INF/views/layout/header.jsp"%>
 
 	<div id="wrap">
-		<form action="/journey/member/edit/phone" method="post">
-			<h1>멤버 전화번호 수정</h1>
+		<form action="/journey/host/edit/phone" method="post">
+			<h1>호스트 전화번호 수정</h1>
 			<input type="text" name="phone" placeholder="전화번호">
 			<br>
 			<input type="submit" value="전화번호 수정">

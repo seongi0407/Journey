@@ -62,6 +62,23 @@ public class RoomService {
       
       return result;
    } // delete
+   
+   // 숙소 삭제 시 해당 숙소의 모든 객실 삭제
+   public int deleteAll(String no) throws Exception {
+      
+      // dao 호출
+      Connection conn = getConnection();
+      int result = dao.deleteAll(conn, no);
+      
+      if(result >= 1) {
+         commit(conn);
+      } else {
+         rollback(conn);
+      }
+      close(conn);
+      
+      return result;
+   } // deleteAll
 
    // 객실 수정
    public int edit(RoomVo vo) throws Exception {

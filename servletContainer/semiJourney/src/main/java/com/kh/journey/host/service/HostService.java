@@ -97,9 +97,6 @@ public class HostService {
 	public int editPwd(HostVo vo) throws Exception {
 		
 		// 비즈니스 로직
-		if(!vo.getPwd().equals(vo.getPwd2())) {
-			throw new Exception("비밀번호 변경 실패");
-		}
 		
 		// DAO 호출
 		Connection conn = getConnection();
