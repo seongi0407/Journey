@@ -22,6 +22,24 @@ public class ReviewService {
 	// 리뷰 등록
 	public int reviewInsert(ReviewVo vo) throws Exception {
 
+//		String[] PROFANITY_LIST = new String[] { "18", "씨발", "존나" }; // 필터링할 욕설 목록
+//
+//		for (String profanity : PROFANITY_LIST) {
+//			if (vo.getContent().contains(profanity)) {
+//				throw new Exception("내용에 부적절한 단어가 포함되어 있습니다.");
+//			}
+//		}
+//		if (vo.getContent() == null) {
+//			throw new Exception("내용을 작성해주세요.");
+//		}
+//		// 추가 검증 (예: 제목 길이, 금지어 체크 등)
+//		if (vo.getContent().length() > 20) {
+//			throw new Exception("내용은 20자 이상 작성해주세요.");
+//		}
+//		if (vo.getContent().length() < 500) {
+//			throw new Exception("내용은 500자 이하로 작성해주세요.");
+//		}
+
 		Connection conn = getConnection();
 		ReviewDao dao = new ReviewDao();
 		int result = dao.reviewInsert(conn, vo);
@@ -33,17 +51,7 @@ public class ReviewService {
 		}
 		close(conn);
 
-		System.out.println(result);
 		return result;
-	}
-
-	// 최신리뷰 6개
-	public List<ReviewVo> getReviewListByRoomNo(String roomNo) throws Exception {
-		ReviewDao dao = new ReviewDao();
-		Connection conn = getConnection();
-		List<ReviewVo> voList = dao.getReviewListByRoomNo(conn, roomNo);
-		close(conn);
-		return voList;
 	}
 
 	// 해당 객실 모든 리뷰보기
@@ -81,7 +89,6 @@ public class ReviewService {
 
 	// 리뷰 수정(업데이트)
 	public int editReviewContent(ReviewVo vo) throws Exception {
-		System.out.println(vo);
 		Connection conn = getConnection();
 		int result = dao.editReviewContent(conn, vo);
 

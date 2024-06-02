@@ -23,7 +23,7 @@
 <body>
 
 	<div id="head">
-		<img class="rogoImg" src="/journey/resources/img/header/airbnb.png">
+		<img class="rogoImg" src="/journey/resources/img/header/airbnb.png" onclick="location.href='/journey/home'">
 	</div>
 
 

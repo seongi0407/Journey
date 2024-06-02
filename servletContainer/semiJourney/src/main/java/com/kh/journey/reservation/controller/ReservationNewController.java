@@ -45,6 +45,7 @@ public class ReservationNewController extends HttpServlet {
 			vo.setHostProfile(roomInfo.getHostProfile());
 			vo.setHostEnrollDate(roomInfo.getHostEnrollDate());
 			vo.setRoomName(roomInfo.getRoomName());
+			vo.setCapacity(roomInfo.getCapacity());
 			vo.setWeekdayPrice(roomInfo.getWeekdayPrice());
 			vo.setWeekendPrice(roomInfo.getWeekendPrice());
 			vo.setStayDay(roomInfo.getStayDay());
@@ -93,8 +94,6 @@ public class ReservationNewController extends HttpServlet {
 				vo.setPayMethodCode(payMethodCode);
 				vo.setCardNo(cardNo);
 
-				System.out.println(vo);
-
 				// 서비스 호출
 				ReservationService rs = new ReservationService();
 				int result = rs.ReservationInsert(vo);
@@ -106,7 +105,6 @@ public class ReservationNewController extends HttpServlet {
 
 				resp.sendRedirect("/journey/book/check");
 			}
-
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();

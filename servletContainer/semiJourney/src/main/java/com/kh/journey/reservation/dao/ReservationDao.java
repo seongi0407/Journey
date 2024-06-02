@@ -41,8 +41,6 @@ public class ReservationDao {
 			cardVoList.add(vo);
 		}
 
-		System.out.println(cardVoList);
-
 		close(rs);
 		close(pstmt);
 
@@ -51,7 +49,7 @@ public class ReservationDao {
 
 	// 예약시 룸 정보 가져오기
 	public List<ReservationVo> getRoomDetail(Connection conn, String roomNo) throws Exception {
-		String sql = "SELECT R.IMG_01, H.NAME AS HOST_NAME, H.PROFILE, TO_CHAR(H.ENROLL_DATE, 'YYYY-MM')ENROLL_DATE, R.NAME AS ROOM_NAME, R.WEEKDAY_PRICE, R.WEEKEND_PRICE FROM ROOM R JOIN ACCOMMODATION A ON R.ACCOM_NO = A.NO JOIN HOST H ON H.NO = A.HOST_NO WHERE R.NO = ?";
+		String sql = "SELECT R.CAPACITY, R.IMG_01, H.NAME AS HOST_NAME, H.PROFILE, TO_CHAR(H.ENROLL_DATE, 'YYYY-MM')ENROLL_DATE, R.NAME AS ROOM_NAME, R.WEEKDAY_PRICE, R.WEEKEND_PRICE FROM ROOM R JOIN ACCOMMODATION A ON R.ACCOM_NO = A.NO JOIN HOST H ON H.NO = A.HOST_NO WHERE R.NO = ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, roomNo);
 		ResultSet rs = pstmt.executeQuery();
@@ -66,6 +64,7 @@ public class ReservationDao {
 			String roomName = rs.getString("ROOM_NAME");
 			String weekdayPrice = rs.getString("WEEKDAY_PRICE");
 			String weekendPrice = rs.getString("WEEKEND_PRICE");
+			String capacity = rs.getString("CAPACITY");
 
 			ReservationVo vo = new ReservationVo();
 			vo.setRoomImg(roomImg);
@@ -75,9 +74,10 @@ public class ReservationDao {
 			vo.setRoomName(roomName);
 			vo.setWeekdayPrice(weekdayPrice);
 			vo.setWeekendPrice(weekendPrice);
+			vo.setCapacity(capacity);
 			roomDetail.add(vo);
 		}
-
+		System.out.println(roomDetail);
 		return roomDetail;
 
 	}
@@ -265,7 +265,6 @@ public class ReservationDao {
 			reservationList.add(vo);
 		}
 
-		System.out.println("dao" + reservationList);
 		return reservationList;
 	}
 

@@ -10,9 +10,9 @@ public class ReservationVo {
 	public ReservationVo(String reserveNo, String reservatorNo, String reservatorName, String reservatorEmail,
 			String reservatorPhone, String reservatorProfile, String sum, String inDate, String outDate, String stayDay,
 			String reserveDate, String delYn, String refundYn, String guestCount, String reviewNo, String roomNo,
-			String roomName, String roomImg, String weekdayPrice, String weekendPrice, String address, String hostName,
-			String hostEnrollDate, String hostPhone, String hostProfile, String payMethodName, String cardNo,
-			String payMethodCode) {
+			String roomName, String roomImg, String weekdayPrice, String weekendPrice, String address, String capacity,
+			String hostName, String hostEnrollDate, String hostPhone, String hostProfile, String payMethodName,
+			String cardNo, String payMethodCode) {
 		super();
 		this.reserveNo = reserveNo;
 		this.reservatorNo = reservatorNo;
@@ -35,6 +35,7 @@ public class ReservationVo {
 		this.weekdayPrice = weekdayPrice;
 		this.weekendPrice = weekendPrice;
 		this.address = address;
+		this.capacity = capacity;
 		this.hostName = hostName;
 		this.hostEnrollDate = hostEnrollDate;
 		this.hostPhone = hostPhone;
@@ -51,9 +52,10 @@ public class ReservationVo {
 				+ outDate + ", stayDay=" + stayDay + ", reserveDate=" + reserveDate + ", delYn=" + delYn + ", refundYn="
 				+ refundYn + ", guestCount=" + guestCount + ", reviewNo=" + reviewNo + ", roomNo=" + roomNo
 				+ ", roomName=" + roomName + ", roomImg=" + roomImg + ", weekdayPrice=" + weekdayPrice
-				+ ", weekendPrice=" + weekendPrice + ", address=" + address + ", hostName=" + hostName
-				+ ", hostEnrollDate=" + hostEnrollDate + ", hostPhone=" + hostPhone + ", hostProfile=" + hostProfile
-				+ ", payMethodName=" + payMethodName + ", cardNo=" + cardNo + ", payMethodCode=" + payMethodCode + "]";
+				+ ", weekendPrice=" + weekendPrice + ", address=" + address + ", capacity=" + capacity + ", hostName="
+				+ hostName + ", hostEnrollDate=" + hostEnrollDate + ", hostPhone=" + hostPhone + ", hostProfile="
+				+ hostProfile + ", payMethodName=" + payMethodName + ", cardNo=" + cardNo + ", payMethodCode="
+				+ payMethodCode + "]";
 	}
 	public String getReserveNo() {
 		return reserveNo;
@@ -181,6 +183,12 @@ public class ReservationVo {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	public String getCapacity() {
+		return capacity;
+	}
+	public void setCapacity(String capacity) {
+		this.capacity = capacity;
+	}
 	public String getHostName() {
 		return hostName;
 	}
@@ -244,6 +252,8 @@ public class ReservationVo {
 	private String weekdayPrice;
 	private String weekendPrice;
 	private String address;
+	private String capacity;
+	
 
 	private String hostName;
 	private String hostEnrollDate;

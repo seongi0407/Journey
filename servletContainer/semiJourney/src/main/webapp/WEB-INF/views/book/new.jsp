@@ -12,8 +12,9 @@
 <link rel="stylesheet" href="/journey/resources/css/layout/header.css">
 <link rel="stylesheet" href="/journey/resources/css/layout/footer.css">
 
-<!-- port -->
-
+<!-- ajax -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- 포트원 결제 -->
 <script defer src="https://cdn.iamport.kr/v1/iamport.js" defer></script>
 <script
@@ -42,15 +43,18 @@
 	</nav>
 
 	<main class="main">
-		<form action="/journey/book/new" id="temp-form"  class="temp-form" method="post">
+		<form action="/journey/book/new" id="temp-form" class="temp-form"
+			method="post">
 
-			<input type="hidden" id="roomNo" name="roomNo" value="${vo.roomNo}"> <input
-				type="hidden" id="inDate" name="inDate" value="${vo.inDate}"> <input
-				type="hidden" id="outDate" name="outDate" value="${vo.outDate}"> <input
-				type="hidden" id="guestCount" name="guestCount" value="${vo.guestCount}"> <input
+			<input type="hidden" id="roomNo" name="roomNo" value="${vo.roomNo}">
+			<input type="hidden" id="inDate" name="inDate" value="${vo.inDate}">
+			<input type="hidden" id="outDate" name="outDate"
+				value="${vo.outDate}"> <input type="hidden" id="guestCount"
+				name="guestCount" value="${vo.guestCount}"> <input
 				type="hidden" name="sum" value="${vo.sum}"> <input
-				type="hidden" id="payMethodCode" name="payMethodCode" value="${vo.payMethodCode}">
-			<input type="hidden" id="cardNo" name="cardNo" value="${vo.cardNo}">
+				type="hidden" id="payMethodCode" name="payMethodCode"
+				value="${vo.payMethodCode}"> <input type="hidden"
+				id="cardNo" name="cardNo" value="${vo.cardNo}">
 
 			<section class="rsv_inner" id="section">
 				<div id="sectionLeft">
@@ -67,7 +71,7 @@
 									<h3>날짜</h3>
 								</div>
 
-								<div id="days" class="days" id="checkInDate">
+								<div id="days" class="days">
 									<p id="stayPeriod">${vo.inDate}~${vo.outDate}</p>
 								</div>
 							</div>
@@ -82,7 +86,7 @@
 								<div>
 									<h3>인원</h3>
 								</div>
-								<div id="guestCount">${vo.guestCount}명</div>
+								<div id="guestCountDisplay">${vo.guestCount}명</div>
 							</div>
 							<div id="modifyCntPeople">
 								<span id="modifyCntPeopleText" role="button">수정</span>
@@ -116,8 +120,8 @@
 										<li class="option" data-code="P1" data-no="${card.no}"
 											data-code="P1" data-pwd="${card.pwd}"
 											onclick="selectCard(event)" name="paymentMethod"><img
-											src="/journey/resources/img/book/amaxs.svg">${card.no}|${card.cardNick}|
-											${card.cardNum}|${card.pwd}</li>
+											src="/journey/resources/img/book/amaxs.svg">
+											${card.cardNick}| ${card.cardNum}</li>
 									</c:forEach>
 									<hr>
 									<li>간편결제</li>
@@ -231,8 +235,10 @@
 					<div class="paymentMethod">
 						<h3>요금세부정보</h3>
 						<div class="payInformation">
-							<div class="result" id="result">₩${vo.weekdayPrice} x
-								${vo.stayDay}박</div>
+							<div class="result" id="result">
+								<span>₩${vo.weekdayPrice} x </span> <span id="stayDay">${vo.stayDay}박</span>
+								<p>(주말 요금: ₩${vo.weekendPrice})</p>
+							</div>
 						</div>
 
 						<div id="totalPayInfo" class="totalPayInfo">
@@ -240,7 +246,7 @@
 								<h3>총합계</h3>
 							</div>
 							<div id="totalPayInfoRight">
-								<span id="sum" >${vo.sum}</span>
+								<span id="sum">${vo.sum}</span>
 							</div>
 						</div>
 					</div>
@@ -276,8 +282,12 @@
 		<div class="popup-content">
 			<span class="closeBtn" onclick="close_editPeople()">&times;</span>
 			<h2>인원 수정</h2>
-			<label for="peopleCountInput">인원:</label> <input type="number"
-				id="peopleCountInput" min="1" max="10"><br>
+			<label for="peopleCountInput">인원:</label> <select name="guestCount"
+				id="peopleCountInput">
+				<c:forEach begin="1" end="${vo.capacity}" varStatus="status">
+					<option value="${status.index}">${status.index}명</option>
+				</c:forEach>
+			</select> <br>
 			<button id="savePeopleBtn" class="savePeopleBtn">수정</button>
 		</div>
 	</div>

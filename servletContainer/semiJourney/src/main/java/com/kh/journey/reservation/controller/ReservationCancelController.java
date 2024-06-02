@@ -25,8 +25,6 @@ public class ReservationCancelController extends HttpServlet {
 			HttpSession session = req.getSession();
 			String reserveNo = req.getParameter("reserveNo");
 
-			System.out.println("예약 번호: " + reserveNo);
-
 			ReservationService rs = new ReservationService();
 			int result = rs.cancelReservation(reserveNo);
 			if (result != 1) {

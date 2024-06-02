@@ -86,66 +86,41 @@ document.addEventListener("DOMContentLoaded", () => {
 	const tempFormEl = document.querySelector("#temp-form");
 	const subBtn = document.querySelector("#rsvBtn");
 	const kakaoPayEl = document.querySelector("#KAKAOPAY");
-	const sum = document.querySelector("#sum").innerHTML;
-
-	console.log(tempFormEl);
-	console.log(subBtn);
-	console.log(kakaoPayEl);
-	console.log(sum);
+	const sum = document.querySelector("#sum").textContent.trim();
 
 	tempFormEl.addEventListener("submit", (e) => {
 		if (!kakaoPayEl.classList.contains("selected")) {
 			return;
-		};
-		// form submit 안하게함	
+		}
+
+		// form submit 막기
 		e.preventDefault();
 
 		let IMP = window.IMP;
-
 		IMP.init("imp54410645");
 		IMP.request_pay({
-			// Store ID 설정
+			// Store ID
 			storeId: "store-ace42a29-d07d-4792-a9a1-1669939707a5",
-			// 채널 키 설정
+			// 채널 키
 			channelKey: "channel-key-d2cf9894-e4d8-44d1-98db-2b0f658a477e",
 			pg: "kakaopay",
 			pay_method: "card",
 			merchant_uid: "IMP" + new Date().getTime(),
 			name: "여행의 정석",
-			amount: sum,
-		}, async function(data) {
+			amount: sum
+		}, function(data) {
 			console.log(data);
 			if (data.status === "paid") {
-				// 결제 성공 시 서버로 데이터 전송
-				//const formData = new FormData(tempFormEl);
-				const reviewData = {
-					inDate: document.querySelector("#inDate").value,
-					outDate: document.querySelector("#outDate").value,
-					guestCount: document.querySelector("#guestCount").value,
-					cardNo: document.querySelector('input[name="cardNo"]').value,
-					payMethodCode: "p3",
-					sum: sum,
-				};
-				$.ajax({
-					url: '/journey/book/new',
-					method: 'POST',
-					contentType: 'application/json',
-					data: JSON.stringify(reviewData),
-					success: function(success) {
-						alert('결제가 성공적으로 완료되었습니다.');
-					},
-					error: function(error) {
-						alert('결제 데이터 전송 중 오류가 발생하였습니다.');
-					}
-				});
-
+				// 결제 성공 시 폼 제출
+				tempFormEl.submit();
 			} else {
 				alert("결제에 실패하였습니다.");
 			}
 		});
 	});
+
 	console.log(tempFormEl, subBtn, kakaoPayEl);
-})
+});
 
 // 초기화
 document.addEventListener("DOMContentLoaded", function() {
@@ -196,42 +171,104 @@ function close_editDate() {
 }
 
 //날짜칸 수정
-function saveDates() {
-	const checkInDate = document.querySelector('#checkInDate').value;
-	const checkOutDate = document.querySelector('#checkOutDate').value;
-	const daysDiv = document.querySelector('#days');
+document.addEventListener("DOMContentLoaded", function() {
+	const checkInDateEl = document.querySelector("#checkInDate");
+	const checkOutDateEl = document.querySelector("#checkOutDate");
+	const roomNoEl = document.querySelector("#roomNo");
+	const sumEl = document.querySelector("#sum");
 
-	if (checkInDate && checkOutDate) {
-		daysDiv.innerHTML = checkInDate + " ~ " + checkOutDate;
-		console.log(daysDiv.innerHTML);
+	// 날짜 변경 시 가격 업데이트
+	checkInDateEl.addEventListener("change", updatePrice);
+	checkOutDateEl.addEventListener("change", updatePrice);
 
-		close_editDate();
-	} else {
-		alert("날짜를 선택해주세요.");
+	// 날짜 수정 팝업 저장 버튼 클릭 시 동작
+	document.querySelector("#saveDateBtn").addEventListener("click", function() {
+		const checkInDate = checkInDateEl.value;
+		const checkOutDate = checkOutDateEl.value;
+		const daysDiv = document.querySelector("#days");
+
+		if (checkInDate && checkOutDate) {
+			daysDiv.innerHTML = checkInDate + " ~ " + checkOutDate;
+			document.querySelector('input[name="inDate"]').value = checkInDate;
+			document.querySelector('input[name="outDate"]').value = checkOutDate;
+			updatePrice(); // 날짜 변경 후 가격 수정
+			close_editDate();
+		} else {
+			alert("날짜를 선택해주세요.");
+		}
+	});
+
+	// 날짜 변경 시 가격 수정
+	function updatePrice() {
+		const checkInDate = checkInDateEl.value;
+		const checkOutDate = checkOutDateEl.value;
+		const roomNo = roomNoEl.value;
+		console.log("updatePrice");
+
+		if (checkInDate && checkOutDate && roomNo) {
+			console.log("ajax");
+			$.ajax({
+				url: '/journey/book/calculatePrice',
+				method: 'POST',
+				data: {
+					roomNo: roomNo,
+					inDate: checkInDate,
+					outDate: checkOutDate
+				},
+				success: function(response) {
+					const totalSum = response.totalSum;
+					sumEl.textContent = totalSum + '원';
+					document.querySelector('input[name="sum"]').value = totalSum;
+				},
+				error: function(err) {
+					console.error('Error calculating price:', err);
+				}
+			});
+		}
 	}
+});
+
+function close_editDate() {
+	document.querySelector('#editDate_popup').style.display = 'none';
 }
+
+
+
+
 
 //날짜 유효성 검사
 function validateDates() {
 	const checkInDate = document.getElementById("checkInDate").value;
 	const checkOutDate = document.getElementById("checkOutDate").value;
 
+	// 현재 날짜 YYYY-MM-DD
+	const today = new Date();
+	const year = today.getFullYear();
+	const month = String(today.getMonth() + 1).padStart(2, '0');
+	const day = String(today.getDate()).padStart(2, '0');
+	const sysdate = `${year}-${month}-${day}`;
+
 	if (checkInDate && checkOutDate) {
 		if (checkOutDate <= checkInDate) {
 			alert("체크아웃 날짜는 체크인 날짜보다 이후여야 합니다.");
-			document.getElementById("checkOutDate").value = "";
+			document.querySelector("#checkOutDate").value = "";
+		}
+		if (checkInDate < sysdate || checkOutDate < sysdate) {
+			alert("예약 날짜는 오늘 이후여야 합니다.");
+			document.querySelector("#checkInDate").value = "";
 		}
 	}
+
 }
 
 
-// 인원수정 팝업
+// 인원 수정
 document.addEventListener("DOMContentLoaded", function() {
 	const modifyCntPeopleText = document.querySelector("#modifyCntPeopleText");
 	const editPeoplePopup = document.querySelector("#editPeople_popup");
 	const closeBtn = document.querySelector("#editPeople_popup .closeBtn");
 	const savePeopleButton = document.querySelector("#savePeopleBtn");
-	const peopleCountDisplay = document.querySelector("#guestCount");
+	const peopleCountDisplay = document.querySelector("#guestCountDisplay");
 	const peopleCountInput = document.querySelector("#peopleCountInput");
 
 	modifyCntPeopleText.addEventListener("click", function() {
@@ -244,12 +281,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	savePeopleButton.addEventListener("click", function() {
 		const newPeopleCount = peopleCountInput.value;
-		if (newPeopleCount) {
-			peopleCountDisplay.textContent = newPeopleCount + "명";
-			editPeoplePopup.style.display = "none";
-		} else {
-			alert("인원 수를 입력하세요.");
-		}
+
+		peopleCountDisplay.innerHTML = newPeopleCount + "명";
+		document.querySelector('input[name="guestCount"]').value = newPeopleCount; // hidden input 업데이트
+		editPeoplePopup.style.display = "none";
+
 	});
 
 	window.addEventListener("click", function(event) {
@@ -263,17 +299,10 @@ function close_editPeople() {
 	document.querySelector('#editPeople_popup').style.display = 'none';
 }
 
-function close_editPeople() {
-	document.querySelector('#editPeople_popup').style.display = 'none';
-}
 
 
 
 // 환불안내 팝업
 function openPop() {
 	document.querySelector("#popup_refundInfo").style.display = "block";
-}
-
-function closePop() {
-	document.querySelector("#popup_refundInfo").style.display = "none";
 }

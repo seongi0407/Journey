@@ -36,44 +36,9 @@ label {
 }
 
 /* -------별점-------- */
-
-.disabledText{
+.disabledText {
 	color: red;
 	font-weight: bold;
-}
-.star-rating {
-	display: flex;
-	flex-direction: row-reverse;
-	font-size: 1.3em;
-	position: relative;
-}
-
-.star-rating input {
-	display: none;
-}
-
-.star-rating label {
-	color: #ddd;
-	display: inline-block;
-	position: relative;
-	width: 1em;
-	font-size: 1.5em;
-}
-
-.star-rating label::before {
-	content: '★';
-	position: absolute;
-	left: 0;
-}
-
-.star-rating input:checked ~ label::before {
-	color: #ffc107;
-}
-
-
-.ratingValue {
-	font-size: 1.5em;
-	margin-top: 10px;
 }
 
 /* -------content 작성칸-------- */
@@ -91,10 +56,14 @@ textarea {
 	display: inline-block;
 	padding: 10px 20px;
 	background-color: #ff5a5f;
+	font-weight: bold;
 	color: #fff;
 	border: none;
 	border-radius: 4px;
 	cursor: pointer;
 	font-size: 16px;
 	transition: background-color 0.3s;
-}
+	
+	&:hover{
+	background-color:#e04e50;
+}}

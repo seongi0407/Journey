@@ -53,9 +53,9 @@
 										<div class="roomName">${vo.roomName}</div>
 									</div>
 								</td>
-								<td>${vo.starAvg}</td>
+								<td>⭐${vo.starAvg}</td>
 								<td>${vo.enrollDate}</td>
-								<td>${vo.content}</td>
+								<td> <div class="contentText">${vo.content}</td>
 								<td><button
 										onclick="location.href='/journey/review/edit?reviewNo=${vo.no}'"
 										class="editBtn">수정</button></td>
