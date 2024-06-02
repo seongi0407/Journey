@@ -36,7 +36,7 @@ public class RoomDetailController extends HttpServlet {
 			RoomVo vo = service.getRoomDetail(no);
 			List<AttachmentVo> attVoList = service.getAttachment(no);
 			List<ReviewVo> reVoList = service.getReview(no);
-
+			
 			// 결과
 			if(vo == null) {
 				throw new Exception("객실 상세 조회 실패");

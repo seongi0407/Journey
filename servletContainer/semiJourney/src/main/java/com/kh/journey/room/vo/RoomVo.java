@@ -45,6 +45,9 @@ public class RoomVo {
     private String wishNo;
     private String accomName;
     
+    private String longitude;
+    private String latitude;
+    
     // constructor
     public RoomVo(String no, String accomNo, String themeCode, String name, String capacity, String grade,
 			String bathNum, String roomNum, String img01, String img02, String img03, String img04, String img05,
@@ -52,7 +55,8 @@ public class RoomVo {
 			String bedQueen, String weekdayPrice, String weekendPrice, String towelYn, String tvYn, String netflixYn,
 			String airconditionerYn, String heatingYn, String firealarmYn, String firstaidkitYn, String wifiYn,
 			String frigerYn, String ovenYn, String hairdryerYn, String address, String hostName, String hostNo,
-			String hostPhone, String hostProfile, String themeName, String bedNum, String wishNo, String accomName) {
+			String hostPhone, String hostProfile, String themeName, String bedNum, String wishNo, String accomName,
+			String longitude, String latitude) {
 		this.no = no;
 		this.accomNo = accomNo;
 		this.themeCode = themeCode;
@@ -95,6 +99,8 @@ public class RoomVo {
 		this.bedNum = bedNum;
 		this.wishNo = wishNo;
 		this.accomName = accomName;
+		this.longitude = longitude;
+		this.latitude = latitude;
 	}
 	public RoomVo() {
 	}
@@ -112,7 +118,8 @@ public class RoomVo {
 				+ ", wifiYn=" + wifiYn + ", frigerYn=" + frigerYn + ", ovenYn=" + ovenYn + ", hairdryerYn="
 				+ hairdryerYn + ", address=" + address + ", hostName=" + hostName + ", hostNo=" + hostNo
 				+ ", hostPhone=" + hostPhone + ", hostProfile=" + hostProfile + ", themeName=" + themeName + ", bedNum="
-				+ bedNum + ", wishNo=" + wishNo + ", accomName=" + accomName + "]";
+				+ bedNum + ", wishNo=" + wishNo + ", accomName=" + accomName + ", longitude=" + longitude
+				+ ", latitude=" + latitude + "]";
 	}
 	
 	// getter, setter
@@ -367,5 +374,17 @@ public class RoomVo {
 	}
 	public void setAccomName(String accomName) {
 		this.accomName = accomName;
+	}
+	public String getLongitude() {
+		return longitude;
+	}
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
+	public String getLatitude() {
+		return latitude;
+	}
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
 	}
 } // class

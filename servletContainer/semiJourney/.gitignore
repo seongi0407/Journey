@@ -33,3 +33,4 @@
 *.jpeg
 *.png
 *.webp
+/bin/

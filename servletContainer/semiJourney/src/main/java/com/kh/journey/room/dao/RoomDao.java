@@ -285,7 +285,7 @@ public class RoomDao {
    public RoomVo getRoomDetail(Connection conn, String no) throws Exception {
       
       // sql
-      String sql = "SELECT H.NAME HOST_NAME , H.PROFILE , A.NAME ACCOM_NAME , A.ADDRESS , T.THEME_NAME , R.WEEKDAY_PRICE , R.WEEKEND_PRICE , R.CAPACITY , R.ROOM_NUM , R.BATH_NUM , R.BED_SINGLE , R.BED_DOUBLE , R.BED_QUEEN , R.GRADE , R.NAME , R.WEEKEND_PRICE , R.TOWEL_YN , R.TV_YN , R.NETFLIX_YN , R.AIRCONDITIONER_YN , R.HEATING_YN , R.FIREALARM_YN , R.FIRSTAIDKIT_YN , R.WIFI_YN , R.FRIGER_YN , R.OVEN_YN , R.HAIRDRYER_YN FROM ROOM R JOIN ACCOMMODATION A ON (R.ACCOM_NO = A.NO) JOIN HOST H ON (A.HOST_NO = H.NO) JOIN THEME T ON (R.THEME_CODE = T.THEME_CODE) WHERE R.NO = ? AND R.DEL_YN = 'N'";
+      String sql = "SELECT H.NAME HOST_NAME , H.PROFILE , A.NAME ACCOM_NAME , A.ADDRESS , A.LATITUDE , A.LONGITUDE , T.THEME_NAME , R.IMG_01 , R.WEEKDAY_PRICE , R.WEEKEND_PRICE , R.CAPACITY , R.ROOM_NUM , R.BATH_NUM , R.BED_SINGLE , R.BED_DOUBLE , R.BED_QUEEN , R.GRADE , R.NAME , R.WEEKEND_PRICE , R.TOWEL_YN , R.TV_YN , R.NETFLIX_YN , R.AIRCONDITIONER_YN , R.HEATING_YN , R.FIREALARM_YN , R.FIRSTAIDKIT_YN , R.WIFI_YN , R.FRIGER_YN , R.OVEN_YN , R.HAIRDRYER_YN FROM ROOM R JOIN ACCOMMODATION A ON (R.ACCOM_NO = A.NO) JOIN HOST H ON (A.HOST_NO = H.NO) JOIN THEME T ON (R.THEME_CODE = T.THEME_CODE) WHERE R.NO = ? AND R.DEL_YN = 'N'";
       PreparedStatement pstmt = conn.prepareStatement(sql);
       
       // 객실 번호 넣어주기
@@ -336,6 +336,11 @@ public class RoomDao {
          String ovenYn = rs.getString("OVEN_YN");
          String hairdryerYn = rs.getString("HAIRDRYER_YN");
          
+         String latitude = rs.getString("LATITUDE");
+         String longitude = rs.getString("LONGITUDE");
+         
+         String img01 = rs.getString("IMG_01");
+         
          vo = new RoomVo();
          
          vo.setNo(no);
@@ -373,6 +378,11 @@ public class RoomDao {
          vo.setHeatingYn(heatingYn);
          vo.setHairdryerYn(hairdryerYn);
          vo.setFrigerYn(frigerYn);
+         
+         vo.setLatitude(latitude);
+         vo.setLongitude(longitude);
+         
+         vo.setImg01(img01);
       }
       
       close(rs);

@@ -130,10 +130,8 @@ main {
 	& input { 
 	width : 80%;
 	height: 50%;
+    }
 }
-
-}
-
 
 #guest-num {
 	grid-column: span 2;
@@ -228,98 +226,3 @@ main {
 	padding-left: 2%;
 	padding-right: 20%;
 }
-
-/* ----- map ----- */
-#map-wrap {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-}
-
-#map {
-	width: 75%;
-	height: 75%;
-}
-/* ----- map ----- */
-
-/* ----- calendar -----*/
-.calendar_container {
-	left: 29%;
-	top: 25%;
-	display: flex;
-	justify-content: space-evenly;
-	width: 75%;
-	height: 75%;
-	background-color: white;
-	box-shadow: 1px 1px 25px rgb(0, 0, 0/ 17%);
-	border: 1px solid black;
-	border-radius: 50px;
-	justify-self: center;
-	justify-content: center;
-	align-self: center;
-}
-
-.hide {
-	display: none;
-}
-
-.calendar_container>button {
-	margin-top: 4%;
-	font-weight: bold;
-	height: 10%;
-}
-
-.left_button {
-	margin-left: 17%;
-	border: transparent;
-}
-
-.right_button {
-	margin-right: 17%;
-	border: transparent;
-}
-
-.calendar {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	margin-top: 3%;
-	margin-right: 2.5%;
-}
-
-.calendar_days>button {
-	width: 48px;
-	height: 47px;
-	border-radius: 100%;
-	background-color: transparent;
-	border: transparent;
-}
-
-table {
-	border-collapse: separate;
-	border-spacing: 0 10px;
-}
-
-.day {
-	text-align: center;
-	font-size: 12px;
-	font-weight: bold;
-	color: rgb(189, 189, 189);
-}
-
-.day_hover {
-	border: 1px solid black !important;
-}
-
-.day_selected {
-	background-color: black !important;
-	color: #ffff;
-}
-
-.gray {
-	background-color: rgb(241, 241, 241) !important;
-}
-
-/* ----- calendar ----- */
