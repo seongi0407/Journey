@@ -22,8 +22,12 @@
 	<div id="wrap">
 		<form action="/journey/host/edit/name" method="post">
 			<h1>호스트 이름 수정</h1>
-			<input type="text" name="name" placeholder="이름">
 			<br>
+			
+			<label>변경할 이름</label>
+			<input type="text" name="name" placeholder="변경할 이름">
+			<br>
+			
 			<input type="submit" value="이름 수정">
 		</form>
 	</div>

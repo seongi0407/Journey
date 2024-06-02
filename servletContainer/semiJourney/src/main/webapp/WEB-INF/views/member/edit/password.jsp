@@ -23,10 +23,16 @@
 	<div id="wrap">
 		<form onsubmit="return validate()" action="/journey/member/edit/password" method="post">
 			<h1>멤버 비밀번호 수정</h1>
-			<input type="password" name="pwd" id="pwd" placeholder="비밀번호">
 			<br>
-			<input type="password" name="pwd2" id="pwd2" placeholder="비밀번호 확인">
+			
+			<label>변경할 비밀번호</label>
+			<input type="password" name="pwd" id="pwd" placeholder="변경할 비밀번호 (소문자, 숫자를 모두 포함하여 8자리 이상)">
 			<br>
+			
+			<label>변경할 비밀번호 확인</label>
+			<input type="password" name="pwd2" id="pwd2" placeholder="변경할 비밀번호 확인">
+			<br>
+			
 			<input type="submit" value="비밀번호 수정">
 		</form>
 	</div>

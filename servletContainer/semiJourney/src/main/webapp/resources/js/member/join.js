@@ -32,13 +32,19 @@ function checkDup(){
 
 
 
-/* 제출했을 시, 아이디, 비밀번호 유효성 검사 */
+/* 제출 시, 아이디, 비밀번호, 생년월일 유효성 검사 */
 function validate() {
 
     const id = document.querySelector('#id').value;
     const pwd = document.querySelector('#pwd').value;
     const pwd2 = document.querySelector('#pwd2').value;
     const regex = /^(?=.*[a-z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+
+    const date = document.querySelector('#birthDate').value;
+    const selectedDate = new Date(date);
+    const currentDate = new Date();
+
+    selectedDate.setFullYear(selectedDate.getFullYear() + 19);
     
     if(!result || inputId !== id){
         result = false;
@@ -56,7 +62,12 @@ function validate() {
         return false;
     }
 
+    if (selectedDate >= currentDate) {
+        alert('만 19세 이상만 이용 가능합니다.');
+        return false;
+    }
+
     alert('회원가입 성공');
     return true;
 }
-/* 제출했을 시, 아이디, 비밀번호 유효성 검사 */
+/* 제출 시, 아이디, 비밀번호, 생년월일 유효성 검사 */

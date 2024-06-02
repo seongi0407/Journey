@@ -22,8 +22,12 @@
 	<div id="wrap">
 		<form action="/journey/member/edit/phone" method="post">
 			<h1>멤버 전화번호 수정</h1>
-			<input type="text" name="phone" placeholder="전화번호">
 			<br>
+			
+			<label>변경할 전화번호</label>
+			<input type="text" name="phone" placeholder="변경할 전화번호">
+			<br>
+			
 			<input type="submit" value="전화번호 수정">
 		</form>
 	</div>

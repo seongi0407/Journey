@@ -108,7 +108,14 @@
                                 </select>
                             </div>
                         </div>
-                        <input id="reserve-btn" type="submit" value="예약하기">
+                        <c:choose>
+                        	<c:when test="${empty sessionScope.loginMemberVo}">
+								<input id="reserve-btn" type="submit" value="예약하기" disabled>
+                        	</c:when>
+                        	<c:otherwise>
+								<input id="reserve-btn" type="submit" value="예약하기">
+                        	</c:otherwise>
+                        </c:choose>
                     </form>
                 </div>
             </div>

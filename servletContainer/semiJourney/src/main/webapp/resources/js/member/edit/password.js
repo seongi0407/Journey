@@ -1,4 +1,4 @@
-/* 제출했을 시, 비밀번호 유효성 검사 */
+/* 제출 시, 비밀번호 유효성 검사 */
 function validate() {
 
     const pwd = document.querySelector('#pwd').value;
@@ -17,4 +17,4 @@ function validate() {
 
     return true;
 }
-/* 제출했을 시, 비밀번호 유효성 검사 */
+/* 제출 시, 비밀번호 유효성 검사 */

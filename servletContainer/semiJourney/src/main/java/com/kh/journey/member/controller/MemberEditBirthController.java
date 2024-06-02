@@ -38,8 +38,6 @@ public class MemberEditBirthController extends HttpServlet {
 			String no = loginMemberVo.getNo();
 			String birthDate = req.getParameter("birthDate");
 			
-			System.out.println(birthDate);
-			
 			MemberVo vo = new MemberVo();
 			vo.setNo(no);
 			vo.setBirthDate(birthDate);

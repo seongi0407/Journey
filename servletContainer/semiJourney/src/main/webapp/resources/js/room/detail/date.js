@@ -12,6 +12,7 @@ function validateDates(){
 
     if(inDate >= outDate){
         alert("체크아웃 날짜는 체크인 날짜 이후여야 합니다.");
+        document.querySelector("#inDate").value = "";
         document.querySelector("#outDate").value = "";
         return false;
     }

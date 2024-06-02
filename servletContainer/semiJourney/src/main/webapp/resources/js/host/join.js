@@ -32,7 +32,7 @@ function checkDup(){
 
 
 
-/* 제출했을 시, 아이디, 비밀번호 유효성 검사 */
+/* 제출 시, 아이디, 비밀번호 유효성 검사 */
 function validate() {
 
     const id = document.querySelector('#id').value;
@@ -59,4 +59,4 @@ function validate() {
     alert('회원가입 성공');
     return true;
 }
-/* 제출했을 시, 아이디, 비밀번호 유효성 검사 */
+/* 제출 시, 아이디, 비밀번호 유효성 검사 */

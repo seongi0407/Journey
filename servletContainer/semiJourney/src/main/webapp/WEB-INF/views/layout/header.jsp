@@ -49,7 +49,7 @@
 					<button>호스팅 수입</button>
 					<hr>
 					<button onclick="location.href='/journey/host/my'">계정</button>
-					<button onclick="location.href='/journey/accom/list'">숙소 관리</button>
+					<button onclick="location.href='/journey/accom/select'">숙소 관리</button>
 					<hr>
 					<button>도움말 센터</button>
 					<button onclick="location.href='/journey/host/logout'">로그아웃</button>

@@ -22,8 +22,12 @@
 	<div id="wrap">
 		<form action="/journey/member/edit/email" method="post">
 			<h1>멤버 이메일 수정</h1>
-			<input type="text" name="email" placeholder="이메일">
 			<br>
+			
+			<label>변경할 이메일</label>
+			<input type="text" name="email" placeholder="변경할 이메일">
+			<br>
+			
 			<input type="submit" value="이메일 수정">
 		</form>
 	</div>
