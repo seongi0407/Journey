@@ -29,8 +29,6 @@ public class ReviewDeleteController extends HttpServlet {
 			Gson gson = new Gson();
 			String[] reviewNoList = gson.fromJson(new InputStreamReader(req.getInputStream()), String[].class);
 
-			System.out.println(Arrays.toString(reviewNoList));
-
 			if (reviewNoList == null || reviewNoList.length == 0) {
 				throw new Exception("삭제할 리뷰를 선택해주세요.");
 			}

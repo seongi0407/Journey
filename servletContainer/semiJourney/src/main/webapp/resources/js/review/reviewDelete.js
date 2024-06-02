@@ -27,8 +27,7 @@ function deleteReviews() {
 		data: JSON.stringify(reviewNos),
 		success: function(data) {
 			alert('리뷰가 삭제되었습니다.');
-			// 페이지 새로고침
-			console.log(reviewNos);
+			// 새고새고
 			location.reload();
 		},
 		error: function(error) {

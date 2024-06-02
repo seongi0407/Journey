@@ -98,7 +98,7 @@
 						<img src="/journey/resources/upload/room/${refund.roomImg}"
 							alt="RoomImage" class="room-image" />
 					</div>
-					<div id="roomText">
+					<div id="historyText">
 						<p id="place-name">${refund.roomName}</p>
 						<p id="stay-date">${refund.inDate}~${refund.outDate}</p>
 					</div>

@@ -23,7 +23,6 @@ public class ReviewListController extends HttpServlet {
 			
 			List<ReviewVo> voList = rs.getReviewListAllByRoomNo(roomNo);
 
-			System.out.println(voList);
 			req.setAttribute("voList", voList);
 			req.getRequestDispatcher("/WEB-INF/views/review/list.jsp").forward(req, resp);
 		} catch (

@@ -33,46 +33,6 @@ public class ReviewDao {
 		return result;
 	}
 
-	// 최신리뷰 6개
-	public List<ReviewVo> getReviewListByRoomNo(Connection conn, String roomNo) throws Exception {
-
-		String sql = "SELECT ROWNUM , T.NO , T.PROFILE , T.NAME , T.CONTENT , T.ACCURACY , T.CLEAN , T.CHECKIN , T.LOCATION , T.COMMUNICATION , T.ENROLL_DATE FROM ( SELECT R.NO , M.PROFILE , M.NAME , R.CONTENT , R.ACCURACY , R.CLEAN , R.CHECKIN , R.LOCATION , R.COMMUNICATION , R.ENROLL_DATE , ROWNUM AS RN FROM REVIEW R JOIN RESERVATION RV ON R.RESERVE_NO = RV.NO JOIN MEMBER M ON RV.RESERVATOR_NO = M.NO WHERE RV.ROOM_NO = ? AND R.DEL_YN = 'N' AND M.DEL_YN = 'N' ORDER BY R.ENROLL_DATE DESC ) T WHERE RN <= 6";
-		PreparedStatement pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, roomNo);
-		ResultSet rs = pstmt.executeQuery();
-
-		List<ReviewVo> voList = new ArrayList<ReviewVo>();
-		ReviewVo vo = null;
-		while (rs.next()) {
-			String no = rs.getString("NO");
-			String profile = rs.getString("PROFILE");
-			String writerName = rs.getString("NAME");
-			String content = rs.getString("CONTENT");
-			String enrollDate = rs.getString("ENROLL_DATE");
-			int accuracy = rs.getInt("ACCURACY");
-			int clean = rs.getInt("CLEAN");
-			int checkin = rs.getInt("CHECKIN");
-			int loation = rs.getInt("LOCATION");
-			int communication = rs.getInt("COMMUNICATION");
-
-			String starAvg = Integer.toString((accuracy + clean + checkin + loation + communication) / 5);
-			System.out.println(starAvg);
-
-			vo = new ReviewVo();
-			vo.setNo(no);
-			vo.setProfile(profile);
-			vo.setWriterName(writerName);
-			vo.setContent(content);
-			vo.setEnrollDate(enrollDate);
-			vo.setStarAvg(starAvg);
-
-			voList.add(vo);
-		}
-		close(pstmt);
-		close(rs);
-		return voList;
-
-	}
 
 	// 해당 객실 모든 리뷰보기
 	public List<ReviewVo> getReviewListAllByRoomNo(Connection conn, String roomNo) throws Exception {
@@ -98,7 +58,6 @@ public class ReviewDao {
 			int communication = rs.getInt("COMMUNICATION");
 
 			String starAvg = Integer.toString((accuracy + clean + checkin + loation + communication) / 5);
-			System.out.println(starAvg);
 
 			vo = new ReviewVo();
 			vo.setNo(no);
@@ -186,7 +145,6 @@ public class ReviewDao {
 
 			review.add(vo);
 		}
-		System.out.println(review);
 		return review;
 	}
 

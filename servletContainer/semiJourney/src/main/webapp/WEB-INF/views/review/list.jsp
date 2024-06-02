@@ -54,9 +54,11 @@
 										<div class="writer-name">${vo.writerName}</div>
 									</div>
 								</td>
-								<td>${vo.starAvg}</td>
+								<td><c:forEach begin="1" end="${vo.starAvg}" var="star">
+										<span>⭐</span>
+									</c:forEach>
 								<td>${vo.enrollDate}</td>
-								<td>${vo.content}</td>
+								<td><div class="contentText">${vo.content}</div></td>
 
 							</tr>
 						</c:forEach>
@@ -64,7 +66,7 @@
 				</table>
 				<br>
 			</div>
-			
+
 		</section>
 	</main>
 
