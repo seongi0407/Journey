@@ -42,9 +42,17 @@ function showHostLogin() {
 function showAdminLogin() {
 	document.getElementById('login-admin-content').classList.toggle('show');
 }
-// 닫기 버튼
-document.getElementById('login-close-button').addEventListener('click', function() {
-	document.getElementById('login-content').classList.remove('show');
+// 회원 닫기 버튼
+document.getElementById('login-close-member-button').addEventListener('click', function() {
+	document.getElementById('login-member-content').classList.remove('show');
+});
+// 호스트 닫기 버튼 
+document.getElementById('login-close-host-button').addEventListener('click', function() {
+	document.getElementById('login-host-content').classList.remove('show');
+});
+// 관리자 닫기 버튼
+document.getElementById('login-close-admin-button').addEventListener('click', function() {
+	document.getElementById('login-admin-content').classList.remove('show');
 });
 
 // 비밀번호 보기, 숨기기
