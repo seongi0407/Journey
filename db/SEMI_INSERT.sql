@@ -78,52 +78,52 @@ VALUES ('P3', 'pay');
 ----- MEMBER -----
 INSERT INTO MEMBER (NO, ID, PWD, NAME, EMAIL, PHONE, BIRTH_DATE
 , PROFILE)
-VALUES (SEQ_MEMBER.NEXTVAL, 'user01', '1234abcd', '김민수', 'minsu.kim@example.com', '01012345671', '19900101'
+VALUES (SEQ_MEMBER.NEXTVAL, 'user01', '1234abcd', '김민수', 'minsu.kim@example.com', '01012345671', '1990-01-01'
 , 'member01.jpg');
 
 INSERT INTO MEMBER (NO, ID, PWD, NAME, EMAIL, PHONE, BIRTH_DATE
 , PROFILE)
-VALUES (SEQ_MEMBER.NEXTVAL, 'user02', '1234abcd', '이수진', 'sujin.lee@example.com', '01012345672', '19900202'
+VALUES (SEQ_MEMBER.NEXTVAL, 'user02', '1234abcd', '이수진', 'sujin.lee@example.com', '01012345672', '1990-02-02'
 , 'member02.jpg');
 
 INSERT INTO MEMBER (NO, ID, PWD, NAME, EMAIL, PHONE, BIRTH_DATE
 , PROFILE)
-VALUES (SEQ_MEMBER.NEXTVAL, 'user03', '1234abcd', '박영희', 'younghee.park@example.com', '01012345673', '19900303'
+VALUES (SEQ_MEMBER.NEXTVAL, 'user03', '1234abcd', '박영희', 'younghee.park@example.com', '01012345673', '1990-03-03'
 , 'member03.jpg');
 
 INSERT INTO MEMBER (NO, ID, PWD, NAME, EMAIL, PHONE, BIRTH_DATE
 , PROFILE)
-VALUES (SEQ_MEMBER.NEXTVAL, 'user04', '1234abcd', '최준호', 'junho.choi@example.com', '01012345674', '19900404'
+VALUES (SEQ_MEMBER.NEXTVAL, 'user04', '1234abcd', '최준호', 'junho.choi@example.com', '01012345674', '1990-04-04'
 , 'member04.jpg');
 
 INSERT INTO MEMBER (NO, ID, PWD, NAME, EMAIL, PHONE, BIRTH_DATE
 , PROFILE)
-VALUES (SEQ_MEMBER.NEXTVAL, 'user05', '1234abcd', '정다은', 'daeun.jeong@example.com', '01012345675', '19900505'
+VALUES (SEQ_MEMBER.NEXTVAL, 'user05', '1234abcd', '정다은', 'daeun.jeong@example.com', '01012345675', '1990-05-05'
 , 'member05.jpg');
 
 INSERT INTO MEMBER (NO, ID, PWD, NAME, EMAIL, PHONE, BIRTH_DATE
 , PROFILE)
-VALUES (SEQ_MEMBER.NEXTVAL, 'user06', '1234abcd', '한예슬', 'yesul.han@example.com', '01012345676', '19900606'
+VALUES (SEQ_MEMBER.NEXTVAL, 'user06', '1234abcd', '한예슬', 'yesul.han@example.com', '01012345676', '1990-06-06'
 , 'member06.jpg');
 
 INSERT INTO MEMBER (NO, ID, PWD, NAME, EMAIL, PHONE, BIRTH_DATE
 , PROFILE)
-VALUES (SEQ_MEMBER.NEXTVAL, 'user07', '1234abcd', '오민지', 'minji.oh@example.com', '01012345677', '19900707'
+VALUES (SEQ_MEMBER.NEXTVAL, 'user07', '1234abcd', '오민지', 'minji.oh@example.com', '01012345677', '1990-07-07'
 , 'member07.jpg');
 
 INSERT INTO MEMBER (NO, ID, PWD, NAME, EMAIL, PHONE, BIRTH_DATE
 , PROFILE)
-VALUES (SEQ_MEMBER.NEXTVAL, 'user08', '1234abcd', '윤재훈', 'jaehoon.yoon@example.com', '01012345678', '19900808'
+VALUES (SEQ_MEMBER.NEXTVAL, 'user08', '1234abcd', '윤재훈', 'jaehoon.yoon@example.com', '01012345678', '1990-08-08'
 , 'member08.jpg');
 
 INSERT INTO MEMBER (NO, ID, PWD, NAME, EMAIL, PHONE, BIRTH_DATE
 , PROFILE)
-VALUES (SEQ_MEMBER.NEXTVAL, 'user09', '1234abcd', '강하늘', 'haneul.kang@example.com', '01012345679', '19900909'
+VALUES (SEQ_MEMBER.NEXTVAL, 'user09', '1234abcd', '강하늘', 'haneul.kang@example.com', '01012345679', '1990-09-09'
 , 'member09.jpg');
 
 INSERT INTO MEMBER (NO, ID, PWD, NAME, EMAIL, PHONE, BIRTH_DATE
 , PROFILE)
-VALUES (SEQ_MEMBER.NEXTVAL, 'user10', '1234abcd', '배도윤', 'doyun.bae@example.com', '01012345670', '19901010'
+VALUES (SEQ_MEMBER.NEXTVAL, 'user10', '1234abcd', '배도윤', 'doyun.bae@example.com', '01012345670', '1990-10-10'
 , 'member10.jpg');
 
 
@@ -173,7 +173,7 @@ INSERT INTO ACCOMMODATION (NO, HOST_NO, NAME, ADDRESS
 , SWIM_YN, SPA_YN, DISABLED_YN, PARKING_YN, ELEVATOR_YN, BREAKFAST_YN, SMOKE_YN
 , IMG_URL)
 VALUES (SEQ_ACCOMMODATION.NEXTVAL, (SELECT NO FROM HOST WHERE ID='host01'), '럭셔리 빌라 아리아', '경기 가평군 미사리로 123번길 45, 한국'
-, '', ''
+, '37.842637', '127.511003'
 , 'N', 'Y', 'N', 'Y', 'N', 'Y', 'N'
 , 'lake1.jpg');
 
@@ -182,7 +182,7 @@ INSERT INTO ACCOMMODATION (NO, HOST_NO, NAME, ADDRESS
 , SWIM_YN, SPA_YN, DISABLED_YN, PARKING_YN, ELEVATOR_YN, BREAKFAST_YN, SMOKE_YN
 , IMG_URL)
 VALUES (SEQ_ACCOMMODATION.NEXTVAL, (SELECT NO FROM HOST WHERE ID='host02'), '고요한 산속 휴양동', '강원 홍천군 북방면 한들로 567, 한국'
-, '', ''
+, '37.734932', '127.947223'
 , 'Y', 'Y', 'N', 'N', 'Y', 'Y', 'N'
 , 'new1.jpg');
 
@@ -191,7 +191,7 @@ INSERT INTO ACCOMMODATION (NO, HOST_NO, NAME, ADDRESS
 , SWIM_YN, SPA_YN, DISABLED_YN, PARKING_YN, ELEVATOR_YN, BREAKFAST_YN, SMOKE_YN
 , IMG_URL)
 VALUES (SEQ_ACCOMMODATION.NEXTVAL, (SELECT NO FROM HOST WHERE ID='host03'), '한라산 풍경 뷰', '제주 제주시 한림읍 한림로 789, 한국'
-, '', ''
+, '33.446302', '126.555674'
 , 'Y', 'N', 'N', 'N', 'Y', 'N', 'Y'
 , 'piano1.jpg');
 
@@ -200,7 +200,7 @@ INSERT INTO ACCOMMODATION (NO, HOST_NO, NAME, ADDRESS
 , SWIM_YN, SPA_YN, DISABLED_YN, PARKING_YN, ELEVATOR_YN, BREAKFAST_YN, SMOKE_YN
 , IMG_URL)
 VALUES (SEQ_ACCOMMODATION.NEXTVAL, (SELECT NO FROM HOST WHERE ID='host04'), '푸른 바다와 함께하는 풀빌라', '경남 통영시 소매물도로 234, 한국'
-, '', ''
+, '34.820748', '128.440165'
 , 'N', 'Y', 'N', 'N', 'Y', 'N', 'N'
 , 'small1.jpg');
 
@@ -209,7 +209,7 @@ INSERT INTO ACCOMMODATION (NO, HOST_NO, NAME, ADDRESS
 , SWIM_YN, SPA_YN, DISABLED_YN, PARKING_YN, ELEVATOR_YN, BREAKFAST_YN, SMOKE_YN
 , IMG_URL)
 VALUES (SEQ_ACCOMMODATION.NEXTVAL, (SELECT NO FROM HOST WHERE ID='host05'), '산소 맑은 곳', '강원 평창군 대관령로 345, 한국'
-, '', ''
+, '37.365780', '128.403921'
 , 'Y', 'Y', 'N', 'Y', 'Y', 'Y', 'Y'
 , 'surf1.jpg');
 
@@ -218,7 +218,7 @@ INSERT INTO ACCOMMODATION (NO, HOST_NO, NAME, ADDRESS
 , SWIM_YN, SPA_YN, DISABLED_YN, PARKING_YN, ELEVATOR_YN, BREAKFAST_YN, SMOKE_YN
 , IMG_URL)
 VALUES (SEQ_ACCOMMODATION.NEXTVAL, (SELECT NO FROM HOST WHERE ID='host06'), '시원한 계곡 바로 앞', '경기 가평군 가평읍 강상골길 678, 한국'
-, '', ''
+, '37.835121', '127.537669'
 , 'N', 'N', 'Y', 'Y', 'Y', 'Y', 'N'
 , 'swim1.jpg');
 
@@ -227,7 +227,7 @@ INSERT INTO ACCOMMODATION (NO, HOST_NO, NAME, ADDRESS
 , SWIM_YN, SPA_YN, DISABLED_YN, PARKING_YN, ELEVATOR_YN, BREAKFAST_YN, SMOKE_YN
 , IMG_URL)
 VALUES (SEQ_ACCOMMODATION.NEXTVAL, (SELECT NO FROM HOST WHERE ID='host07'), '포근한 산 속 독채', '강원 인제군 북면 북촌길 789, 한국'
-, '', ''
+, '38.070910', '128.169736'
 , 'N', 'Y', 'N', 'N', 'N', 'N', 'N'
 , 'tree1.jpg');
 
@@ -235,8 +235,8 @@ INSERT INTO ACCOMMODATION (NO, HOST_NO, NAME, ADDRESS
 , LATITUDE, LONGITUDE
 , SWIM_YN, SPA_YN, DISABLED_YN, PARKING_YN, ELEVATOR_YN, BREAKFAST_YN, SMOKE_YN
 , IMG_URL)
-VALUES (SEQ_ACCOMMODATION.NEXTVAL, (SELECT NO FROM HOST WHERE ID='host08'), '해안가 휴양 리조트 8', '제주 서귀포시 중문관광로 123, 한국'
-, '', ''
+VALUES (SEQ_ACCOMMODATION.NEXTVAL, (SELECT NO FROM HOST WHERE ID='host08'), '해안가 휴양 리조트', '제주 서귀포시 중문관광로 123, 한국'
+, '33.239144', '126.441062'
 , 'Y', 'N', 'Y', 'N', 'Y', 'Y', 'Y'
 , 'view1.jpg');
 
@@ -245,7 +245,7 @@ INSERT INTO ACCOMMODATION (NO, HOST_NO, NAME, ADDRESS
 , SWIM_YN, SPA_YN, DISABLED_YN, PARKING_YN, ELEVATOR_YN, BREAKFAST_YN, SMOKE_YN
 , IMG_URL)
 VALUES (SEQ_ACCOMMODATION.NEXTVAL, (SELECT NO FROM HOST WHERE ID='host09'), '햇빛 가득한 펜션', '충남 태안군 남면 태해로 456, 한국'
-, '', ''
+, '36.775844', '126.137003'
 , 'N', 'N', 'N', 'Y', 'Y', 'Y', 'Y'
 , 'wine1.jpg');
 
@@ -254,7 +254,7 @@ INSERT INTO ACCOMMODATION (NO, HOST_NO, NAME, ADDRESS
 , SWIM_YN, SPA_YN, DISABLED_YN, PARKING_YN, ELEVATOR_YN, BREAKFAST_YN, SMOKE_YN
 , IMG_URL)
 VALUES (SEQ_ACCOMMODATION.NEXTVAL, (SELECT NO FROM HOST WHERE ID='host10'), '한적한 호수 전망', '강원 춘천시 소양로 567, 한국'
-, '', ''
+, '37.872718', '127.693565'
 , 'Y', 'N', 'Y', 'N', 'Y', 'Y', 'Y'
 , 'beach1.jpg');
 
