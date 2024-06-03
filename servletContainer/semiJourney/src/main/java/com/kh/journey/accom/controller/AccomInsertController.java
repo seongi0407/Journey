@@ -53,6 +53,8 @@ public class AccomInsertController extends HttpServlet {
 			String elevatorYn = req.getParameter("elevatorYn");
 			String breakfastYn = req.getParameter("breakfastYn");
 			String smokeYn = req.getParameter("smokeYn");
+			String latitude = req.getParameter("latitude");
+			String longitude = req.getParameter("longitude");
 			Part imgUrl = req.getPart("imgUrl");
 
 			String changeName = "";
@@ -89,6 +91,8 @@ public class AccomInsertController extends HttpServlet {
 			vo.setElevatorYn(elevatorYn);
 			vo.setBreakfastYn(breakfastYn);
 			vo.setSmokeYn(smokeYn);
+			vo.setLatitude(latitude);
+			vo.setLongitude(longitude);
 			vo.setImgUrl(changeName);
 			vo.setHostName(loginHostVo.getName());
 			vo.setHostPhone(loginHostVo.getPhone());

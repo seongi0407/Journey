@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="/journey/resources/css/layout/footer.css">
 <link rel="stylesheet" href="/journey/resources/css/wish/wish.css">
 
+<script defer src="/journey/resources/js/layout/header.js"></script>
 <script defer src="/journey/resources/js/home.js"></script>
 <script defer src="/journey/resources/js/wish/delete.js"></script>
 
@@ -34,10 +35,10 @@
 					<div id="place-name">${room.name}</div>
 					<c:choose>
 						<c:when test="${not empty sessionScope.loginMemberVo}">
-							<button id="gym" onclick="deleteWish('${room.wishNo}', '${sessionScope.loginMemberVo.no}')">취소</button>
+							<button class="gym" id="gym" onclick="deleteWish('${room.wishNo}', '${sessionScope.loginMemberVo.no}')">취소</button>
 						</c:when>
 						<c:otherwise>
-							<button id="gym" onclick="clickNothing()">취소</button>
+							<button class="gym" id="gym" onclick="clickNothing()">취소</button>
 						</c:otherwise>
 					</c:choose>
 					<div id="place-score">★ ${room.grade}</div>

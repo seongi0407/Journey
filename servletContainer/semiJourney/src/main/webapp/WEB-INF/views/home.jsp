@@ -177,10 +177,10 @@
 					<div id="place-name">${vo.name}</div>
 					<c:choose>
 						<c:when test="${not empty sessionScope.loginMemberVo}">
-							<button id="gym" onclick="clickHeart('${vo.no}', '${sessionScope.loginMemberVo.no}')">해물찜</button>
+							<button id="gym" onclick="clickHeart('${vo.no}', '${sessionScope.loginMemberVo.no}')">찜 할래요</button>
 						</c:when>
 						<c:otherwise>
-							<button id="gym" onclick="clickNothing()">해물찜</button>
+							<button id="gym" onclick="clickNothing()">찜 할래요</button>
 						</c:otherwise>
 					</c:choose>
 					<div id="place-score">★ ${vo.grade}</div>

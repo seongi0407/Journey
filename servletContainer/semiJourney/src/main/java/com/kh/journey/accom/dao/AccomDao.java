@@ -14,7 +14,7 @@ public class AccomDao {
 
 	public int insert(Connection conn, AccomVo vo) throws Exception {
 
-		String sql = "INSERT INTO ACCOMMODATION (NO, HOST_NO, NAME, ADDRESS, SWIM_YN, SPA_YN, DISABLED_YN, PARKING_YN, ELEVATOR_YN, BREAKFAST_YN, SMOKE_YN, IMG_URL) VALUES (SEQ_ACCOMMODATION.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO ACCOMMODATION (NO, HOST_NO, NAME, ADDRESS, SWIM_YN, SPA_YN, DISABLED_YN, PARKING_YN, ELEVATOR_YN, BREAKFAST_YN, SMOKE_YN, LATITUDE, LONGITUDE, IMG_URL) VALUES (SEQ_ACCOMMODATION.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, vo.getHostNo());
@@ -27,7 +27,9 @@ public class AccomDao {
 		pstmt.setString(8, vo.getElevatorYn());
 		pstmt.setString(9, vo.getBreakfastYn());
 		pstmt.setString(10, vo.getSmokeYn());
-		pstmt.setString(11, vo.getImgUrl());
+		pstmt.setString(11, vo.getLatitude());
+		pstmt.setString(12, vo.getLongitude());
+		pstmt.setString(13, vo.getImgUrl());
 //		pstmt.setString(12, vo.getHostName());
 //		pstmt.setString(13, vo.getHostPhone());
 
@@ -40,7 +42,7 @@ public class AccomDao {
 
 	public List<AccomVo> selectAccomList(Connection conn, String hostNo) throws Exception {
 
-		String sql = "SELECT NO , HOST_NO , NAME , ADDRESS , SWIM_YN , SPA_YN , DISABLED_YN , PARKING_YN , ELEVATOR_YN , BREAKFAST_YN , SMOKE_YN , IMG_URL FROM ACCOMMODATION WHERE HOST_NO = ? AND DEL_YN = 'N'";
+		String sql = "SELECT NO , HOST_NO , NAME , ADDRESS , SWIM_YN , SPA_YN , DISABLED_YN , PARKING_YN , ELEVATOR_YN , BREAKFAST_YN , SMOKE_YN , LATITUDE, LONGITUDE, IMG_URL FROM ACCOMMODATION WHERE HOST_NO = ? AND DEL_YN = 'N'";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, hostNo);
 		ResultSet rs = pstmt.executeQuery();
@@ -57,6 +59,8 @@ public class AccomDao {
 			String elevatorYn = rs.getString("ELEVATOR_YN");
 			String breakfastYn = rs.getString("BREAKFAST_YN");
 			String smokeYn = rs.getString("SMOKE_YN");
+			String latitude = rs.getString("LATITUDE");
+			String longitude = rs.getString("LONGITUDE");
 			String imgUrl = rs.getString("IMG_URL");
 
 			AccomVo vo = new AccomVo();
@@ -71,6 +75,8 @@ public class AccomDao {
 			vo.setElevatorYn(elevatorYn);
 			vo.setBreakfastYn(breakfastYn);
 			vo.setSmokeYn(smokeYn);
+			vo.setLatitude(latitude);
+			vo.setLongitude(longitude);
 			vo.setImgUrl(imgUrl);
 
 			accomList.add(vo);
@@ -123,7 +129,7 @@ public class AccomDao {
 	public int edit(Connection conn, AccomVo vo) throws Exception {
 
 //		SQL
-		String sql = "UPDATE ACCOMMODATION SET NAME=? ,ADDRESS=? ,SWIM_YN=? ,SPA_YN=? ,DISABLED_YN=? ,PARKING_YN=? ,ELEVATOR_YN=? ,BREAKFAST_YN=? ,SMOKE_YN=?, IMG_URL=? WHERE NO=?";
+		String sql = "UPDATE ACCOMMODATION SET NAME=? ,ADDRESS=? ,SWIM_YN=? ,SPA_YN=? ,DISABLED_YN=? ,PARKING_YN=? ,ELEVATOR_YN=? ,BREAKFAST_YN=? ,SMOKE_YN=?, IMG_URL=?, LATITUDE=?, LONGITUDE=? WHERE NO=?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, vo.getName());
 		pstmt.setString(2, vo.getAddress());
@@ -135,7 +141,9 @@ public class AccomDao {
 		pstmt.setString(8, vo.getBreakfastYn());
 		pstmt.setString(9, vo.getSmokeYn());
 		pstmt.setString(10, vo.getImgUrl());
-		pstmt.setString(11, vo.getNo());
+		pstmt.setString(11, vo.getLatitude());
+		pstmt.setString(12, vo.getLongitude());
+		pstmt.setString(13, vo.getNo());
 
 		int result = pstmt.executeUpdate();
 

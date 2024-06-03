@@ -13,7 +13,7 @@ function deleteWish(wishNo, memberNo) {
             if(data.result >= 1){
 				alert("위시리스트 삭제 성공");
 			} else{
-				alert("위시리스트 삭제 삭제");
+				alert("위시리스트 삭제 실패");
 			}
 			location.reload();
         },

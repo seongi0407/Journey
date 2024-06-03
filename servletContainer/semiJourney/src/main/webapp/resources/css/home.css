@@ -532,6 +532,15 @@ section {
 	border-radius: 8px;
 }
 
+.home{
+	border-radius: 10px; 
+	box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1); 
+}
+.home:hover{
+	border-radius: 10px; 
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
 /* 부모에 relative */
 .accomodation {
 	position: relative;
@@ -539,7 +548,8 @@ section {
 	z-index: 1;
 }
 
-/* 찜 하트  */
+
+/* 찜 하트  ----------------------------------------------*/
 .heart-icon {
 	/* 자식에 absolute */
 	position: absolute;
@@ -568,28 +578,52 @@ section {
 .heart-icon.liked .heart-filled {
 	display: block;
 }
-/* ------------- */
+/* ------------------------------------------------------------ */
 
 /*----찜 코드-----*/
 #gym{
 	cursor: pointer;
+	
+	display: flex; 
+	justify-content: center; 
+	margin-left: 5%;
+	margin-top: 3%;
+	
+	color: white;
+	background-color: #ff5a5f;
+	
+	width: 25%;
+	border: none;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+#gym:hover{
+	background-color: #e04e50;
 }
 /*--------------*/
 
+#place-name{
+	margin-left: 5%;
+}
+
 #place-score {
 	display: flex;
-	justify-content: right;
-	margin-top: -18px;
+	justify-content: left;
+	margin-top: 5%;
+	margin-left: 5%;
 }
 
 #place {
 	font-size: 14px;
 	color: #878686;
+	margin-left: 5%;
 }
 
 #place-date {
 	font-weight: 600;
 	margin-top: 15px;
+	margin-left: 5%;
 }
 
 /* ---------footer--------- */

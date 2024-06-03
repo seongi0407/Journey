@@ -69,6 +69,8 @@ public class AccomEditController extends HttpServlet {
             String elevatorYn = req.getParameter("elevatorYn");
             String breakfastYn = req.getParameter("breakfastYn");
             String smokeYn = req.getParameter("smokeYn");
+            String latitude = req.getParameter("latitude");
+            String longitude = req.getParameter("longitude");
             
 //            !!!!!!!!!!!
             System.out.println("no: " + no);
@@ -81,6 +83,8 @@ public class AccomEditController extends HttpServlet {
             System.out.println("elevatorYn: " + elevatorYn);
             System.out.println("breakfastYn: " + breakfastYn);
             System.out.println("smokeYn: " + smokeYn);
+            System.out.println("latitude: " + latitude);
+            System.out.println("longitude: " + longitude);
             
 			Part imgUrl = req.getPart("imgUrl");
 
@@ -120,6 +124,8 @@ public class AccomEditController extends HttpServlet {
             vo.setElevatorYn(elevatorYn);
             vo.setBreakfastYn(breakfastYn);
             vo.setSmokeYn(smokeYn);
+            vo.setLatitude(latitude);
+            vo.setLongitude(longitude);
             vo.setImgUrl(changeName);
 
 //			서비스 호출
