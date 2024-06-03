@@ -20,6 +20,8 @@
 <body>
 
 	<%@ include file="/WEB-INF/views/layout/header.jsp"%>
+	
+	<h1>숙소 수정 및 삭제</h1>
 
 	<div class="accom-container">
 		<c:choose>
@@ -27,10 +29,10 @@
 			
 				<c:forEach var="vo" items="${voList}">
 					<div class="accom-list">
-						<img src="/journey/resources/upload/accom/${vo.imgUrl}"  alt="숙소 사진">
+						<img src="/journey/resources/upload/accom/${vo.imgUrl}" alt="숙소 사진">
 						<div class="accom-detail">
 							<span id="status-${vo.no}" class="status">등록 중</span>
-							<h3>${vo.name}</h3>
+							<h3 onclick="location.href='/journey/host/room/list?accomNo=${vo.no}'">${vo.name}</h3>
 							<p>${vo.address}</p>
 
 							<form action="/journey/accom/edit" method="get">

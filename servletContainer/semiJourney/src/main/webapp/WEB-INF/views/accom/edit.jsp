@@ -7,17 +7,25 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>숙소 등록</title>
+<title>숙소 정보 수정</title>
+
+<link rel="stylesheet" href="/journey/resources/css/accom/accomEdit.css">
+<link rel="stylesheet" href="/journey/resources/css/layout/header.css">
+<link rel="stylesheet" href="/journey/resources/css/layout/footer.css">
+
+<script defer src="/journey/resources/js/layout/header.js"></script>
+
+<%@ include file="/WEB-INF/views/layout/util.jsp" %>
 
 </head>
 <body>
 
-	<header>
-		<h1>숙소 정보 수정</h1>
-	</header>
+	<%@ include file="/WEB-INF/views/layout/header.jsp"%>
 
-	<main>
-		<form action="/journey/accom/edit" method="post" enctype="multipart/form-data">
+	<h1>숙소 정보 수정</h1>
+	
+	<main class="main-container">
+		<form class="form-container" action="/journey/accom/edit" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="no" value="${vo.no}"> 
 			<div>
 				<label for="name">숙소 이름:</label> 
@@ -77,6 +85,14 @@
 				</select>
 			</div>
 			<div>
+				<label for="latitude">위도:</label> 
+				<input type="text" id="latitude" name="latitude" value="${vo.latitude}" required>
+			</div>
+			<div>
+				<label for="longitude">위도:</label> 
+				<input type="text" id="longitude" name="longitude" value="${vo.longitude}" required>
+			</div>
+			<div>
 				<label for="imgUrl">이미지 업로드:</label> 
 				<input type="file" id="imgUrl" name="imgUrl"> 
 				<img src="/journey/resources/upload/${vo.imgUrl}" alt="현재 이미지" width="100">
@@ -84,8 +100,13 @@
 			</div>
 			<button type="submit">수정</button>
 		</form>
+		<div class="map-container">
+		
+		</div>
 
 	</main>
+	
+	<%@ include file="/WEB-INF/views/layout/footer.jsp"%>
 
 </body>
 </html>

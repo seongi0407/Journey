@@ -55,6 +55,8 @@ public class WishDeleteController extends HttpServlet {
 			PrintWriter out = resp.getWriter();
 			
 			out.write(jsonStr);
+			out.flush();  
+	        out.close();  
 			
 			 // 결과
 	         if(result < 1) {
@@ -62,8 +64,7 @@ public class WishDeleteController extends HttpServlet {
 	            throw new Exception("위시리스트 삭제 실패");
 	         }
 	         session.setAttribute("alertMsg", "위시리스트 삭제 성공");
-	         
-	         resp.sendRedirect("/journey/home");
+	       
 	         
 	      } catch (Exception e) {
 	         System.out.println(e.getMessage());
