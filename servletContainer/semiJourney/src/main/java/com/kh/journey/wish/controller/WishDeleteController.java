@@ -55,8 +55,8 @@ public class WishDeleteController extends HttpServlet {
 			PrintWriter out = resp.getWriter();
 			
 			out.write(jsonStr);
-			out.flush();  
-	        out.close();  
+			out.flush();
+	        out.close();
 			
 			 // 결과
 	         if(result < 1) {
