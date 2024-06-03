@@ -551,6 +551,86 @@ public class RoomDao {
 		return result2;
 	} // checkOutDate
 
+	// 그룹별로 평점 가져오기
+	public List<ReviewVo> getReviewAvg(Connection conn) throws Exception {
+		
+		// sql
+		String sql = "SELECT RE.ROOM_NO NO , AVG(RV.ACCURACY) ACCURACY , AVG(RV.CLEAN) CLEAN , AVG(RV.CHECKIN) CHECKIN , AVG(RV.LOCATION) LOCATION , AVG(RV.COMMUNICATION) COMMUNICATION FROM REVIEW RV JOIN RESERVATION RE ON (RE.NO = RV.RESERVE_NO) GROUP BY RE.ROOM_NO ORDER BY RE.ROOM_NO DESC";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		ResultSet rs = pstmt.executeQuery();
+
+		List<ReviewVo> reVoList = new ArrayList<ReviewVo>();
+		ReviewVo vo = null;
+		while(rs.next()) {
+			String no = rs.getString("NO");
+			
+			double accuracy = rs.getDouble("ACCURACY");
+			double clean = rs.getDouble("CLEAN");
+			double checkin = rs.getDouble("CHECKIN");
+			double location = rs.getDouble("LOCATION");
+			double communication = rs.getDouble("COMMUNICATION");
+
+			double average = (accuracy + clean + checkin + location + communication) / 5;
+			String starAvg = String.format("%.2f", average);
+
+			vo = new ReviewVo();
+			vo.setNo(no);
+			vo.setStarAvg(starAvg);
+
+			reVoList.add(vo);
+		}
+		
+		close(pstmt);
+		close(rs);
+		
+		return reVoList;
+	} // getReviewAvg
+
+	// 객실 상세 페이지 후기 카운트 얻어보기
+	public String getReviewCount(Connection conn, String no) throws Exception {
+		
+		// sql
+		String sql = "SELECT COUNT(*) COUNT FROM REVIEW RV JOIN RESERVATION RE ON (RV.RESERVE_NO = RE.NO) JOIN ROOM R ON (R.NO = RE.ROOM_NO) WHERE R.NO = ? AND RV.DEL_YN = 'N' AND RE.DEL_YN = 'N' AND R.DEL_YN = 'N'";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, no);
+		ResultSet rs = pstmt.executeQuery();
+		
+		String count = null;
+		if(rs.next()) {
+			count = rs.getString("COUNT");
+		}
+		
+		close(pstmt);
+		
+		return count;
+	} // getReviewCount
+
+	// 객실 상세 페이지 평점 얻어보기
+	public String getOneRoomGrade(Connection conn, String no) throws Exception {
+		
+		// sql
+		String sql = "SELECT AVG(RV.ACCURACY) ACCURACY , AVG(RV.CLEAN) CLEAN , AVG(RV.CHECKIN) CHECKIN , AVG(RV.LOCATION) LOCATION , AVG(RV.COMMUNICATION) COMMUNICATION FROM REVIEW RV JOIN RESERVATION RE ON (RV.RESERVE_NO = RE.NO) JOIN ROOM R ON (R.NO = RE.ROOM_NO) WHERE R.NO = ? AND RV.DEL_YN = 'N' AND RE.DEL_YN = 'N' AND R.DEL_YN = 'N'";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, no);
+		ResultSet rs = pstmt.executeQuery();
+		
+		String grade = null;
+		if(rs.next()) {
+			double accuracy = rs.getDouble("ACCURACY");
+			double clean = rs.getDouble("CLEAN");
+			double checkin = rs.getDouble("CHECKIN");
+			double location = rs.getDouble("LOCATION");
+			double communication = rs.getDouble("COMMUNICATION");
+			
+			double average = (accuracy + clean + checkin + location + communication) / 5;
+			grade = String.format("%.2f", average);
+		}
+		
+		close(pstmt);
+		
+		return grade;
+	} // getOneRoomGrade
+
 //	// 객실 평점 등록
 //	public int setRoomGrade(Connection conn, List<ReviewVo> reVoList, String roomNo) throws Exception {
 //		

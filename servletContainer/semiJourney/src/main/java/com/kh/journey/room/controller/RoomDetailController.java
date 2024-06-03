@@ -8,7 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.kh.journey.review.vo.ReviewVo;
 import com.kh.journey.room.service.RoomService;
@@ -34,6 +33,8 @@ public class RoomDetailController extends HttpServlet {
 			
 			// service 호출
 			RoomVo vo = service.getRoomDetail(no);
+			String grade = service.getOneRoomGrade(no);
+			String count = service.getReviewCount(no);
 			List<AttachmentVo> attVoList = service.getAttachment(no);
 			List<ReviewVo> reVoList = service.getReview(no);
 			
@@ -42,6 +43,8 @@ public class RoomDetailController extends HttpServlet {
 				throw new Exception("객실 상세 조회 실패");
 			}
 			
+			req.setAttribute("count", count);
+			req.setAttribute("grade", grade);
 			req.setAttribute("vo", vo);
 			req.setAttribute("attVoList", attVoList);
 			req.setAttribute("reVoList", reVoList);

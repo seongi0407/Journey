@@ -85,7 +85,13 @@ public class RoomService {
       
       // dao 호출
       Connection conn = getConnection();
+      
       List<RoomVo> voList = dao.getRoomListForHome(conn);
+      List<ReviewVo> reVoList = dao.getReviewAvg(conn);
+      
+      for(int i = 0; i < voList.size(); ++i) {
+    	  voList.get(i).setGrade(reVoList.get(i).getStarAvg());
+      }
       
       close(conn);
       
@@ -179,6 +185,34 @@ public class RoomService {
 		
 		return thVoList;
 	} // getTheme
+
+	// 객실 상세 페이지 후기 카운트 얻어보기
+	public String getReviewCount(String no) throws Exception {
+		
+		// 비즈니스 로직
+		
+		// DAO 호출
+		Connection conn = getConnection();
+		String count = dao.getReviewCount(conn, no);
+		
+		close(conn);
+		
+		return count;
+	} // getReviewCount
+
+	// 객실 상세 페이지 평점 얻어보기
+	public String getOneRoomGrade(String no) throws Exception {
+		
+		// 비즈니스 로직
+		
+		// DAO 호출
+		Connection conn = getConnection();
+		String grade = dao.getOneRoomGrade(conn, no);
+		
+		close(conn);
+		
+		return grade;
+	} // getOneRoomGrade
 
 //	// 예약 날짜 유효한지 확인
 //	public int checkDate(String no, String iDDate, String oDDate) throws Exception {

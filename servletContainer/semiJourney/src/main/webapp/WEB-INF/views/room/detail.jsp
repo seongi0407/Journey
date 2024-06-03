@@ -47,7 +47,7 @@
                     <div id="room-explain">
                         <h1>${vo.themeName}, ${vo.name}, ${vo.hostName}의 집 전체</h1>
                         <h4>최대 인원 ${vo.capacity}명, 침대 ${vo.bedNum}개, 욕실 ${vo.bathNum}개</h4>
-                        <h5>⭐ ${vo.grade} 후기 209개</h5>
+                        <h5>⭐ ${grade} 후기 ${count}개</h5>
                     </div>
                     <div id="host-short">
                         <img src="/journey/resources/upload/host/${vo.hostProfile}" alt="호스트 사진">

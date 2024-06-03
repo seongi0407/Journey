@@ -38,14 +38,14 @@ public class RoomCheckDateController extends HttpServlet {
 			String oDDate = req.getParameter("oDDate");
 			
 			// service 호출
-			int result = service.checkDate(no, iDDate, oDDate);
+//			int result = service.checkDate(no, iDDate, oDDate);
 			
-			System.out.println("result: " + result);
+//			System.out.println("result: " + result);
 			
 			// 결과
 			Map<String, Integer> map = new HashMap<>();
 			
-			map.put("result", result);
+//			map.put("result", result);
 			
 			Gson gson = new Gson();
 			String jsonStr = gson.toJson(map);
