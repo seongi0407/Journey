@@ -55,6 +55,8 @@ public class HostCheckDupController extends HttpServlet {
 			PrintWriter out = resp.getWriter();
 			
 			out.write(jsonStr);
+			out.flush();
+			out.close();
 			
 		} catch(Exception e) {
 			
