@@ -58,7 +58,7 @@
 			<input type="file" name="profile" placeholder="프로필 이미지">
 			<br>
 			
-			<input type="submit" value="회원가입">
+			<input class="submit-button" type="submit" value="회원가입">
 		</form>
 	</div>
 
