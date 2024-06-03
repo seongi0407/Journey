@@ -249,13 +249,13 @@ function validateDates() {
 	const sysdate = `${year}-${month}-${day}`;
 
 	if (checkInDate && checkOutDate) {
+		if (checkInDate <= sysdate) {
+			alert("예약 날짜는 오늘 이후여야 합니다.");
+			document.querySelector("#checkInDate").value = "";
+		}
 		if (checkOutDate <= checkInDate) {
 			alert("체크아웃 날짜는 체크인 날짜보다 이후여야 합니다.");
 			document.querySelector("#checkOutDate").value = "";
-		}
-		if (checkInDate < sysdate || checkOutDate < sysdate) {
-			alert("예약 날짜는 오늘 이후여야 합니다.");
-			document.querySelector("#checkInDate").value = "";
 		}
 	}
 

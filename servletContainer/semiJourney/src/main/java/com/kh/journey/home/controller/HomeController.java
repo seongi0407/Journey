@@ -28,10 +28,11 @@ public class HomeController extends HttpServlet {
 
       try {
          // service 호출
-         List<RoomVo> voList = service.getRoomListForHome();
+         List<RoomVo> list = service.getRoomListForHome();
+//         List<RoomVo> voList = service.roomGrade(list);
          
          // 결과
-         req.setAttribute("voList", voList);
+         req.setAttribute("voList",list);
          
          req.getRequestDispatcher("/WEB-INF/views/home.jsp").forward(req, resp);
          

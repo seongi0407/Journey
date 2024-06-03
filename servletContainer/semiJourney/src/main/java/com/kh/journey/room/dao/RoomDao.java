@@ -506,4 +506,112 @@ public class RoomDao {
 	      
 	      return thVoList;
 	} // getTheme
+
+	// 체크인 날짜 중복 확인
+	public int checkInDate(Connection conn, String no, String iDDate) throws Exception {
+		
+		// sql
+		String sql = "SELECT COUNT(*) FROM RESERVATION WHERE ROOM_NO = ? AND IN_DATE <= ? AND OUT_DATE > ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, no);
+		pstmt.setString(2, iDDate);
+		pstmt.setString(3, iDDate);
+		ResultSet rs = pstmt.executeQuery();
+		
+		int result1 = 1;
+		if(rs.next()) {
+		   result1 = rs.getInt("COUNT(*)");
+		}
+		
+		close(rs);
+		close(pstmt);
+		
+		return result1;
+	} // checkInDate
+
+	// 체크아웃 날짜 중복 확인
+	public int checkOutDate(Connection conn, String no, String oDDate) throws Exception {
+		
+		// sql
+		String sql = "SELECT COUNT(*) FROM RESERVATION WHERE ROOM_NO = ? AND IN_DATE < ? AND OUT_DATE >= ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, no);
+		pstmt.setString(2, oDDate);
+		pstmt.setString(3, oDDate);
+		ResultSet rs = pstmt.executeQuery();
+		
+		int result2 = 1;
+		if(rs.next()) {
+		   result2 = rs.getInt("COUNT(*)");
+		}
+		
+		close(rs);
+		close(pstmt);
+		
+		return result2;
+	} // checkOutDate
+
+//	// 객실 평점 등록
+//	public int setRoomGrade(Connection conn, List<ReviewVo> reVoList, String roomNo) throws Exception {
+//		
+//	    // sql
+//	    
+//	    int result = 0;
+//	    PreparedStatement pstmt = null;
+//	    for(ReviewVo vo: reVoList) {
+//	    	String sql = "UPDATE ROOM SET GRADE = ? WHERE NO = ?";
+//	    	pstmt = conn.prepareStatement(sql);
+//	    	pstmt.setString(1, vo.getStarAvg());
+//	    	pstmt.setString(2, roomNo);
+//	    	
+//	    	result = pstmt.executeUpdate();
+//	    }	    
+//	    
+//	    close(pstmt);
+//	    
+//	    return result;
+//	} // setRoomGrade
+//
+//	// 평점 등록을 위한 리뷰 수집
+//	public List<ReviewVo> getReviewForSetGrade(Connection conn, String roomNo) throws Exception {
+//		
+//		String sql = "SELECT ROWNUM , T.NO , T.PROFILE , T.NAME , T.CONTENT , T.ACCURACY , T.CLEAN , T.CHECKIN , T.LOCATION , T.COMMUNICATION , T.ENROLL_DATE FROM ( SELECT R.NO , M.PROFILE , M.NAME , R.CONTENT , R.ACCURACY , R.CLEAN , R.CHECKIN , R.LOCATION , R.COMMUNICATION , R.ENROLL_DATE FROM REVIEW R JOIN RESERVATION RV ON R.RESERVE_NO = RV.NO JOIN MEMBER M ON RV.RESERVATOR_NO=M.NO JOIN ROOM RM ON RM.NO = RV.ROOM_NO WHERE RV.ROOM_NO = ? AND R.DEL_YN = 'N' AND M.DEL_YN = 'N' ORDER BY R.ENROLL_DATE DESC ) T";
+//		PreparedStatement pstmt = conn.prepareStatement(sql);
+//		pstmt.setString(1, roomNo);
+//		ResultSet rs = pstmt.executeQuery();
+//
+//		List<ReviewVo> voList = new ArrayList<ReviewVo>();
+//		ReviewVo vo = null;
+//		while (rs.next()) {
+//			String rownum = rs.getString("ROWNUM");
+//			String no = rs.getString("NO");
+//			String profile = rs.getString("PROFILE");
+//			String writerName = rs.getString("NAME");
+//			String content = rs.getString("CONTENT");
+//			String enrollDate = rs.getString("ENROLL_DATE");
+//			int accuracy = rs.getInt("ACCURACY");
+//			int clean = rs.getInt("CLEAN");
+//			int checkin = rs.getInt("CHECKIN");
+//			int loation = rs.getInt("LOCATION");
+//			int communication = rs.getInt("COMMUNICATION");
+//
+//			String starAvg = Integer.toString((accuracy + clean + checkin + loation + communication) / 5);
+//
+//			vo = new ReviewVo();
+//			vo.setNo(no);
+//			vo.setProfile(profile);
+//			vo.setWriterName(writerName);
+//			vo.setContent(content);
+//			vo.setEnrollDate(enrollDate);
+//			vo.setStarAvg(starAvg);
+//			vo.setRownum(rownum);
+//
+//			voList.add(vo);
+//		}
+//		
+//		close(pstmt);
+//		close(rs);
+//		
+//		return voList;
+//	} // getReviewForSetGrade
 } // class

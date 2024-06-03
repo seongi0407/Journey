@@ -179,4 +179,43 @@ public class RoomService {
 		
 		return thVoList;
 	} // getTheme
+
+//	// 예약 날짜 유효한지 확인
+//	public int checkDate(String no, String iDDate, String oDDate) throws Exception {
+//		
+//		// 비즈니스 로직
+//		
+//		// DAO 호출
+//		Connection conn = getConnection();
+//		int result1 = dao.checkInDate(conn, no, iDDate);
+//		int result2 = dao.checkOutDate(conn, no, oDDate);
+//		int result = result1 + result2;
+//		
+//		close(conn);
+//		
+//		return result;
+//	} // checkDate
+//
+//	// 평점 등록 후 객실 목록 조회
+//	public List<RoomVo> roomGrade(List<RoomVo> list) throws Exception {
+//		
+//		// 비즈니스 로직
+//		
+//		// DAO 호출
+//		Connection conn = getConnection();
+//		
+//		for(RoomVo vo: list) {
+//			List<ReviewVo> reVoList = dao.getReviewForSetGrade(conn, vo.getNo());
+//			int result = dao.setRoomGrade(conn, reVoList, vo.getNo());
+//			if(result < 1) {
+//				throw new Exception();
+//			}
+//		}
+//		
+//		List<RoomVo> voList = dao.getRoomListForHome(conn);
+//		
+//		close(conn);
+//		
+//		return voList;
+//	} // roomGrade
 } // class
