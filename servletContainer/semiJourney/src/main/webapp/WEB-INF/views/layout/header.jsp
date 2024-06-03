@@ -204,7 +204,7 @@
 			<h4>
 				<u>비밀번호를 잊으셨나요?</u>
 			</h4>
-			<button type="button" id="login-close-button">닫기</button>
+			<button type="button" id="login-close-member-button">닫기</button>
 		</form>
 	</div>
 	<!--  -->
@@ -226,7 +226,7 @@
 			<h4>
 				<u>비밀번호를 잊으셨나요?</u>
 			</h4>
-			<button type="button" id="login-close-button">닫기</button>
+			<button type="button" id="login-close-host-button">닫기</button>
 		</form>
 	</div>
 	<!--  -->
@@ -248,7 +248,7 @@
 			<h4>
 				<u>비밀번호를 잊으셨나요?</u>
 			</h4>
-			<button type="button" id="login-close-button">닫기</button>
+			<button type="button" id="login-close-admin-button">닫기</button>
 		</form>
 	</div>
 	<!--  -->

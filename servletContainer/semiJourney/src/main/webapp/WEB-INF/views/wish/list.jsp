@@ -30,7 +30,7 @@
 	<div class="main">
 		<div class="image-container">
 			<c:forEach var="room" items="${roomVoList}">
-				<div class="accomodation">
+				<div class="accomodation" onclick="location.href='/journey/room/detail?no=${room.no}'">
 					<img src="/journey/resources/upload/room/${room.img01}" alt="숙소 사진">
 					<div id="place-name">${room.name}</div>
 					<c:choose>
@@ -41,7 +41,6 @@
 							<button class="gym" id="gym" onclick="clickNothing()">취소</button>
 						</c:otherwise>
 					</c:choose>
-					<div id="place-score">★ ${room.grade}</div>
 					<div id="place">${room.address}</div>
 					<div id="place-date">₩ ${room.weekdayPrice} / 박</div>
 				</div>

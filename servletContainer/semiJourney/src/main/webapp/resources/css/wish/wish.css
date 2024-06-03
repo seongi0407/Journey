@@ -258,7 +258,11 @@ section {
 	/* nav와 theme에서 z-index를 얼마나 줬는지 확인하기. */
 	z-index: 1;
 	border-radius: 10px; 
-	box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1); 
+	box-shadow: 0 8px 8px rgba(0, 0, 0, 0.3); 
+}
+
+.accomodation:hover {
+	box-shadow: 0 8px 8px rgba(0, 0, 0, 0.5); 
 }
 
 
@@ -315,17 +319,11 @@ section {
 	margin-left: 5%;
 }
 
-#place-score {
-	display: flex;
-	justify-content: left;
-	margin-top: 8%;
-	margin-left: 5%;
-}
-
 #place {
 	font-size: 14px;
 	color: #878686;
 	margin-left: 5%;
+	margin-top: 10px;
 }
 
 #place-date {
