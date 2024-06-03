@@ -32,13 +32,6 @@ public class AccomEditController extends HttpServlet {
 	        
 	        AccomService as = new AccomService();
 	        AccomVo vo = as.getAccomByNo(no);
-	        
-//	        !!!!!!!!!!!!
-	        System.out.println("no: " + vo.getNo());
-	        System.out.println("name: " + vo.getName());
-	        System.out.println("address: " + vo.getAddress());
-	        
-	        
 
 	        req.setAttribute("vo", vo);
 	        req.getRequestDispatcher("/WEB-INF/views/accom/edit.jsp").forward(req, resp);
@@ -71,21 +64,7 @@ public class AccomEditController extends HttpServlet {
             String smokeYn = req.getParameter("smokeYn");
             String latitude = req.getParameter("latitude");
             String longitude = req.getParameter("longitude");
-            
-//            !!!!!!!!!!!
-            System.out.println("no: " + no);
-            System.out.println("name: " + name);
-            System.out.println("address: " + address);
-            System.out.println("swimYn: " + swimYn);
-            System.out.println("spaYn: " + spaYn);
-            System.out.println("disabledYn: " + disabledYn);
-            System.out.println("parkingYn: " + parkingYn);
-            System.out.println("elevatorYn: " + elevatorYn);
-            System.out.println("breakfastYn: " + breakfastYn);
-            System.out.println("smokeYn: " + smokeYn);
-            System.out.println("latitude: " + latitude);
-            System.out.println("longitude: " + longitude);
-            
+ 
 			Part imgUrl = req.getPart("imgUrl");
 
 			String changeName = "";
@@ -131,10 +110,6 @@ public class AccomEditController extends HttpServlet {
 //			서비스 호출
 			AccomService as = new AccomService();
 			int result = as.edit(vo);
-
-//			!!!!!!!!!!!!!!!
-			System.out.println("Edit result: " + result);
-			
 
 			// 결과
 	         if(result < 1) {

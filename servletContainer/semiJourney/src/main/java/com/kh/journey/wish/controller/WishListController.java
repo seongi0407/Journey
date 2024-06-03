@@ -40,8 +40,6 @@ public class WishListController extends HttpServlet{
 //          서비스 호출
             List<RoomVo> roomVoList = service.getRoomListForWish(no);
             
-            System.out.println(roomVoList);
- 
 //			결과 	
 			req.setAttribute("roomVoList", roomVoList);
 			

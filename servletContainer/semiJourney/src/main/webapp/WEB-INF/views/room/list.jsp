@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="/journey/resources/css/room/list.css">
 
 <script defer src="/journey/resources/js/layout/header.js"></script>
+<script defer src="/journey/resources/js/room/delete.js"></script>
 </head>
 <body>
     
@@ -25,7 +26,7 @@
 					<img src="/journey/resources/upload/room/${vo.img01}" onclick="location.href='/journey/room/detail?no=${vo.no}'" alt="숙소 사진">
 					<div id="place-name">${vo.themeName}, ${vo.name}</div>
 					<button class="btn" onclick="location.href='/journey/room/edit?no=${vo.no}'">수정</button>
-					<button class="btn" onclick="location.href='/journey/room/delete?no=${vo.no}'">삭제</button>
+					<button class="btn" onclick="refresh(${vo.no});">삭제</button>
 					<div id="place-score">★ ${vo.grade}</div>
 					<div id="place">${vo.address}</div>
 					<div id="place-date">₩ ${vo.weekdayPrice} / 박</div>
@@ -33,10 +34,9 @@
 			</c:forEach>
 		</div>
 
-        <button id="roomInsertBtn" onclick="location.href='/journey/room/insert?accomNo='${accomNo}">객실 등록</button>
+        <button id="roomInsertBtn" onclick="location.href='/journey/room/insert?accomNo=${accomNo}'">객실 등록</button>
 	</div>
 
-        
     <%@ include file="/WEB-INF/views/layout/footer.jsp"%>
     
 </body>

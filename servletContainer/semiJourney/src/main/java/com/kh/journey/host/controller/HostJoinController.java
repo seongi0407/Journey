@@ -55,7 +55,7 @@ public class HostJoinController extends HttpServlet {
 				InputStream is = profile.getInputStream();
 				
 				// 파일아웃풋 스트림 준비
-				String path = "C:\\Users\\seong\\project\\journey\\servletContainer\\semiJourney\\src\\main\\webapp\\resources\\upload\\host\\";
+				String path = "C:\\Users\\user1\\Desktop\\Team_Journey\\servletContainer\\semiJourney\\src\\main\\webapp\\resources\\upload\\host\\";
 				String random = UUID.randomUUID().toString();
 				String ext = originName.substring(originName.lastIndexOf("."));
 				changeName = "host_" + System.currentTimeMillis() + "_" + random + ext;

@@ -14,6 +14,9 @@
 <link rel="stylesheet" href="/journey/resources/css/layout/footer.css">
 
 <script defer src="/journey/resources/js/layout/header.js"></script>
+<script defer src="/journey/resources/js/accom/edit.js"></script>
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f1deaaca1522c6065545245daaba71a4&libraries=services"></script>
 
 <%@ include file="/WEB-INF/views/layout/util.jsp" %>
 
@@ -89,19 +92,22 @@
 				<input type="text" id="latitude" name="latitude" value="${vo.latitude}" required>
 			</div>
 			<div>
-				<label for="longitude">위도:</label> 
+				<label for="longitude">경도:</label> 
 				<input type="text" id="longitude" name="longitude" value="${vo.longitude}" required>
 			</div>
 			<div>
 				<label for="imgUrl">이미지 업로드:</label> 
 				<input type="file" id="imgUrl" name="imgUrl"> 
-				<img src="/journey/resources/upload/${vo.imgUrl}" alt="현재 이미지" width="100">
+				<img src="/journey/resources/upload/accom/${vo.imgUrl}" alt="현재 이미지" width="100">
 				<input type="hidden" name="existingImgUrl" value="${vo.imgUrl}">
 			</div>
 			<button type="submit">수정</button>
 		</form>
 		<div class="map-container">
-		
+			<!-- 지도를 표시할 div 입니다 -->
+			<div id="map"></div>
+			<p><em>지도를 클릭해주세요!</em></p>
+			<div id="clickLatlng"></div>
 		</div>
 
 	</main>

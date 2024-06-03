@@ -77,9 +77,7 @@ public class ReservationDao {
 			vo.setCapacity(capacity);
 			roomDetail.add(vo);
 		}
-		System.out.println(roomDetail);
 		return roomDetail;
-
 	}
 
 	// 예약 내역 등록하기
@@ -139,7 +137,7 @@ public class ReservationDao {
 	public List<ReservationVo> getReservationList(Connection conn, String loginMemNo) throws Exception {
 
 		// 예정된 예약
-		String sql = "SELECT RV.NO RESERVE_NO, RV.IN_DATE ,RV.OUT_DATE, A.ADDRESS , R.NAME AS ROOM_NAME , R.IMG_01 , RV.SUM, H.NAME AS HOST_NAME, H.PHONE, H.PROFILE FROM RESERVATION RV JOIN ROOM R ON RV.ROOM_NO = R.NO JOIN ACCOMMODATION A ON R.ACCOM_NO = A.NO JOIN HOST H ON H.NO = A.HOST_NO WHERE RESERVATOR_NO = ? AND RV.DEL_YN ='N' AND RV.REFUND_YN ='N' AND IN_DATE > SYSDATE ORDER BY RV.IN_DATE";
+		String sql = "SELECT RV.NO RESERVE_NO, RV.IN_DATE ,RV.OUT_DATE, A.ADDRESS , R.NAME AS ROOM_NAME , R.IMG_01 , RV.SUM, H.NAME AS HOST_NAME, H.PHONE, H.PROFILE FROM RESERVATION RV JOIN ROOM R ON RV.ROOM_NO = R.NO JOIN ACCOMMODATION A ON R.ACCOM_NO = A.NO JOIN HOST H ON H.NO = A.HOST_NO WHERE RESERVATOR_NO = ? AND RV.DEL_YN ='N' AND RV.REFUND_YN ='N' AND OUT_DATE >= SYSDATE ORDER BY RV.IN_DATE";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, loginMemNo);
 		ResultSet rs = pstmt.executeQuery();

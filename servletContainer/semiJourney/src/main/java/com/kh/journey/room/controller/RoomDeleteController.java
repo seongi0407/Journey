@@ -34,6 +34,8 @@ public class RoomDeleteController extends HttpServlet {
 				throw new Exception("객실 삭제 실패");
 			}
 			
+			req.setAttribute("alertMsg", "객실 삭제 성공");
+			
 			resp.sendRedirect("/journey/home");
 			
 		} catch(Exception e) {

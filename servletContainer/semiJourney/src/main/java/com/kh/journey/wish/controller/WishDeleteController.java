@@ -37,8 +37,6 @@ public class WishDeleteController extends HttpServlet {
 			WishVo wishVo = new WishVo();
 		 	wishVo.setNo(wishNo);
             wishVo.setMemNo(memberNo);
-			
-            System.out.println("vo: " + wishVo);
             
 			//서비스 호출 
 			WishService ws = new WishService();

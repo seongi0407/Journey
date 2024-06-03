@@ -62,7 +62,7 @@ function validate() {
         return false;
     }
 
-    if (selectedDate >= currentDate) {
+    if (selectedDate > currentDate) {
         alert('만 19세 이상만 이용 가능합니다.');
         return false;
     }
