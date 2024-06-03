@@ -1,6 +1,7 @@
 package com.kh.journey.host.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.kh.journey.accom.service.AccomService;
+import com.kh.journey.accom.vo.AccomVo;
 import com.kh.journey.host.service.HostService;
 import com.kh.journey.host.vo.HostVo;
 
@@ -16,10 +19,12 @@ import com.kh.journey.host.vo.HostVo;
 public class HostQuitController extends HttpServlet {
 
 	private final HostService service;
+	private final AccomService service2;
 	
 	// Constructor
 	public HostQuitController() {
 		this.service = new HostService();
+		this.service2 = new AccomService();
 	}
 	
 	@Override
@@ -33,6 +38,12 @@ public class HostQuitController extends HttpServlet {
 			
 			// 복잡한 작업
 			int result = service.quit(no);
+			
+			List<AccomVo> voList = service2.selectAccomList(no);
+			
+			for(AccomVo vo: voList) {
+				service.delete(vo.getNo());
+			}
 			
 			// 결과
 			if(result != 1) {

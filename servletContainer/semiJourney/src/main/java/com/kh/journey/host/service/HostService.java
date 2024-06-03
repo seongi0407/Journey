@@ -62,7 +62,7 @@ public class HostService {
 		Connection conn = getConnection();
 		int result = dao.quit(conn, no);
 		
-		if(result == 1) {
+		if(result > 0) {
 			commit(conn);
 		} else {
 			rollback(conn);
@@ -71,6 +71,25 @@ public class HostService {
 		close(conn);
 		
 		return result;
+	} // quit
+	
+	// 회원탈퇴 시 숙소, 객실 삭제
+	public void delete(String accomNo) throws Exception {
+		
+		// 비지니스 로직
+		
+		// DAO 호출
+		Connection conn = getConnection();
+		int result2 = dao.delete(conn, accomNo);
+		int result3 = dao.deleteAll(conn, accomNo);
+		
+		if(result2 * result3 > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
 	} // quit
 	
 	// 호스트 정보 수정 (이름)

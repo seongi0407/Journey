@@ -31,23 +31,23 @@
 	  <span>프로필로 이동</span>
 	
 	  <div class="menuOutter">
+	  
 	    <div class="menuInner" onclick="location.href='/journey/member/edit'">
 	      <div class="menuIcon"><img id="iconImg" src="/journey/resources/upload/member/${sessionScope.loginMemberVo.profile}"></div>
 	      <div class="menuTitle">개인정보 수정</div>
 	      <div class="memnuContent">개인정보를 수정합니다</div>
 	    </div>
-	    <div class="menuInner">
-	      <div class="menuIcon" onclick="location.href='/journey/book/list'"><img id="iconImg" src="/journey/resources/img/my/security.png"></div>
+	    <div class="menuInner" onclick="location.href='/journey/book/list'">
+	      <div class="menuIcon"><img id="iconImg" src="/journey/resources/img/my/security.png"></div>
 	      <div class="menuTitle">예약 정보 관리</div>
 	      <div class="memnuContent">예약 정보를 관리합니다.</div>
 	    </div>
-	    <div class="menuInner">
-	      <div class="menuIcon" onclick="checkDup();"><img id="iconImg" src="/journey/resources/img/my/cardAdd.png"></div>
+	    <div class="menuInner" onclick="checkDup();">
+	      <div class="menuIcon"><img id="iconImg" src="/journey/resources/img/my/cardAdd.png"></div>
 	      <div class="menuTitle">회원 탈퇴</div>
 	      <div class="memnuContent">회원 탈퇴를 진행합니다.</div>
 	    </div>
 	
-	  </div>
 	  </div>
 	</main>
 	

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import com.kh.journey.accom.service.AccomService;
 import com.kh.journey.accom.vo.AccomVo;
-import com.kh.journey.host.vo.HostVo;
+import com.kh.journey.room.service.RoomService;
 
 @WebServlet("/accom/delete")
 public class AccomDeleteController extends HttpServlet {
@@ -26,16 +26,9 @@ public class AccomDeleteController extends HttpServlet {
 			// 데이터 꺼내기
 			String no = req.getParameter("no");
 
-			AccomVo vo = new AccomVo();
-			vo.setNo(no);
-
 			// 서비스 호출
 			AccomService as = new AccomService();
-			int result = as.delete(vo);
-
-			if (result != 1) {
-				throw new Exception("숙소 정보 삭제 실패");
-			}
+			int result = as.delete(no);
 
 			// 결과
 			if (result < 1) {

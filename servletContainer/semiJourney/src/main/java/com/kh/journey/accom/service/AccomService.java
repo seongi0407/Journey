@@ -1,14 +1,15 @@
 package com.kh.journey.accom.service;
 
+import static com.kh.journey.db.JDBCTemplate.close;
+import static com.kh.journey.db.JDBCTemplate.commit;
+import static com.kh.journey.db.JDBCTemplate.getConnection;
+import static com.kh.journey.db.JDBCTemplate.rollback;
+
 import java.sql.Connection;
 import java.util.List;
 
 import com.kh.journey.accom.dao.AccomDao;
 import com.kh.journey.accom.vo.AccomVo;
-import static com.kh.journey.db.JDBCTemplate.close;
-import static com.kh.journey.db.JDBCTemplate.getConnection;
-import static com.kh.journey.db.JDBCTemplate.commit;
-import static com.kh.journey.db.JDBCTemplate.rollback;
 
 public class AccomService {
 
@@ -76,12 +77,13 @@ public class AccomService {
 
 	}
 
-	public int delete(AccomVo vo) throws Exception {
+	public int delete(String no) throws Exception {
 
 		Connection conn = getConnection();
-		int result = dao.delete(conn, vo);
+		int result = dao.delete(conn, no);
+		int result2 = dao.deleteAll(conn, no);
 
-		if (result == 1) {
+		if (result * result2 > 0) {
 			commit(conn);
 		} else {
 			rollback(conn);
@@ -90,6 +92,4 @@ public class AccomService {
 		close(conn);
 		return result;
 	}
-
-
 }

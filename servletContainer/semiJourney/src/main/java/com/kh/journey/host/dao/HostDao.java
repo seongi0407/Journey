@@ -146,4 +146,34 @@ public class HostDao {
 		
 		return vo;
 	} // checkDup
+	
+	public int delete(Connection conn, String no) throws Exception {
+
+		String sql = "UPDATE ACCOMMODATION SET DEL_YN = 'Y' WHERE NO = ? AND DEL_YN = 'N'";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, no);
+		int result = pstmt.executeUpdate();
+		
+		close(pstmt);
+
+		return result;
+	}
+
+   // 숙소 삭제 시 해당 숙소의 모든 객실 삭제
+   public int deleteAll(Connection conn, String accomNo) throws Exception {
+      
+      // sql
+      String sql = "UPDATE ROOM SET DEL_YN = 'Y' WHERE ACCOM_NO = ? AND DEL_YN = 'N'";
+      
+      PreparedStatement pstmt = conn.prepareStatement(sql);
+      
+      // 숙소 번호 받아서 넣어주기
+      pstmt.setString(1, accomNo);
+      
+      int result2 = pstmt.executeUpdate();
+      
+      close(pstmt);
+      
+      return result2;
+   } // deleteAll
 } // class
