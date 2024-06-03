@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+
+body{
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 500;
+}
+
 /* -------메인-------- */
 main {
 	padding: 40px 25px;
@@ -92,12 +99,8 @@ hr {
 	font-size: 16px;
 	font-weight: bold;
 	transition: background-color 0.3s;
-	&:
-	hover
-	{
-	background-color
-	:
-	#e04e50;
+	&:hover{
+	background-color:#e04e50;
 }
 
 }
@@ -112,11 +115,7 @@ hr {
 	font-size: 12px;
 	font-weight: bold;
 	transition: background-color 0.3s;
-	&:
-	hover
-	{
-	background-color
-	:
-	#e04e50;
+	&:hover{
+	background-color:#e04e50;
 }
 }
