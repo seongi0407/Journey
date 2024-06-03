@@ -35,8 +35,7 @@
 						src="/journey/resources/upload/room/${newReservation.roomImg}"
 						alt="Room Image">
 				</div>
-				<div>${newReservation.hostName}의
-					방 ${newReservation.roomName}</div>
+				<div>${newReservation.hostName}의 방 ${newReservation.roomName}</div>
 				<div>${newReservation.inDate}~${newReservation.outDate}</div>
 				<div>${newReservation.address}</div>
 				<div>게스트 ${newReservation.guestCount}명</div>

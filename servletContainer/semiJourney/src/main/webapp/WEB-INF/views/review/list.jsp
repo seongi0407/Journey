@@ -49,8 +49,7 @@
 								<td>${vo.rownum}</td>
 								<td class="writer-info">
 									<div>
-										<img class="memberProfile" alt="profile"
-											src="/journey/resources/upload/member/${vo.profile}">
+										<img class="memberProfile" alt="profile" src="/journey/resources/upload/member/${vo.profile}">
 										<div class="writer-name">${vo.writerName}</div>
 									</div>
 								</td>

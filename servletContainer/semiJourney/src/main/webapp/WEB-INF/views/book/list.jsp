@@ -36,29 +36,24 @@
 					<div id="roomText">
 						<div id="place-name" class="place-name">
 							<h1>${reservation.roomName}</h1>
-							<button class="cancelBtn"
-								onclick="location.href='/journey/book/cancel?reserveNo=${reservation.reserveNo}'">예약취소</button>
+							<button class="cancelBtn" onclick="location.href='/journey/book/cancel?reserveNo=${reservation.reserveNo}'">
+							예약취소</button>
 						</div>
 						<hr>
 						<br>
-						<p id="place-date">${reservation.inDate}~
-							${reservation.outDate}</p>
+						<p id="place-date">${reservation.inDate} ~ ${reservation.outDate}</p>
 						<p id="place-address">${reservation.address}</p>
 						<p id="place-address">총 금액 : ${reservation.sum}</p>
 						<br>
 						<hr>
 						<br>
 						<div id="hostProfileDiv" class="hostInfo">
-							<img id="hostProfile" class="hostProfile"
-								src="/journey/resources/upload/host/${reservation.hostProfile}"
-								alt="hostProfile">
+							<img id="hostProfile" class="hostProfile" src="/journey/resources/upload/host/${reservation.hostProfile}" alt="hostProfile">
 							<div>${reservation.hostName}</div>
 							<div id="place-date">Phone : ${reservation.hostPhone}</div>
 						</div>
 					</div>
-					<img id="roomImg" class="room-image"
-						src="/journey/resources/upload/room/${reservation.roomImg}"
-						alt="RoomImage">
+					<img id="roomImg" class="room-image" src="/journey/resources/upload/room/${reservation.roomImg}" alt="RoomImage">
 				</div>
 			</c:forEach>
 		</div>
@@ -68,15 +63,13 @@
 			<c:forEach var="history" items="${historyList}">
 				<div class="roomContainer">
 					<div>
-						<img src="/journey/resources/upload/room/${history.roomImg}"
-							alt="RoomImage" class="room-image" />
+						<img src="/journey/resources/upload/room/${history.roomImg}" alt="RoomImage" class="room-image"/>
 					</div>
 					<div id="historyText" class="historyText">
 						<p id="place-name">${history.roomName}</p>
 						<div class="reviewBtnDiv">
 							<c:if test="${history.reviewNo == null}">
-								<button class="reviewBtn"
-									onclick="location.href='/journey/review/insert?reserveNo=${history.reserveNo}'">리뷰작성</button>
+								<button class="reviewBtn" onclick="location.href='/journey/review/insert?reserveNo=${history.reserveNo}'">리뷰작성</button>
 							</c:if>
 							<c:if test="${history.reviewNo != null}">
 								<button class="completedReviewBtn" disabled>작성완료</button>

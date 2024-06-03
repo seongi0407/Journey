@@ -48,17 +48,14 @@
 								<td>${vo.rownum}</td>
 								<td class="room-info">
 									<div>
-										<img class="roomImg" alt="roomImg"
-											src="/journey/resources/upload/room/${vo.roomImg}">
+										<img class="roomImg" alt="roomImg" src="/journey/resources/upload/room/${vo.roomImg}">
 										<div class="roomName">${vo.roomName}</div>
 									</div>
 								</td>
 								<td>⭐${vo.starAvg}</td>
 								<td>${vo.enrollDate}</td>
 								<td> <div class="contentText">${vo.content}</td>
-								<td><button
-										onclick="location.href='/journey/review/edit?reviewNo=${vo.no}'"
-										class="editBtn">수정</button></td>
+								<td><button onclick="location.href='/journey/review/edit?reviewNo=${vo.no}'" class="editBtn">수정</button></td>
 							</tr>
 						</c:forEach>
 					</tbody>

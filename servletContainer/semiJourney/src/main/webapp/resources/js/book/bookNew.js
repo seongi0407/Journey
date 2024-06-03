@@ -301,8 +301,11 @@ function close_editPeople() {
 
 
 
-
 // 환불안내 팝업
 function openPop() {
 	document.querySelector("#popup_refundInfo").style.display = "block";
+}
+
+function closePop() {
+	document.querySelector('#popup_refundInfo').style.display = 'none';
 }

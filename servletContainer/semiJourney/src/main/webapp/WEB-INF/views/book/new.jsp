@@ -48,13 +48,11 @@
 
 			<input type="hidden" id="roomNo" name="roomNo" value="${vo.roomNo}">
 			<input type="hidden" id="inDate" name="inDate" value="${vo.inDate}">
-			<input type="hidden" id="outDate" name="outDate"
-				value="${vo.outDate}"> <input type="hidden" id="guestCount"
-				name="guestCount" value="${vo.guestCount}"> <input
-				type="hidden" name="sum" value="${vo.sum}"> <input
-				type="hidden" id="payMethodCode" name="payMethodCode"
-				value="${vo.payMethodCode}"> <input type="hidden"
-				id="cardNo" name="cardNo" value="${vo.cardNo}">
+			<input type="hidden" id="outDate" name="outDate" value="${vo.outDate}"> 
+			<input type="hidden" id="guestCount" name="guestCount" value="${vo.guestCount}"> 
+			<input type="hidden" name="sum" value="${vo.sum}"> 
+			<input type="hidden" id="payMethodCode" name="payMethodCode" value="${vo.payMethodCode}"> 
+			<input type="hidden" id="cardNo" name="cardNo" value="${vo.cardNo}">
 
 			<section class="rsv_inner" id="section">
 				<div id="sectionLeft">
@@ -72,7 +70,7 @@
 								</div>
 
 								<div id="days" class="days">
-									<p id="stayPeriod">${vo.inDate}~${vo.outDate}</p>
+									<p id="stayPeriod">${vo.inDate} ~ ${vo.outDate}</p>
 								</div>
 							</div>
 							<div id="modifyDate">
@@ -125,16 +123,12 @@
 									</c:forEach>
 									<hr>
 									<li>간편결제</li>
-									<li class="option" onclick="selectCard(event)" data-code="P3"
-										id="KAKAOPAY"><img
-										src="/journey/resources/img/book/kakaopay.png"> KAKAO
-										PAY</li>
-									<li class="option" onclick="selectCard(event)" data-code="P3"
-										id="TOSS-PAY"><img
-										src="/journey/resources/img/book/Toss.png"> TOSS-PAY</li>
-									<li class="option" onclick="selectCard(event)" data-code="P3"
-										id="N-PAY"><img
-										src="/journey/resources/img/book/npay.svg"> N-PAY</li>
+									<li class="option" onclick="selectCard(event)" data-code="P3" id="KAKAOPAY">
+									<img src="/journey/resources/img/book/kakaopay.png"> KAKAO PAY</li>
+									<li class="option" onclick="selectCard(event)" data-code="P3" id="TOSS-PAY">
+									<img src="/journey/resources/img/book/Toss.png"> TOSS-PAY</li>
+									<li class="option" onclick="selectCard(event)" data-code="P3" id="N-PAY">
+									<img src="/journey/resources/img/book/npay.svg"> N-PAY</li>
 									<hr>
 									<li class="option" onclick="selectCard(event)" data-code="P2"
 										id="deposit"><img
@@ -143,13 +137,10 @@
 							</div>
 						</section>
 						<div id="passwordSection" style="display: none;">
-							<label for="passwordInput">비밀번호:</label> <input type="password"
-								id="passwordInput">
+							<label for="passwordInput">비밀번호:</label> <input type="password" id="passwordInput">
 							<button type="button" onclick="checkPassword()">확인</button>
-							<div id="passwordError" style="color: red; display: none;">비밀번호가
-								일치하지 않습니다</div>
-							<div id="passwordSuccess" style="color: blue; display: none;">비밀번호가
-								일치합니다</div>
+							<div id="passwordError" style="color: red; display: none;">비밀번호가 일치하지 않습니다</div>
+							<div id="passwordSuccess" style="color: blue; display: none;">비밀번호가 일치합니다</div>
 						</div>
 
 					</div>
@@ -158,14 +149,12 @@
 						<div class="sendMessageToHost">
 							<h2>호스트에게 메시지 보내기</h2>
 						</div>
-						<div class="sendMessageToHost">여행 목적, 동반 일행, 이 숙소를 선택한 이유 등을
-							알려주세요.</div>
+						<div class="sendMessageToHost">여행 목적, 동반 일행, 이 숙소를 선택한 이유 등을 알려주세요.</div>
 						<div class="sendMessageToHost">
 
 							<div class="hostInformation">
 								<div id="hostImgBox">
-									<img id="hostImg"
-										src="/journey/resources/upload/host/${vo.hostProfile}">
+									<img id="hostImg" src="/journey/resources/upload/host/${vo.hostProfile}">
 								</div>
 								<div id="hostText">
 									<div id="hostName">${vo.hostName}</div>
@@ -182,32 +171,25 @@
 							<h2>환불정책안내</h2>
 						</div>
 						<div class="refundInfoText">
-							<span id="refundText">${refundPolicyText}</span> 그 이후에는 취소 시점에 따라
-							환불액이 결정됩니다.
+							<span id="refundText">${refundPolicyText}</span> 
+							그 이후에는 취소 시점에 따라 환불액이 결정됩니다.
 							<p>
-								<span id="refundPolicy" role="button"><a
-									href="javascript:openPop()"> 자세히 알아보기</a></span>
+								<span id="refundPolicy" role="button">
+								<a href="javascript:openPop()"> 자세히 알아보기</a></span>
 							</p>
 						</div>
-						<div id="passwordSection" style="display: none;">
-							<label for="passwordInput">비밀번호:</label> <input type="password"
-								id="passwordInput">
-							<button type="button" onclick="checkPassword()">확인</button>
-							<div id="passwordError" style="color: red; display: none;">비밀번호가
-								일치하지 않습니다</div>
-						</div>
-						<div></div>
 					</div>
 
 
 
 					<div class="rsvInnerBox" id="rsvBtnText">
-						아래 버튼을 선택하면 <span class="accommPolicy" role="button">호스트가
-							설정한 숙소 이용규칙</span> , <span class="accommPolicy" role="button">게스트에게
-							적용되는 기본 규칙</span> , <span class="accommPolicy" role="button">에어비앤비
-							재예약 및 환불 정책</span> 에 동의하며, 피해에 대한 책임이 본인에게 있을 경우 에어비앤비가 <span
-							class="accommPolicy" role="button">결제 수단으로 청구</span> 의 조치를 취할 수
-						있다는 사실에 동의하는 것입니다. 호스트가 예약 요청을 수락하면 표시된 총액이 결제되는 데 동의합니다.
+						아래 버튼을 선택하면 
+						<span class="accommPolicy" role="button">호스트가 설정한 숙소 이용규칙</span> ,
+						<span class="accommPolicy" role="button">게스트에게 적용되는 기본 규칙</span> ,
+						<span class="accommPolicy" role="button">에어비앤비 재예약 및 환불 정책</span> 
+						에 동의하며, 피해에 대한 책임이 본인에게 있을 경우 에어비앤비가 
+						<span class="accommPolicy" role="button">결제 수단으로 청구</span>
+					    의 조치를 취할 수 있다는 사실에 동의하는 것입니다. 호스트가 예약 요청을 수락하면 표시된 총액이 결제되는 데 동의합니다.
 					</div>
 					<div class="rsvInnerBox" id="rsvBtnBox">
 						<button id="rsvBtn" type="submit">확인 및 결제</button>
@@ -265,15 +247,15 @@
 			<h2>날짜 수정</h2>
 			<div class="date-inputs">
 				<div class="input-group">
-					<label for="checkInDate">체크인 날짜</label> <input type="date"
-						id="checkInDate" onchange="validateDates()">
+					<label for="checkInDate">체크인 날짜</label> 
+					<input type="date" id="checkInDate" onchange="validateDates()">
 				</div>
 				<div class="input-group">
-					<label for="checkOutDate">체크아웃 날짜</label> <input type="date"
-						id="checkOutDate" onchange="validateDates()">
+					<label for="checkOutDate">체크아웃 날짜</label> 
+					<input type="date" id="checkOutDate" onchange="validateDates()">
 				</div>
 			</div>
-			<button id="saveDateBtn" class="saveDateBtn" onclick="saveDates()">수정</button>
+			<button id="saveDateBtn" class="saveDateBtn">수정</button>
 		</div>
 	</div>
 
@@ -282,8 +264,8 @@
 		<div class="popup-content">
 			<span class="closeBtn" onclick="close_editPeople()">&times;</span>
 			<h2>인원 수정</h2>
-			<label for="peopleCountInput">인원:</label> <select name="guestCount"
-				id="peopleCountInput">
+			<label for="peopleCountInput">인원:</label>
+			 <select name="guestCount" id="peopleCountInput">
 				<c:forEach begin="1" end="${vo.capacity}" varStatus="status">
 					<option value="${status.index}">${status.index}명</option>
 				</c:forEach>
