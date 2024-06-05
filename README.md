@@ -3,6 +3,37 @@
 semi Project 
 <br>
 <br>
+
+<h2 ><b> 🤝 역할 </b></h2>
+<h3><b>나지원 : 조장</b></h3>
+<h4><b>FRONT</b></h4>
+<p data-ke-size="size16"> - reservationPayment(확인 및 결제)</p>
+<p data-ke-size="size16"> - paymentComplete(예약확정)</p>
+<p data-ke-size="size16"> - reservationList(예정된 예약, 지난 예약, 취소된 예약)</p>
+<p data-ke-size="size16"> - myPage(계정)</p>
+<p data-ke-size="size16"> - memberPersonalInfo(개인정보)</p>
+<p data-ke-size="size16"> - loginSecurityInfo(로그인보안)</p>
+<p data-ke-size="size16"> - 리뷰 작성, 목록, 수정 페이지</p>
+<h4><b>BACK</b></h4>
+<p data-ke-size="size16"> - 예약 및 결제 기능 구현</p>
+<p data-ke-size="size16"> - 리뷰 기능 구현</p>
+<h3><b>주선기 : DB관리자</b></h3>
+<h4><b>FRONT</b></h4>
+<p data-ke-size="size16"> - 숙소 상세페이지</p>
+<p data-ke-size="size16"> - 회원가입</p>
+<h4><b>BACK</b></h4>
+<p data-ke-size="size16"> - 호스트, 회원기능 구현</p>
+<p data-ke-size="size16"> - 객실 기능 구현</p>
+<h3><b>이지수 : 형상관리자</b></h3>
+<h4><b>FRONT</b></h4>
+
+<p data-ke-size="size16"> - Home - header/footer</p>
+<p data-ke-size="size16"> - Home - 로그인</p>
+<p data-ke-size="size16"> - Wish - 위시리스트 페이지</p>
+<h4><b>BACK</b></h4>
+<p data-ke-size="size16"> - 숙소 기능 구현</p>
+<p data-ke-size="size16"> - 위시리스트 기능 구현</p>
+
 <h2 ><b> ⚙️ 개발 환경 </b></h2>
 <h3><b>BACK</b></h3>
 <p data-ke-size="size16"> - 자바</p>
