@@ -4,19 +4,19 @@ semi Project
 <br>
 <br>
 <h2 ><b> ⚙️ 개발 환경 </b></h2>
-<p data-ke-size="size16"> BACK</p>
+<h3><b>BACK</b></h3>
 <p data-ke-size="size16"> - 자바</p>
 <p data-ke-size="size16"> - DB(SQL)</p>
 <p data-ke-size="size16"> - 톰캣</p>
-<p data-ke-size="size16"> Front</p>
+<h3><b>Front</b></h3>
 <p data-ke-size="size16"> - JSP</p>
 <p data-ke-size="size16"> - CSS</p>
 <p data-ke-size="size16"> - JQuery</p>
 <p data-ke-size="size16"> - 피그마</p>
-<p data-ke-size="size16"> 협업</p>
+<h3><b>협업</b></h3>
 <p data-ke-size="size16"> - 깃허브</p>
 <p data-ke-size="size16"> - 노션</p>
-<p data-ke-size="size16"> API</p>
+<h3><b>API</b></h3>
 <p data-ke-size="size16"> - Kakao Pay</p>
 <p data-ke-size="size16"> - Kakao Map</p>
 <br>
