@@ -27,12 +27,12 @@ semi Project
 <p data-ke-size="size16"> - 사용자 친화적인 인터페이스 제공 </p>
 <br>
 <h2 ><b> 📅개발 일정 </b></h2>
-<p data-ke-size="size16"> - week1 주제회의 및 기획 & DB모델링</p>
-<p data-ke-size="size16"> - week2 DB모델링 수정 보완</p>
-<p data-ke-size="size16"> - week3 UI 설계 및 구형</p>
-<p data-ke-size="size16"> - week4 UI 수정 보완</p>
-<p data-ke-size="size16"> - week5 백엔드 설계 및 구현</p>
-<p data-ke-size="size16"> - week6 백엔드 디버깅 및 PPT작성 & 발표 준비</p>
+<p data-ke-size="size16"> [ week1 ] 주제회의 및 기획 & DB모델링</p>
+<p data-ke-size="size16"> [ week2 ] DB모델링 수정 보완</p>
+<p data-ke-size="size16"> [ week3 ] UI 설계 및 구형</p>
+<p data-ke-size="size16"> [ week4 ] UI 수정 보완</p>
+<p data-ke-size="size16"> [ week5 ] 백엔드 설계 및 구현</p>
+<p data-ke-size="size16"> [ week6 ] 백엔드 디버깅 및 PPT작성 & 발표 준비</p>
 <br>
 <h2><b> 🛠️ 구현 기능 & 💻서비스화면 </b></h2>
 <h3><b>홈 &amp; 메뉴</b></h3>
