@@ -23,9 +23,9 @@
 <h4> server & library & API</h4>
 <div style="white-space: nowrap;">
   <img src='https://img.shields.io/badge/Apache_Tomcat-F8DC75?style=for-the-badge&logo=Apache-Tomcat&logoColor=white'>
-  <img src='https://img.shields.io/badge/Kakao_Pay-F8DC75?style=for-the-badge&logo=kakao&logoColor=white'>
-  <img src='https://img.shields.io/badge/Kakao_Map-F8DC75?style=for-the-badge&logo=kakao&logoColor=white'>
   <img src='https://img.shields.io/badge/Apache_Tomcat-F8DC75?style=for-the-badge&logo=Apache-Tomcat&logoColor=white'>
+  <img src='https://img.shields.io/badge/Kakao_Pay-F7DF1E?style=for-the-badge&logo=kakao&logoColor=white'>
+  <img src='https://img.shields.io/badge/Kakao_Map-F7DF1E?style=for-the-badge&logo=kakao&logoColor=white'>
 </div>
 
 
