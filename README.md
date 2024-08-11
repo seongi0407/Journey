@@ -1,4 +1,21 @@
-<h1 style="color: #000000;"><b>STANDARD-OF-TRAVEL🏡</b></h1>
+<h1 style="color: #000000;"><b>🏡Journey (Standard of Travel)</b></h1>
+<br>
+
+<h2>프로젝트 </h2>
+<span>
+    ‘Journey’는 다가오는 여름에 보다 간편하게 숙소를 예약할 수 있는 웹 사이트입니다.
+    호스트 입장에서는 숙소와 객실 등록/수정을 손쉽게 할 수 있고, 여행자 입장에서는 한 눈에 보기 쉬운 화면과 직관적인 예약 방식으로 호스트가 제공한 숙소와 객실에 접근하게 해주는 웹 사이트입니다.
+    Journey는 여행자들의 ‘여정’을 함께하며, ‘여행의 정석(여정)’이 무엇인지 다시금 알게 해주는 것을 목표로 합니다.
+</span>
+<br>
+<br>
+<br>
+
+<h3><b>🔗 노션 링크</b></h3>
+https://southern-flame-986.notion.site/Journey-12066a711508450fbd5980d2bdcd1514
+<br>
+<br>
+<br>
 
 <h2 style="color: #000000; text-align: start;" data-ke-size="size26"><b>⚙️ 개발 환경</b></h2>
 <div style="background-color: #ffffff; color: #1f2328; text-align: start;">
@@ -42,6 +59,9 @@
     <img src='https://img.shields.io/badge/ERD Cloud-82612C?style=for-the-badge'>
     <img src='https://img.shields.io/badge/Source Tree-0052CC?style=for-the-badge&logo=Sourcetree&logoColor=white'>
 </div>
+<br>
+<br>
+<br>
 
 <h2 ><b> 🤝 역할 </b></h2>
 <h3><b>나지원: 조장</b></h3>
@@ -83,12 +103,18 @@
 <p data-ke-size="size16"> - Kakao Pay</p>
 <p data-ke-size="size16"> - Kakao Map</p>
 <br>
+<br>
+<br>
+
 <h2 ><b> 📝시장분석과 기획의도 </b></h2>
 <p data-ke-size="size16"> - 여행 트렌드의 변화 </p>
 <p data-ke-size="size16"> - 경제적 요인 </p>
 <p data-ke-size="size16"> - 시장 트렌드 반영 </p>
 <p data-ke-size="size16"> - 사용자 친화적인 인터페이스 제공 </p>
 <br>
+<br>
+<br>
+
 <h2 ><b> 📅개발 일정 </b></h2>
 <p data-ke-size="size16"> [ week1 ] 주제회의 및 기획 & DB모델링</p>
 <p data-ke-size="size16"> [ week2 ] DB모델링 수정 보완</p>
@@ -97,6 +123,9 @@
 <p data-ke-size="size16"> [ week5 ] 백엔드 설계 및 구현</p>
 <p data-ke-size="size16"> [ week6 ] 백엔드 디버깅 및 PPT작성 & 발표 준비</p>
 <br>
+<br>
+<br>
+
 <h2><b> 🛠️ 구현 기능 & 💻서비스화면 </b></h2>
 <h3><b>홈 &amp; 메뉴</b></h3>
 <p data-ke-size="size16"> - 회원가입(호스트 및 회원), 로그인 및 로그아웃, 프로필 사진 등록 </p>
@@ -106,7 +135,34 @@
 <p data-ke-size="size16"> - 위시 리스트 등록, 삭제 </p>
 <p data-ke-size="size16"> - 리뷰 작성, 수정, 삭제 </p>
 <p data-ke-size="size16"> - 예약 및 결제, 결제 API 이용 </p>
-
 <br>
-<h3><b>노션 링크</b></h3>
-https://southern-flame-986.notion.site/Journey-12066a711508450fbd5980d2bdcd1514
+<br>
+<br>
+
+<h2><b>📄화면</b></h2>
+<h3>1. 홈페이지</h3>
+<img src='https://github.com/user-attachments/assets/6301bcb5-ecc7-4f3a-a609-99e0abe19ca4' width=800px height=500px>
+<br>
+<br>
+<br>
+
+<h3>2. 숙소, 객실 관리 (호스트)</h3>
+<img src='https://github.com/user-attachments/assets/7870aa16-f041-4814-b65b-a396f0e49bec' width=800px height=500px>
+<br>
+<br>
+<br>
+
+<h3>3. 객실 상세 페이지</h3>
+<img src='https://github.com/user-attachments/assets/fc0d3a12-c683-4ceb-b39e-d0e382ebe6f5' width=800px height=500px>
+<br>
+<br>
+<br>
+
+<h3>4. 최신 리뷰 6개 (객실 상세 페이지)</h3>
+<img src='https://github.com/user-attachments/assets/a32e77aa-015b-4d6e-9ed8-fca32e23accb' width=800px height=500px>
+<br>
+<br>
+<br>
+
+<h3>5. 객실 위치 조회 (객실 상세 페이지)</h3>
+<img src='https://github.com/user-attachments/assets/95ecd8e1-89a5-497d-9c52-2da8041f7ca0' width=800px height=500px>
