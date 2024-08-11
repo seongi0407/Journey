@@ -5,32 +5,46 @@
 <h4>✨ Back & Front ✨</h4>
 <div style="white-space: nowrap;">
     <img src='https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white'>
-      <img src='https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white'>
-  <img src='https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white'>
-  <img src='https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white'>
-  <img src='https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white'>
+    <img src='https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white'>
+    <img src='https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white'>
+    <img src='https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white'>
     <img src='https://img.shields.io/badge/Oracle-F80000?style=for-the-badge&logo=Oracle&logoColor=white'>
+    <img src='https://img.shields.io/badge/JSP&Servlet-3776AB?style=for-the-badge'>
 </div>
 
-  <h4>🛠 Tools 🛠</h4>
+<h4>🛠 Tools 🛠</h4>
 <div style="white-space: nowrap;">
-  <img src='https://img.shields.io/badge/Apache_Tomcat-F8DC75?style=for-the-badge&logo=Apache-Tomcat&logoColor=white'>
-  <img src='https://img.shields.io/badge/Eclipse_Ide-2C2255?style=for-the-badge&logo=Eclipse-Ide&logoColor=white'>
-  <img src='https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white'>
+    <img src='https://img.shields.io/badge/Eclipse_Ide-2C2255?style=for-the-badge&logo=Eclipse-Ide&logoColor=white'>
+    <img src='https://img.shields.io/badge/SQL Developer-2C2255?style=for-the-badge'>
+    <img src='https://img.shields.io/badge/Visual Studio Code-2C2255?style=for-the-badge'>
+</div>
+
+<h4>🛜 Server & API 🛜</h4>
+<div style="white-space: nowrap;">
+    <img src='https://img.shields.io/badge/Apache_Tomcat-F8DC75?style=for-the-badge&logo=Apache-Tomcat&logoColor=white'>
+    <img src='https://img.shields.io/badge/Kakao_Pay-F7DF1E?style=for-the-badge&logo=kakao&logoColor=white'>
+    <img src='https://img.shields.io/badge/Kakao_Map-F7DF1E?style=for-the-badge&logo=kakao&logoColor=white'>
+</div>
+
+<h4>📚 FrameWork & Library 📚</h4>
+<div style="white-space: nowrap;">
+    <img src='https://img.shields.io/badge/Ojdbc-F8DC75?style=for-the-badge'>
+    <img src='https://img.shields.io/badge/Gson-F8DC75?style=for-the-badge'>
+    <img src='https://img.shields.io/badge/Jstl-F8DC75?style=for-the-badge'>
+    <img src='https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white'>
+</div>
+
+<h4>🔬 Collaboration 🔬</h4>
+<div style="white-space: nowrap;">
+    <img src='https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white'>
     <img src='https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white'>
+    <img src='https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=Figma&logoColor=white'>
+    <img src='https://img.shields.io/badge/ERD Cloud-82612C?style=for-the-badge'>
+    <img src='https://img.shields.io/badge/Source Tree-0052CC?style=for-the-badge&logo=Sourcetree&logoColor=white'>
 </div>
-
-<h4> server & library & API</h4>
-<div style="white-space: nowrap;">
-  <img src='https://img.shields.io/badge/Apache_Tomcat-F8DC75?style=for-the-badge&logo=Apache-Tomcat&logoColor=white'>
-  <img src='https://img.shields.io/badge/Apache_Tomcat-F8DC75?style=for-the-badge&logo=Apache-Tomcat&logoColor=white'>
-  <img src='https://img.shields.io/badge/Kakao_Pay-F7DF1E?style=for-the-badge&logo=kakao&logoColor=white'>
-  <img src='https://img.shields.io/badge/Kakao_Map-F7DF1E?style=for-the-badge&logo=kakao&logoColor=white'>
-</div>
-
 
 <h2 ><b> 🤝 역할 </b></h2>
-<h3><b>나지원 : 조장</b></h3>
+<h3><b>나지원: 조장</b></h3>
 <h4><b>FRONT</b></h4>
 <p data-ke-size="size16"> - reservationPayment(확인 및 결제)</p>
 <p data-ke-size="size16"> - paymentComplete(예약확정)</p>
@@ -42,23 +56,28 @@
 <h4><b>BACK</b></h4>
 <p data-ke-size="size16"> - 예약 및 결제 기능 구현</p>
 <p data-ke-size="size16"> - 리뷰 기능 구현</p>
-<h3><b>주선기 : DB관리자</b></h3>
-<h4><b>FRONT</b></h4>
-<p data-ke-size="size16"> - 숙소 상세페이지</p>
-<p data-ke-size="size16"> - 회원가입</p>
-<h4><b>BACK</b></h4>
-<p data-ke-size="size16"> - 호스트, 회원기능 구현</p>
-<p data-ke-size="size16"> - 객실 기능 구현</p>
-<h3><b>이지수 : 형상관리자</b></h3>
-<h4><b>FRONT</b></h4>
+<br>
 
+<h3><b>주선기: DB관리자</b></h3>
+<h4><b>FRONT</b></h4>
+<p data-ke-size="size16"> - 숙소 등록, 수정 페이지 </p>
+<p data-ke-size="size16"> - 숙소 상세 조회 페이지 </p>
+<p data-ke-size="size16"> - 회원가입 페이지 </p>
+<p data-ke-size="size16"> - 회원정보 수정 페이지 </p>
+<h4><b>BACK</b></h4>
+<p data-ke-size="size16"> - 호스트, 사용자 회원 기능 구현</p>
+<p data-ke-size="size16"> - 객실 기능 구현</p>
+<br>
+
+<h3><b>이지수: 형상관리자</b></h3>
+<h4><b>FRONT</b></h4>
 <p data-ke-size="size16"> - Home - header/footer</p>
 <p data-ke-size="size16"> - Home - 로그인</p>
 <p data-ke-size="size16"> - Wish - 위시리스트 페이지</p>
 <h4><b>BACK</b></h4>
 <p data-ke-size="size16"> - 숙소 기능 구현</p>
 <p data-ke-size="size16"> - 위시리스트 기능 구현</p>
-
+<br>
 
 <h3><b>API</b></h3>
 <p data-ke-size="size16"> - Kakao Pay</p>
@@ -80,13 +99,14 @@
 <br>
 <h2><b> 🛠️ 구현 기능 & 💻서비스화면 </b></h2>
 <h3><b>홈 &amp; 메뉴</b></h3>
-<p data-ke-size="size16"> -회원가입 및 로그인, 회원정보 수정, 탈퇴, 프로필 사진 등록 </p>
-<p data-ke-size="size16"> -숙소 등록, 수정, 삭제, 객실 등록, 수정, 삭제, 객실 사진 등록  </p>
-<p data-ke-size="size16"> -위시리스트 등록, 삭제 </p>
-<p data-ke-size="size16"> -리뷰 작성, 수정, 삭제 </p>
-<p data-ke-size="size16"> -예약 및 결제, 결제 API </p>
-<p data-ke-size="size16"> -지도 API </p>
+<p data-ke-size="size16"> - 회원가입(호스트 및 회원), 로그인 및 로그아웃, 프로필 사진 등록 </p>
+<p data-ke-size="size16"> - 회원정보 수정, 회원탈퇴 </p>
+<p data-ke-size="size16"> - 숙소 등록, 수정, 삭제, 목록 조회, 지도 API를 이용해서 숙소 위치 등록 </p>
+<p data-ke-size="size16"> - 객실 등록, 수정, 삭제, 목록 조회, 상세 조회, 객실 사진 등록, 지도 API를 이용해서 객실 위치 조회 </p>
+<p data-ke-size="size16"> - 위시 리스트 등록, 삭제 </p>
+<p data-ke-size="size16"> - 리뷰 작성, 수정, 삭제 </p>
+<p data-ke-size="size16"> - 예약 및 결제, 결제 API 이용 </p>
 
 <br>
-<h3><b>발표자료</b></h3>
-https://www.canva.com/design/DAGHCWxMb14/yb3tB-bdmL8HJQ8MdQGaCg/edit?utm_content=DAGHCWxMb14&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+<h3><b>노션 링크</b></h3>
+https://southern-flame-986.notion.site/Journey-12066a711508450fbd5980d2bdcd1514
