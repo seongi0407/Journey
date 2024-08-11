@@ -12,7 +12,7 @@
     <img src='https://img.shields.io/badge/Oracle-F80000?style=for-the-badge&logo=Oracle&logoColor=white'>
 </div>
 
-  <h4>🛠 사용 툴 🛠</h4>
+  <h4>🛠 Tools 🛠</h4>
 <div style="white-space: nowrap;">
   <img src='https://img.shields.io/badge/Apache_Tomcat-F8DC75?style=for-the-badge&logo=Apache-Tomcat&logoColor=white'>
   <img src='https://img.shields.io/badge/Eclipse_Ide-2C2255?style=for-the-badge&logo=Eclipse-Ide&logoColor=white'>
