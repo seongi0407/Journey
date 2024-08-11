@@ -1,18 +1,12 @@
 <h1 style="color: #000000;"><b>🏡Journey (Standard of Travel)</b></h1>
 <br>
 
-<h2>프로젝트 </h2>
+<h2>👪 프로젝트 소개</h2>
 <span>
     ‘Journey’는 다가오는 여름에 보다 간편하게 숙소를 예약할 수 있는 웹 사이트입니다.
     호스트 입장에서는 숙소와 객실 등록/수정을 손쉽게 할 수 있고, 여행자 입장에서는 한 눈에 보기 쉬운 화면과 직관적인 예약 방식으로 호스트가 제공한 숙소와 객실에 접근하게 해주는 웹 사이트입니다.
     Journey는 여행자들의 ‘여정’을 함께하며, ‘여행의 정석(여정)’이 무엇인지 다시금 알게 해주는 것을 목표로 합니다.
 </span>
-<br>
-<br>
-<br>
-
-<h3><b>🔗 노션 링크</b></h3>
-https://southern-flame-986.notion.site/Journey-12066a711508450fbd5980d2bdcd1514
 <br>
 <br>
 <br>
@@ -166,3 +160,12 @@ https://southern-flame-986.notion.site/Journey-12066a711508450fbd5980d2bdcd1514
 
 <h3>5. 객실 위치 조회 (객실 상세 페이지)</h3>
 <img src='https://github.com/user-attachments/assets/95ecd8e1-89a5-497d-9c52-2da8041f7ca0' width=800px height=500px>
+<br>
+<br>
+<br>
+
+<h3><b>🔗 노션 링크</b></h3>
+https://southern-flame-986.notion.site/Journey-12066a711508450fbd5980d2bdcd1514
+<br>
+<br>
+<br>
